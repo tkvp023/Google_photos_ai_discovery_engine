@@ -1,0 +1,382 @@
+# ═══════════════════════════════════════════════════════════════
+# AI Discovery Engine — Configuration File
+# ═══════════════════════════════════════════════════════════════
+# Product: Google Photos (Core Experience Team)
+# Strategic Goal: Increase successful retrieval of vaguely remembered photos
+# ═══════════════════════════════════════════════════════════════
+
+# ─── 1. PROJECT METADATA ─────────────────────────────────────
+
+project:
+  name: "Google Photos AI Discovery Engine"
+  slug: "google_photos"
+  description: >
+    Analyzing visual memory retrieval friction in Google Photos — understanding how users
+    recall past visual memories, where retrieval breaks down when memory is incomplete,
+    and identifying opportunities for AI-native episodic retrieval.
+
+# ─── 2. DOMAIN CONTEXT ───────────────────────────────────────
+
+domain:
+  brand_name: "Google Photos"
+  industry: "Personal Cloud Media & Visual Retrieval"
+  competitors:
+    - "Apple Photos"
+    - "Amazon Photos"
+    - "OneDrive"
+    - "Dropbox"
+    - "Samsung Gallery"
+    - "WhatsApp"
+    - "Instagram"
+
+# ─── 3. DATA SOURCES ─────────────────────────────────────────
+
+sources:
+  playstore:
+    enabled: true
+    app_id: "com.google.android.apps.photos"
+    country: "us"
+    lang: "en"
+    count: 25000
+    batch_size: 200
+
+  appstore:
+    enabled: true
+    app_id: "962194608"
+    country: "us"
+    max_pages: 50
+    target_count: 10000
+
+  reddit:
+    enabled: true
+    subreddits:
+      - "googlephotos"
+      - "GooglePixel"
+      - "pixel_phones"
+      - "GoogleSupport"
+      - "iphone"
+      - "androidapps"
+      - "Android"
+      - "techsupport"
+      - "degoogle"
+    search_queries:
+      - "google photos search"
+      - "google photos can't find photo"
+      - "google photos find old photo"
+      - "google photos search broken"
+      - "google photos remember photo"
+      - "google photos search receipt document"
+      - "google photos face search fail"
+      - "google photos scroll timeline"
+      - "google photos search date location"
+      - "google photos search vs apple photos"
+    sort: "relevance"
+    time_filter: "all"
+    limit_per_query: 500
+    include_comments: true
+    comment_depth: 5
+    min_upvotes: 1
+
+  youtube:
+    enabled: true
+    search_queries:
+      - "google photos search tips"
+      - "how to find old photos in google photos"
+      - "google photos search hidden features"
+      - "google photos ask photos gemini"
+      - "google photos search problems"
+      - "google photos vs apple photos search"
+      - "how to find a photo you forgot date of"
+    max_videos_per_query: 30
+    max_comments_per_video: 200
+    order: "relevance"
+    published_after: "2022-01-01T00:00:00Z"
+    region_code: "US"
+    relevance_language: "en"
+
+  trustpilot:
+    enabled: true
+    url: "https://www.trustpilot.com/review/photos.google.com"
+    max_pages: 50
+    target_count: 2000
+
+  pissedconsumer:
+    enabled: false
+    url: "https://google-photos.pissedconsumer.com/review.html"
+    max_pages: 20
+    target_count: 500
+
+  reviewsio:
+    enabled: false
+    url: "https://www.reviews.io/company-reviews/store/photos.google.com"
+    max_pages: 20
+    target_count: 500
+
+# ─── 4. DISCOVERY QUESTIONS ──────────────────────────────────
+# 10 strategic questions mapping human memory decay to retrieval breakdown
+
+discovery_questions:
+  - id: 1
+    text: "What kinds of old photos do users struggle to retrieve?"
+    short: "Struggled Photo Types"
+    related_tags:
+      - "vague_event_or_trip"
+      - "utility_receipt_or_doc"
+      - "candid_moment_or_expression"
+      - "medicine_or_product_label"
+      - "screenshot_or_meme_mix"
+
+  - id: 2
+    text: "What information do people actually remember about a photo?"
+    short: "Retained Memory Clues"
+    related_tags:
+      - "remembered_relative_time"
+      - "remembered_visual_color_object"
+      - "remembered_emotional_event"
+      - "remembered_companion_person"
+
+  - id: 3
+    text: "What information have they forgotten?"
+    short: "Forgotten Metadata"
+    related_tags:
+      - "forgot_exact_date"
+      - "forgot_exact_location"
+      - "forgot_filename_or_album"
+
+  - id: 4
+    text: "How do users formulate searches when their memory is incomplete?"
+    short: "Incomplete Query Formulation"
+    related_tags:
+      - "query_too_literal"
+      - "query_keyword_guessing"
+      - "query_relative_time_attempt"
+
+  - id: 5
+    text: "Why does search return completely irrelevant photos or say 'No results found' for photos users know are in their library?"
+    short: "Irrelevant Results & False Misses"
+    related_tags:
+      - "zero_results_for_existing_photo"
+      - "irrelevant_search_results"
+      - "query_too_literal"
+
+  - id: 6
+    text: "Why do users complain about having to endlessly scroll through years of timeline photos when search fails them?"
+    short: "Endless Timeline Scrolling"
+    related_tags:
+      - "endless_scrolling_fatigue"
+      - "timeline_navigation_clunky"
+
+  - id: 7
+    text: "How do screenshots, receipts, memes, and downloaded junk clutter and ruin search for personal memories?"
+    short: "Screenshot & Junk Clutter"
+    related_tags:
+      - "screenshot_and_junk_clutter"
+      - "irrelevant_search_results"
+
+  - id: 8
+    text: "What specific failures do users report with People & Pets / facial recognition search?"
+    short: "Face Recognition Failures"
+    related_tags:
+      - "face_recognition_misidentification"
+      - "face_untagged_missing"
+
+  - id: 9
+    text: "Why does searching for text inside photos (receipts, prescriptions, documents, signs) fail for users?"
+    short: "Text & Document Search Failures"
+    related_tags:
+      - "text_ocr_detection_failure"
+      - "utility_receipt_or_doc"
+      - "medicine_or_product_label"
+
+  - id: 10
+    text: "What workarounds do users resort to (e.g., searching WhatsApp chats, Apple Photos, asking friends) when Google Photos search fails?"
+    short: "Workarounds & Switching"
+    related_tags:
+      - "whatsapp_external_workaround"
+      - "competitor_switching_apple"
+
+# ─── 5. CLASSIFICATION SCHEMA ────────────────────────────────
+
+classification:
+  hesitation_reasons:
+    # Memory Gaps (From Questions 1-4)
+    - "forgot_exact_date"
+    - "forgot_exact_location"
+    - "forgot_filename_or_album"
+    - "remembered_relative_time"
+    - "remembered_visual_color_object"
+    - "remembered_emotional_event"
+    - "remembered_companion_person"
+    - "vague_event_or_trip"
+    - "utility_receipt_or_doc"
+    - "candid_moment_or_expression"
+    - "medicine_or_product_label"
+    - "query_too_literal"
+    - "query_keyword_guessing"
+    # Concrete Review Pain Points (From Questions 5-10)
+    - "zero_results_for_existing_photo"
+    - "irrelevant_search_results"
+    - "endless_scrolling_fatigue"
+    - "timeline_navigation_clunky"
+    - "screenshot_and_junk_clutter"
+    - "face_recognition_misidentification"
+    - "face_untagged_missing"
+    - "text_ocr_detection_failure"
+    - "whatsapp_external_workaround"
+    - "competitor_switching_apple"
+    - "other"
+
+  factor_categories:
+    - "semantic_search_accuracy"
+    - "natural_language_understanding"
+    - "facial_recognition"
+    - "text_ocr_detection"
+    - "timeline_navigation"
+    - "clutter_filtering"
+    - "album_organization"
+    - "search_speed_responsiveness"
+
+  intent_types:
+    - "vague_episodic_recall"
+    - "utility_document_retrieval"
+    - "specific_person_search"
+    - "casual_nostalgic_browsing"
+    - "cleanup_and_organization"
+    - "unknown"
+
+  user_segments:
+    age_groups: ["gen_z", "millennial", "gen_x", "unknown"]
+    price_sensitivity: ["high", "medium", "low", "unknown"]
+    engagement_level: ["power_user", "casual", "hoarder", "unknown"]
+    gender_signals: ["male", "female", "non_binary", "unknown"]
+
+  competitor_platforms:
+    - "apple_photos"
+    - "amazon_photos"
+    - "onedrive"
+    - "dropbox"
+    - "samsung_gallery"
+    - "whatsapp"
+    - "instagram"
+    - "other"
+
+  external_info_types:
+    - "whatsapp_chat_history"
+    - "social_media_posts"
+    - "calendar_lookup"
+    - "ask_family_friends"
+    - "google_search"
+    - "bank_statements"
+    - "other"
+
+# ─── 6. RELEVANCE FILTER KEYWORDS ────────────────────────────
+
+relevance:
+  domain_keywords:
+    - "google photos"
+    - "google photo"
+    - "photos app"
+    - "apple photos"
+    - "search"
+    - "find"
+    - "retrieve"
+    - "locate"
+    - "remember"
+    - "memory"
+    - "memories"
+    - "scroll"
+    - "scrolling"
+    - "timeline"
+    - "face"
+    - "faces"
+    - "facial recognition"
+    - "album"
+    - "albums"
+    - "date"
+    - "year"
+    - "location"
+    - "map"
+    - "query"
+    - "screenshot"
+    - "receipt"
+    - "document"
+    - "backup"
+    - "sync"
+    - "ask photos"
+    - "gemini"
+    - "ai search"
+    - "cannot find"
+    - "can't find"
+    - "lost photo"
+    - "looking for"
+    - "where is"
+    - "tag"
+    - "tagging"
+    - "duplicate"
+    - "clutter"
+
+  auto_relevant_sources:
+    - "playstore"
+    - "appstore"
+    - "trustpilot"
+
+# ─── 7. EXAMPLE REVIEWS (FEW-SHOT) ───────────────────────────
+
+few_shot_examples:
+  - input: >
+      I spent 45 minutes trying to find that picture of the seafood paella we ate at a beach shack during our Valencia trip three years ago.
+      I searched 'paella beach', 'spain seafood', 'beach restaurant', and got either random beach pictures or nothing.
+      I don't remember the exact restaurant name or the date, so I had to endlessly scroll through August 2023 until my eyes hurt.
+    expected_output:
+      hesitation_reasons:
+        - reason: "query_too_literal"
+          confidence: 0.95
+          evidence_quote: "searched 'paella beach', 'spain seafood', 'beach restaurant', and got either random beach pictures or nothing"
+        - reason: "forgot_exact_date"
+          confidence: 0.90
+          evidence_quote: "I don't remember the exact restaurant name or the date"
+        - reason: "endless_scrolling_fatigue"
+          confidence: 0.92
+          evidence_quote: "had to endlessly scroll through August 2023 until my eyes hurt"
+      intent: "vague_episodic_recall"
+      age_group: "millennial"
+      price_sensitivity: "medium"
+      platforms_mentioned: []
+      unmet_needs:
+        - "Semantic search that understands contextual memories like vacations and meals"
+        - "Visual filters to eliminate unrelated beach photos without exact dates"
+
+  - input: >
+      Trying to find an old prescription medicine bottle photo from last winter.
+      When I search 'medicine' or 'prescription', Google Photos gives me dozens of random WhatsApp screenshots, insurance paperwork, and memes.
+      Apple Photos on my iPad at least lets me filter by text inside images much better.
+    expected_output:
+      hesitation_reasons:
+        - reason: "screenshot_and_junk_clutter"
+          confidence: 0.95
+          evidence_quote: "gives me dozens of random WhatsApp screenshots, insurance paperwork, and memes"
+        - reason: "text_ocr_detection_failure"
+          confidence: 0.88
+          evidence_quote: "Apple Photos on my iPad at least lets me filter by text inside images much better"
+        - reason: "competitor_switching_apple"
+          confidence: 0.85
+          evidence_quote: "Apple Photos on my iPad at least lets me filter by text inside images much better"
+      intent: "utility_document_retrieval"
+      age_group: "gen_x"
+      price_sensitivity: "low"
+      platforms_mentioned: ["apple_photos"]
+      unmet_needs:
+        - "Separate utility documents and medicine photos from meme screenshots"
+        - "Reliable OCR text search on medication bottles"
+
+  - input: >
+      App crashes every time I open it. Fix your app!!
+    expected_output:
+      hesitation_reasons: []
+      intent: "unknown"
+      age_group: "unknown"
+      price_sensitivity: "unknown"
+      platforms_mentioned: []
+      is_primary_signal: false
+      unmet_needs:
+        - "Stable app experience"

@@ -1,0 +1,185 @@
+{
+  "generated_at": "2026-09-17T06:34:07Z",
+  "pipeline_version": "1.0.0",
+  "kpi_cards": [
+    {
+      "id": "total_reviews",
+      "label": "Reviews Analyzed",
+      "value": 2223,
+      "unit": "count",
+      "sparkline": [
+        1333.8,
+        1556.1,
+        1778.4,
+        2000.7,
+        2223.0
+      ],
+      "trend": "up",
+      "trend_pct": 12.5
+    },
+    {
+      "id": "screenshot_and_junk_clutter",
+      "label": "Screenshot & Meme Clutter",
+      "value": 29.1,
+      "unit": "percent",
+      "sparkline": [
+        17.5,
+        20.4,
+        23.3,
+        26.2,
+        29.1
+      ],
+      "trend": "up",
+      "trend_pct": 1.5
+    },
+    {
+      "id": "zero_results_for_existing_photo",
+      "label": "Zero Results for Existing Photos",
+      "value": 23.9,
+      "unit": "percent",
+      "sparkline": [
+        14.3,
+        16.7,
+        19.1,
+        21.5,
+        23.9
+      ],
+      "trend": "up",
+      "trend_pct": 1.2
+    },
+    {
+      "id": "irrelevant_search_results",
+      "label": "Irrelevant Search Results",
+      "value": 7.8,
+      "unit": "percent",
+      "sparkline": [
+        4.7,
+        5.5,
+        6.2,
+        7.0,
+        7.8
+      ],
+      "trend": "up",
+      "trend_pct": 0.4
+    },
+    {
+      "id": "forgot_exact_date",
+      "label": "Forgot Exact Date",
+      "value": 6.2,
+      "unit": "percent",
+      "sparkline": [
+        3.7,
+        4.3,
+        5.0,
+        5.6,
+        6.2
+      ],
+      "trend": "up",
+      "trend_pct": 0.3
+    },
+    {
+      "id": "unmet_needs",
+      "label": "Unmet Needs Identified",
+      "value": 81,
+      "unit": "count",
+      "sparkline": [
+        48.6,
+        56.7,
+        64.8,
+        72.9,
+        81.0
+      ],
+      "trend": "up",
+      "trend_pct": 9.1
+    }
+  ],
+  "source_distribution": [
+    {
+      "source": "Play Store",
+      "source_key": "playstore",
+      "count": 975,
+      "pct": 43.9,
+      "color": "#ff3f6c"
+    },
+    {
+      "source": "App Store",
+      "source_key": "appstore",
+      "count": 608,
+      "pct": 27.4,
+      "color": "#2dd4bf"
+    },
+    {
+      "source": "Reddit",
+      "source_key": "reddit",
+      "count": 319,
+      "pct": 14.3,
+      "color": "#ff7849"
+    },
+    {
+      "source": "Hacker News",
+      "source_key": "hackernews",
+      "count": 242,
+      "pct": 10.9,
+      "color": "#ea580c"
+    },
+    {
+      "source": "YouTube",
+      "source_key": "youtube",
+      "count": 79,
+      "pct": 3.6,
+      "color": "#a855f7"
+    }
+  ],
+  "top_opportunities": [
+    {
+      "rank": 1,
+      "label": "Screenshot & Meme Clutter",
+      "question_id": 2,
+      "pct": 29.1,
+      "count": 1471,
+      "avg_confidence": 0.85,
+      "impact_score": 10.0
+    },
+    {
+      "rank": 2,
+      "label": "Zero Results for Existing Photos",
+      "question_id": 2,
+      "pct": 23.9,
+      "count": 1209,
+      "avg_confidence": 0.85,
+      "impact_score": 9.3
+    },
+    {
+      "rank": 3,
+      "label": "Irrelevant Search Results",
+      "question_id": 2,
+      "pct": 7.8,
+      "count": 393,
+      "avg_confidence": 0.85,
+      "impact_score": 8.6
+    },
+    {
+      "rank": 4,
+      "label": "Forgot Exact Date",
+      "question_id": 2,
+      "pct": 6.2,
+      "count": 316,
+      "avg_confidence": 0.632,
+      "impact_score": 7.9
+    },
+    {
+      "rank": 5,
+      "label": "Remembered Relative Time",
+      "question_id": 2,
+      "pct": 5.7,
+      "count": 288,
+      "avg_confidence": 0.85,
+      "impact_score": 7.2
+    }
+  ],
+  "overall_confidence": 0.837,
+  "total_signal_docs": 2202,
+  "primary_signal_docs": 2202,
+  "secondary_signal_docs": 0,
+  "no_signal_docs": 21
+}
