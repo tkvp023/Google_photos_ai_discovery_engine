@@ -2,1428 +2,233 @@
   "question_id": 9,
   "question_text": "Why does searching for text inside photos (receipts, prescriptions, documents, signs) fail for users?",
   "question_short": "Text & Document Search Failures",
-  "total_relevant_docs": 96,
-  "avg_confidence": 0.85,
+  "total_relevant_docs": 251,
+  "avg_confidence": 0.893,
   "breakdown": [
     {
-      "tag": "zero_results_for_existing_photo",
-      "label": "Zero Results for Existing Photos",
-      "count": 80,
-      "pct": 20.4,
-      "avg_confidence": 0.85,
-      "color": "#ef4444"
-    },
-    {
-      "tag": "screenshot_and_junk_clutter",
-      "label": "Screenshot & Meme Clutter",
-      "count": 73,
-      "pct": 18.6,
-      "avg_confidence": 0.85,
-      "color": "#ec4899"
-    },
-    {
-      "tag": "medicine_or_product_label",
-      "label": "Medicine & Product Label Search",
-      "count": 48,
-      "pct": 12.2,
-      "avg_confidence": 0.85,
+      "label": "Literal Keyword Match on Text",
+      "tag": "literal_keyword_match",
+      "count": 9,
+      "pct": 50.0,
+      "avg_confidence": 0.924,
       "color": "#d946ef"
     },
     {
-      "tag": "text_ocr_detection_failure",
-      "label": "Text & OCR Detection Failure",
-      "count": 47,
-      "pct": 12.0,
-      "avg_confidence": 0.85,
-      "color": "#6366f1"
-    },
-    {
-      "tag": "irrelevant_search_results",
-      "label": "Irrelevant Search Results",
-      "count": 41,
-      "pct": 10.4,
-      "avg_confidence": 0.85,
-      "color": "#06b6d4"
-    },
-    {
-      "tag": "remembered_relative_time",
-      "label": "Remembered Relative Time",
-      "count": 23,
-      "pct": 5.9,
-      "avg_confidence": 0.85,
-      "color": "#8b5cf6"
-    },
-    {
-      "tag": "face_recognition_misidentification",
-      "label": "Face Recognition Misidentification",
-      "count": 14,
-      "pct": 3.6,
-      "avg_confidence": 0.85,
-      "color": "#10b981"
-    },
-    {
-      "tag": "forgot_filename_or_album",
-      "label": "Forgot Filename or Album",
-      "count": 11,
-      "pct": 2.8,
-      "avg_confidence": 0.85,
-      "color": "#3b82f6"
-    },
-    {
-      "tag": "face_untagged_missing",
-      "label": "Face Untagged or Missing",
-      "count": 10,
-      "pct": 2.5,
-      "avg_confidence": 0.85,
-      "color": "#14b8a6"
-    },
-    {
-      "tag": "forgot_exact_date",
-      "label": "Forgot Exact Date",
-      "count": 7,
-      "pct": 1.8,
-      "avg_confidence": 0.85,
+      "label": "Document Clutter Masking Real Photos",
+      "tag": "clutter_pollutes_results",
+      "count": 3,
+      "pct": 16.7,
+      "avg_confidence": 0.857,
       "color": "#f59e0b"
     },
     {
-      "tag": "query_too_literal",
-      "label": "Query Interpreted Too Literally",
-      "count": 6,
-      "pct": 1.5,
-      "avg_confidence": 0.85,
-      "color": "#f97316"
+      "label": "Text Entity Not Recognized",
+      "tag": "entity_not_recognized",
+      "count": 2,
+      "pct": 11.1,
+      "avg_confidence": 0.895,
+      "color": "#06b6d4"
     },
     {
-      "tag": "other",
-      "label": "Other Retrieval Friction",
-      "count": 6,
-      "pct": 1.5,
-      "avg_confidence": 0.85,
+      "label": "OCR Interpretation Dropouts",
+      "tag": "other_interpretation",
+      "count": 2,
+      "pct": 11.1,
+      "avg_confidence": 0.785,
       "color": "#6b7280"
     },
     {
-      "tag": "utility_receipt_or_doc",
-      "label": "Utility Receipt or Document",
-      "count": 5,
-      "pct": 1.3,
-      "avg_confidence": 0.85,
-      "color": "#a3e635"
-    },
-    {
-      "tag": "remembered_companion_person",
-      "label": "Remembered Companion or Person",
-      "count": 5,
-      "pct": 1.3,
-      "avg_confidence": 0.85,
-      "color": "#4ade80"
-    },
-    {
-      "tag": "competitor_switching_apple",
-      "label": "Competitor Switching (Apple/Immich)",
-      "count": 5,
-      "pct": 1.3,
-      "avg_confidence": 0.85,
-      "color": "#94a3b8"
-    },
-    {
-      "tag": "forgot_exact_location",
-      "label": "Forgot Exact Location",
-      "count": 4,
-      "pct": 1.0,
-      "avg_confidence": 0.85,
-      "color": "#f472b6"
-    },
-    {
-      "tag": "remembered_visual_color_object",
-      "label": "Remembered Visual Details",
-      "count": 3,
-      "pct": 0.8,
-      "avg_confidence": 0.85,
-      "color": "#a855f7"
-    },
-    {
-      "tag": "timeline_navigation_clunky",
-      "label": "Timeline Navigation Clunky",
-      "count": 2,
-      "pct": 0.5,
-      "avg_confidence": 0.85,
-      "color": "#eab308"
-    },
-    {
-      "tag": "whatsapp_external_workaround",
-      "label": "WhatsApp External Workaround",
+      "label": "AI Natural Language Drift on Text",
+      "tag": "gemini_misinterprets",
       "count": 1,
-      "pct": 0.3,
-      "avg_confidence": 0.85,
-      "color": "#22c55e"
+      "pct": 5.6,
+      "avg_confidence": 0.91,
+      "color": "#3b82f6"
     },
     {
-      "tag": "remembered_emotional_event",
-      "label": "Remembered Emotional Event",
+      "label": "Fallback to Scroll on Document Search",
+      "tag": "fallback_to_scroll",
       "count": 1,
-      "pct": 0.3,
-      "avg_confidence": 0.85,
-      "color": "#c084fc"
-    },
-    {
-      "tag": "endless_scrolling_fatigue",
-      "label": "Endless Scrolling Fatigue",
-      "count": 1,
-      "pct": 0.3,
-      "avg_confidence": 0.85,
-      "color": "#f43f5e"
+      "pct": 5.6,
+      "avg_confidence": 0.92,
+      "color": "#ef4444"
     }
   ],
-  "segment_splits": {
-    "gen_z": [],
-    "millennial": [],
-    "gen_x": []
-  },
   "source_attribution": [
     {
-      "label": "Zero Results for Existing Photos",
-      "tag": "zero_results_for_existing_photo",
+      "label": "Literal Keyword Match on Text",
+      "tag": "literal_keyword_match",
+      "avg_confidence": 0.924,
       "sources": [
-        {
-          "source": "Play Store",
-          "count": 554,
-          "pct": 45.8
-        },
-        {
-          "source": "App Store",
-          "count": 296,
-          "pct": 24.5
-        },
-        {
-          "source": "Hacker News",
-          "count": 183,
-          "pct": 15.1
-        },
-        {
-          "source": "Reddit",
-          "count": 142,
-          "pct": 11.7
-        },
-        {
-          "source": "YouTube",
-          "count": 34,
-          "pct": 2.8
-        }
-      ]
-    },
-    {
-      "label": "Screenshot & Meme Clutter",
-      "tag": "screenshot_and_junk_clutter",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 696,
-          "pct": 47.3
-        },
-        {
-          "source": "App Store",
-          "count": 372,
-          "pct": 25.3
-        },
-        {
-          "source": "Hacker News",
-          "count": 182,
-          "pct": 12.4
-        },
-        {
-          "source": "Reddit",
-          "count": 179,
-          "pct": 12.2
-        },
-        {
-          "source": "YouTube",
-          "count": 42,
-          "pct": 2.9
-        }
-      ]
-    },
-    {
-      "label": "Medicine & Product Label Search",
-      "tag": "medicine_or_product_label",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 16,
-          "pct": 33.3
-        },
-        {
-          "source": "Hacker News",
-          "count": 16,
-          "pct": 33.3
-        },
-        {
-          "source": "Reddit",
-          "count": 8,
-          "pct": 16.7
-        },
-        {
-          "source": "App Store",
-          "count": 7,
-          "pct": 14.6
-        },
-        {
-          "source": "YouTube",
-          "count": 1,
-          "pct": 2.1
-        }
-      ]
-    },
-    {
-      "label": "Text & OCR Detection Failure",
-      "tag": "text_ocr_detection_failure",
-      "sources": [
-        {
-          "source": "Hacker News",
-          "count": 20,
-          "pct": 42.6
-        },
-        {
-          "source": "Play Store",
-          "count": 11,
-          "pct": 23.4
-        },
-        {
-          "source": "App Store",
-          "count": 9,
-          "pct": 19.1
-        },
-        {
-          "source": "Reddit",
-          "count": 6,
-          "pct": 12.8
-        },
-        {
-          "source": "YouTube",
-          "count": 1,
-          "pct": 2.1
-        }
-      ]
-    },
-    {
-      "label": "Irrelevant Search Results",
-      "tag": "irrelevant_search_results",
-      "sources": [
-        {
-          "source": "Hacker News",
-          "count": 158,
-          "pct": 40.2
-        },
-        {
-          "source": "Play Store",
-          "count": 97,
-          "pct": 24.7
-        },
-        {
-          "source": "Reddit",
-          "count": 67,
-          "pct": 17.0
-        },
-        {
-          "source": "App Store",
-          "count": 41,
-          "pct": 10.4
-        },
-        {
-          "source": "YouTube",
-          "count": 30,
-          "pct": 7.6
-        }
-      ]
-    },
-    {
-      "label": "Remembered Relative Time",
-      "tag": "remembered_relative_time",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 129,
-          "pct": 44.8
-        },
-        {
-          "source": "App Store",
-          "count": 70,
-          "pct": 24.3
-        },
-        {
-          "source": "Hacker News",
-          "count": 43,
-          "pct": 14.9
-        },
-        {
-          "source": "Reddit",
-          "count": 41,
-          "pct": 14.2
-        },
-        {
-          "source": "YouTube",
-          "count": 5,
-          "pct": 1.7
-        }
-      ]
-    },
-    {
-      "label": "Face Recognition Misidentification",
-      "tag": "face_recognition_misidentification",
-      "sources": [
-        {
-          "source": "Reddit",
-          "count": 84,
-          "pct": 44.7
-        },
-        {
-          "source": "Play Store",
-          "count": 53,
-          "pct": 28.2
-        },
-        {
-          "source": "Hacker News",
-          "count": 36,
-          "pct": 19.1
-        },
-        {
-          "source": "App Store",
-          "count": 14,
-          "pct": 7.4
-        },
-        {
-          "source": "YouTube",
-          "count": 1,
-          "pct": 0.5
-        }
-      ]
-    },
-    {
-      "label": "Forgot Filename or Album",
-      "tag": "forgot_filename_or_album",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 70,
-          "pct": 33.7
-        },
-        {
-          "source": "App Store",
-          "count": 68,
-          "pct": 32.7
-        },
-        {
-          "source": "Reddit",
-          "count": 45,
-          "pct": 21.6
-        },
-        {
-          "source": "Hacker News",
-          "count": 13,
-          "pct": 6.2
-        },
-        {
-          "source": "YouTube",
-          "count": 12,
-          "pct": 5.8
-        }
-      ]
-    },
-    {
-      "label": "Face Untagged or Missing",
-      "tag": "face_untagged_missing",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 78,
-          "pct": 43.3
-        },
-        {
-          "source": "Reddit",
-          "count": 65,
-          "pct": 36.1
-        },
-        {
-          "source": "App Store",
-          "count": 19,
-          "pct": 10.6
-        },
-        {
-          "source": "Hacker News",
-          "count": 16,
-          "pct": 8.9
-        },
-        {
-          "source": "YouTube",
-          "count": 2,
-          "pct": 1.1
-        }
-      ]
-    },
-    {
-      "label": "Forgot Exact Date",
-      "tag": "forgot_exact_date",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 130,
-          "pct": 41.1
-        },
-        {
-          "source": "App Store",
-          "count": 110,
-          "pct": 34.8
-        },
-        {
-          "source": "Reddit",
-          "count": 44,
-          "pct": 13.9
-        },
-        {
-          "source": "Hacker News",
-          "count": 21,
-          "pct": 6.6
-        },
-        {
-          "source": "YouTube",
-          "count": 11,
-          "pct": 3.5
-        }
-      ]
-    },
-    {
-      "label": "Query Interpreted Too Literally",
-      "tag": "query_too_literal",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 45,
-          "pct": 33.1
-        },
-        {
-          "source": "Reddit",
-          "count": 38,
-          "pct": 27.9
-        },
-        {
-          "source": "App Store",
-          "count": 32,
-          "pct": 23.5
-        },
-        {
-          "source": "Hacker News",
-          "count": 17,
-          "pct": 12.5
-        },
-        {
-          "source": "YouTube",
-          "count": 4,
-          "pct": 2.9
-        }
-      ]
-    },
-    {
-      "label": "Other Retrieval Friction",
-      "tag": "other",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 89,
-          "pct": 45.4
-        },
-        {
-          "source": "App Store",
-          "count": 47,
-          "pct": 24.0
-        },
-        {
-          "source": "Hacker News",
-          "count": 29,
-          "pct": 14.8
-        },
-        {
-          "source": "Reddit",
-          "count": 27,
-          "pct": 13.8
-        },
-        {
-          "source": "YouTube",
-          "count": 4,
-          "pct": 2.0
-        }
-      ]
-    },
-    {
-      "label": "Utility Receipt or Document",
-      "tag": "utility_receipt_or_doc",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 2,
-          "pct": 40.0
-        },
-        {
-          "source": "Hacker News",
-          "count": 2,
-          "pct": 40.0
-        },
-        {
-          "source": "Reddit",
-          "count": 1,
-          "pct": 20.0
-        }
-      ]
-    },
-    {
-      "label": "Remembered Companion or Person",
-      "tag": "remembered_companion_person",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 23,
-          "pct": 40.4
-        },
-        {
-          "source": "App Store",
-          "count": 12,
-          "pct": 21.1
-        },
-        {
-          "source": "Hacker News",
-          "count": 11,
-          "pct": 19.3
-        },
-        {
-          "source": "Reddit",
-          "count": 9,
-          "pct": 15.8
-        },
-        {
-          "source": "YouTube",
-          "count": 2,
-          "pct": 3.5
-        }
-      ]
-    },
-    {
-      "label": "Competitor Switching (Apple/Immich)",
-      "tag": "competitor_switching_apple",
-      "sources": [
-        {
-          "source": "Hacker News",
-          "count": 29,
-          "pct": 38.7
-        },
-        {
-          "source": "App Store",
-          "count": 27,
-          "pct": 36.0
-        },
-        {
-          "source": "Play Store",
-          "count": 11,
-          "pct": 14.7
-        },
-        {
-          "source": "Reddit",
-          "count": 7,
-          "pct": 9.3
-        },
-        {
-          "source": "YouTube",
-          "count": 1,
-          "pct": 1.3
-        }
-      ]
-    },
-    {
-      "label": "Forgot Exact Location",
-      "tag": "forgot_exact_location",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 27,
-          "pct": 37.5
-        },
-        {
-          "source": "Hacker News",
-          "count": 22,
-          "pct": 30.6
-        },
-        {
-          "source": "Reddit",
-          "count": 13,
-          "pct": 18.1
-        },
-        {
-          "source": "App Store",
-          "count": 8,
-          "pct": 11.1
-        },
-        {
-          "source": "YouTube",
-          "count": 2,
-          "pct": 2.8
-        }
-      ]
-    },
-    {
-      "label": "Remembered Visual Details",
-      "tag": "remembered_visual_color_object",
-      "sources": [
-        {
-          "source": "Hacker News",
-          "count": 11,
-          "pct": 44.0
-        },
         {
           "source": "Play Store",
           "count": 4,
-          "pct": 16.0
-        },
-        {
-          "source": "App Store",
-          "count": 4,
-          "pct": 16.0
-        },
-        {
-          "source": "YouTube",
-          "count": 3,
-          "pct": 12.0
-        },
-        {
-          "source": "Reddit",
-          "count": 3,
-          "pct": 12.0
-        }
-      ]
-    },
-    {
-      "label": "Timeline Navigation Clunky",
-      "tag": "timeline_navigation_clunky",
-      "sources": [
-        {
-          "source": "Reddit",
-          "count": 18,
-          "pct": 43.9
-        },
-        {
-          "source": "Play Store",
-          "count": 10,
-          "pct": 24.4
-        },
-        {
-          "source": "Hacker News",
-          "count": 6,
-          "pct": 14.6
-        },
-        {
-          "source": "App Store",
-          "count": 6,
-          "pct": 14.6
-        },
-        {
-          "source": "YouTube",
-          "count": 1,
-          "pct": 2.4
-        }
-      ]
-    },
-    {
-      "label": "WhatsApp External Workaround",
-      "tag": "whatsapp_external_workaround",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 14,
-          "pct": 41.2
-        },
-        {
-          "source": "Hacker News",
-          "count": 9,
-          "pct": 26.5
-        },
-        {
-          "source": "App Store",
-          "count": 6,
-          "pct": 17.6
-        },
-        {
-          "source": "Reddit",
-          "count": 5,
-          "pct": 14.7
-        }
-      ]
-    },
-    {
-      "label": "Remembered Emotional Event",
-      "tag": "remembered_emotional_event",
-      "sources": [
-        {
-          "source": "App Store",
-          "count": 3,
-          "pct": 42.9
-        },
-        {
-          "source": "Play Store",
-          "count": 2,
-          "pct": 28.6
-        },
-        {
-          "source": "Reddit",
-          "count": 1,
-          "pct": 14.3
-        },
-        {
-          "source": "Hacker News",
-          "count": 1,
-          "pct": 14.3
-        }
-      ]
-    },
-    {
-      "label": "Endless Scrolling Fatigue",
-      "tag": "endless_scrolling_fatigue",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 12,
           "pct": 44.4
         },
         {
           "source": "App Store",
-          "count": 9,
-          "pct": 33.3
+          "count": 0,
+          "pct": 0.0
         },
         {
           "source": "Reddit",
-          "count": 4,
-          "pct": 14.8
+          "count": 3,
+          "pct": 33.3
         },
         {
           "source": "Hacker News",
+          "count": 1,
+          "pct": 11.1
+        },
+        {
+          "source": "YouTube",
+          "count": 1,
+          "pct": 11.1
+        }
+      ]
+    },
+    {
+      "label": "Document Clutter Masking Real Photos",
+      "tag": "clutter_pollutes_results",
+      "avg_confidence": 0.857,
+      "sources": [
+        {
+          "source": "Play Store",
           "count": 2,
-          "pct": 7.4
+          "pct": 66.7
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 1,
+          "pct": 33.3
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Text Entity Not Recognized",
+      "tag": "entity_not_recognized",
+      "avg_confidence": 0.895,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "source": "Reddit",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "OCR Interpretation Dropouts",
+      "tag": "other_interpretation",
+      "avg_confidence": 0.785,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "source": "Reddit",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
         }
       ]
     }
   ],
   "key_quotes": [
     {
-      "text": "Sticking to Google photos because I can search for my driving license just by searching 'license' or first 2-3 digits of my license number and it does it for me or search through photo captures of bills and documents by just entering partial Ids or any text the document might have like 'tax 2023'. I think its OCR and image search is what keeping me hostage there.",
-      "source": "Hacker News",
-      "source_id": "hn_40341455",
-      "date": "2024-05-13",
-      "confidence": 0.85,
+      "text": "App no longer grabs search terms from the 'commenting' area where I label important photos",
+      "confidence": 0.94,
+      "source": "Play Store",
       "tags": [
-        "text_ocr_detection_failure"
-      ],
-      "segment": "millennial"
+        "literal keyword match",
+        "text content"
+      ]
     },
     {
-      "text": "You could try Google Photos, it can now search text in images: . Disclaimer: I work at Google, though not on this product.",
-      "source": "Hacker News",
-      "source_id": "hn_21142958",
-      "date": "2019-10-03",
-      "confidence": 0.85,
+      "text": "when I type my phone&#39;s format of screenshot &quot;Screenshot_XXXX&quot; or even plainly &quot;Screenshots&quot;, I g",
+      "confidence": 0.92,
+      "source": "Reddit",
       "tags": [
-        "text_ocr_detection_failure"
-      ],
-      "segment": "millennial"
+        "literal keyword match",
+        "text content"
+      ]
     },
     {
-      "text": "Honestly the most important feature for me is the search function where you can find text of objects in photos and the map+time search function I can't really ditch Google photos without these",
-      "source": "Hacker News",
-      "source_id": "hn_37304218",
-      "date": "2023-08-29",
-      "confidence": 0.85,
+      "text": "I haven't been able to figure out how to search these. When you open a photo the name shows under the details section.",
+      "confidence": 0.92,
+      "source": "YouTube",
       "tags": [
-        "text_ocr_detection_failure"
-      ],
-      "segment": "millennial"
+        "literal keyword match",
+        "text content"
+      ]
     },
     {
-      "text": "i use google photos for quick text based search, like me with clock tower or something. google photos can't maintain folder structure, so its always my 2nd backup. first one is miror in dropbox.",
-      "source": "Hacker News",
-      "source_id": "hn_38309764",
-      "date": "2023-11-17",
-      "confidence": 0.85,
+      "text": "Just spent over 1 hr trying to find a photo I had taken of an order that the seller asked for me to upload a pic.",
+      "confidence": 0.92,
+      "source": "Play Store",
       "tags": [
-        "text_ocr_detection_failure"
-      ],
-      "segment": "millennial"
+        "fallback to scroll",
+        "text content"
+      ]
     },
     {
-      "text": "The new update is absolute wack, my photos aren't organized into different days anymore and everything is just bunched up. It's become almost impossible to find photos that I want since I like to document the things I do. very disappointed",
-      "source": "Google Play Store",
-      "source_id": "66eb94d8-9309-4476-825a-47dd0dd3941d",
-      "date": "2026-07-17",
-      "confidence": 0.85,
+      "text": "Want to find a photo or folder with an exact name..doesn't work.",
+      "confidence": 0.92,
+      "source": "Play Store",
       "tags": [
-        "text_ocr_detection_failure"
-      ],
-      "segment": "gen_x"
-    }
-  ],
-  "temporal_trend": [
-    {
-      "month": "2013-03",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2015-02",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2015-05",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2015-06",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2015-07",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2015-11",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2015-12",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2016-02",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2016-05",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2016-08",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2016-09",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2016-10",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2016-12",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-01",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-02",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-04",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-05",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-09",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-10",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-12",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-01",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-02",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-03",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-04",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-05",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-06",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-07",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-08",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-09",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-10",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-11",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-01",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-03",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-04",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-05",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-07",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-08",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-09",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-10",
-      "count": 4,
-      "pct": 80.0
-    },
-    {
-      "month": "2020-01",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-03",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-04",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-05",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-06",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-07",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-08",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-11",
-      "count": 18,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-12",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-01",
-      "count": 11,
-      "pct": 91.7
-    },
-    {
-      "month": "2021-02",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-03",
-      "count": 7,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-04",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-05",
-      "count": 6,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-06",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-07",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-08",
-      "count": 12,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-09",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-10",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-12",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-01",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-02",
-      "count": 10,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-03",
-      "count": 19,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-08",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-09",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-10",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-11",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-12",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-01",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-02",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-03",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-04",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-05",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-06",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-07",
-      "count": 13,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-08",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-09",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-10",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-11",
-      "count": 7,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-12",
-      "count": 10,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-01",
-      "count": 19,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-02",
-      "count": 21,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-03",
-      "count": 29,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-04",
-      "count": 16,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-05",
-      "count": 21,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-06",
-      "count": 28,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-07",
-      "count": 19,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-08",
-      "count": 32,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-09",
-      "count": 37,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-10",
-      "count": 21,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-11",
-      "count": 15,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-12",
-      "count": 15,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-01",
-      "count": 14,
-      "pct": 93.3
-    },
-    {
-      "month": "2025-02",
-      "count": 14,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-03",
-      "count": 27,
-      "pct": 96.4
-    },
-    {
-      "month": "2025-04",
-      "count": 11,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-05",
-      "count": 20,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-06",
-      "count": 24,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-07",
-      "count": 31,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-08",
-      "count": 24,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-09",
-      "count": 24,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-10",
-      "count": 27,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-11",
-      "count": 13,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-12",
-      "count": 24,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-01",
-      "count": 44,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-02",
-      "count": 51,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-03",
-      "count": 35,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-04",
-      "count": 50,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-05",
-      "count": 62,
-      "pct": 87.3
-    },
-    {
-      "month": "2026-06",
-      "count": 89,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-07",
-      "count": 297,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-08",
-      "count": 490,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-09",
-      "count": 275,
-      "pct": 97.2
+        "literal keyword match",
+        "text content"
+      ]
     }
   ]
 }

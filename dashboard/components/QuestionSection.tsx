@@ -51,13 +51,13 @@ interface QuestionSectionData {
   key_quotes?: QuoteItem[];
   source_attribution?: AttributionItem[];
   avg_confidence?: number;
-  temporal_distribution?: any;
-  factor_correlation?: any;
-  retrieval_heatmap?: any;
-  query_terms?: any;
-  retrieval_treemap?: any;
-  failure_sankey?: any;
-  [key: string]: any;
+  temporal_distribution?: Array<{ month: string; count: number; pct: number }>;
+  factor_correlation?: Array<{ factor: string; importance: number; negative_pct: number; [key: string]: unknown }>;
+  retrieval_heatmap?: { rows: string[]; columns: string[]; values: number[][] };
+  query_terms?: Array<{ text: string; value: number }>;
+  retrieval_treemap?: Array<{ theme: string; children: Array<{ name: string; value: number }> }>;
+  failure_sankey?: { nodes?: Array<{ id: string; name?: string }>; links?: Array<{ source: string; target: string; value: number }> };
+  [key: string]: unknown;
 }
 
 interface QuestionSectionProps {
@@ -90,8 +90,8 @@ function ChartCard({
       <div className="card-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4, paddingBottom: 14 }}>
         <span className="card-title">{title}</span>
         {subtitle && (
-          <span style={{ fontSize: 11.5, color: 'var(--text-muted)', lineHeight: 1.45, fontWeight: 400 }}>
-            💡 <strong style={{ color: 'var(--text-secondary)' }}>How to read:</strong> {subtitle}
+          <span style={{ fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.45, fontWeight: 400 }}>
+            {subtitle}
           </span>
         )}
       </div>
@@ -100,7 +100,7 @@ function ChartCard({
   );
 }
 
-const DEFAULT_COLORS = ['#2563eb', '#059669', '#d97706', '#0891b2', '#dc2626', '#ca8a04', '#db2777'];
+const DEFAULT_COLORS = ['#3b82f6', '#22c55e', '#f59e0b', '#06b6d4', '#64748b', '#8b5cf6', '#ec4899'];
 
 export default function QuestionSection({ data, questionId }: QuestionSectionProps) {
   const [source, setSource] = useState<string>('all');
@@ -156,7 +156,7 @@ export default function QuestionSection({ data, questionId }: QuestionSectionPro
   }
 
   const sourcesList = [
-    { id: 'all', label: 'All Discovery Channels' },
+    { id: 'all', label: 'All Platforms' },
     { id: 'play store', label: 'Play Store' },
     { id: 'app store', label: 'App Store' },
     { id: 'reddit', label: 'Reddit' },
@@ -186,14 +186,14 @@ export default function QuestionSection({ data, questionId }: QuestionSectionPro
           gap: 12,
           padding: '12px 18px',
           marginBottom: 24,
-          background: 'var(--bg-card)',
+          background: 'var(--bg-surface)',
           border: '1px solid var(--border)',
           borderRadius: 'var(--radius-md)',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
           <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-secondary)', marginRight: 4, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-            Source Filter:
+            Filter by platform:
           </span>
           {sourcesList.map((s) => {
             const isSelected = source === s.id;
@@ -202,13 +202,13 @@ export default function QuestionSection({ data, questionId }: QuestionSectionPro
                 key={s.id}
                 onClick={() => setSource(s.id)}
                 style={{
-                  background: isSelected ? 'var(--theme-accent-bg)' : 'transparent',
-                  color: isSelected ? 'var(--brand-primary)' : 'var(--text-secondary)',
-                  border: `1px solid ${isSelected ? 'var(--brand-primary)' : 'var(--border)'}`,
-                  borderRadius: 20,
+                  background: isSelected ? 'var(--semantic-blue)' : 'var(--bg-elevated)',
+                  color: isSelected ? '#fff' : 'var(--text-secondary)',
+                  border: `1px solid ${isSelected ? 'var(--semantic-blue)' : 'var(--border)'}`,
+                  borderRadius: 16,
                   padding: '4px 12px',
                   fontSize: 12,
-                  fontWeight: isSelected ? 700 : 500,
+                  fontWeight: isSelected ? 600 : 500,
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -220,23 +220,23 @@ export default function QuestionSection({ data, questionId }: QuestionSectionPro
         </div>
 
         <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
-          Showing <strong style={{ color: 'var(--text-primary)' }}>{activeDocsCount.toLocaleString()}</strong> grounded documents
+          Showing <strong style={{ color: 'var(--text-primary)' }}>{activeDocsCount.toLocaleString()}</strong> reviews
         </div>
       </div>
 
       {/* Row 1: Distribution Breakdown + Key Segments */}
       <div className="grid-2" style={{ marginBottom: 24 }}>
         <ChartCard
-          title="Friction Distribution Breakdown"
-          subtitle="Friction segment frequency. Percentages represent share of total tag occurrences within this inquiry (multi-label ground truth)."
+          title="Frequency Breakdown"
+          subtitle="How often users reported each specific search problem within this question."
           delay={0}
         >
           <HorizontalBar data={activeBreakdown} />
         </ChartCard>
 
         <ChartCard
-          title="Segment Share Overview"
-          subtitle="Relative segment share distribution showing dominant visual retrieval pain points among tagged friction instances."
+          title="Relative Share"
+          subtitle="Proportional share of each issue within this research topic."
           delay={100}
         >
           <DonutChart data={activeBreakdown} />

@@ -53,5 +53,5 @@ def init_db(engine=None):
     if engine is None:
         engine = get_engine()
     Base.metadata.create_all(engine)
-    print(f"✅ Database initialized at {DB_PATH}")
+    print(f"[OK] Database initialized at {DB_PATH}")
     return engine

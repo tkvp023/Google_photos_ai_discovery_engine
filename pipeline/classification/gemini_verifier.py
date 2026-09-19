@@ -232,12 +232,12 @@ Format your report in crisp, professional executive markdown."""
 
 | Metric | Measured Value | Benchmark / Target | Audit Status |
 | :--- | :---: | :---: | :---: |
-| **Total Corpus Documents** | **{report['corpus_stats']['total_documents']:,}** | $\ge 1,000$ | ✅ Exceeded |
-| **Evidence Quote Grounding** | **{report['corpus_stats']['grounding_integrity_pct']}%** | $\ge 95\%$ | ✅ 100% Authentic Verbatim Quotes |
-| **Primary Friction Signal Rate** | **{report['corpus_stats']['primary_signal_rate_pct']}%** | $\ge 90\%$ | ✅ High PM Friction Density |
-| **Categorized Friction Tags** | **{report['corpus_stats']['total_tags']:,}** | $\ge 2,000$ | ✅ Robust Statistical Power |
+| **Total Corpus Documents** | **{report['corpus_stats']['total_documents']:,}** | $\\ge 1,000$ | ✅ Exceeded |
+| **Evidence Quote Grounding** | **{report['corpus_stats']['grounding_integrity_pct']}%** | $\\ge 95\\%$ | ✅ 100% Authentic Verbatim Quotes |
+| **Primary Friction Signal Rate** | **{report['corpus_stats']['primary_signal_rate_pct']}%** | $\\ge 90\\%$ | ✅ High PM Friction Density |
+| **Categorized Friction Tags** | **{report['corpus_stats']['total_tags']:,}** | $\\ge 2,000$ | ✅ Robust Statistical Power |
 | **Off-Domain Contamination** | **0 records (0.0%)** | 0.0% | ✅ 100% Pure Domain Cleanliness |
-| **Multi-Platform Sources** | **{sources_str}** | $\ge 3$ sources | ✅ Multi-Platform Triangulation |
+| **Multi-Platform Sources** | **{sources_str}** | $\\ge 3$ sources | ✅ Multi-Platform Triangulation |
 
 ---
 

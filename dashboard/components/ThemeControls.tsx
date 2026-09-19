@@ -25,19 +25,16 @@ export default function ThemeControls() {
     () => false
   );
 
-  const [mode, setMode] = useState<Mode>('dark');
-  const [theme, setTheme] = useState<Theme>('midnight-observatory');
-  const [density, setDensity] = useState<'analytical' | 'focus'>('analytical');
-  const [expanded, setExpanded] = useState(false);
-
-  useEffect(() => {
-    const initialMode = (document.documentElement.getAttribute('data-mode') as Mode) ||
+  const [mode, setMode] = useState<Mode>(() => {
+    if (typeof window === 'undefined') return 'dark';
+    return (document.documentElement.getAttribute('data-mode') as Mode) ||
       (localStorage.getItem('app-mode') as Mode) || 'dark';
+  });
 
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return 'midnight-observatory';
     let initialTheme = (document.documentElement.getAttribute('data-theme') as string) ||
       localStorage.getItem('app-theme') || 'midnight-observatory';
-
-    // Legacy remap
     const remap: Record<string, Theme> = {
       'google-lens': 'midnight-observatory', 'tokyo-sakura': 'midnight-observatory', 'sunset': 'midnight-observatory',
       'darkroom': 'sunrise-warm', 'cosmic-nebula': 'sunrise-warm',
@@ -45,17 +42,20 @@ export default function ThemeControls() {
       'warm-studio': 'volcanic-ember', 'solar-flare': 'volcanic-ember',
     };
     if (remap[initialTheme]) initialTheme = remap[initialTheme];
+    return initialTheme as Theme;
+  });
 
-    const initialDensity = (localStorage.getItem('app-density') as 'analytical' | 'focus') || 'analytical';
+  const [density, setDensity] = useState<'analytical' | 'focus'>(() => {
+    if (typeof window === 'undefined') return 'analytical';
+    return (localStorage.getItem('app-density') as 'analytical' | 'focus') || 'analytical';
+  });
+  const [expanded, setExpanded] = useState(false);
 
-    setMode(initialMode);
-    setTheme(initialTheme as Theme);
-    setDensity(initialDensity);
-
-    document.documentElement.setAttribute('data-mode', initialMode);
-    document.documentElement.setAttribute('data-theme', initialTheme);
-    document.documentElement.setAttribute('data-view-density', initialDensity);
-  }, []);
+  useEffect(() => {
+    document.documentElement.setAttribute('data-mode', mode);
+    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute('data-view-density', density);
+  }, [mode, theme, density]);
 
   const toggleMode = () => {
     const nextMode: Mode = mode === 'dark' ? 'light' : 'dark';

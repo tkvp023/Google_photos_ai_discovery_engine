@@ -8,84 +8,96 @@
 :root,
 [data-mode="dark"] {
   --mode: dark;
-  --bg-base:          #060a13;
-  --bg-surface:       #0c1220;
-  --bg-elevated:      #131b2e;
-  --bg-card:          rgba(12, 18, 32, 0.72);
-  --bg-card-hover:    rgba(20, 28, 48, 0.88);
-  --bg-card-solid:    #0e1628;
+  --bg-base:          #070b14;
+  --bg-surface:       #0d1424;
+  --bg-elevated:      #131c31;
+  --bg-card:          rgba(13, 20, 36, 0.85);
+  --bg-card-hover:    rgba(19, 28, 49, 0.95);
+  --bg-card-solid:    #0f172a;
 
-  --glass-bg:         rgba(8, 14, 26, 0.82);
-  --glass-border:     rgba(255, 255, 255, 0.06);
-  --glass-blur:       blur(24px) saturate(1.4);
+  --glass-bg:         rgba(13, 20, 36, 0.88);
+  --glass-border:     rgba(255, 255, 255, 0.08);
+  --glass-blur:       blur(8px);
 
-  --text-primary:     #eef2ff;
+  --text-primary:     #f1f5f9;
   --text-secondary:   #94a3b8;
-  --text-muted:       #5e6e85;
+  --text-muted:       #64748b;
 
-  --border:           rgba(255, 255, 255, 0.06);
-  --border-highlight: rgba(255, 255, 255, 0.10);
-  --border-strong:    rgba(255, 255, 255, 0.16);
+  --border:           rgba(255, 255, 255, 0.08);
+  --border-highlight: rgba(255, 255, 255, 0.14);
+  --border-strong:    rgba(255, 255, 255, 0.22);
 
-  --shadow-card:      0 2px 12px rgba(0, 0, 0, 0.30), 0 0 1px rgba(255, 255, 255, 0.05);
-  --shadow-elevated:  0 12px 40px rgba(0, 0, 0, 0.50), 0 0 1px rgba(255, 255, 255, 0.08);
-  --shadow-glow:      0 0 30px rgba(99, 102, 241, 0.15);
-  --navbar-bg:        rgba(6, 10, 19, 0.75);
-  --dropdown-bg:      rgba(12, 18, 32, 0.96);
+  --shadow-card:      0 1px 3px rgba(0, 0, 0, 0.25), 0 4px 16px rgba(0, 0, 0, 0.20);
+  --shadow-elevated:  0 10px 30px rgba(0, 0, 0, 0.40);
+  --shadow-glow:      none;
+  --navbar-bg:        rgba(7, 11, 20, 0.90);
+  --dropdown-bg:      #0d1424;
 
-  --scrollbar-thumb:  rgba(255, 255, 255, 0.12);
-  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.24);
+  --scrollbar-thumb:  rgba(255, 255, 255, 0.15);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.25);
   --input-bg:         rgba(255, 255, 255, 0.04);
+
+  /* 4-Color Semantic System */
+  --semantic-blue:    #3b82f6; /* Search-friction findings */
+  --semantic-gray:    #64748b; /* Filtered-out / context */
+  --semantic-amber:   #f59e0b; /* Warnings & caveats */
+  --semantic-green:   #22c55e; /* Verified / confidence */
 
   --radius-xs:  6px;
   --radius-sm:  8px;
-  --radius-md:  14px;
-  --radius-lg:  20px;
-  --radius-xl:  28px;
-  --radius-2xl: 36px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+  --radius-2xl: 32px;
 
   --t-fast:  120ms cubic-bezier(0.16, 1, 0.3, 1);
-  --t-base:  200ms cubic-bezier(0.16, 1, 0.3, 1);
-  --t-slow:  400ms cubic-bezier(0.16, 1, 0.3, 1);
-  --t-dramatic: 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --t-base:  180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --t-slow:  300ms cubic-bezier(0.16, 1, 0.3, 1);
+  --t-dramatic: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Mesh gradient positions */
-  --mesh-1: radial-gradient(ellipse 80% 60% at 10% 20%, var(--mesh-color-1, rgba(56, 189, 248, 0.07)), transparent 60%);
-  --mesh-2: radial-gradient(ellipse 70% 50% at 90% 80%, var(--mesh-color-2, rgba(129, 140, 248, 0.06)), transparent 60%);
-  --mesh-3: radial-gradient(ellipse 60% 40% at 50% 50%, var(--mesh-color-3, rgba(99, 102, 241, 0.04)), transparent 55%);
+  /* Clean subtle gradient / no foggy mesh */
+  --mesh-1: none;
+  --mesh-2: none;
+  --mesh-3: none;
 }
 
 /* ─── Light Mode ─────────────────────────────────────────────────────────── */
 [data-mode="light"] {
   --mode: light;
-  --bg-base:          #f5f7fb;
+  --bg-base:          #f8fafc;
   --bg-surface:       #ffffff;
-  --bg-elevated:      #edf0f7;
-  --bg-card:          rgba(255, 255, 255, 0.85);
-  --bg-card-hover:    rgba(255, 255, 255, 0.95);
+  --bg-elevated:      #f1f5f9;
+  --bg-card:          #ffffff;
+  --bg-card-hover:    #f8fafc;
   --bg-card-solid:    #ffffff;
 
-  --glass-bg:         rgba(255, 255, 255, 0.82);
-  --glass-border:     rgba(15, 23, 42, 0.06);
-  --glass-blur:       blur(24px) saturate(1.2);
+  --glass-bg:         rgba(255, 255, 255, 0.90);
+  --glass-border:     rgba(15, 23, 42, 0.08);
+  --glass-blur:       blur(8px);
 
-  --text-primary:     #0c1222;
-  --text-secondary:   #3b4963;
-  --text-muted:       #7085a4;
+  --text-primary:     #0f172a;
+  --text-secondary:   #475569;
+  --text-muted:       #64748b;
 
-  --border:           rgba(15, 23, 42, 0.07);
-  --border-highlight: rgba(15, 23, 42, 0.11);
-  --border-strong:    rgba(15, 23, 42, 0.17);
+  --border:           rgba(15, 23, 42, 0.08);
+  --border-highlight: rgba(15, 23, 42, 0.14);
+  --border-strong:    rgba(15, 23, 42, 0.20);
 
-  --shadow-card:      0 1px 4px rgba(15, 23, 42, 0.04), 0 6px 20px rgba(15, 23, 42, 0.05);
-  --shadow-elevated:  0 8px 32px rgba(15, 23, 42, 0.10), 0 1px 3px rgba(15, 23, 42, 0.04);
-  --shadow-glow:      0 0 30px rgba(99, 102, 241, 0.08);
-  --navbar-bg:        rgba(255, 255, 255, 0.82);
-  --dropdown-bg:      rgba(255, 255, 255, 0.98);
+  --shadow-card:      0 1px 3px rgba(15, 23, 42, 0.05), 0 4px 12px rgba(15, 23, 42, 0.04);
+  --shadow-elevated:  0 10px 25px rgba(15, 23, 42, 0.08);
+  --shadow-glow:      none;
+  --navbar-bg:        rgba(255, 255, 255, 0.92);
+  --dropdown-bg:      #ffffff;
 
   --scrollbar-thumb:  rgba(15, 23, 42, 0.14);
   --scrollbar-thumb-hover: rgba(15, 23, 42, 0.26);
   --input-bg:         rgba(15, 23, 42, 0.03);
+
+  /* 4-Color Semantic System */
+  --semantic-blue:    #2563eb;
+  --semantic-gray:    #64748b;
+  --semantic-amber:   #d97706;
+  --semantic-green:   #16a34a;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -1237,19 +1249,19 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   gap: 6px;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--brand-primary);
+  color: var(--semantic-blue);
   margin-bottom: 6px;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
 }
 .section-title {
-  font-size: clamp(22px, 2.6vw, 32px);
+  font-size: clamp(20px, 2.2vw, 28px);
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
   color: var(--text-primary);
   margin: 0 0 6px 0;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 .section-subtitle {
   font-size: 14px;
@@ -1257,6 +1269,80 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   line-height: 1.6;
   max-width: 740px;
   margin: 0;
+}
+
+/* Verification & Progressive Disclosure Components */
+.verification-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin: 20px 0 28px 0;
+  transition: border-color var(--t-base) ease;
+}
+.verification-card:hover {
+  border-color: var(--border-highlight);
+}
+.verification-details {
+  cursor: pointer;
+}
+.verification-details summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  user-select: none;
+}
+.verification-details summary::-webkit-details-marker {
+  display: none;
+}
+.verification-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--semantic-green);
+  background: rgba(34, 197, 94, 0.10);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+.verification-body {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+/* Semantic Badges */
+.badge-semantic-blue {
+  color: var(--semantic-blue);
+  background: rgba(59, 130, 246, 0.10);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+.badge-semantic-gray {
+  color: var(--semantic-gray);
+  background: rgba(100, 116, 139, 0.10);
+  border: 1px solid rgba(100, 116, 139, 0.25);
+}
+.badge-semantic-amber {
+  color: var(--semantic-amber);
+  background: rgba(245, 158, 11, 0.10);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+.badge-semantic-green {
+  color: var(--semantic-green);
+  background: rgba(34, 197, 94, 0.10);
+  border: 1px solid rgba(34, 197, 94, 0.25);
 }
 
 /* Strategic Thesis Showcase Card */

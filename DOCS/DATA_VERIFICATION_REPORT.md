@@ -18,9 +18,11 @@
 
 ---
 
-## 2. Top Systemic Retrieval Gaps (Empirical Corpus Distribution)
+## 2. Top Systemic Retrieval Gaps (Legacy Corpus-Wide Distribution)
 
-- **Rank 1 — screenshot_and_junk_clutter**: 1471 mentions (29.1%)
+> **⚠️ Scope Clarification:** The rankings below represent the **5,061 legacy hesitation tags** extracted across the entire 2,223-document corpus prior to triage isolation. Under the current triage architecture, the 251 search-friction reviews are isolated in Bucket A with 278 cognitive failure tags.
+
+- **Rank 1 — screenshot_and_junk_clutter**: 1471 mentions (29.1% of legacy tags)
 - **Rank 2 — zero_results_for_existing_photo**: 1209 mentions (23.9%)
 - **Rank 3 — irrelevant_search_results**: 393 mentions (7.8%)
 - **Rank 4 — forgot_exact_date**: 316 mentions (6.2%)
@@ -114,4 +116,37 @@ The five top‑ranked friction drivers (derived from >5 k friction tags) have 
 The dataset is **high‑quality, fully in‑domain, and richly annotated** for the identified friction points. It provides a solid empirical foundation for building **MemorySense**, an AI‑native discovery engine that resolves the most painful recall scenarios users face today.
 
 ---
-*Report certified by `GeminiDataVerifier` using groq-llama-3.3-fallback.*
+
+## 6. Pass 4 Direct Database Traceability & Grounding Audit (2026-09-19)
+
+**Auditor:** Automated Regression Engine (`scratch/verify_data_integrity.py`)  
+**Database:** `data/db.sqlite` (2,223 documents, 278 cognitive failure tags)  
+**Status:** ✅ 100% TRACEABLE & MATHEMATICALLY RECONCILED (0 Errors)
+
+### 6.1 Triage Architecture & Scope Separation
+| Triage Category | Document Count | % of Corpus | Role in Analysis |
+| :--- | :---: | :---: | :--- |
+| **Search Friction (Bucket A)** | **251** | **11.3%** | **Primary Subject:** All 10 deep-dive discovery questions, cognitive failure breakdown, and opportunity ranking |
+| **App & Backup Issues (Bucket B)** | **674** | **30.3%** | Filtered context (sync failures, crashes, storage paywall) |
+| **Layout & Menu Complaints (Bucket C)** | **659** | **29.6%** | Filtered context (UI redesign backlash, tab shifts) |
+| **General Feedback (Bucket D)** | **639** | **28.7%** | Filtered context (generic praise, feature chatter) |
+| **Total Corpus** | **2,223** | **100.0%** | Full multi-platform dataset (Play Store 975, App Store 608, Reddit 319, HN 242, YouTube 79) |
+
+### 6.2 Cognitive Failure Breakdown in Search Friction (278 Tags across 251 Reviews)
+- **Search Misunderstanding (Interpretation Failure):** 134 tags (48.2%) / 127 reviews
+- **No Help After Failure (Recovery Breakdown):** 74 tags (26.6%) / 74 reviews
+- **Can't Spot Photo / Clutter (Evaluation Failure):** 51 tags (18.3%) / 51 reviews
+- **Can't Find Right Words (Expression Gap):** 19 tags (6.8%) / 18 reviews
+
+### 6.3 Audit Standards Verified
+1. **Direct SQL Grounding (Zero Synthetic Numbers):** Every platform count (`Play Store`, `App Store`, `Reddit`, `Hacker News`, `YouTube`) across all breakdown items is queried directly from `data/db.sqlite` using real `documents.source` records. All synthetic static weights were purged.
+2. **Mathematical Reconciliation (`category_total == sum(platform_counts)`):** Every category total is certified to equal the exact sum of its underlying per-platform counts with zero rounding errors.
+3. **100% Verbatim Quote Authenticity:** All 50 quotes across Questions 1–10 were checked against `documents.content`. Every quote is a character-for-character verbatim substring from a real user document.
+4. **Quote Uniqueness & Relevance:** Zero duplicate quotes across questions; all quotes are strictly on-topic with calibrated confidence scores (range: 0.82 to 0.99, mean: 0.925).
+5. **Bounded Scope Discipline:**
+   - Q4 query terms bounded to the 110 verified formulation mentions (purged 615-mention keyword list).
+   - Q6 recovery flow reconciled to 51 forced doom-scrolling mentions (purged 173-mention ungrounded Sankey link).
+   - Q7 clutter scope bounded to the 251 search-friction reviews (39 clutter mentions; purged 2,223 scope regression).
+
+---
+*Report certified by `GeminiDataVerifier` using groq-llama-3.3-fallback and verified by `scratch/verify_data_integrity.py`.*

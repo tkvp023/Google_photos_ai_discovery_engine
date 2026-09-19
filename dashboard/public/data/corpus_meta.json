@@ -1,11 +1,10 @@
 {
-  "generated_at": "2026-09-17T06:34:09Z",
+  "generated_at": "2026-09-19T14:15:21Z",
   "pipeline_version": "1.0.0",
   "corpus_stats": {
     "total_raw_docs": 2223,
     "total_after_cleaning": 2223,
     "total_classified": 2223,
-    "total_signal_docs": 2202,
     "total_primary_signal": 2202,
     "total_secondary_signal": 0,
     "total_no_signal": 21,

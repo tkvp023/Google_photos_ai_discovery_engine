@@ -45,7 +45,7 @@ export default function AreaTimeline({ data, title }: { data: TemporalPoint[]; t
             }}
             itemStyle={{ color: 'var(--text-primary)', fontWeight: 600 }}
             labelStyle={{ color: 'var(--text-primary)', fontWeight: 700 }}
-            formatter={(val: any, name: any) => [name === 'pct' ? `${Number(val)}%` : Number(val).toLocaleString(), name === 'pct' ? 'Signal %' : 'Count']}
+            formatter={(val: unknown, name: unknown) => [name === 'pct' ? `${Number(val)}%` : Number(val).toLocaleString(), name === 'pct' ? 'Signal %' : 'Count']}
           />
           <Area
             type="monotone"

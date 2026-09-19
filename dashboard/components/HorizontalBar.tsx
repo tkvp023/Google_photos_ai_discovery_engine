@@ -19,6 +19,8 @@ interface HorizontalBarProps {
   title?: string;
   maxBars?: number;
   showCount?: boolean;
+  showConfidence?: boolean;
+  denominator?: number;
   onItemClick?: (item: BreakdownItem) => void;
 }
 
@@ -41,9 +43,10 @@ function ConfidenceDot({ conf }: { conf?: number }) {
   );
 }
 
-export default function HorizontalBar({ data, title, maxBars = 8, showCount = true, onItemClick }: HorizontalBarProps) {
+export default function HorizontalBar({ data, title, maxBars = 8, showCount = true, denominator, onItemClick }: HorizontalBarProps) {
   const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
   const visible = data.slice(0, maxBars);
+  const totalCount = denominator || data.reduce((acc, it) => acc + (it.count || 0), 0) || 1;
 
   return (
     <div ref={ref}>
@@ -61,7 +64,7 @@ export default function HorizontalBar({ data, title, maxBars = 8, showCount = tr
               className={`bar-item ${isClickable ? 'bar-item-clickable' : ''}`}
               role={isClickable && !item.href ? 'button' : undefined}
               tabIndex={isClickable && !item.href ? 0 : undefined}
-              aria-label={`${formatLabel(item.label)}: ${item.pct.toFixed(1)}%, ${item.count.toLocaleString()} occurrences`}
+              aria-label={`${formatLabel(item.label)}: ${item.pct.toFixed(1)}%, ${item.count.toLocaleString()} of ${totalCount.toLocaleString()}`}
               style={{
                 animationDelay: `${i * 60}ms`,
                 cursor: isClickable ? 'pointer' : 'default',
@@ -87,9 +90,13 @@ export default function HorizontalBar({ data, title, maxBars = 8, showCount = tr
                   <ConfidenceDot conf={item.avg_confidence} />
                   {isClickable && <span style={{ fontSize: 11, opacity: 0.6 }}>↗</span>}
                 </span>
-                <span className="bar-value">
-                  {item.pct.toFixed(1)}%
-                  {showCount && <span style={{ marginLeft: 6, opacity: 0.5 }}>({item.count.toLocaleString()})</span>}
+                <span className="bar-value" style={{ display: 'inline-flex', alignItems: 'baseline', gap: 4 }}>
+                  <strong style={{ fontWeight: 700 }}>{item.pct.toFixed(1)}%</strong>
+                  {showCount && (
+                    <span style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 500 }}>
+                      ({item.count.toLocaleString()} / {totalCount.toLocaleString()})
+                    </span>
+                  )}
                 </span>
               </div>
               <div className="bar-track">

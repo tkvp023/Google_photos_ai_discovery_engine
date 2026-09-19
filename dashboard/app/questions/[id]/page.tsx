@@ -29,7 +29,6 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
 
   const data = await getQuestion(qid);
   const meta = QUESTION_META[qid];
-  const isBoth = meta?.sourceType === 'both';
 
   return (
     <div className="container" style={{ paddingTop: 28, paddingBottom: 64 }}>
@@ -90,6 +89,43 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
             {data.total_relevant_docs.toLocaleString()} Grounded Documents
           </span>
 
+          {/* Tier Badge */}
+          {[1, 2, 3, 4, 6, 10].includes(qid) ? (
+            <span
+              style={{
+                fontSize: 12,
+                fontWeight: 700,
+                padding: '3px 12px',
+                borderRadius: 16,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                background: 'rgba(37, 99, 235, 0.15)',
+                border: '1px solid rgba(37, 99, 235, 0.4)',
+                color: '#60a5fa',
+              }}
+            >
+              <span>🎯</span> Tier 1: Core PM Brief Anchor
+            </span>
+          ) : (
+            <span
+              style={{
+                fontSize: 12,
+                fontWeight: 700,
+                padding: '3px 12px',
+                borderRadius: 16,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                background: 'rgba(156, 163, 175, 0.12)',
+                border: '1px solid var(--border)',
+                color: 'var(--text-secondary)',
+              }}
+            >
+              <span>🔬</span> Tier 2: Deep-Dive Friction Vector
+            </span>
+          )}
+
           {/* Source Derivation Badge */}
           <span
             style={{
@@ -106,7 +142,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
             }}
           >
             <span>🌐</span>
-            Derivation: Unified Multi-Platform Corpus (5 Channels)
+            Corpus: 2,223 Multi-Platform Reviews (5 Channels)
           </span>
 
           {/* Subtle Ask AI Link */}
@@ -146,14 +182,42 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
             border: '1px solid var(--border)',
             borderLeft: '3px solid var(--brand-primary)',
             borderRadius: 'var(--radius-sm)',
-            padding: '10px 16px',
+            padding: '12px 18px',
             fontSize: 12.5,
             lineHeight: 1.5,
             color: 'var(--text-secondary)',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: 12,
           }}
         >
-          <strong style={{ color: 'var(--text-primary)' }}>Corpus Derivation: </strong>
-          Grounded across 2,223 verified customer discussions from Google Play Store, Apple App Store, Reddit, Hacker News, and YouTube teardowns.
+          <div>
+            <strong style={{ color: 'var(--text-primary)' }}>Evidence Grounding: </strong>
+            Synthesized across 2,223 verified customer discussions (Play Store, App Store, Reddit, Hacker News, YouTube). 
+            {[1, 2, 3, 4, 6, 10].includes(qid) ? (
+              <span style={{ color: '#60a5fa', marginLeft: 4 }}>
+                Directly answers the PM Brief by isolating <strong>Bucket A (251 on-brief retrieval reviews)</strong> and <strong>278 failure tags</strong>.
+              </span>
+            ) : (
+              <span style={{ color: 'var(--text-muted)', marginLeft: 4 }}>
+                Deep-dives into specific library clutter and technical failure vectors across the broader corpus.
+              </span>
+            )}
+          </div>
+          <Link
+            href="/findings"
+            style={{
+              fontSize: 12,
+              color: 'var(--brand-primary)',
+              fontWeight: 700,
+              textDecoration: 'none',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Explore Bucket A Findings (N=251) →
+          </Link>
         </div>
       </div>
 

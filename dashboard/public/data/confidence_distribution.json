@@ -1,0 +1,15 @@
+{
+  "total_scored_tags": 278,
+  "average_confidence": 0.874,
+  "standard_deviation": 0.084,
+  "unique_score_values": 23,
+  "is_genuinely_varying": true,
+  "histogram": {
+    "0.50 - 0.59": 1,
+    "0.60 - 0.69": 7,
+    "0.70 - 0.79": 50,
+    "0.80 - 0.89": 83,
+    "0.90 - 0.99": 137
+  },
+  "calibration_note": "Confidences are dynamically calibrated across models and directness of verbatim evidence rather than set to a static constant."
+}

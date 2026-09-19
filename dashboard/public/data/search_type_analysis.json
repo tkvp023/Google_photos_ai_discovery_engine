@@ -1,0 +1,67 @@
+{
+  "counts": {
+    "both": 5,
+    "gemini_ai": 42,
+    "keyword": 113,
+    "unspecified": 118
+  },
+  "comparison": {
+    "keyword_failures": {
+      "evaluation": 7,
+      "expression": 8,
+      "interpretation": 81,
+      "recovery": 17
+    },
+    "gemini_ai_failures": {
+      "evaluation": 1,
+      "expression": 1,
+      "interpretation": 28,
+      "recovery": 12
+    }
+  },
+  "gemini_quotes": [
+    {
+      "quote": "all of these results in videos that are under 60 seconds in the list to scroll",
+      "confidence": 0.98,
+      "sub_category": "Gemini Misinterprets"
+    },
+    {
+      "quote": "I used to be able to search 'kookaburra' and a kookaburra would show up.. Now nothing comes up at all. So instea",
+      "confidence": 0.98,
+      "sub_category": "Gemini Misinterprets"
+    },
+    {
+      "quote": "The cycle will keep on repeating. After the 3rd or 4th time you have the ability to ask whether or not there is a fatal flaw",
+      "confidence": 0.95,
+      "sub_category": "Gemini Conversation Dead End"
+    },
+    {
+      "quote": "AI CAN NEVER, EVER FIND MY PHOTOS",
+      "confidence": 0.95,
+      "sub_category": "Gemini Misinterprets"
+    }
+  ],
+  "keyword_quotes": [
+    {
+      "quote": "if I search Google Photos for 'me', the top hit is a frog",
+      "confidence": 0.98,
+      "sub_category": "Entity Not Recognized"
+    },
+    {
+      "quote": "it shows all kinds of garbage/nonsense, instead of the requested images by name",
+      "confidence": 0.98,
+      "sub_category": "Clutter Pollutes Results"
+    },
+    {
+      "quote": "The false positives make the whole experience useless and breaks the search.",
+      "confidence": 0.98,
+      "sub_category": "Wrong Face Match"
+    },
+    {
+      "quote": "Random people in backgrounds are being assigned key family members.",
+      "confidence": 0.98,
+      "sub_category": "Wrong Face Match"
+    }
+  ],
+  "takeaway": "While traditional keyword search fails predominantly on literal exact-string matching and lack of relative-time filters, Gemini/Ask Photos introduces a distinct failure mode: conversational over-promising, hallucinated entity matches, and inability to converge during follow-up query turns."
+}

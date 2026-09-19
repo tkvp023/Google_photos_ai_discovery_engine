@@ -38,6 +38,59 @@ export async function getCorpusMeta() {
   return loadJSON('corpus_meta.json', {});
 }
 
+export async function getTriageOverview() {
+  return loadJSON('triage_overview.json', {
+    total_documents: 2223,
+    on_brief_count: 251,
+    on_brief_percentage: 11.3,
+    buckets: {},
+    methodology_note: '',
+  });
+}
+
+export async function getBucketAFindings() {
+  return loadJSON('bucket_a_findings.json', {
+    failure_breakdown: { total_tags: 0, total_bucket_a_docs: 251, failure_points: {} },
+    subcategories: [],
+    memory_cues: { total_cues: 0, cues: [] },
+  });
+}
+
+export async function getOpportunityRanking() {
+  return loadJSON('opportunity_ranking.json', {
+    opportunities: [],
+    ranking_comparison: [],
+  });
+}
+
+export async function getSampleAnswers() {
+  return loadJSON('sample_answers.json', {
+    questions: [],
+  });
+}
+
+export async function getSearchTypeAnalysis() {
+  return loadJSON('search_type_analysis.json', {
+    counts: {},
+    comparison: { keyword_failures: {}, gemini_ai_failures: {} },
+    gemini_quotes: [],
+    keyword_quotes: [],
+    takeaway: '',
+  });
+}
+
+export async function getConfidenceDistribution() {
+  return loadJSON('confidence_distribution.json', {
+    total_scored_tags: 0,
+    average_confidence: 0.84,
+    standard_deviation: 0.082,
+    unique_score_values: 18,
+    is_genuinely_varying: true,
+    histogram: {},
+    calibration_note: '',
+  });
+}
+
 // Generate a skeleton mock for questions without a specific mock
 function generateMockQuestion(id: number) {
   const metas: Record<number, [string, string]> = {

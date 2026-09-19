@@ -9,13 +9,13 @@ const Q_ICONS: Record<number, string> = {
 };
 
 const Q_SUBTITLES: Record<number, string> = {
-  1: 'Candid personal events & utility items fail 4.1x more than posed landmarks',
-  2: 'Visual anchors (colors, clothing, companions) retained 8x longer than dates',
-  3: '71% date amnesia rate triggers search abandonment and temporal dead-ends',
-  4: '4.2 average reformulation loops attempting to translate feelings into nouns',
-  5: '23.9% false-miss rate causes panic that cloud backup lost precious memories',
-  6: '78.6% fall back to 15+ min infinite grid doom-scrolling when search fails',
-  7: 'WhatsApp memes, receipts & screenshots pollute 29.1% of indexed memories',
+  1: 'Episodic multi-cue memories account for 33.8% (94 / 278) of all retrieval failures',
+  2: 'Visual scenes & companions (69.4% of recall cues) retained far longer than dates',
+  3: '40.3% (112 / 278 tags) cite date amnesia as the most commonly forgotten metadata',
+  4: 'Literal keyword overfitting (31.8%) & Gemini misinterpretation (23.6%) dominate query failures',
+  5: 'Semantic gap failures (42.6% of 169 tags) mean abstract queries return no results',
+  6: '68.9% (51 / 74 recovery tags) describe fallback to manual timeline scrolling',
+  7: 'WhatsApp memes, receipts & screenshots: 147 clutter tags across the corpus',
   8: 'Camera operator exclusion & pet misidentification break relational search',
   9: 'Curved medicine labels, handwritten notes & blurry slips defeat standard OCR',
   10: 'Users escape to WhatsApp media search, Apple Photos & friends to find memories',

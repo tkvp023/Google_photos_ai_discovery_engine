@@ -1,15 +1,15 @@
 'use client';
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { SOURCE_COLORS } from '@/lib/constants';
 
 const SUGGESTED = [
-  'Why do users get zero results for photos they know exist?',
-  'How does screenshot and meme clutter ruin visual search?',
-  'Why do users remember colors and feelings but forget exact dates?',
-  'How do users use WhatsApp as an escape hatch when search fails?',
-  'What are the primary friction points in face recognition and pet tags?',
-  'What unmet needs exist for conversational memory retrieval?',
+  'Why do users fail to retrieve photos when they have incomplete or vague memories?',
+  'How do users search differently with Gemini Ask Photos vs traditional keyword search?',
+  'What are the primary failure modes across Expression, Interpretation, and Recovery?',
+  'Why does photo retrieval fail for partial temporal memories like "last summer" or "a few months ago"?',
+  'How does screenshot and meme clutter ruin visual search in Google Photos?',
+  'What unmet needs exist for conversational memory retrieval and refinement?',
 ];
 
 interface Citation {
@@ -165,7 +165,7 @@ function SourceInspectorModal({
             Authentic Customer Verbatim
           </div>
           <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--text-primary)', whiteSpace: 'pre-wrap', fontStyle: 'italic' }}>
-            "{doc.content}"
+            &ldquo;{doc.content}&rdquo;
           </p>
         </div>
         {doc.tags && doc.tags.length > 0 && (
@@ -342,6 +342,7 @@ export default function AskContent() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [source, setSource] = useState('all');
+  const [scope, setScope] = useState<'brief' | 'all'>('brief');
   const [copied, setCopied] = useState<number | null>(null);
   const [isLive, setIsLive] = useState(true);
   const [inspectDoc, setInspectDoc] = useState<RetrievedDoc | null>(null);
@@ -368,6 +369,7 @@ export default function AskContent() {
         body: JSON.stringify({
           query: q,
           filters: { source },
+          scope,
         }),
       }).catch(() => null);
 
@@ -378,6 +380,7 @@ export default function AskContent() {
           body: JSON.stringify({
             query: q,
             filters: { source },
+            scope,
           }),
         }).catch(() => null);
       }
@@ -422,6 +425,7 @@ export default function AskContent() {
       autoRunRef.current = true;
       sendMessage(urlQuery);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   const clearChat = () => {
@@ -446,7 +450,7 @@ export default function AskContent() {
           the Data
         </h1>
         <p style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', color: 'var(--text-secondary)', fontSize: 14 }}>
-          <span>Conversational RAG retrieval over 2,223 verified customer reviews across 5 platforms.</span>
+          <span>Conversational RAG retrieval over verified customer reviews across 5 platforms.</span>
           <span
             style={{
               display: 'inline-flex',
@@ -457,9 +461,89 @@ export default function AskContent() {
             }}
           >
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: isLive ? '#10b981' : 'var(--text-muted)' }} />
-            {isLive ? '2,223 Documents Indexed' : 'Standby'}
+            {isLive ? `${scope === 'brief' ? '251 Core Brief Documents' : '2,223 Documents Indexed'}` : 'Standby'}
           </span>
         </p>
+      </div>
+
+      {/* Scope Selector Bar */}
+      <div
+        style={{
+          maxWidth: 940,
+          margin: '0 auto 16px',
+          padding: '12px 18px',
+          background: 'var(--glass-bg)',
+          border: '1px solid var(--border)',
+          borderRadius: 14,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: 12,
+          backdropFilter: 'blur(12px)',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            RAG Evidence Scope:
+          </span>
+          <div style={{ display: 'inline-flex', background: 'rgba(0,0,0,0.25)', padding: 3, borderRadius: 10, border: '1px solid var(--border)' }}>
+            <button
+              type="button"
+              onClick={() => setScope('brief')}
+              style={{
+                background: scope === 'brief' ? 'var(--brand-primary)' : 'transparent',
+                color: scope === 'brief' ? '#fff' : 'var(--text-muted)',
+                border: 'none',
+                borderRadius: 7,
+                padding: '6px 14px',
+                fontSize: 12,
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+              }}
+            >
+              <span>🎯</span> Core Retrieval Brief (251 reviews)
+            </button>
+            <button
+              type="button"
+              onClick={() => setScope('all')}
+              style={{
+                background: scope === 'all' ? 'var(--brand-primary)' : 'transparent',
+                color: scope === 'all' ? '#fff' : 'var(--text-muted)',
+                border: 'none',
+                borderRadius: 7,
+                padding: '6px 14px',
+                fontSize: 12,
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+              }}
+            >
+              <span>🌐</span> Full Corpus (2,223 reviews)
+            </button>
+          </div>
+        </div>
+
+        <div style={{ fontSize: 11, color: 'var(--text-secondary)' }}>
+          {scope === 'brief' ? (
+            <span style={{ color: '#34d399', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#34d399' }} />
+              <strong>Strict Grounding:</strong> Filtered to Bucket A (episodic search & retrieval friction).
+            </span>
+          ) : (
+            <span style={{ color: 'var(--text-muted)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--text-muted)' }} />
+              <strong>Unfiltered:</strong> Includes sync stalls, backup bugs, and tab redesign complaints.
+            </span>
+          )}
+        </div>
       </div>
 
       <div className="card" style={{ maxWidth: 940, margin: '0 auto', backdropFilter: 'blur(16px)' }}>
@@ -680,7 +764,9 @@ export default function AskContent() {
                   <span className="typing-dot" />
                 </div>
                 <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>
-                  Searching 2,223 vector embeddings across 5 discovery sources (Play Store, App Store, Reddit, Hacker News, YouTube) & synthesizing insights with Gemini Flash...
+                  {scope === 'brief'
+                    ? 'Searching 251 verified Bucket A on-brief retrieval friction reviews & synthesizing insights...'
+                    : 'Searching 2,223 vector embeddings across 5 discovery sources & synthesizing insights...'}
                 </span>
               </div>
             </div>
@@ -782,7 +868,7 @@ export default function AskContent() {
                 gap: 4,
               }}
             >
-              Grounding: 2,223 Verified Discussions
+              Grounding: {scope === 'brief' ? '251 On-Brief Retrieval Discussions' : '2,223 Multi-Platform Discussions'}
             </span>
           </div>
         </div>

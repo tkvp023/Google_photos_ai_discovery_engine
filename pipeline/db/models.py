@@ -32,6 +32,8 @@ class Document(Base):
     factor_mentions = relationship("FactorMention", back_populates="document", cascade="all, delete-orphan")
     unmet_needs = relationship("UnmetNeed", back_populates="document", cascade="all, delete-orphan")
     question_mappings = relationship("QuestionMapping", back_populates="document", cascade="all, delete-orphan")
+    triage_bucket = relationship("TriageBucket", back_populates="document", uselist=False, cascade="all, delete-orphan")
+    failure_point_tags = relationship("FailurePointTag", back_populates="document", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"<Document(doc_id='{self.doc_id}', source='{self.source}', content='{self.content[:50]}...')>"
@@ -121,3 +123,43 @@ class QuestionMapping(Base):
 
     def __repr__(self):
         return f"<QuestionMapping(doc_id='{self.doc_id}', question_id={self.question_id})>"
+
+
+class TriageBucket(Base):
+    """Document-level triage: A/B/C/D classification."""
+    __tablename__ = "triage_buckets"
+
+    doc_id = Column(String, ForeignKey("documents.doc_id"), primary_key=True)
+    bucket = Column(String, nullable=False)        # A, B, C, D
+    bucket_reason = Column(Text, nullable=False)   # 1-sentence justification
+    evidence_quote = Column(Text)                  # verbatim quote supporting bucket
+    confidence = Column(Float, nullable=False)     # 0.0-1.0, must VARY
+    search_type = Column(String)                   # 'keyword', 'gemini_ai', 'both', 'unspecified'
+    classified_at = Column(String, nullable=False) # ISO-8601
+
+    # Relationships
+    document = relationship("Document", back_populates="triage_bucket")
+
+    def __repr__(self):
+        return f"<TriageBucket(doc_id='{self.doc_id}', bucket='{self.bucket}', conf={self.confidence})>"
+
+
+class FailurePointTag(Base):
+    """Bucket-A failure-point tags: expression/interpretation/evaluation/recovery."""
+    __tablename__ = "failure_point_tags"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    doc_id = Column(String, ForeignKey("documents.doc_id"), nullable=False)
+    failure_type = Column(String, nullable=False)  # expression, interpretation, evaluation, recovery
+    sub_category = Column(String)                  # e.g., 'temporal_mismatch', 'compositional_query', etc.
+    memory_cue_type = Column(String)               # what the user remembered: time, place, person, emotion, visual, text_content
+    confidence = Column(Float, nullable=False)     # 0.0-1.0, must VARY
+    evidence_quote = Column(Text, nullable=False)  # verbatim quote
+    search_type = Column(String)                   # 'keyword', 'gemini_ai', 'both', 'unspecified'
+
+    # Relationships
+    document = relationship("Document", back_populates="failure_point_tags")
+
+    def __repr__(self):
+        return f"<FailurePointTag(doc_id='{self.doc_id}', type='{self.failure_type}', sub='{self.sub_category}')>"
+

@@ -57,7 +57,7 @@ A benchmark of **100 human-annotated reviews** labeled by PM evaluators with gro
 | **User Intent Classification** | Multi-class Accuracy | $\ge 85\%$ | $\ge 92\%$ |
 | **Confidence Calibration** | Expected Calibration Error (ECE) | $< 0.12$ | $< 0.08$ |
 
-> **Automated Gate:** [validator.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/classification/validator.py) enforces that if `evidence_quote` is not an exact substring in the input text, the classification is rejected and routed to fallback regex tagging.
+> **Automated Gate:** [validator.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/classification/validator.py) enforces that if `evidence_quote` is not an exact substring in the input text, the classification is rejected and routed to fallback regex tagging.
 
 ---
 

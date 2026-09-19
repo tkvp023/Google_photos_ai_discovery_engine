@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Systemic Retrieval Gaps | Google Photos AI Discovery Engine',
-  description: 'Deep-dive intelligence across 640 in-depth technical discussions (Reddit, Hacker News, YouTube teardowns) alongside app store feedback, capturing systemic architectural failure modes in visual memory retrieval.',
+  description: 'Deep-dive intelligence across 2,223 verified consumer reviews and technical discussions (Google Play, Apple App Store, Reddit, Hacker News, YouTube), capturing systemic architectural failure modes in visual memory retrieval.',
 };
 
 export default async function GapsPage() {
@@ -23,7 +23,7 @@ export default async function GapsPage() {
               Retrieval Gaps & Architecture Bottlenecks
             </h1>
             <p>
-              Deep-dive technical intelligence from 640 in-depth engineering and community discussions (<strong>Reddit, Hacker News, YouTube Teardowns</strong>) synthesized alongside app store consumer feedback across the unified 2,223-document corpus — identifying systemic architectural failure modes (OCR indexing lag, face grouping blindspots, meme clutter pollution, and timeline scroll breakdown) that degrade the visual discovery experience.
+              Unified cross-platform intelligence synthesizing <strong>2,223 verified customer reviews and engineering discussions</strong> across all 5 channels (Google Play Store, Apple App Store, Reddit, Hacker News, and YouTube teardowns) — identifying systemic architectural failure modes (OCR indexing lag, face grouping blindspots, meme clutter pollution, and timeline scroll breakdown) with unified statistical integrity.
             </p>
           </div>
           <Link

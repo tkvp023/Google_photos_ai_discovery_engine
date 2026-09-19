@@ -10,6 +10,8 @@ This directory houses the complete, end-to-end product management and engineerin
 
 | Document | Purpose & Brief Alignment | Key Highlights |
 | :--- | :--- | :--- |
+| **[`DISCOVERY_ENGINE_A_TO_Z_MASTER_REPORT.md`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/DOCS/DISCOVERY_ENGINE_A_TO_Z_MASTER_REPORT.md)** | Full System Evolution & Empirical Insights Report | Before/after architecture matrix, Bucket A triage (251 docs), 5-category outcome classification, and 4 PM brief answers. |
+| **[`DISCOVERY_ENGINE_A_TO_Z_MASTER_PROMPT.md`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/DOCS/DISCOVERY_ENGINE_A_TO_Z_MASTER_PROMPT.md)** | Complete A-to-Z Master Prompt & Execution Guide | Multi-stage prompt pipeline (Triage, Deep Tagging, Outcome Classifier, RAG), schemas, few-shots, and verification protocol. |
 | **[`PROBLEM_STATEMENT.md`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/DOCS/PROBLEM_STATEMENT.md)** | Full Problem Brief (`PROBLEM STATEMENT 2 .pdf`) | Strategic mandate, all 8 parts, required deliverables, deck constraints, and submission rules. |
 | **[`AI_POWERED_DISCOVERY_ENGINE_BRIEF.md`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/DOCS/AI_POWERED_DISCOVERY_ENGINE_BRIEF.md)** | Part 1 Project Brief (`AI-Powered Discovery Engine 2.pdf`) | Permitted AI stacks, data sources, initial discovery questions, and quality standards. |
 | **[`architecture.md`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/DOCS/architecture.md)** | System Technical Architecture | Mermaid flowcharts, 6-stage pipeline details, database ER diagram, and code references. |
@@ -24,6 +26,8 @@ This directory houses the complete, end-to-end product management and engineerin
 | **[`EDGECASES.md`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/DOCS/EDGECASES.md)** | Failure Mode & Edge Case Analysis | Pipeline anomalies, human memory decay (temporal drift, false location), media clutter, and OCR/face recognition edge cases. |
 | **[`EVALS.md`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/DOCS/EVALS.md)** | Evaluation Framework & Benchmarks | LLM classification F1 scores, 100% quote check, RAGAS faithfulness, IR metrics (Recall@K, MRR), and 50-query golden test set. |
 | **[`QUICK_START.md`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/DOCS/QUICK_START.md)** | Developer Run Guide | Commands to compile engine, run crawlers, classify data, and launch dashboard and RAG servers. |
+| **[`TERMINOLOGY.md`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/DOCS/TERMINOLOGY.md)** | Standard Terminology & Semantic Color System | Internal code to plain-language mapping (e.g. Search Friction, 4 cognitive breakdown stages, 4-color semantic palette). |
+| **[`DASHBOARD_FULL_CONTENT_REFERENCE.md`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/DOCS/DASHBOARD_FULL_CONTENT_REFERENCE.md)** | Complete Dashboard Content Reference | Full offline record of every dashboard view, metric table, card copy, and all 50+ verbatim quotes with channel attribution. |
 | **[`CONFIG_REFERENCE.md`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/DOCS/CONFIG_REFERENCE.md)** | YAML Schema Reference | Complete configuration dictionary for `discovery_config.yaml`. |
 
 ---
@@ -33,6 +37,11 @@ This directory houses the complete, end-to-end product management and engineerin
 ```
 ├── DOCS/                                     <── Comprehensive documentation hub
 │   ├── README.md                             <── Index (this file)
+│   ├── DISCOVERY_ENGINE_A_TO_Z_MASTER_REPORT.md <── Master System & Insights Report
+│   ├── DISCOVERY_ENGINE_A_TO_Z_MASTER_PROMPT.md <── Master Prompt & Architecture Guide
+│   ├── DASHBOARD_FULL_CONTENT_REFERENCE.md   <── Full Dashboard Offline Content Record
+│   ├── DATA_VERIFICATION_REPORT.md           <── Certified Data Verification Audit
+│   ├── TERMINOLOGY.md                        <── Plain-Language & 4-Color Standard
 │   ├── PROBLEM_STATEMENT.md                  <── Assignment Brief
 │   ├── AI_POWERED_DISCOVERY_ENGINE_BRIEF.md  <── Part 1 Brief
 │   ├── architecture.md                       <── System Architecture
@@ -48,10 +57,19 @@ This directory houses the complete, end-to-end product management and engineerin
 │   ├── QUICK_START.md                        <── Execution Commands
 │   └── CONFIG_REFERENCE.md                   <── YAML Config Reference
 │
-├── ai-discovery-engine-template/             <── Codebase
-│   └── ai-discovery-engine-template/
-│       ├── discovery_config.yaml             <── Tailored Google Photos Config
-│       ├── setup_engine.py                   <── Code Compiler
-│       ├── pipeline/                         <── Scrapers, Cleaner, Classifier, RAG
-│       └── dashboard/                        <── Next.js Insights Frontend
+├── pipeline/                                 <── Data Scrapers, Cleaner, Classifier, RAG
+│   ├── scrapers/                             <── Multi-platform collectors
+│   ├── cleaning/                             <── Regex cleaner & relevance filter
+│   ├── classification/                       <── LLM classifier & schema validation
+│   ├── quantification/                       <── Aggregator, question mapper, exporter
+│   └── rag/                                  <── FastAPI server & vector query engine
+│
+├── dashboard/                                <── Next.js PM Insights Frontend
+│   ├── src/app/                              <── Overview, Findings, Gaps, Questions routes
+│   └── public/data/                          <── 19 reconciled JSON data exports
+│
+├── data/                                     <── SQLite database (db.sqlite)
+├── scratch/                                  <── Verification scripts (verify_data_integrity.py)
+├── discovery_config.yaml                     <── Tailored Google Photos Config
+└── requirements.txt                          <── Python dependencies
 ```

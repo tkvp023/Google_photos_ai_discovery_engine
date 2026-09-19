@@ -65,10 +65,12 @@ app.add_middleware(
 class AskFilters(BaseModel):
     segment: Optional[str] = Field(None, description="User segment filter: gen_z, millennial, gen_x, or all")
     source: Optional[str] = Field(None, description="Source filter: Play Store, Reddit, YouTube, App Store, Hacker News, PissedConsumer, or all")
+    scope: Optional[str] = Field("brief", description="Retrieval scope: 'brief' (Bucket A memory failures) or 'all' (entire corpus)")
 
 class AskRequest(BaseModel):
     query: str = Field(..., min_length=2, max_length=500, description="Natural-language question")
     filters: Optional[AskFilters] = None
+    scope: Optional[str] = Field("brief", description="Retrieval scope: 'brief' or 'all'")
 
 class RetrievedDoc(BaseModel):
     index: int
@@ -112,12 +114,14 @@ async def ask(request: AskRequest):
 
     segment = request.filters.segment if request.filters else None
     source = request.filters.source if request.filters else None
+    scope = (request.filters.scope if (request.filters and request.filters.scope) else (request.scope or "brief")).lower()
 
     try:
         result = engine.ask(
             query=request.query,
             segment=segment,
             source=source,
+            scope=scope,
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"RAG query failed: {str(e)}")
@@ -136,7 +140,7 @@ async def ask(request: AskRequest):
     )
 
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 async def root():
     """Root endpoint for deployment uptime ping."""
     return {
@@ -147,7 +151,7 @@ async def root():
     }
 
 
-@app.get("/health")
+@app.api_route("/health", methods=["GET", "HEAD"])
 async def health():
     """Health check endpoint with error resilience."""
     try:

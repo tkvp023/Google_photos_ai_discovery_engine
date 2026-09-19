@@ -2,1636 +2,253 @@
   "question_id": 10,
   "question_text": "What workarounds do users resort to (e.g., searching WhatsApp chats, Apple Photos, asking friends) when Google Photos search fails?",
   "question_short": "Workarounds & Switching",
-  "total_relevant_docs": 106,
-  "avg_confidence": 0.85,
+  "total_relevant_docs": 251,
+  "avg_confidence": 0.847,
   "breakdown": [
     {
-      "tag": "screenshot_and_junk_clutter",
-      "label": "Screenshot & Meme Clutter",
-      "count": 90,
-      "pct": 24.5,
-      "avg_confidence": 0.85,
-      "color": "#ec4899"
-    },
-    {
-      "tag": "competitor_switching_apple",
-      "label": "Competitor Switching (Apple/Immich)",
-      "count": 75,
-      "pct": 20.4,
-      "avg_confidence": 0.85,
-      "color": "#94a3b8"
-    },
-    {
-      "tag": "zero_results_for_existing_photo",
-      "label": "Zero Results for Existing Photos",
-      "count": 71,
-      "pct": 19.3,
-      "avg_confidence": 0.85,
+      "label": "Manual Chronological Doom-Scrolling",
+      "tag": "fallback_to_scroll",
+      "count": 51,
+      "pct": 63.0,
+      "avg_confidence": 0.845,
       "color": "#ef4444"
     },
     {
-      "tag": "whatsapp_external_workaround",
-      "label": "WhatsApp External Workaround",
-      "count": 34,
-      "pct": 9.2,
-      "avg_confidence": 0.851,
-      "color": "#22c55e"
-    },
-    {
-      "tag": "irrelevant_search_results",
-      "label": "Irrelevant Search Results",
-      "count": 24,
-      "pct": 6.5,
-      "avg_confidence": 0.85,
-      "color": "#06b6d4"
-    },
-    {
-      "tag": "other",
-      "label": "Other Retrieval Friction",
-      "count": 16,
-      "pct": 4.3,
-      "avg_confidence": 0.85,
-      "color": "#6b7280"
-    },
-    {
-      "tag": "remembered_relative_time",
-      "label": "Remembered Relative Time",
-      "count": 13,
-      "pct": 3.5,
-      "avg_confidence": 0.85,
-      "color": "#8b5cf6"
-    },
-    {
-      "tag": "forgot_filename_or_album",
-      "label": "Forgot Filename or Album",
-      "count": 12,
-      "pct": 3.3,
-      "avg_confidence": 0.85,
-      "color": "#3b82f6"
-    },
-    {
-      "tag": "query_too_literal",
-      "label": "Query Interpreted Too Literally",
-      "count": 9,
-      "pct": 2.4,
-      "avg_confidence": 0.85,
-      "color": "#f97316"
-    },
-    {
-      "tag": "forgot_exact_date",
-      "label": "Forgot Exact Date",
-      "count": 4,
-      "pct": 1.1,
-      "avg_confidence": 0.85,
+      "label": "Retrying Without Disambiguation Chips",
+      "tag": "no_refinement_support",
+      "count": 11,
+      "pct": 13.6,
+      "avg_confidence": 0.855,
       "color": "#f59e0b"
     },
     {
-      "tag": "text_ocr_detection_failure",
-      "label": "Text & OCR Detection Failure",
-      "count": 3,
-      "pct": 0.8,
-      "avg_confidence": 0.85,
-      "color": "#6366f1"
-    },
-    {
-      "tag": "medicine_or_product_label",
-      "label": "Medicine & Product Label Search",
-      "count": 3,
-      "pct": 0.8,
-      "avg_confidence": 0.85,
-      "color": "#d946ef"
-    },
-    {
-      "tag": "face_recognition_misidentification",
-      "label": "Face Recognition Misidentification",
-      "count": 3,
-      "pct": 0.8,
-      "avg_confidence": 0.85,
-      "color": "#10b981"
-    },
-    {
-      "tag": "remembered_companion_person",
-      "label": "Remembered Companion or Person",
-      "count": 2,
-      "pct": 0.5,
-      "avg_confidence": 0.85,
-      "color": "#4ade80"
-    },
-    {
-      "tag": "query_keyword_guessing",
-      "label": "Keyword Guessing Friction",
-      "count": 2,
-      "pct": 0.5,
-      "avg_confidence": 0.85,
-      "color": "#fb923c"
-    },
-    {
-      "tag": "forgot_exact_location",
-      "label": "Forgot Exact Location",
-      "count": 2,
-      "pct": 0.5,
-      "avg_confidence": 0.85,
-      "color": "#f472b6"
-    },
-    {
-      "tag": "vague_event_or_trip",
-      "label": "Vague Event or Trip Memory",
-      "count": 1,
-      "pct": 0.3,
-      "avg_confidence": 0.85,
-      "color": "#38bdf8"
-    },
-    {
-      "tag": "timeline_navigation_clunky",
-      "label": "Timeline Navigation Clunky",
-      "count": 1,
-      "pct": 0.3,
-      "avg_confidence": 0.85,
-      "color": "#eab308"
-    },
-    {
-      "tag": "remembered_visual_color_object",
-      "label": "Remembered Visual Details",
-      "count": 1,
-      "pct": 0.3,
-      "avg_confidence": 0.85,
+      "label": "Conversational Restarts on Retry",
+      "tag": "gemini_conversation_dead_end",
+      "count": 9,
+      "pct": 11.1,
+      "avg_confidence": 0.854,
       "color": "#a855f7"
     },
     {
-      "tag": "remembered_emotional_event",
-      "label": "Remembered Emotional Event",
-      "count": 1,
-      "pct": 0.3,
+      "label": "Switching to Apple Photos / Immich",
+      "tag": "competitor_switch",
+      "count": 7,
+      "pct": 8.6,
       "avg_confidence": 0.85,
-      "color": "#c084fc"
+      "color": "#22c55e"
     },
     {
-      "tag": "candid_moment_or_expression",
-      "label": "Candid Moment or Expression",
+      "label": "Other External Workarounds",
+      "tag": "other_recovery",
+      "count": 2,
+      "pct": 2.5,
+      "avg_confidence": 0.785,
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Cold Restart Each Try",
+      "tag": "cold_restart_each_try",
       "count": 1,
-      "pct": 0.3,
-      "avg_confidence": 0.85,
-      "color": "#fb7185"
+      "pct": 1.2,
+      "avg_confidence": 0.92,
+      "color": "#8b5cf6"
     }
   ],
-  "segment_splits": {
-    "gen_z": [],
-    "millennial": [],
-    "gen_x": []
-  },
   "source_attribution": [
     {
-      "label": "Screenshot & Meme Clutter",
-      "tag": "screenshot_and_junk_clutter",
+      "label": "Manual Chronological Doom-Scrolling",
+      "tag": "fallback_to_scroll",
+      "avg_confidence": 0.845,
       "sources": [
         {
           "source": "Play Store",
-          "count": 696,
-          "pct": 47.3
+          "count": 31,
+          "pct": 60.8
         },
         {
           "source": "App Store",
-          "count": 372,
-          "pct": 25.3
-        },
-        {
-          "source": "Hacker News",
-          "count": 182,
-          "pct": 12.4
-        },
-        {
-          "source": "Reddit",
-          "count": 179,
-          "pct": 12.2
-        },
-        {
-          "source": "YouTube",
-          "count": 42,
-          "pct": 2.9
-        }
-      ]
-    },
-    {
-      "label": "Competitor Switching (Apple/Immich)",
-      "tag": "competitor_switching_apple",
-      "sources": [
-        {
-          "source": "Hacker News",
-          "count": 29,
-          "pct": 38.7
-        },
-        {
-          "source": "App Store",
-          "count": 27,
-          "pct": 36.0
-        },
-        {
-          "source": "Play Store",
-          "count": 11,
-          "pct": 14.7
-        },
-        {
-          "source": "Reddit",
-          "count": 7,
-          "pct": 9.3
-        },
-        {
-          "source": "YouTube",
-          "count": 1,
-          "pct": 1.3
-        }
-      ]
-    },
-    {
-      "label": "Zero Results for Existing Photos",
-      "tag": "zero_results_for_existing_photo",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 554,
-          "pct": 45.8
-        },
-        {
-          "source": "App Store",
-          "count": 296,
-          "pct": 24.5
-        },
-        {
-          "source": "Hacker News",
-          "count": 183,
-          "pct": 15.1
-        },
-        {
-          "source": "Reddit",
-          "count": 142,
-          "pct": 11.7
-        },
-        {
-          "source": "YouTube",
-          "count": 34,
-          "pct": 2.8
-        }
-      ]
-    },
-    {
-      "label": "WhatsApp External Workaround",
-      "tag": "whatsapp_external_workaround",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 14,
-          "pct": 41.2
-        },
-        {
-          "source": "Hacker News",
-          "count": 9,
-          "pct": 26.5
-        },
-        {
-          "source": "App Store",
-          "count": 6,
-          "pct": 17.6
-        },
-        {
-          "source": "Reddit",
-          "count": 5,
-          "pct": 14.7
-        }
-      ]
-    },
-    {
-      "label": "Irrelevant Search Results",
-      "tag": "irrelevant_search_results",
-      "sources": [
-        {
-          "source": "Hacker News",
-          "count": 158,
-          "pct": 40.2
-        },
-        {
-          "source": "Play Store",
-          "count": 97,
-          "pct": 24.7
-        },
-        {
-          "source": "Reddit",
-          "count": 67,
-          "pct": 17.0
-        },
-        {
-          "source": "App Store",
-          "count": 41,
-          "pct": 10.4
-        },
-        {
-          "source": "YouTube",
-          "count": 30,
-          "pct": 7.6
-        }
-      ]
-    },
-    {
-      "label": "Other Retrieval Friction",
-      "tag": "other",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 89,
-          "pct": 45.4
-        },
-        {
-          "source": "App Store",
-          "count": 47,
-          "pct": 24.0
-        },
-        {
-          "source": "Hacker News",
-          "count": 29,
-          "pct": 14.8
-        },
-        {
-          "source": "Reddit",
-          "count": 27,
-          "pct": 13.8
-        },
-        {
-          "source": "YouTube",
-          "count": 4,
-          "pct": 2.0
-        }
-      ]
-    },
-    {
-      "label": "Remembered Relative Time",
-      "tag": "remembered_relative_time",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 129,
-          "pct": 44.8
-        },
-        {
-          "source": "App Store",
-          "count": 70,
-          "pct": 24.3
-        },
-        {
-          "source": "Hacker News",
-          "count": 43,
-          "pct": 14.9
-        },
-        {
-          "source": "Reddit",
-          "count": 41,
-          "pct": 14.2
-        },
-        {
-          "source": "YouTube",
-          "count": 5,
-          "pct": 1.7
-        }
-      ]
-    },
-    {
-      "label": "Forgot Filename or Album",
-      "tag": "forgot_filename_or_album",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 70,
-          "pct": 33.7
-        },
-        {
-          "source": "App Store",
-          "count": 68,
-          "pct": 32.7
-        },
-        {
-          "source": "Reddit",
-          "count": 45,
-          "pct": 21.6
-        },
-        {
-          "source": "Hacker News",
-          "count": 13,
-          "pct": 6.2
-        },
-        {
-          "source": "YouTube",
-          "count": 12,
-          "pct": 5.8
-        }
-      ]
-    },
-    {
-      "label": "Query Interpreted Too Literally",
-      "tag": "query_too_literal",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 45,
-          "pct": 33.1
-        },
-        {
-          "source": "Reddit",
-          "count": 38,
-          "pct": 27.9
-        },
-        {
-          "source": "App Store",
-          "count": 32,
-          "pct": 23.5
-        },
-        {
-          "source": "Hacker News",
-          "count": 17,
-          "pct": 12.5
-        },
-        {
-          "source": "YouTube",
-          "count": 4,
-          "pct": 2.9
-        }
-      ]
-    },
-    {
-      "label": "Forgot Exact Date",
-      "tag": "forgot_exact_date",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 130,
-          "pct": 41.1
-        },
-        {
-          "source": "App Store",
-          "count": 110,
-          "pct": 34.8
-        },
-        {
-          "source": "Reddit",
-          "count": 44,
-          "pct": 13.9
-        },
-        {
-          "source": "Hacker News",
-          "count": 21,
-          "pct": 6.6
-        },
-        {
-          "source": "YouTube",
-          "count": 11,
-          "pct": 3.5
-        }
-      ]
-    },
-    {
-      "label": "Text & OCR Detection Failure",
-      "tag": "text_ocr_detection_failure",
-      "sources": [
-        {
-          "source": "Hacker News",
-          "count": 20,
-          "pct": 42.6
-        },
-        {
-          "source": "Play Store",
-          "count": 11,
-          "pct": 23.4
-        },
-        {
-          "source": "App Store",
-          "count": 9,
-          "pct": 19.1
-        },
-        {
-          "source": "Reddit",
-          "count": 6,
-          "pct": 12.8
-        },
-        {
-          "source": "YouTube",
-          "count": 1,
-          "pct": 2.1
-        }
-      ]
-    },
-    {
-      "label": "Medicine & Product Label Search",
-      "tag": "medicine_or_product_label",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 16,
-          "pct": 33.3
-        },
-        {
-          "source": "Hacker News",
-          "count": 16,
-          "pct": 33.3
-        },
-        {
-          "source": "Reddit",
           "count": 8,
-          "pct": 16.7
-        },
-        {
-          "source": "App Store",
-          "count": 7,
-          "pct": 14.6
-        },
-        {
-          "source": "YouTube",
-          "count": 1,
-          "pct": 2.1
-        }
-      ]
-    },
-    {
-      "label": "Face Recognition Misidentification",
-      "tag": "face_recognition_misidentification",
-      "sources": [
-        {
-          "source": "Reddit",
-          "count": 84,
-          "pct": 44.7
-        },
-        {
-          "source": "Play Store",
-          "count": 53,
-          "pct": 28.2
-        },
-        {
-          "source": "Hacker News",
-          "count": 36,
-          "pct": 19.1
-        },
-        {
-          "source": "App Store",
-          "count": 14,
-          "pct": 7.4
-        },
-        {
-          "source": "YouTube",
-          "count": 1,
-          "pct": 0.5
-        }
-      ]
-    },
-    {
-      "label": "Remembered Companion or Person",
-      "tag": "remembered_companion_person",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 23,
-          "pct": 40.4
-        },
-        {
-          "source": "App Store",
-          "count": 12,
-          "pct": 21.1
-        },
-        {
-          "source": "Hacker News",
-          "count": 11,
-          "pct": 19.3
+          "pct": 15.7
         },
         {
           "source": "Reddit",
-          "count": 9,
-          "pct": 15.8
+          "count": 4,
+          "pct": 7.8
+        },
+        {
+          "source": "Hacker News",
+          "count": 6,
+          "pct": 11.8
         },
         {
           "source": "YouTube",
           "count": 2,
-          "pct": 3.5
+          "pct": 3.9
         }
       ]
     },
     {
-      "label": "Keyword Guessing Friction",
-      "tag": "query_keyword_guessing",
+      "label": "Retrying Without Disambiguation Chips",
+      "tag": "no_refinement_support",
+      "avg_confidence": 0.855,
       "sources": [
         {
-          "source": "Hacker News",
+          "source": "Play Store",
           "count": 3,
-          "pct": 42.9
+          "pct": 27.3
         },
         {
           "source": "App Store",
           "count": 3,
-          "pct": 42.9
-        },
-        {
-          "source": "Play Store",
-          "count": 1,
-          "pct": 14.3
-        }
-      ]
-    },
-    {
-      "label": "Forgot Exact Location",
-      "tag": "forgot_exact_location",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 27,
-          "pct": 37.5
-        },
-        {
-          "source": "Hacker News",
-          "count": 22,
-          "pct": 30.6
+          "pct": 27.3
         },
         {
           "source": "Reddit",
-          "count": 13,
-          "pct": 18.1
+          "count": 3,
+          "pct": 27.3
+        },
+        {
+          "source": "Hacker News",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "YouTube",
+          "count": 2,
+          "pct": 18.2
+        }
+      ]
+    },
+    {
+      "label": "Conversational Restarts on Retry",
+      "tag": "gemini_conversation_dead_end",
+      "avg_confidence": 0.854,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 2,
+          "pct": 22.2
         },
         {
           "source": "App Store",
-          "count": 8,
+          "count": 1,
           "pct": 11.1
         },
         {
+          "source": "Reddit",
+          "count": 6,
+          "pct": 66.7
+        },
+        {
+          "source": "Hacker News",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
           "source": "YouTube",
-          "count": 2,
-          "pct": 2.8
+          "count": 0,
+          "pct": 0.0
         }
       ]
     },
     {
-      "label": "Vague Event or Trip Memory",
-      "tag": "vague_event_or_trip",
+      "label": "Switching to Apple Photos / Immich",
+      "tag": "competitor_switch",
+      "avg_confidence": 0.85,
       "sources": [
         {
           "source": "Play Store",
-          "count": 7,
-          "pct": 33.3
-        },
-        {
-          "source": "App Store",
-          "count": 6,
+          "count": 2,
           "pct": 28.6
         },
         {
-          "source": "Hacker News",
-          "count": 5,
-          "pct": 23.8
-        },
-        {
-          "source": "YouTube",
-          "count": 2,
-          "pct": 9.5
+          "source": "App Store",
+          "count": 1,
+          "pct": 14.3
         },
         {
           "source": "Reddit",
           "count": 1,
-          "pct": 4.8
-        }
-      ]
-    },
-    {
-      "label": "Timeline Navigation Clunky",
-      "tag": "timeline_navigation_clunky",
-      "sources": [
-        {
-          "source": "Reddit",
-          "count": 18,
-          "pct": 43.9
-        },
-        {
-          "source": "Play Store",
-          "count": 10,
-          "pct": 24.4
+          "pct": 14.3
         },
         {
           "source": "Hacker News",
-          "count": 6,
-          "pct": 14.6
-        },
-        {
-          "source": "App Store",
-          "count": 6,
-          "pct": 14.6
-        },
-        {
-          "source": "YouTube",
-          "count": 1,
-          "pct": 2.4
-        }
-      ]
-    },
-    {
-      "label": "Remembered Visual Details",
-      "tag": "remembered_visual_color_object",
-      "sources": [
-        {
-          "source": "Hacker News",
-          "count": 11,
-          "pct": 44.0
-        },
-        {
-          "source": "Play Store",
-          "count": 4,
-          "pct": 16.0
-        },
-        {
-          "source": "App Store",
-          "count": 4,
-          "pct": 16.0
-        },
-        {
-          "source": "YouTube",
-          "count": 3,
-          "pct": 12.0
-        },
-        {
-          "source": "Reddit",
-          "count": 3,
-          "pct": 12.0
-        }
-      ]
-    },
-    {
-      "label": "Remembered Emotional Event",
-      "tag": "remembered_emotional_event",
-      "sources": [
-        {
-          "source": "App Store",
           "count": 3,
           "pct": 42.9
         },
         {
-          "source": "Play Store",
-          "count": 2,
-          "pct": 28.6
-        },
-        {
-          "source": "Reddit",
-          "count": 1,
-          "pct": 14.3
-        },
-        {
-          "source": "Hacker News",
-          "count": 1,
-          "pct": 14.3
-        }
-      ]
-    },
-    {
-      "label": "Candid Moment or Expression",
-      "tag": "candid_moment_or_expression",
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 5,
-          "pct": 50.0
-        },
-        {
-          "source": "Hacker News",
-          "count": 2,
-          "pct": 20.0
-        },
-        {
-          "source": "App Store",
-          "count": 2,
-          "pct": 20.0
-        },
-        {
-          "source": "Reddit",
-          "count": 1,
-          "pct": 10.0
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
         }
       ]
     }
   ],
   "key_quotes": [
     {
-      "text": "Disappointed & Disgusted I am writing this review in the hope the others will follow suit and stand up for consumers rights, as they don’t seem to pay attention to the feedback of their customers, the ones who actually pay for the privilege. I first used google photos years ago and was relatively satisfied with the app. Unfortunately it is just useless now. I have thousands upon thousands of photos saved and pay for a service where I can’t find a single image in search because they took away this basic function for whatever profit gaining reason they deemed reasonable. What is the point if you can’t search and find your saved images? Also seriously, it’s 2024 and Google hasn’t figured out away for Apple users to transfer their saved photo albums directly to albums in Google photos, and you have to manually save all your photos into albums again? Such simple adjustments that would actually make the app consumer friendly and worth paying for. I would suggest finding an alternative to entrust your precious memories with, rather than pay for a service run by a company whom has such little regard for their customers and their photos.",
-      "source": "Apple App Store",
-      "source_id": "appstore_11944423327",
-      "date": "2024-11-13",
-      "confidence": 0.85,
+      "text": "my photos aren't organized into different days anymore and everything is just bunched up. It's become almost impossible to find photos",
+      "confidence": 0.92,
+      "source": "Play Store",
       "tags": [
-        "competitor_switching_apple"
-      ],
-      "segment": "gen_x"
+        "fallback to scroll",
+        "time"
+      ]
     },
     {
-      "text": "2026 Edit: The search feature has turned to trash. Stop making your apps worse. Google Photos, Google Maps—both were way better, now I'm leaving for competitors.. 2023 Edit: Latest update ruined the editing options.",
-      "source": "Google Play Store",
-      "source_id": "8814cf63-90ac-4912-a273-0897a7bbad64",
-      "date": "2026-09-15",
-      "confidence": 0.85,
+      "text": "I have thousands upon thousands of photos saved and pay for a service where I can’t find a single image in search",
+      "confidence": 0.92,
+      "source": "App Store",
       "tags": [
-        "competitor_switching_apple"
-      ],
-      "segment": "gen_x"
+        "fallback to scroll",
+        "combined"
+      ]
     },
     {
-      "text": "You can no longer search your photos without turning on Backup. Time for a new App, goodbye Photos. Update: Google Dark Patterns and Prevent Uninstallation. Actually Photos pretends you can uninstall it, but it just hides, uploading all your data to the cloud against your will. I smell a class action lawsuit brewing..",
-      "source": "Google Play Store",
-      "source_id": "e01d05dc-be47-4429-822a-559d72517fb1",
-      "date": "2026-09-15",
-      "confidence": 0.96,
+      "text": "if I search for any photos, then issue a follow up query, it will completely ignore the initial search results",
+      "confidence": 0.92,
+      "source": "App Store",
       "tags": [
-        "whatsapp_external_workaround"
-      ],
-      "segment": "gen_x"
+        "cold restart each try",
+        "combined"
+      ]
     },
     {
-      "text": "I've been using 500px lately for my publicly available photos. Seems to be the most popular alternative. For private stuff I am hosting the originals on my own NAS and upload a copy in Google Photos for easy searching.",
-      "source": "Hacker News",
-      "source_id": "hn_12554353",
-      "date": "2016-09-22",
-      "confidence": 0.85,
+      "text": "I am constantly searching manually for a picture their system missed that still fit my search criteria.",
+      "confidence": 0.92,
+      "source": "YouTube",
       "tags": [
-        "competitor_switching_apple"
-      ],
-      "segment": "millennial"
+        "fallback to scroll",
+        "combined"
+      ]
     },
     {
-      "text": "Immich is fantastic. I'm itching to reply but not 100% sure what I want to say, I've got like a bunch of immediate, parallel thought processes about it. 1. I've got 25 years of photos and video that I originally organized by folder (date + title of contents) but got very unwieldy once my wife and I both got smartphones back in mid-late-00's -- this archive has lived on external HDDs (spinning disk) and copied to new ones as capacities increased. In early-mid 2010's I got 2TB with Google and uploaded to Google Photos; it was great, but neither of us ever really utilized it, so I was just paying for cloud backup. 2. I am old-ish, have no concept of \"home lab\" (because everybody who had one or more computers and messed around with computers basically had what's now called home lab), and tend to keep/repurpose tech that goes out of service -- I've always hosted where it was appropriate (home, colo, cloud, whatever), and always have run many devices in a closet. Given the ~1TB of personal media, it was inevitable that I'd want some kind of self-run solution if only for speed + physical access. 3. I liked Google Photos interface; getting out of it was impossible. Add in 15+ years of unorganized iPhone photo/video backups (pulled out via iExplorer and other apps) in real folders on a real hard drive, and it really was a godsend in starting with a \"normal\" (yet dysfunctional) archive of original content. Once I set up Immich, I was able to upload all of it and at the bare minimum have a year/month-organized archive of stuff, written to an enterprise HDD (while keeping the old source hard drive(s)). The iOS app is pretty good (way more performant now with the beta timeline) and the CLI + API are great. 4. I have an Ubuntu server in the dusty closet; decent little piece of crap 8-core / 32gb that runs some websites and services. That's where I installed a refurb 12TB drive and Immich. I had an HP Z420 with 128gb ram that was my workstation for a few years, I upgraded to a Z640 dual-xeon with 256gb, and just had the old stuff sitting around -- I installed TrueNAS on that and threw in a bunch of cheap Ironwolf drives, set up a ZFS pool, run Immich on the Ubuntu box and then Syncthing all of it to the NAS for duplication. I recognize that having a bunch of equipment around is a luxury and a privilege, but I'm also a cheap POS and buy everything used/off-lease/refurbished/eBay/etc, and reuse what I can as it gets upgraded. That said, you can get massive local storage and compute if you look around, be patient, and don't impulse-buy. 5. Since Immich predated the NAS and I'm still running it on the Ubuntu box versus in a TrueNAS container, upgrades are less turnkey; for instance, I let mine sit idle from 1.29x to 1.41x, and there were three breaking upgrades in between. It took some fiddling and staggered upgrading on command line to get from where I was all the way to latest; I experienced no data loss though, everything moved over, but it wasn't one-click/one-command. Syncthing backups from machine A to B aren't exactly invisible either, because if A shits the bed it would probably corrupt B, and even if it didn't, while I do have the files duplicated, I'd have to more or less replicate the original install and copy the files from B->A to get the interface running again. 6. The mobile app + features are very seamless and good at this point; my wife hates computers but can find what she needs on her phone super easily. And the beta timeline is very performant with regards to handling a quarter million photos and videos. I haven't fully vetted the latest app-initiated from-phone automated backups, but did notice mine were flowing from my phone to server without even realizing it. That helps a LOT with the inevitable couple-times-a-decade phone upgrade since the main \"backup bottleneck\" is getting all that personal media out of there. The rest just goes easily with iCloud backups and device-to-device restorations. 7. I don't back any of this up to cloud; I thought about maybe Backblaze or something, but haven't pulled the trigger on anything. Syncing to and restoring from sounds like a nightmare. Since 1998 I think I've only had 2 or 3 drives actually die on me; one was recently (the NOT important one) which prompted the TrueNAS box. I ended up with multiple 2xMIRROR pairs striped in a VDEV pool and feel pretty OK about that for now, which the Immich archive also syncs to. End of the day, anything is better than being imprisoned by Google Photos or iCloud Photos. 8. I also don't expose any of this stuff to the internet; outside of the home network, we have to VPN in to get access. Also don't have external contributors or anything. YMMV because I know a lot of people like to share out to family, or set extended family up to archive with them. End of the day, fiddly upgrade annoyances aside, it's the only Franken-solution I've found thus far that gives easy access to a giant archive, and spreads itself out enough to where I'm not terrified of losing everything. Really well-done stuff!",
-      "source": "Hacker News",
-      "source_id": "hn_45174444",
-      "date": "2025-09-08",
-      "confidence": 0.85,
+      "text": "It can't locate anything anymore even obvious photos that I know are right there in my library.",
+      "confidence": 0.92,
+      "source": "Play Store",
       "tags": [
-        "competitor_switching_apple"
-      ],
-      "segment": "millennial"
+        "fallback to scroll",
+        "combined"
+      ]
     }
   ],
-  "temporal_trend": [
+  "comparison_matrix": [
     {
-      "month": "2013-03",
-      "count": 1,
-      "pct": 100.0
+      "dimension": "Keyword Search",
+      "google_photos": "Fails on Compound Cues",
+      "apple_photos": "Basic EXIF Filtering",
+      "whatsapp_search": "Fast Chat Media Grid"
     },
     {
-      "month": "2015-02",
-      "count": 1,
-      "pct": 100.0
+      "dimension": "Natural Language",
+      "google_photos": "Gemini Ask Photos (Hallucinates)",
+      "apple_photos": "On-Device Apple Intelligence",
+      "whatsapp_search": "Keyword Only"
     },
     {
-      "month": "2015-05",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2015-06",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2015-07",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2015-11",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2015-12",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2016-02",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2016-05",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2016-08",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2016-09",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2016-10",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2016-12",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-01",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-02",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-04",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-05",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-09",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-10",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2017-12",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-01",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-02",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-03",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-04",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-05",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-06",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-07",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-08",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-09",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-10",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2018-11",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-01",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-03",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-04",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-05",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-07",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-08",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-09",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2019-10",
-      "count": 4,
-      "pct": 80.0
-    },
-    {
-      "month": "2020-01",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-03",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-04",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-05",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-06",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-07",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-08",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-11",
-      "count": 18,
-      "pct": 100.0
-    },
-    {
-      "month": "2020-12",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-01",
-      "count": 11,
-      "pct": 91.7
-    },
-    {
-      "month": "2021-02",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-03",
-      "count": 7,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-04",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-05",
-      "count": 6,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-06",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-07",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-08",
-      "count": 12,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-09",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-10",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2021-12",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-01",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-02",
-      "count": 10,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-03",
-      "count": 19,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-08",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-09",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-10",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-11",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2022-12",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-01",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-02",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-03",
-      "count": 4,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-04",
-      "count": 5,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-05",
-      "count": 1,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-06",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-07",
-      "count": 13,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-08",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-09",
-      "count": 3,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-10",
-      "count": 2,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-11",
-      "count": 7,
-      "pct": 100.0
-    },
-    {
-      "month": "2023-12",
-      "count": 10,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-01",
-      "count": 19,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-02",
-      "count": 21,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-03",
-      "count": 29,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-04",
-      "count": 16,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-05",
-      "count": 21,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-06",
-      "count": 28,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-07",
-      "count": 19,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-08",
-      "count": 32,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-09",
-      "count": 37,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-10",
-      "count": 21,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-11",
-      "count": 15,
-      "pct": 100.0
-    },
-    {
-      "month": "2024-12",
-      "count": 15,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-01",
-      "count": 14,
-      "pct": 93.3
-    },
-    {
-      "month": "2025-02",
-      "count": 14,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-03",
-      "count": 27,
-      "pct": 96.4
-    },
-    {
-      "month": "2025-04",
-      "count": 11,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-05",
-      "count": 20,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-06",
-      "count": 24,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-07",
-      "count": 31,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-08",
-      "count": 24,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-09",
-      "count": 24,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-10",
-      "count": 27,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-11",
-      "count": 13,
-      "pct": 100.0
-    },
-    {
-      "month": "2025-12",
-      "count": 24,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-01",
-      "count": 44,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-02",
-      "count": 51,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-03",
-      "count": 35,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-04",
-      "count": 50,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-05",
-      "count": 62,
-      "pct": 87.3
-    },
-    {
-      "month": "2026-06",
-      "count": 89,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-07",
-      "count": 297,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-08",
-      "count": 490,
-      "pct": 100.0
-    },
-    {
-      "month": "2026-09",
-      "count": 275,
-      "pct": 97.2
-    }
-  ],
-  "comparison_matrix": {
-    "rows": [
-      "quality",
-      "price",
-      "ease_of_use",
-      "privacy",
-      "features"
-    ],
-    "columns": [
-      "Apple Photos",
-      "WhatsApp",
-      "OneDrive",
-      "Samsung Gallery",
-      "Amazon Photos",
-      "Dropbox"
-    ],
-    "values": [
-      [
-        26,
-        15,
-        9,
-        12,
-        6,
-        15
-      ],
-      [
-        25,
-        15,
-        9,
-        11,
-        5,
-        15
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    ]
-  },
-  "treemap_data": [
-    {
-      "theme": "Episodic & Fuzzy Search",
-      "children": [
-        {
-          "name": "Address zero results for existing photo",
-          "value": 1074
-        },
-        {
-          "name": "Address forgot exact date",
-          "value": 316
-        },
-        {
-          "name": "Address remembered relative time",
-          "value": 278
-        },
-        {
-          "name": "Address irrelevant search results",
-          "value": 262
-        },
-        {
-          "name": "Address query too literal",
-          "value": 121
-        }
-      ]
-    },
-    {
-      "theme": "General Feature Enhancements",
-      "children": [
-        {
-          "name": "Address forgot filename or album",
-          "value": 199
-        },
-        {
-          "name": "Address forgot exact location",
-          "value": 72
-        },
-        {
-          "name": "Address other",
-          "value": 40
-        },
-        {
-          "name": "Address remembered visual color object",
-          "value": 22
-        },
-        {
-          "name": "Address vague event or trip",
-          "value": 14
-        }
-      ]
-    },
-    {
-      "theme": "People & Facial Recognition",
-      "children": [
-        {
-          "name": "Address face recognition misidentification",
-          "value": 68
-        },
-        {
-          "name": "Address remembered companion person",
-          "value": 49
-        },
-        {
-          "name": "Address face untagged missing",
-          "value": 46
-        },
-        {
-          "name": "Address competitor switching apple",
-          "value": 19
-        },
-        {
-          "name": "Need option to add a face",
-          "value": 1
-        }
-      ]
-    },
-    {
-      "theme": "Timeline & Navigation UX",
-      "children": [
-        {
-          "name": "Address endless scrolling fatigue",
-          "value": 14
-        },
-        {
-          "name": "normal grid view without bigger items",
-          "value": 2
-        },
-        {
-          "name": "quick scroll in long playlists",
-          "value": 1
-        }
-      ]
-    },
-    {
-      "theme": "Text & OCR Detection",
-      "children": [
-        {
-          "name": "Address medicine or product label",
-          "value": 40
-        },
-        {
-          "name": "Address text ocr detection failure",
-          "value": 2
-        }
-      ]
-    },
-    {
-      "theme": "Clutter & Junk Quarantine",
-      "children": [
-        {
-          "name": "Address screenshot and junk clutter",
-          "value": 915
-        },
-        {
-          "name": "Address utility receipt or doc",
-          "value": 5
-        },
-        {
-          "name": "Show newly edited receipt screenshots at the top of the view",
-          "value": 1
-        }
-      ]
-    },
-    {
-      "theme": "Cloud Storage & Sync",
-      "children": [
-        {
-          "name": "Fix backup getting stuck on \"Preparing Backup\"",
-          "value": 1
-        },
-        {
-          "name": "I need an alternative storage solution that doesn’t add music to my memories",
-          "value": 1
-        },
-        {
-          "name": "More granular control over automatic sync and delete behavior",
-          "value": 1
-        },
-        {
-          "name": "Reliable continuous backup without manual reinstall",
-          "value": 1
-        },
-        {
-          "name": "Separate deletion from device and cloud backup",
-          "value": 1
-        }
-      ]
+      "dimension": "Recovery / Anti-Scroll",
+      "google_photos": "None (Endless Scroll)",
+      "apple_photos": "Curated Memories Carousel",
+      "whatsapp_search": "Media Grid by Contact"
     }
   ]
 }

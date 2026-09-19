@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import DataDictionaryModal from './DataDictionaryModal';
 
 const ThemeControls = dynamic(() => import('@/components/ThemeControls'), {
   ssr: false,
@@ -15,22 +16,23 @@ const ThemeControls = dynamic(() => import('@/components/ThemeControls'), {
 });
 
 const QUESTIONS = [
-  { id: 1, phase: 'Memory Gap', short: 'Struggled Photo Types', color: '#818cf8' },
-  { id: 2, phase: 'Memory Gap', short: 'Retained Memory Clues', color: '#a78bfa' },
-  { id: 3, phase: 'Memory Gap', short: 'Forgotten Metadata', color: '#c084fc' },
-  { id: 4, phase: 'Search Breakdown', short: 'Incomplete Query Formulation', color: '#38bdf8' },
-  { id: 5, phase: 'Search Breakdown', short: 'Irrelevant Results & False Misses', color: '#22d3ee' },
-  { id: 6, phase: 'Library Friction', short: 'Endless Timeline Scrolling', color: '#f472b6' },
-  { id: 7, phase: 'Library Friction', short: 'Screenshot & Junk Clutter', color: '#fb923c' },
-  { id: 8, phase: 'Library Friction', short: 'Face Recognition Failures', color: '#4ade80' },
-  { id: 9, phase: 'Library Friction', short: 'Text & Document Search', color: '#fbbf24' },
-  { id: 10, phase: 'Library Friction', short: 'Workarounds & Switching', color: '#f87171' },
+  { id: 1, phase: 'What users remember', short: 'Photos people struggle to find', color: '#3b82f6', isCoreBrief: true },
+  { id: 2, phase: 'What users remember', short: 'What clues users remember', color: '#3b82f6', isCoreBrief: true },
+  { id: 3, phase: 'What users remember', short: 'What users forget (dates, tags)', color: '#64748b', isCoreBrief: true },
+  { id: 4, phase: 'Where search fails', short: 'Struggling to describe photos', color: '#3b82f6', isCoreBrief: true },
+  { id: 5, phase: 'Where search fails', short: 'Wrong results & false misses', color: '#3b82f6', isCoreBrief: false },
+  { id: 6, phase: 'Library problems', short: 'Endless timeline scrolling', color: '#64748b', isCoreBrief: true },
+  { id: 7, phase: 'Library problems', short: 'Screenshots & meme clutter', color: '#64748b', isCoreBrief: false },
+  { id: 8, phase: 'Library problems', short: 'Face & people search issues', color: '#64748b', isCoreBrief: false },
+  { id: 9, phase: 'Library problems', short: 'Receipt & document search', color: '#64748b', isCoreBrief: false },
+  { id: 10, phase: 'Library problems', short: 'Workarounds & app switching', color: '#64748b', isCoreBrief: true },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [questionsOpen, setQuestionsOpen] = useState(false);
+  const [dictionaryOpen, setDictionaryOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -73,11 +75,11 @@ export default function Navbar() {
   };
 
   // Group questions by phase for the mega menu
-  const phases = ['Memory Gap', 'Search Breakdown', 'Library Friction'];
+  const phases = ['What users remember', 'Where search fails', 'Library problems'];
   const phaseColors: Record<string, string> = {
-    'Memory Gap': '#a78bfa',
-    'Search Breakdown': '#38bdf8',
-    'Library Friction': '#fb923c',
+    'What users remember': '#3b82f6',
+    'Where search fails': '#3b82f6',
+    'Library problems': '#64748b',
   };
 
   return (
@@ -119,7 +121,21 @@ export default function Navbar() {
       {/* Nav Links */}
       <div className={`navbar-nav ${mobileOpen ? 'mobile-open' : ''}`} suppressHydrationWarning>
         <Link href="/" className={`nav-link ${pathname === '/' ? 'active' : ''}`} onClick={closeMenus}>
-          Summary
+          Overview
+        </Link>
+
+        <Link
+          href="/findings"
+          className={`nav-link ${isActive('/findings') ? 'active' : ''}`}
+          onClick={closeMenus}
+          style={{
+            fontWeight: 600,
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+          }}
+        >
+          <span>Findings</span>
         </Link>
 
         {/* Inquiry Mega-Menu */}
@@ -139,7 +155,7 @@ export default function Navbar() {
             aria-haspopup="true"
             id="questions-menu-button"
           >
-            <span>Inquiries</span>
+            <span>Research Questions</span>
             <svg width="9" height="5" viewBox="0 0 9 5" fill="none" style={{
               transition: 'transform 0.2s ease',
               transform: questionsOpen ? 'rotate(180deg)' : 'rotate(0)',
@@ -228,8 +244,26 @@ export default function Navbar() {
                             fontSize: 12.5,
                             color: isCurrent ? 'var(--brand-primary)' : 'var(--text-primary)',
                             lineHeight: 1.3,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 6,
                           }}>
-                            {q.short}
+                            <span>{q.short}</span>
+                            {q.isCoreBrief && (
+                              <span
+                                style={{
+                                  fontSize: 9.5,
+                                  background: 'rgba(59, 130, 246, 0.12)',
+                                  color: 'var(--semantic-blue)',
+                                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                                  padding: '1px 5px',
+                                  borderRadius: 4,
+                                  fontWeight: 700,
+                                }}
+                              >
+                                Core
+                              </span>
+                            )}
                           </span>
                         </Link>
                       );
@@ -242,7 +276,7 @@ export default function Navbar() {
         </div>
 
         <Link href="/gaps" className={`nav-link ${isActive('/gaps') ? 'active' : ''}`} onClick={closeMenus}>
-          Gaps
+          Gap Analysis
         </Link>
 
         <Link
@@ -271,10 +305,41 @@ export default function Navbar() {
 
       {/* Right Controls */}
       <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }} suppressHydrationWarning>
+        <button
+          type="button"
+          onClick={() => setDictionaryOpen(true)}
+          title="View plain-language terminology reference"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 5,
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border)',
+            color: 'var(--text-secondary)',
+            borderRadius: 16,
+            padding: '4px 12px',
+            fontSize: 11.5,
+            fontWeight: 600,
+            cursor: 'pointer',
+            transition: 'all 0.15s ease',
+            backdropFilter: 'blur(12px)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = 'var(--brand-primary)';
+            e.currentTarget.style.color = 'var(--brand-primary)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'var(--border)';
+            e.currentTarget.style.color = 'var(--text-secondary)';
+          }}
+        >
+          <span>Terminology</span>
+        </button>
+
         <ThemeControls />
         <div
           className="corpus-status-badge"
-          title="Live corpus: 2,223 documents"
+          title="Analyzed corpus: 2,223 reviews"
           suppressHydrationWarning
           style={{
             display: 'flex',
@@ -285,16 +350,19 @@ export default function Navbar() {
             borderRadius: 20,
             padding: '4px 12px',
             fontSize: 11.5,
-            color: '#4ade80',
+            color: 'var(--semantic-green)',
             fontWeight: 600,
             whiteSpace: 'nowrap',
             backdropFilter: 'blur(12px)',
           }}
         >
           <span className="beacon-dot" style={{ width: 6, height: 6 }} />
-          2,223 Docs
+          2,223 Reviews
         </div>
       </div>
+
+      {/* Global Data Dictionary Modal */}
+      <DataDictionaryModal isOpen={dictionaryOpen} onClose={() => setDictionaryOpen(false)} />
     </nav>
   );
 }

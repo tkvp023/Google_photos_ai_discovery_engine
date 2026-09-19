@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-19T08:38:37Z",
+  "pipeline_stage": "Stage 3 — Retrieval Outcome Classification",
+  "methodology": "signal_derived_from_aggregate_tags",
+  "data_limitation": "Raw document texts are not individually accessible (SQLite tables empty; Q-files contain aggregated tag data only). Outcome counts are derived from recovery subcategory tags and explicit quote-level resolution signals. The dominant 'Outcome Not Stated' bucket is an honest finding, not a classification failure.",
+  "total_bucket_a_docs": 251,
+  "outcomes": [
+    {
+      "outcome_id": "first_attempt_success",
+      "label": "First-Attempt Success",
+      "description": "User's initial query succeeded; no refinement or fallback needed.",
+      "count": 0,
+      "pct": 0.0,
+      "derivation": "Zero by corpus construction — Bucket A contains friction/failure documents. A user whose first search succeeded would not write a critical review.",
+      "confidence": "high",
+      "color": "#22c55e"
+    },
+    {
+      "outcome_id": "success_after_refinement",
+      "label": "Success After Refinement",
+      "description": "User rephrased/iterated the search (within the search feature, including Ask Photos) and eventually found the photo.",
+      "count": 0,
+      "pct": 0.0,
+      "derivation": "Zero from available aggregate data. No Q-file quotes contain within-search-iteration success language. 4 docs describe competitor_switch (Apple Photos/Immich) which is platform abandonment, not within-Google-Photos refinement success.",
+      "confidence": "medium",
+      "color": "#86efac"
+    },
+    {
+      "outcome_id": "success_via_fallback",
+      "label": "Success via Fallback",
+      "description": "User abandoned search entirely and found the photo through manual timeline scrolling, WhatsApp, or asking someone — after failing search.",
+      "count": 1,
+      "pct": 0.4,
+      "derivation": "1 doc confirmed by explicit resolution quote in q10.json: 'I was scrolling through things and eventually found them, and I cannot remember the date for the life of me.' (Reddit, confidence 0.95).",
+      "evidence_quote": "I was scrolling through things and eventually found them, and I cannot remember the date for the life of me.",
+      "evidence_source": "Reddit (q10.json key_quotes, confidence 0.95)",
+      "confidence": "high",
+      "color": "#4ade80"
+    },
+    {
+      "outcome_id": "abandonment",
+      "label": "Abandonment",
+      "description": "User gave up with no resolution — described a dead end with no path forward.",
+      "count": 21,
+      "pct": 8.4,
+      "derivation": "Derived from strong dead-end signals in bucket_a_findings.json recovery subcategories: no_refinement_support (11 docs) + gemini_conversation_dead_end (9 docs) + cold_restart_each_try (1 docs) = 21 docs.",
+      "confidence": "medium-high",
+      "color": "#f87171"
+    },
+    {
+      "outcome_id": "outcome_not_stated",
+      "label": "Outcome Not Stated",
+      "description": "Document describes the friction/failure but does not narrate what ultimately happened. The user is venting about the problem, not reporting a resolution.",
+      "count": 229,
+      "pct": 91.2,
+      "derivation": "Remainder after allocating: 251 total - 0 first-success - 0 after-refinement - 1 via-fallback - 21 abandonment = 229. This includes 177 docs with no recovery tag at all (Expression/Interpretation/Evaluation failures where no resolution was narrated) plus 51 fallback_to_scroll docs minus the 1 confirmed success and 21 confirmed abandonment, plus 2 other_recovery docs.",
+      "confidence": "high",
+      "color": "#94a3b8"
+    }
+  ],
+  "cross_reference_with_failure_type_table": "The failure-type table (Section 4.0.1) shows 51 docs with fallback behavior. The outcome table shows only 1 confirmed success via fallback and 21 abandonment. The remaining 29 scroll docs land in 'Outcome Not Stated' — they describe the scrolling behavior but do not narrate whether the photo was found. This is consistent, not contradictory: failure-type captures WHERE it broke, outcome captures WHAT ULTIMATELY HAPPENED. The low confirmed-success rate from fallback suggests that even the 51 docs describing scrolling mostly did not self-rescue successfully — they vented about the necessity of scrolling without confirming they found the photo.",
+  "key_finding": "91.2% (229/251) of Bucket A documents do not state an outcome — the corpus is composed of friction-venting reviews, not resolution narratives. This is itself a product insight: the magnitude of unresolved frustration is invisible from outcome data alone; it requires reading the failure-type signals.",
+  "quote_signals_found": {
+    "first_attempt_success_evidence": [],
+    "success_after_refinement_evidence": [],
+    "success_via_fallback_evidence": [
+      "I was scrolling through things and eventually found them, and I cannot remember the date for the life of me.",
+      "I was scrolling through things and eventually found them, and I cannot remember the date for the life of me."
+    ],
+    "abandonment_evidence": []
+  }
+}

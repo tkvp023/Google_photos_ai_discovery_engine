@@ -67,28 +67,28 @@ To guarantee zero penalty deductions, this blueprint strictly adheres to all com
 
 ### Slide 3: AI-Powered Discovery Engine Architecture
 * **Slide Title:**  
-  `An Automated AI Discovery Pipeline Ingested and Classified 5,000+ Public User Discussions at Scale`
+  `An Automated AI Discovery Pipeline Ingested and Classified 2,223 Multi-Platform Reviews and 5,061 Friction Signals`
 * **Key Content Blocks:**
   * **Data Pipeline Architecture:**
     $$\text{Scrape (5 Sources)} \longrightarrow \text{Clean \& Filter} \longrightarrow \text{LLM Batch Classification} \longrightarrow \text{Quantification} \longrightarrow \text{Dashboard \& RAG}$$
-  * **Data Sources Ingested:** Google Play Store (`com.google.android.apps.photos`), App Store, Reddit (`r/googlephotos`, `r/GooglePixel`, `r/techsupport`), YouTube comments, and Trustpilot.
-  * **AI Classification Taxonomy:** 21 granular retrieval friction tags, intent types, and demographic signals classified via Gemini 2.5 Flash with 100% exact-substring quote validation.
+  * **Data Sources Ingested (2,223 Documents):** Google Play Store (975), Apple App Store (608), Reddit (319), Hacker News (242), and YouTube (79).
+  * **AI Classification Taxonomy:** 4 mutually exclusive triage buckets isolating 251 search-friction reviews (278 cognitive failure tags across 4 stages), with 100% exact-substring quote validation.
 * **Visual Elements:** Pipeline flowchart diagram with logos of data sources and the Next.js interactive decision dashboard screenshot.
 
 ---
 
 ### Slide 4: Discovery Engine Quantified Findings
 * **Slide Title:**  
-  `Data Proves Date Amnesia and Media Clutter Are the Primary Catalysts for Search Abandonment`
+  `Data Proves Search Misunderstanding and Clutter Are the Primary Catalysts for Abandonment`
 * **Key Content Blocks:**
-  * **Top 4 Quantified Friction Points:**
-    * 📊 **42% Date & Time Amnesia:** Users remember relative time (*"two summers ago"*), never exact calendar dates.
-    * 📊 **34% Screenshot & Meme Clutter:** Utility receipts, WhatsApp memes, and documents pollute family search results.
-    * 📊 **28% Literal Query Dead-Ends:** Search returns 0 results for photos users know exist in their library.
-    * 📊 **24% Endless Timeline Scrolling Fatigue:** Users scroll through years of photos, inducing eye strain and abandonment.
+  * **Top 4 Quantified Friction Points (Bucket A Search Cohort):**
+    * 📊 **48.2% Search Misunderstanding (134 / 278 tags):** Engine misinterprets compound queries and takes words too literally.
+    * 📊 **40.3% Date & Time Amnesia (112 / 278 tags):** Users remember relative time (*"two summers ago"*), never exact calendar dates.
+    * 📊 **68.9% Forced Timeline Scrolling (51 / 74 recovery tags):** When search fails, users are forced to endlessly scroll the chronological grid.
+    * 📊 **Clutter Polluting Search (39 mentions in search / 1,471 whole-corpus mentions):** Receipts, barcodes, and memes crowding out genuine family memories.
   * **Real User Evidence Quotes:**
-    * *"I spent 40 minutes scrolling back to 2022 because search showed nothing for 'paella café'."* — Play Store Review
-    * *"Searching for my medicine bottle gave me 50 WhatsApp forwarded health memes."* — Reddit User
+    * *"it shows all kinds of garbage/nonsense, instead of the requested images by name"* — Play Store Review (Conf: 0.98)
+    * *"the same search will show your photo briefly, then change to 'Nothing found' or a huge list of random garbage."* — Play Store Review (Conf: 0.92)
 * **Visual Elements:** Horizontal bar chart of friction tag frequencies paired with 2 callout quote cards with source badges.
 
 ---

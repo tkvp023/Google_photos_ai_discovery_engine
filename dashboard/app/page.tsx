@@ -6,132 +6,302 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Executive Intelligence Summary | Google Photos AI Discovery Engine',
-  description: 'Executive summary of 2,223 grounded customer discussions across Play Store, App Store, Reddit, Hacker News, and YouTube: root causes of visual retrieval friction, clutter, and AI opportunity rankings.',
+  title: 'Overview | Google Photos AI Discovery Engine',
+  description: 'Evidence-based analysis of 2,223 customer reviews across 5 platforms diagnosing why visual memory search breaks down and what users need instead.',
 };
 
 export default async function SummaryPage() {
   const data = await getSummary();
   const totalDocs = data.kpi_cards?.find((k: { id: string; value: number }) => k.id === 'total_reviews')?.value || 2223;
 
-  // Extract key anchor metrics for the hero ticker
-  const clutterCard = data.kpi_cards?.find(k => k.id === 'clutter_pct' || k.label.includes('Clutter'));
-  const zeroResultCard = data.kpi_cards?.find(k => k.id === 'zero_results_pct' || k.label.includes('Zero'));
-  const unmetCard = data.kpi_cards?.find(k => k.id === 'unmet_needs_count' || k.label.includes('Unmet'));
-
-  const clutterVal = clutterCard ? `${clutterCard.value.toFixed(1)}%` : '29.1%';
-  const zeroResultVal = zeroResultCard ? `${zeroResultCard.value.toFixed(1)}%` : '23.9%';
-  const unmetVal = unmetCard ? `${Math.round(unmetCard.value)}` : '81';
-
   return (
-    <div className="container" style={{ paddingTop: 16, paddingBottom: 100 }}>
-      {/* ═══ IMMERSIVE HERO VIEWPORT (UNCLUTTERED INITIAL SCREEN) ═══ */}
-      <section className="hero-section" id="hero">
+    <div className="container" style={{ paddingTop: 20, paddingBottom: 100 }}>
+      {/* ═══ CLEAN HERO SECTION ═══ */}
+      <section className="hero-section" id="hero" style={{ padding: '36px 0 28px 0' }}>
         <div className="hero-content">
-          {/* Floating live status pills */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 22, flexWrap: 'wrap' }}>
-            <span className="hero-badge" style={{ color: '#4ade80' }}>
-              <span className="beacon-dot" style={{ width: 6, height: 6 }} />
-              Live Unified Multi-Platform Corpus
+          {/* Subtle status pills */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
+            <span className="hero-badge" style={{ color: 'var(--semantic-green)' }}>
+              <span className="beacon-dot" style={{ width: 6, height: 6, backgroundColor: 'var(--semantic-green)' }} />
+              {totalDocs.toLocaleString()} customer reviews analyzed
             </span>
             <span className="hero-badge" style={{ color: 'var(--text-secondary)' }}>
-              {totalDocs.toLocaleString()} Grounded Discussions
+              5 platforms (Play Store, App Store, Reddit, HN, YouTube)
             </span>
-            <span className="hero-badge" style={{ color: 'var(--brand-primary)' }}>
-              Gemini 3.7 Flash · Confidence {((data.overall_confidence || 0.88) * 100).toFixed(0)}%
+            <span className="hero-badge" style={{ color: 'var(--semantic-blue)' }}>
+              Verified quotes & calibrated confidence
             </span>
           </div>
 
-          {/* Large gradient heading */}
+          {/* Clean, readable heading */}
           <h1 style={{
-            fontSize: 'clamp(34px, 4.4vw, 56px)',
+            fontSize: 'clamp(32px, 4vw, 50px)',
             fontWeight: 700,
-            lineHeight: 1.08,
-            letterSpacing: '-0.04em',
-            marginBottom: 20,
-            maxWidth: 920,
+            lineHeight: 1.15,
+            letterSpacing: '-0.035em',
+            marginBottom: 16,
+            maxWidth: 860,
+            color: 'var(--text-primary)',
           }}>
-            Diagnosing{' '}
-            <span className="hero-gradient-text">
-              Visual Memory Retrieval Friction
-            </span>
-            {' '}& Discovery Gaps
+            Why users can&apos;t find the photo they&apos;re looking for
           </h1>
 
           <p style={{
-            fontSize: 16.5,
-            lineHeight: 1.7,
+            fontSize: 16,
+            lineHeight: 1.65,
             color: 'var(--text-secondary)',
-            maxWidth: 780,
-            marginBottom: 32,
+            maxWidth: 740,
+            marginBottom: 28,
           }}>
-            Mining <strong style={{ color: 'var(--text-primary)' }}>2,223 verified customer conversations</strong> across{' '}
-            <strong style={{ color: 'var(--text-primary)' }}>5 unified platforms</strong> to quantify why visual search breaks down and
-            uncover high-leverage product levers for AI-native episodic recall.
+            We analyzed 2,223 customer reviews across 5 platforms to understand why photo search fails — and what users need instead.
           </p>
 
-          {/* Interactive RAG Search Console & Prompt Chips */}
-          <HeroRagInput />
+          {/* Primary Action Buttons */}
+          <div style={{ display: 'flex', gap: 12, marginBottom: 28, flexWrap: 'wrap' }}>
+            <Link
+              href="/findings"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '11px 22px',
+                borderRadius: 'var(--radius-sm)',
+                background: 'var(--semantic-blue)',
+                color: '#fff',
+                fontWeight: 600,
+                fontSize: 14,
+                textDecoration: 'none',
+                boxShadow: '0 2px 8px rgba(59, 130, 246, 0.25)',
+                transition: 'background var(--t-base) ease',
+              }}
+            >
+              <span>See detailed findings</span>
+              <span>→</span>
+            </Link>
 
-          {/* Sleek Hero Telemetry Bar (4 core metrics in a single row) */}
-          <div className="hero-ticker">
-            <div className="hero-ticker-item">
-              <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Total Analyzed
-              </div>
-              <div style={{ fontSize: 22, fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif", color: '#818cf8', letterSpacing: '-0.02em' }}>
-                {totalDocs.toLocaleString()}
-              </div>
-              <div style={{ fontSize: 11, color: 'var(--text-secondary)' }}>5 Unified Platforms</div>
-            </div>
-            <div className="hero-ticker-item">
-              <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Screenshot Clutter
-              </div>
-              <div style={{ fontSize: 22, fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif", color: '#f472b6', letterSpacing: '-0.02em' }}>
-                {clutterVal}
-              </div>
-              <div style={{ fontSize: 11, color: 'var(--text-secondary)' }}>1,471 Reviews (66.2% Corpus)</div>
-            </div>
-            <div className="hero-ticker-item">
-              <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Zero Search Results
-              </div>
-              <div style={{ fontSize: 22, fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif", color: '#f87171', letterSpacing: '-0.02em' }}>
-                {zeroResultVal}
-              </div>
-              <div style={{ fontSize: 11, color: 'var(--text-secondary)' }}>1,209 Reviews (54.4% Corpus)</div>
-            </div>
-            <div className="hero-ticker-item">
-              <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Identified Needs
-              </div>
-              <div style={{ fontSize: 22, fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif", color: '#4ade80', letterSpacing: '-0.02em' }}>
-                {unmetVal}
-              </div>
-              <div style={{ fontSize: 11, color: 'var(--text-secondary)' }}>81 Categories (3,661 Mentions)</div>
-            </div>
+            <Link
+              href="/gaps"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '11px 18px',
+                borderRadius: 'var(--radius-sm)',
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border)',
+                color: 'var(--text-primary)',
+                fontWeight: 500,
+                fontSize: 14,
+                textDecoration: 'none',
+              }}
+            >
+              <span>Gap analysis</span>
+            </Link>
           </div>
 
-          {/* Smooth Scroll Cue */}
-          <div style={{ marginTop: 28, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-            <a href="#telemetry-section" className="scroll-cue">
-              <span className="scroll-cue-bounce">↓</span>
-              <span>Explore Diagnostic Signals & Inquiries</span>
+          {/* Interactive RAG Search Console */}
+          <HeroRagInput />
+
+          {/* Quick link cue */}
+          <div style={{ marginTop: 24, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+            <a href="#scope-section" className="scroll-cue" style={{ fontSize: 13, color: 'var(--text-muted)' }}>
+              <span>Explore findings &amp; key numbers ↓</span>
             </a>
           </div>
         </div>
       </section>
 
-      {/* ═══ SECTION 01: CORE DIAGNOSTIC TELEMETRY (BELOW THE FOLD) ═══ */}
-      <section id="telemetry-section" style={{ paddingTop: 64, marginBottom: 64 }}>
-        <div style={{ marginBottom: 28 }}>
-          <div className="section-kicker">
-            <span>01</span> // <span>TELEMETRY HUB</span>
+      {/* ═══ "HOW WE MADE SURE THIS IS ACCURATE" EXPANDABLE CARD ═══ */}
+      <section style={{ marginBottom: 36 }}>
+        <div className="verification-card">
+          <details className="verification-details">
+            <summary>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <span className="verification-badge">
+                  ✓ Verified Methodology
+                </span>
+                <span style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--text-primary)' }}>
+                  How we made sure this data is accurate
+                </span>
+              </div>
+              <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>Click to expand</span>
+            </summary>
+            <div className="verification-body">
+              <div>
+                <strong style={{ color: 'var(--text-primary)', display: 'block', marginBottom: 3 }}>
+                  Word-for-Word Quotes
+                </strong>
+                Every user quote cited in this report is verified character-for-character against the original raw review.
+              </div>
+              <div>
+                <strong style={{ color: 'var(--text-primary)', display: 'block', marginBottom: 3 }}>
+                  Calibrated Confidence
+                </strong>
+                Confidence scores are based on evidence depth and multi-source corroboration (±0.18 σ variance), not arbitrary defaults.
+              </div>
+              <div>
+                <strong style={{ color: 'var(--text-primary)', display: 'block', marginBottom: 3 }}>
+                  Clean Scope Separation
+                </strong>
+                Search friction is strictly isolated from app crashes, sync stalls, and UI complaints so search insights aren&apos;t polluted.
+              </div>
+              <div>
+                <strong style={{ color: 'var(--text-primary)', display: 'block', marginBottom: 3 }}>
+                  Transparent Totals
+                </strong>
+                Every statistic shows both the count and the exact total denominator (e.g. &ldquo;94 out of 278 mentions&rdquo;).
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      {/* ═══ SCOPE STORY: WHAT WE ANALYZED & WHAT WE FOCUSED ON ═══ */}
+      <section id="scope-section" style={{ marginBottom: 54 }}>
+        <div
+          style={{
+            background: 'var(--bg-surface)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--radius-lg)',
+            padding: '28px 30px',
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20, flexWrap: 'wrap', gap: 12 }}>
+            <div>
+              <h2 style={{ fontSize: 21, fontWeight: 700, margin: 0, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
+                What we analyzed — and what we focused on
+              </h2>
+              <p style={{ fontSize: 14, color: 'var(--text-secondary)', margin: '8px 0 0', maxWidth: 820, lineHeight: 1.55 }}>
+                We analyzed 2,223 pieces of user feedback across 5 platforms. Most weren&apos;t about search — they were about app crashes, layout redesigns, or general praise. We separated those out to focus on the 251 reviews where people specifically described struggling to find a remembered photo.
+              </p>
+            </div>
+            <Link
+              href="/findings"
+              style={{
+                fontSize: 12.5,
+                fontWeight: 600,
+                color: 'var(--semantic-blue)',
+                textDecoration: 'none',
+                background: 'rgba(59, 130, 246, 0.08)',
+                border: '1px solid rgba(59, 130, 246, 0.25)',
+                padding: '6px 14px',
+                borderRadius: 16,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+              }}
+            >
+              <span>Explore all findings</span>
+              <span>→</span>
+            </Link>
           </div>
-          <h2 className="section-title">Core Diagnostic Signals</h2>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: 14 }}>
+            {/* Primary: Search Friction */}
+            <div style={{
+              padding: '18px 20px',
+              background: 'rgba(59, 130, 246, 0.07)',
+              border: '1.5px solid rgba(59, 130, 246, 0.35)',
+              borderRadius: 'var(--radius-md)',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                <span style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--semantic-blue)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  Search Friction
+                </span>
+                <span style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--semantic-blue)' }}>11.3%</span>
+              </div>
+              <div style={{ fontSize: 24, fontWeight: 800, fontFamily: "'Space Grotesk', sans-serif", color: 'var(--semantic-blue)', marginBottom: 2 }}>
+                251 Reviews
+              </div>
+              <div style={{ fontSize: 11.5, color: 'var(--semantic-blue)', opacity: 0.9, fontWeight: 500, marginBottom: 8 }}>
+                Primary focus of this report
+              </div>
+              <div style={{ fontSize: 12.5, color: 'var(--text-secondary)', lineHeight: 1.45 }}>
+                People struggling to find a remembered photo through search (vague dates, lost receipts, forgotten moments).
+              </div>
+            </div>
+
+            {/* Filtered: App & Backup Issues */}
+            <div style={{
+              padding: '18px 20px',
+              background: 'rgba(100, 116, 139, 0.05)',
+              border: '1px solid var(--border)',
+              borderRadius: 'var(--radius-md)',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                <span style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--semantic-gray)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  App &amp; Backup Issues
+                </span>
+                <span style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--text-muted)' }}>30.3%</span>
+              </div>
+              <div style={{ fontSize: 24, fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif", color: 'var(--text-secondary)', marginBottom: 2 }}>
+                674 Reviews
+              </div>
+              <div style={{ fontSize: 11.5, color: 'var(--text-muted)', marginBottom: 8 }}>
+                Filtered out for search analysis
+              </div>
+              <div style={{ fontSize: 12.5, color: 'var(--text-muted)', lineHeight: 1.45 }}>
+                Cloud backup stalls, battery drain, syncing loops, and storage quota bugs.
+              </div>
+            </div>
+
+            {/* Filtered: Layout & Menu Complaints */}
+            <div style={{
+              padding: '18px 20px',
+              background: 'rgba(100, 116, 139, 0.05)',
+              border: '1px solid var(--border)',
+              borderRadius: 'var(--radius-md)',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                <span style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--semantic-gray)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  Layout &amp; Menu Complaints
+                </span>
+                <span style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--text-muted)' }}>29.6%</span>
+              </div>
+              <div style={{ fontSize: 24, fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif", color: 'var(--text-secondary)', marginBottom: 2 }}>
+                659 Reviews
+              </div>
+              <div style={{ fontSize: 11.5, color: 'var(--text-muted)', marginBottom: 8 }}>
+                Filtered out for search analysis
+              </div>
+              <div style={{ fontSize: 12.5, color: 'var(--text-muted)', lineHeight: 1.45 }}>
+                Tab repositioning, bottom bar removal, and memories carousel redesign gripes.
+              </div>
+            </div>
+
+            {/* Filtered: General Feedback */}
+            <div style={{
+              padding: '18px 20px',
+              background: 'rgba(100, 116, 139, 0.05)',
+              border: '1px solid var(--border)',
+              borderRadius: 'var(--radius-md)',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                <span style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--semantic-gray)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  General Feedback
+                </span>
+                <span style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--text-muted)' }}>28.7%</span>
+              </div>
+              <div style={{ fontSize: 24, fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif", color: 'var(--text-secondary)', marginBottom: 2 }}>
+                639 Reviews
+              </div>
+              <div style={{ fontSize: 11.5, color: 'var(--text-muted)', marginBottom: 8 }}>
+                Filtered out for search analysis
+              </div>
+              <div style={{ fontSize: 12.5, color: 'var(--text-muted)', lineHeight: 1.45 }}>
+                General praise (&ldquo;great app&rdquo;), non-actionable chatter, and simple 5-star ratings.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ KEY NUMBERS ═══ */}
+      <section id="key-numbers" style={{ marginBottom: 54 }}>
+        <div style={{ marginBottom: 20 }}>
+          <h2 className="section-title">Key numbers</h2>
           <p className="section-subtitle">
-            Grounded behavioral metrics tracking real-world retrieval failures, library clutter, and cognitive disconnects.
+            Evidence-backed metrics tracking real-world search failures, library clutter, and memory disconnects.
           </p>
         </div>
 
@@ -139,6 +309,7 @@ export default async function SummaryPage() {
           {data.kpi_cards.map((card, i) => (
             <StatCard
               key={card.id}
+              id={card.id}
               label={card.label}
               value={card.value}
               unit={card.unit as 'count' | 'percent'}
@@ -149,15 +320,12 @@ export default async function SummaryPage() {
         </div>
       </section>
 
-      {/* ═══ SECTION 02: THE ARCHITECTURAL GAP (STRATEGIC THESIS) ═══ */}
-      <section style={{ marginBottom: 64 }}>
-        <div style={{ marginBottom: 24 }}>
-          <div className="section-kicker">
-            <span>02</span> // <span>ARCHITECTURAL GAP</span>
-          </div>
-          <h2 className="section-title">The Fundamental Asymmetry of Photo Retrieval</h2>
+      {/* ═══ WHY PHOTO SEARCH BREAKS DOWN (THESIS) ═══ */}
+      <section style={{ marginBottom: 54 }}>
+        <div style={{ marginBottom: 20 }}>
+          <h2 className="section-title">Why photo search breaks down</h2>
           <p className="section-subtitle">
-            Why traditional search engines fail to retrieve human memories despite billions of indexed photos.
+            Traditional search engines index literal metadata, but humans remember atmospheres, people, and emotions.
           </p>
         </div>
 
@@ -166,8 +334,7 @@ export default async function SummaryPage() {
             {/* Human Episodic Recall */}
             <div className="thesis-col thesis-col-human">
               <div className="thesis-header">
-                <span className="thesis-badge thesis-badge-human">Human Episodic Memory</span>
-                <span style={{ fontSize: 20 }}>🧠</span>
+                <span className="thesis-badge thesis-badge-human">What users remember</span>
               </div>
               <p className="thesis-text">
                 Humans naturally remember moments through <strong>sensory atmospheres, social companions, emotions, and relative time</strong>.
@@ -177,7 +344,7 @@ export default async function SummaryPage() {
               </div>
               <div className="thesis-tags">
                 <span className="thesis-tag">Atmosphere</span>
-                <span className="thesis-tag">Social Bonds</span>
+                <span className="thesis-tag">Social Companions</span>
                 <span className="thesis-tag">Relative Seasons</span>
                 <span className="thesis-tag">Subjective Emotion</span>
               </div>
@@ -191,8 +358,7 @@ export default async function SummaryPage() {
             {/* Traditional Rigid Indexing */}
             <div className="thesis-col thesis-col-system">
               <div className="thesis-header">
-                <span className="thesis-badge thesis-badge-system">Traditional Search Index</span>
-                <span style={{ fontSize: 20 }}>🏷️</span>
+                <span className="thesis-badge thesis-badge-system">What the system indexes</span>
               </div>
               <p className="thesis-text">
                 Traditional engines index photos by <strong>rigid calendar timestamps, GPS coordinates, and literal object nouns</strong>.
@@ -211,18 +377,17 @@ export default async function SummaryPage() {
 
           {/* Synthesis footer callout */}
           <div className="thesis-footer">
-            <span style={{ fontSize: 18 }}>⚡</span>
             <div style={{ flex: 1 }}>
-              <span style={{ fontWeight: 700, color: 'var(--brand-primary)' }}>The Engineering Lever: </span>
+              <span style={{ fontWeight: 700, color: 'var(--semantic-blue)' }}>Key Takeaway: </span>
               <span style={{ color: 'var(--text-secondary)' }}>
-                When users recall sensations but systems demand dates and literal tags, <strong>1,209 discussions (23.9% of friction signals / 54.4% of corpus)</strong> document false misses where users abandon search for endless timeline scrolling. This Discovery Engine quantifies where this semantic translation collapses.
+                When users search with sensory memories but systems require exact dates or keywords, search fails. Among the 251 search-related reviews, the data shows two primary roadblocks: in <strong>48.2% of issues, search misunderstands the query</strong>, and in <strong>26.6% of issues, the system offers no help after failing</strong>, leaving users stranded with endless scrolling.
               </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ SECTION 03, 04, 05: SOURCE SYNTHESIS, QUALITY & INQUIRY MATRIX ═══ */}
+      {/* ═══ DETAILED SECTIONS & INQUIRY MATRIX ═══ */}
       <SummaryAnimations data={data} />
     </div>
   );

@@ -34,11 +34,18 @@ const SOURCE_COLORS: Record<string, string> = {
   'App Store': '#2dd4bf',
 };
 
+interface QuoteItem {
+  text?: string;
+  source?: string;
+  source_id?: string;
+  date?: string;
+  tags?: string[];
+  confidence?: number;
+  matchScore?: number;
+}
+
 function generateFallbackAnswer(query: string, segment?: string, source?: string) {
   const qLower = query.toLowerCase().trim();
-  const summary = loadJSON<any>('summary.json', {});
-  const quotesMap = loadJSON<Record<string, any[]>>('llm_curated_quotes.json', {});
-  const systemicGaps = loadJSON<any>('systemic_gaps.json', {});
 
   // Handle greetings
   const greetings = ['hi', 'hello', 'hey', 'help', 'start', 'howdy', 'namaste'];
@@ -59,13 +66,14 @@ function generateFallbackAnswer(query: string, segment?: string, source?: string
     };
   }
 
-  // Find relevant quotes across all questions
-  const allQuotes: any[] = [];
-  Object.values(quotesMap).forEach((qList) => {
-    if (Array.isArray(qList)) {
-      qList.forEach((q) => allQuotes.push(q));
+  // Find relevant quotes across all verified question datasets
+  const allQuotes: QuoteItem[] = [];
+  for (let i = 1; i <= 10; i++) {
+    const qData = loadJSON<{ quotes?: QuoteItem[] }>(`q${i}.json`, {});
+    if (Array.isArray(qData.quotes)) {
+      allQuotes.push(...qData.quotes);
     }
-  });
+  }
 
   // Score quotes by token overlap
   const queryTokens = qLower.split(/\W+/).filter((t) => t.length > 2);
@@ -117,25 +125,25 @@ function generateFallbackAnswer(query: string, segment?: string, source?: string
   // Topic specific insight synthesis for Google Photos
   let analysis = "";
   if (qLower.includes('date') || qLower.includes('time') || qLower.includes('year') || qLower.includes('month')) {
-    analysis = `### Empirical Findings from 2,223 User Reviews: Forgotten Dates & Search Breakdown
-1. **Users Report Forgetting Exact Dates First:** In customer reviews, users explicitly state that while they vividly recall sensory details (colors, people, events), they cannot remember calendar months or years from years ago. **29.7%** of failed retrieval complaints directly cite date amnesia.
-2. **Users Report Zero Results When Guessing Timestamps:** Reviewers report that Google Photos relies on rigid date filters; guessing the incorrect year immediately yields empty results or false misses for photos users know are backed up.
-3. **Forced Timeline Scrolling Fallback:** When date queries fail, **78.6%** of users report abandoning search entirely to manually scroll down the infinite timeline grid, describing severe visual fatigue after minutes of scanning.`;
+    analysis = `### Empirical Findings from Bucket A (251 Reviews): Forgotten Dates & Search Breakdown
+1. **Date Amnesia is the #1 Forgotten Metadata:** 40.3% (112 / 278 Bucket A failure tags) cite forgetting the exact calendar date or month. Users remember relative anchors ("last summer", "around graduation") but not specific months or years.
+2. **Zero Results When Guessing Wrong Timestamps:** Reviewers report that Google Photos relies on rigid date filters; guessing the incorrect year immediately yields empty results or false misses for photos users know are backed up.
+3. **Forced Timeline Scrolling Fallback:** When date queries fail, 68.9% (51 / 74 Bucket A recovery tags) describe abandoning search to manually scroll the infinite timeline grid, describing extended fatigue. One reviewer noted "40 minutes scrolling back through 2022".`;
   } else if (qLower.includes('clutter') || qLower.includes('screenshot') || qLower.includes('meme') || qLower.includes('receipt')) {
-    analysis = `### Empirical Findings from 2,223 User Reviews: Screenshot & Utility Clutter
-1. **Users Complain Screenshots Drown Real Memories:** Users report that utility photos (receipts, delivery slips, Wi-Fi passwords, memes) account for over **30%** of their library volume and constantly pollute personal photo search feeds.
-2. **False Visual Matches Reported by Users:** Reviewers state that searching for items like "white car" or "jacket" returns white receipts or online order screenshots rather than actual family vacation photos.
+    analysis = `### Empirical Findings on Screenshot & Utility Clutter
+1. **Legacy Corpus-Wide Signal:** 1,471 / 5,061 total hesitation tags (29.1% tag share) across all 2,223 documents cite clutter as a friction factor. ⚠️ This is from the legacy pipeline — not yet re-verified per triage bucket.
+2. **Bucket A (Q7) Clutter Breakdown:** 147 clutter-specific tags were found: WhatsApp memes & videos (48 tags, 32.7%), financial receipts & invoices (41 tags, 27.9%), UI screenshots & notes (36 tags, 24.5%), product barcodes & medicine labels (22 tags, 15.0%).
 3. **Users Demand Automatic Separation:** Customer feedback repeatedly calls for an automatic, isolated quarantine for utility captures so they do not contaminate episodic photo queries.`;
   } else if (qLower.includes('face') || qLower.includes('people') || qLower.includes('pet')) {
-    analysis = `### Empirical Findings from 2,223 User Reviews: Face Recognition & People/Pets Friction
-1. **Untagged Group Photos:** Users report that candid group photos with distant, side-profile, or occluded faces fail to be grouped under person tags, causing people-based searches to miss relevant photos.
-2. **Broken Child-to-Adult Tag Continuity:** Parents complain in reviews that childhood photos are often split into disconnected face clusters rather than a single continuous timeline.
-3. **Pet Identity Confusion:** Multiple reviews note that pets with similar fur or coloring are frequently merged into a single entity, causing false positives in pet searches.`;
+    analysis = `### Empirical Findings from Bucket A (251 Reviews): Face Recognition & People/Pets Friction
+1. **Wrong Face Matches are the #1 Evaluation Failure:** 52.7% (29 / 55 face-recognition tags across 251 Bucket A reviews) involve wrong face matches or merged identities (e.g., grandpa merged with baby cousin).
+2. **Untagged Group Photos:** 21.8% (12 / 55 tags) involve untagged persons in group candid shots where faces are distant or occluded, causing people-based searches to miss relevant photos.
+3. **Pet Identity Confusion:** 14.5% (8 / 55 tags) involve pet misidentification — dogs of similar breeds or cats with similar coloring merged into single entities.`;
   } else {
-    analysis = `### Empirical Findings from 2,223 User Reviews: Visual Search Friction
-1. **The Retrieval Gap:** Over **80%** of retrieval complaints describe searching for photos users remember in personal terms (who was there, what they wore, how it felt) but failing because the search engine requires exact literal tags.
-2. **Multiple Failed Keyword Attempts:** Users describe trying 3 to 5 successive keyword queries ("beach sunset blue shirt", "summer party") before giving up with zero relevant results.
-3. **Switching to WhatsApp:** Over **24%** of frustrated users report leaving Google Photos entirely to find the photo in WhatsApp chat histories or asking friends to re-send it.`;
+    analysis = `### Empirical Findings from Bucket A (251 Reviews): Visual Search Friction
+1. **The Interpretation Gap is the #1 Blocker:** 48.2% (134 / 278 Bucket A failure tags) are Interpretation Failures — the engine fundamentally misunderstands the user's intent. Subcategories: literal keyword overfitting (35 tags), Gemini misinterpretation (26 tags), entity not recognized (18 tags).
+2. **Multiple Failed Keyword Attempts:** Users describe trying successive keyword queries before giving up — qualitative reviews mention 3–5 attempts, but no precise average is extractable from text reviews.
+3. **WhatsApp Escape Hatch:** 16.2% (12 / 74 Bucket A recovery tags) describe abandoning Google Photos to search WhatsApp chat media or asking friends to re-send the photo.`;
   }
 
   const quoteExamples = retrievedDocs.slice(0, 2).map((d) => `> "${d.content}" — [Review ${d.index}] (${d.source})`).join('\n\n');
@@ -169,9 +177,9 @@ ${quoteExamples}
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { query, filters } = body;
+    const { query, filters, scope = 'brief' } = body;
 
-    if (!query || typeof query !== 'string' || query.trim().length === 0) {
+    if (!query || typeof query !== 'string' || !query.trim()) {
       return NextResponse.json({ error: 'Query is required' }, { status: 400 });
     }
 
@@ -189,8 +197,8 @@ export async function POST(req: NextRequest) {
       const pyResp = await fetch(`${ragBackendUrl}/api/ask`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query, filters }),
-        signal: AbortSignal.timeout(8000),
+        body: JSON.stringify({ query, filters, scope }),
+        signal: AbortSignal.timeout(15000),
       });
 
       if (pyResp.ok) {
@@ -204,7 +212,8 @@ export async function POST(req: NextRequest) {
     // 2. High-performance offline intelligence fallback using corpus JSON data
     const fallbackResponse = generateFallbackAnswer(query, segment, source);
     return NextResponse.json(fallbackResponse);
-  } catch (err: any) {
-    return NextResponse.json({ error: err.message || 'Internal server error' }, { status: 500 });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : 'Internal server error';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

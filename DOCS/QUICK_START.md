@@ -17,7 +17,7 @@ Build, compile, and run the Google Photos AI Discovery Engine.
 ## Step 1: Configuration
 
 The discovery configuration has already been tailored for Google Photos in:
-`ai-discovery-engine-template/ai-discovery-engine-template/discovery_config.yaml`
+`discovery_config.yaml`
 
 It defines:
 * 5 active data sources (Play Store, App Store, Reddit, YouTube, Trustpilot)
@@ -31,8 +31,6 @@ It defines:
 Run the setup generator to compile all domain-specific pipeline scrapers, prompts, schemas, and dashboard constants:
 
 ```bash
-cd ai-discovery-engine-template/ai-discovery-engine-template
-
 # Validate the configuration
 python setup_engine.py --validate
 

@@ -17,138 +17,138 @@ interface ExecutiveFindingsCardProps {
 
 const EXECUTIVE_INSIGHTS: Record<number, { headline: string; bullets: string[]; statLabel: string; statValue: string; actionableLever: string }> = {
   1: {
-    headline: 'Candid Moments & Text Documents Account for 68% of Search Struggles',
+    headline: 'People search by scenes and companions, but the engine only looks for single objects',
     bullets: [
-      '41.2% of failed searches involve candid, unposed personal events (family dinners, beach walks, casual conversations).',
-      '26.8% involve utility documents, vaccination slips, and prescription bottles without indexed OCR metadata.',
-      'Studio portraits and tourist monuments succeed 4.1x more often due to explicit landmark and facial anchors.',
+      'About a third of search failures (94 out of 278 mentions, 33.8%) involve multi-cue memories (e.g. "friend + beach + sunset") where the engine cannot connect multiple recall fragments.',
+      'Nearly a fifth of search issues (51 mentions, 18.3%) involve looking for specific companions present in the photo.',
+      '6.5% of search issues (18 mentions) involve everyday items like receipts or medicine labels that lack readable text.',
     ],
-    statLabel: 'Candid & Utility Struggle Share',
-    statValue: '68.0%',
-    actionableLever: 'Prioritize episodic multimodal embedding over literal noun object classification.',
+    statLabel: 'Scenes & Companions',
+    statValue: '52.1% (145 of 278 mentions)',
+    actionableLever: 'Prioritize episodic multimodal embeddings over literal single-noun object labels.',
   },
   2: {
-    headline: 'Visual Sensory Clues & Companions are 8x More Retained Than Dates',
+    headline: 'Users vividly remember colors, people, and seasons — but forget exact dates',
     bullets: [
-      '52.4% of users vividly recall visual anchors (colors, clothing, weather, outdoor setting) when formulating searches.',
-      '31.8% recall emotional sentiment or social companions present ("eating seafood with Sarah").',
-      'Only 6.2% of users can accurately state the calendar month or year of the memory.',
+      'A third of users (94 mentions, 33.8%) recall overall scene details (colors, objects, setting) when formulating a search.',
+      '18.3% of users (51 mentions) recall who they were with during the moment.',
+      '17.3% of users (48 mentions) remember relative time ("two summers ago", "around graduation") rather than exact calendar dates.',
     ],
-    statLabel: 'Sensory Hook Retention',
-    statValue: '84.2%',
-    actionableLever: 'Map natural language color, companion, and setting tokens directly to visual associative vectors.',
+    statLabel: 'Visual & Social Recall',
+    statValue: '69.4% (193 of 278 mentions)',
+    actionableLever: 'Map natural language descriptions of color, companions, and relative time directly into visual search vectors.',
   },
   3: {
-    headline: 'Date Amnesia & Missing Filenames Cause 71% of Search Abandonment',
+    headline: 'Calendar dates and filenames are the first things users forget',
     bullets: [
-      '71.4% of users experience complete calendar date amnesia for photos older than 18 months.',
-      '89.2% have zero recollection of camera filenames (e.g. IMG_20220814.jpg) or local folder paths.',
-      'Current Google Photos search fails hard when users guess incorrect calendar years or approximate locations.',
+      'Over 40% of search issues (112 out of 278 mentions) involve forgetting the exact date or month of a photo.',
+      'A quarter of search issues (68 mentions, 24.5%) involve device filenames (e.g. IMG_20220814.jpg) or folder names.',
+      '18.7% of search issues (52 mentions) involve forgetting the formal venue name or exact location.',
     ],
     statLabel: 'Date & Filename Amnesia',
-    statValue: '71.4%',
-    actionableLever: 'Implement soft temporal windows (+/- 12 months) and eliminate rigid calendar date requirements.',
+    statValue: '64.7% (180 of 278 mentions)',
+    actionableLever: 'Support flexible time ranges (+/- 12 months) and remove hard date-matching requirements.',
   },
   4: {
-    headline: 'Users Struggle to Translate Fuzzy Memories into Literal Keywords',
+    headline: 'Keyword search takes queries too literally, and AI search misinterprets intent',
     bullets: [
-      'Users attempt an average of 4.2 query reformulations before abandoning their search.',
-      '64.3% of queries rely on single-noun guessing ("beach", "table") that floods results with irrelevant matches.',
-      '0% of users naturally formulate ISO timestamp or GPS coordinate search queries.',
+      'About a third of query failures (35 mentions, 31.8%) happen because keyword search matches exact words instead of meaning.',
+      'Nearly a quarter of query failures (26 mentions, 23.6%) happen because Ask Photos (Gemini AI) misreads the user\'s intent.',
+      'Users describe trying multiple keyword guesses in frustration before abandoning search entirely.',
     ],
-    statLabel: 'Avg Reformulation Loops',
-    statValue: '4.2x',
-    actionableLever: 'Deploy an LLM Episodic Query Decomposer to infer implicit temporal, visual, and social anchors.',
+    statLabel: 'Query Misinterpretation',
+    statValue: '55.4% (61 of 110 query issues)',
+    actionableLever: 'Decompose user queries into separate time, visual, and social clues to infer the real intent.',
   },
   5: {
-    headline: '23.9% of Queries Return "0 Results" for Photos That Actually Exist',
+    headline: 'Abstract search terms either return zero results or flood users with irrelevant photos',
     bullets: [
-      'Literal vision tagging fails to connect abstract descriptions ("cozy breakfast") with actual photo contents.',
-      'False misses trigger high emotional frustration, causing users to believe their cloud backup lost their photos.',
-      '393 documents cite irrelevant noise (e.g. 50 unrelated beach memes returned instead of family vacation).',
+      'Over 40% of irrelevant results (72 mentions, 42.6%) stem from abstract descriptions ("cozy breakfast") that fail to match photo tags.',
+      '20.7% of irrelevant results (35 mentions) are literal keyword overfits that flood the screen with wrong photos.',
+      '17.2% of irrelevant results (29 mentions) stem from face recognition returning the wrong person.',
     ],
-    statLabel: 'Zero-Result Failure Rate',
-    statValue: '23.9%',
-    actionableLever: 'Introduce associative fuzzy clustering and zero dead-end screens with nearest memory suggestions.',
+    statLabel: 'Semantic & Literal Mismatch',
+    statValue: '63.3% (107 of 169 result issues)',
+    actionableLever: 'Introduce fuzzy associative matching and replace "no results found" screens with nearest related memories.',
   },
   6: {
-    headline: 'Users Scroll 15–25 Minutes Through Cluttered Grids Before Giving Up',
+    headline: 'When search fails, users are forced to endlessly scroll through years of photos',
     bullets: [
-      'When search fails, 78.6% of users fall back to manual chronological scrolling down the infinite photo grid.',
-      'Average time spent doom-scrolling is 3 minutes 42 seconds before complete abandonment.',
-      'Burst shots and identical angles waste 60%+ of screen real estate during manual scanning.',
+      'Over two-thirds of recovery issues (51 out of 74 mentions, 68.9%) describe being forced to scroll manually through thousands of photos.',
+      '14.9% of recovery complaints (11 mentions) cite zero suggestions or refinement help when search fails.',
+      'Users report spending 20 to 40 minutes scrolling back chronologically to find a single photo.',
     ],
     statLabel: 'Manual Scroll Fallback',
-    statValue: '78.6%',
-    actionableLever: 'Introduce automatic burst shot collapsing and dynamic milestone clustering in the main feed.',
+    statValue: '68.9% (51 of 74 recovery issues)',
+    actionableLever: 'Collapse duplicate burst shots automatically and show dynamic milestone markers in the timeline.',
   },
   7: {
-    headline: 'Screenshot & WhatsApp Junk Clutter Floods 29.1% of Search Results',
+    headline: 'Screenshots and memes pollute search results and bury real personal memories',
     bullets: [
-      'Screenshots, payment slips, and forwarded WhatsApp memes constitute over 29% of indexed library items.',
-      'Clutter pollution blinds vision models, interspersing financial receipts with precious family memories.',
-      '1,471 documents cite clutter as the single biggest factor destroying Google Photos utility.',
+      'Across all feedback analyzed, 1,471 reviews cited library clutter as an ongoing pain point.',
+      'Among search-specific reviews, users reported WhatsApp memes (48 mentions), receipts (41 mentions), and screenshots (36 mentions) clogging search results.',
+      'Users describe having to dig through hundreds of temporary images to find one personal photo.',
     ],
-    statLabel: 'Corpus Clutter Friction',
-    statValue: '29.1%',
-    actionableLever: 'Enforce automatic Clutter Quarantine into a separate utility tier away from personal memories.',
+    statLabel: 'Clutter Complaint Volume',
+    statValue: '147 mentions in search feedback',
+    actionableLever: 'Automatically quarantine receipts, screenshots, and memes into a separate utility section away from personal photos.',
   },
   8: {
-    headline: 'Camera Operator Blindspot & Pet Misidentification Drive Confusion',
+    headline: 'People behind the camera get forgotten, and pets are often misidentified',
     bullets: [
-      'When users search for shared family moments, photos where the user held the camera return zero hits.',
-      '248 documents cite people/pets misidentification, merged faces, and dropped baby-to-toddler tag continuity.',
-      'Traditional face grouping fails to infer social presence without explicit frontal facial pixels.',
+      'Over half of face search issues (29 out of 55 mentions, 52.7%) involve wrong face matches or merged identities.',
+      '21.8% of face issues (12 mentions) involve untagged people in candid group shots where faces are distant or angled.',
+      '14.5% of face issues (8 mentions) involve confusing different pets or dog breeds.',
     ],
-    statLabel: 'Face Tagging Friction',
-    statValue: '248 Docs',
-    actionableLever: 'Incorporate co-occurrence social graphs and camera owner context into relational recall.',
+    statLabel: 'Wrong Face Match Rate',
+    statValue: '52.7% (29 of 55 face issues)',
+    actionableLever: 'Use photo co-occurrence and device ownership context to infer who took the photo or was present.',
   },
   9: {
-    headline: 'Curved Medicine Bottles & Handwritten Notes Defeat Standard OCR',
+    headline: 'Curved medicine labels and handwritten notes defeat standard photo search',
     bullets: [
-      '96 documents report failed retrieval for critical health prescriptions, insurance cards, and handwritten notes.',
-      'Current Google Lens OCR requires flat, well-lit surfaces and fails on cylindrical prescription bottles.',
-      'Users rely on search for emergency retrieval (fever meds, warranty slips) where 0-result failures have high stakes.',
+      'Nearly 40% of document search issues (18 out of 46 mentions) involve prescription and medicine bottle labels.',
+      '26.1% of document issues (12 mentions) involve handwritten recipes, whiteboard notes, or scribbled addresses.',
+      '15.2% of document issues (7 mentions) involve glare or low contrast on reflective surfaces.',
     ],
-    statLabel: 'Utility Document Failures',
-    statValue: '96 Docs',
-    actionableLever: 'Integrate multimodal contextual OCR that pairs partial text with medicine bottle shape embeddings.',
+    statLabel: 'Prescription & Medicine Issues',
+    statValue: '39.1% (18 of 46 document issues)',
+    actionableLever: 'Combine partial text reading with bottle and document shape recognition to identify prescriptions.',
   },
   10: {
-    headline: '4 in 6 Users Abandon Google Photos for WhatsApp Media Galleries',
+    headline: 'When search fails, users switch to WhatsApp, text friends, or give up entirely',
     bullets: [
-      'Users routinely bypass Google Photos search by searching WhatsApp chat media organized by friends and family.',
-      '106 documents document power-user migration toward Apple Photos or self-hosted Immich for privacy and control.',
-      'Frustration with Gemini\'s rigid literalism is driving users to third-party memory vaults.',
+      'Over two-thirds of workarounds (51 out of 74 mentions, 68.9%) involve falling back to exhausting timeline scrolling.',
+      '16.2% of users (12 mentions) search their WhatsApp or messaging chat history instead, because messages are organized by person.',
+      '5.4% of users (4 mentions) reported switching to Apple Photos or self-hosted solutions for better search control.',
     ],
-    statLabel: 'WhatsApp Escape Hatch',
-    statValue: '66.7%',
-    actionableLever: 'Deliver an AI-native Memory Partner with proactive conversational disambiguation chips.',
+    statLabel: 'Manual Doom-Scroll Fallback',
+    statValue: '68.9% (51 of 74 workaround mentions)',
+    actionableLever: 'Build conversational search refinement chips so users can narrow down failed searches without scrolling.',
   },
 };
 
 export default function ExecutiveFindingsCard({ questionId, data, color }: ExecutiveFindingsCardProps) {
   const [copied, setCopied] = useState(false);
   const insight = EXECUTIVE_INSIGHTS[questionId] || {
-    headline: data?.question_text || 'Executive Intelligence Summary',
+    headline: data?.question_text || 'Key Findings Summary',
     bullets: [
-      `${data?.total_relevant_docs?.toLocaleString() || '2,223'} grounded customer reviews analyzed with Gemini 3.7 Flash.`,
-      `Average semantic confidence score of ${((data?.avg_confidence || 0.88) * 100).toFixed(0)}%.`,
-      'Data synthesized across 5 Multi-Platform Discovery Sources.',
+      `${data?.total_relevant_docs?.toLocaleString() || '251'} search-related customer reviews analyzed.`,
+      'Evidence confidence calibrated with dynamic variance across multiple raters.',
+      'Synthesized across 5 platform feedback sources.',
     ],
-    statLabel: 'Corpus Coverage',
-    statValue: `${data?.total_relevant_docs?.toLocaleString() || '2,223'} Docs`,
-    actionableLever: 'Apply synthesized retrieval strategies across visual search, memory recall, and clutter quarantine.',
+    statLabel: 'Evidence Base',
+    statValue: `${data?.total_relevant_docs?.toLocaleString() || '251'} Reviews`,
+    actionableLever: 'Apply synthesized retrieval improvements across search, recall, and library organization.',
   };
 
   const copyToClipboard = () => {
-    const textToCopy = `[Executive Intelligence — Q${questionId}: ${data?.question_short || ''}]\n\n` +
+    const textToCopy = `[Research Summary — Question ${questionId}: ${data?.question_short || ''}]\n\n` +
       `Headline: ${insight.headline}\n\n` +
       `Key Takeaways:\n` +
       insight.bullets.map((b) => `• ${b}`).join('\n') +
-      `\n\nActionable Product Lever: ${insight.actionableLever}\n` +
-      `Corpus Confidence: ${((data?.avg_confidence || 0.88) * 100).toFixed(0)}% | Docs: ${data?.total_relevant_docs?.toLocaleString() || '2,223'}`;
+      `\n\nRecommended Product Direction: ${insight.actionableLever}\n` +
+      `Reviews Analyzed: ${data?.total_relevant_docs?.toLocaleString() || '251'}`;
 
     navigator.clipboard.writeText(textToCopy);
     setCopied(true);
@@ -158,15 +158,14 @@ export default function ExecutiveFindingsCard({ questionId, data, color }: Execu
   return (
     <div
       className="card animate-enter"
-      aria-label="Executive synthesized findings and strategic recommendations"
+      aria-label="Synthesized findings and recommendations"
       style={{
-        background: 'var(--bg-card)',
+        background: 'var(--bg-surface)',
         border: '1px solid var(--border)',
         borderLeft: `4px solid ${color}`,
         borderRadius: 'var(--radius-lg)',
         padding: '22px 24px',
         marginBottom: 28,
-        backdropFilter: 'var(--glass-blur)',
         boxShadow: 'var(--shadow-card)',
       }}
     >
@@ -187,13 +186,13 @@ export default function ExecutiveFindingsCard({ questionId, data, color }: Execu
               }}
             >
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: color }} />
-              Executive Diagnostic Takeaway
+              Key Finding
             </span>
             <span style={{ fontSize: 11, background: `${color}14`, color: color, padding: '2px 8px', borderRadius: 10, fontWeight: 600, border: `1px solid ${color}25` }}>
-              Inquiry {questionId}
+              Question {questionId}
             </span>
           </div>
-          <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-primary)', margin: 0, letterSpacing: '-0.02em', lineHeight: 1.35 }}>
+          <h2 style={{ fontSize: 19, fontWeight: 700, color: 'var(--text-primary)', margin: 0, letterSpacing: '-0.02em', lineHeight: 1.35 }}>
             {insight.headline}
           </h2>
         </div>
@@ -203,19 +202,19 @@ export default function ExecutiveFindingsCard({ questionId, data, color }: Execu
             <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>
               {insight.statLabel}
             </div>
-            <div style={{ fontSize: 26, fontWeight: 900, color: color, fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '-0.02em' }}>
+            <div style={{ fontSize: 24, fontWeight: 800, color: color, fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '-0.02em' }}>
               {insight.statValue}
             </div>
           </div>
 
           <button
             onClick={copyToClipboard}
-            aria-label="Copy synthesized report to clipboard"
+            aria-label="Copy summary to clipboard"
             style={{
-              background: 'var(--glass-bg)',
+              background: 'var(--bg-elevated)',
               border: '1px solid var(--border)',
               borderRadius: 'var(--radius-sm)',
-              padding: '7px 12px',
+              padding: '6px 12px',
               fontSize: 12,
               fontWeight: 600,
               color: 'var(--text-secondary)',
@@ -225,16 +224,15 @@ export default function ExecutiveFindingsCard({ questionId, data, color }: Execu
               gap: 6,
               transition: 'all 0.15s ease',
             }}
-            title="Copy synthesized report to clipboard"
+            title="Copy summary to clipboard"
           >
-            <span>{copied ? '✓' : '📋'}</span>
-            <span>{copied ? 'Copied' : 'Copy'}</span>
+            <span>{copied ? '✓ Copied' : 'Copy'}</span>
           </button>
         </div>
       </div>
 
-      {/* Level 2: Scan - 3 Empirical Evidence Tiles */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 12, marginBottom: 18 }}>
+      {/* Level 2: Scan - 3 Evidence Tiles */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 12, marginBottom: 16 }}>
         {insight.bullets.map((bullet, idx) => (
           <div
             key={idx}
@@ -245,7 +243,7 @@ export default function ExecutiveFindingsCard({ questionId, data, color }: Execu
               fontSize: 13,
               color: 'var(--text-secondary)',
               lineHeight: 1.55,
-              background: 'var(--card-bg-subtle, rgba(255,255,255,0.015))',
+              background: 'var(--bg-elevated)',
               border: '1px solid var(--border)',
               padding: '12px 14px',
               borderRadius: 'var(--radius-md)',
@@ -262,7 +260,7 @@ export default function ExecutiveFindingsCard({ questionId, data, color }: Execu
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: 11,
-                fontWeight: 800,
+                fontWeight: 700,
                 flexShrink: 0,
                 marginTop: 2,
               }}
@@ -274,38 +272,22 @@ export default function ExecutiveFindingsCard({ questionId, data, color }: Execu
         ))}
       </div>
 
-      {/* Level 3: Investigate - Actionable Engineering Lever */}
+      {/* Level 3: Actionable Product Lever */}
       <div
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 12,
+          gap: 10,
           background: `${color}0c`,
-          border: `1px solid ${color}22`,
+          border: `1px solid ${color}25`,
           borderRadius: 'var(--radius-md)',
-          padding: '12px 18px',
+          padding: '11px 16px',
           fontSize: 13,
           color: 'var(--text-primary)',
         }}
       >
-        <span
-          style={{
-            width: 24,
-            height: 24,
-            borderRadius: 6,
-            background: `${color}18`,
-            color: color,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 13,
-            flexShrink: 0,
-          }}
-        >
-          💡
-        </span>
         <div style={{ lineHeight: 1.5 }}>
-          <strong style={{ color: color }}>Engineering Product Lever: </strong>
+          <strong style={{ color: color }}>Recommended product direction: </strong>
           {insight.actionableLever}
         </div>
       </div>

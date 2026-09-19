@@ -92,12 +92,16 @@ export const MOCK_Q2 = {
 };
 
 export const MOCK_SYSTEMIC_GAPS = {
-  generated_at: "2026-01-01T00:00:00Z",
-  total_community_docs: 640,
+  generated_at: "2026-09-18T15:46:14Z",
+  total_documents: 2223,
+  total_community_docs: 2223,
   total_secondary_docs: 640,
+  total_store_reviews: 1583,
   issue_breakdown: [
-    { label: "Screenshot & Clutter Overflow", tag: "clutter_overflow", count: 403, pct: 22.3, color: "#ec4899" },
-    { label: "Zero Recall on Existing Photos", tag: "zero_recall", count: 359, pct: 19.9, color: "#ef4444" },
+    { label: "Screenshot & Clutter Overflow", tag: "clutter_overflow", count: 1471, pct: 29.1, color: "#ec4899" },
+    { label: "Zero Recall on Existing Photos", tag: "zero_recall", count: 1209, pct: 23.9, color: "#ef4444" },
+    { label: "Irrelevant Semantic Ranking", tag: "ranking_failure", count: 393, pct: 7.8, color: "#06b6d4" },
+    { label: "Date Amnesia & Temporal Mismatch", tag: "temporal_amnesia", count: 316, pct: 6.2, color: "#f59e0b" },
   ],
   correlation_with_hesitation: [],
   key_quotes: [

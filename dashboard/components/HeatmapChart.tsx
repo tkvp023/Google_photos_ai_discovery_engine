@@ -12,7 +12,6 @@ export default function HeatmapChart({ matrix }: { matrix: Matrix }) {
   function getColor(val: number): string {
     if (val === 0) return 'var(--card-bg-subtle, rgba(0,0,0,0.03))';
     const intensity = Math.min(Math.max(val / maxVal, 0.1), 1);
-    const alpha = (0.12 + intensity * 0.76).toFixed(2);
     return `color-mix(in srgb, var(--brand-primary) ${Math.round(intensity * 100)}%, var(--bg-elevated))`;
   }
 

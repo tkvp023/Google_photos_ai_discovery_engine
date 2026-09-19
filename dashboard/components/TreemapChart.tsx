@@ -26,7 +26,7 @@ export default function TreemapChart({ data }: { data: TreeTheme[] }) {
           <div key={theme.theme}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
               <span style={{ fontSize: 13, fontWeight: 700, color }}>{formatLabel(theme.theme)}</span>
-              <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{themePct}% of all needs · {themeTotal.toLocaleString()} mentions</span>
+              <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{themePct}% of all needs ({themeTotal.toLocaleString()} / {grandTotal.toLocaleString()})</span>
             </div>
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
               {theme.children.map((child) => {
@@ -36,7 +36,7 @@ export default function TreemapChart({ data }: { data: TreeTheme[] }) {
                 return (
                   <div
                     key={child.name}
-                    title={`${child.name}: ${child.value.toLocaleString()} mentions`}
+                    title={`${child.name}: ${child.value.toLocaleString()} / ${grandTotal.toLocaleString()} mentions (${pct.toFixed(1)}%)`}
                     style={{
                       width,
                       background: `${color}22`,
@@ -59,6 +59,9 @@ export default function TreemapChart({ data }: { data: TreeTheme[] }) {
                     <span style={{ fontSize: 11, color, fontWeight: 700, lineHeight: 1.3 }}>{formatLabel(child.name)}</span>
                     <span style={{ fontSize: 18, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800, color: 'var(--text-primary)' }}>
                       {child.value.toLocaleString()}
+                    </span>
+                    <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>
+                      {pct.toFixed(1)}% ({child.value.toLocaleString()} / {grandTotal.toLocaleString()})
                     </span>
                   </div>
                 );

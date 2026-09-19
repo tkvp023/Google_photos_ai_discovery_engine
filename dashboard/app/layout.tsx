@@ -37,8 +37,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     'warm-studio':'volcanic-ember','solar-flare':'volcanic-ember'
                   };
                   if (remap[t]) { t = remap[t]; localStorage.setItem('app-theme', t); }
-                  document.documentElement.setAttribute('data-mode', m);
-                  document.documentElement.setAttribute('data-theme', t);
+                  // Guard against crashing third-party browser extensions (e.g. Urban VPN proxy eppiocemhmnlbhjplcgkofciiegomcon)
+                  if (typeof window !== 'undefined') {
+                    window.addEventListener('unhandledrejection', function(event) {
+                      var reason = event.reason;
+                      var stack = (reason && reason.stack) || '';
+                      var msg = (reason && reason.message) || String(reason || '');
+                      if (stack.indexOf('chrome-extension://') !== -1 || msg.indexOf('M_ID') !== -1 || stack.indexOf('eppiocemhmnlbhjplcgkofciiegomcon') !== -1) {
+                        event.preventDefault();
+                        if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+                      }
+                    });
+                    window.addEventListener('error', function(event) {
+                      var filename = event.filename || '';
+                      var msg = event.message || '';
+                      if (filename.indexOf('chrome-extension://') !== -1 || msg.indexOf('M_ID') !== -1 || filename.indexOf('eppiocemhmnlbhjplcgkofciiegomcon') !== -1) {
+                        event.preventDefault();
+                        if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+                      }
+                    }, true);
+                  }
 
                   // Strip third-party extension attributes
                   if (typeof MutationObserver !== 'undefined') {

@@ -54,14 +54,11 @@ export default function SummaryAnimations({ data }: { data: SummaryData }) {
 
   return (
     <>
-      {/* ═══ SECTION 03: SIGNAL SYNTHESIS ═══ */}
+      {/* ═══ PLATFORM DISTRIBUTION & TOP OPPORTUNITIES ═══ */}
       <div style={{ marginBottom: 24, marginTop: 16 }}>
-        <div className="section-kicker">
-          <span>03</span> // <span>SIGNAL SYNTHESIS</span>
-        </div>
-        <h2 className="section-title">Platform Distribution & High-Leverage Opportunities</h2>
+        <h2 className="section-title">Feedback Sources &amp; Top Opportunities</h2>
         <p className="section-subtitle">
-          Cross-platform source decomposition and empirical frequency ranking of retrieval friction vectors.
+          Where user feedback came from and which search problems were reported most frequently.
         </p>
       </div>
 
@@ -70,19 +67,19 @@ export default function SummaryAnimations({ data }: { data: SummaryData }) {
         <AnimatedCard delay={100} className="secondary-chart-col">
           <div className="card-header">
             <div>
-              <span className="card-title">Multi-Platform Sources</span>
+              <span className="card-title">Feedback Sources</span>
               <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 3 }}>
-                5 channels: App Stores + Forums + YouTube
+                5 platforms: App Stores, Reddit, Hacker News, YouTube
               </div>
             </div>
             <span style={{
               fontSize: 11.5, fontWeight: 700,
-              color: 'var(--brand-primary)',
-              background: 'var(--theme-accent-bg)',
-              border: '1px solid var(--theme-accent-border)',
+              color: 'var(--semantic-blue)',
+              background: 'rgba(59, 130, 246, 0.08)',
+              border: '1px solid rgba(59, 130, 246, 0.25)',
               padding: '3px 10px', borderRadius: 12,
             }}>
-              {totalDocs.toLocaleString()} Total
+              {totalDocs.toLocaleString()} Reviews
             </span>
           </div>
           <div className="card-body">
@@ -121,12 +118,14 @@ export default function SummaryAnimations({ data }: { data: SummaryData }) {
         <AnimatedCard delay={200} className="focus-expanded">
           <div className="card-header">
             <div>
-              <span className="card-title">Top Retrieval-Friction Opportunities</span>
+              <span className="card-title">Top Search Problems</span>
               <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 3 }}>
-                Ranked by empirical frequency & user pain severity
+                Ranked by how often users reported them in search feedback
               </div>
             </div>
-            <span className="badge badge-conf-high">Ranked by Impact</span>
+            <span className="badge badge-conf-high" style={{ color: 'var(--semantic-blue)', background: 'rgba(59, 130, 246, 0.1)', border: '1px solid rgba(59, 130, 246, 0.25)' }}>
+              Ranked by Mentions
+            </span>
           </div>
           <div className="card-body">
             <HorizontalBar
@@ -136,9 +135,10 @@ export default function SummaryAnimations({ data }: { data: SummaryData }) {
                 count: op.count,
                 pct: op.pct,
                 avg_confidence: op.avg_confidence,
-                color: ['#818cf8', '#4ade80', '#fbbf24', '#22d3ee', '#a78bfa'][op.rank - 1] || '#38bdf8',
+                color: ['#3b82f6', '#22c55e', '#f59e0b', '#06b6d4', '#64748b'][op.rank - 1] || '#3b82f6',
                 href: `/questions/${op.question_id || 2}`,
               }))}
+              denominator={251}
             />
           </div>
         </AnimatedCard>
@@ -148,48 +148,48 @@ export default function SummaryAnimations({ data }: { data: SummaryData }) {
       <AnimatedCard delay={300} className="secondary-chart-col">
         <div className="card-header">
           <div>
-            <span className="card-title">Corpus Architecture & Signal Quality</span>
+            <span className="card-title">Feedback Breakdown &amp; Verification</span>
             <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 3 }}>
-              Verified multi-tier pipeline — zero synthetic hallucination
+              Strictly filtered to search issues — all quotes verified word-for-word
             </div>
           </div>
           <span style={{
             fontSize: 11.5, fontWeight: 700, padding: '3px 10px', borderRadius: 12,
-            background: 'rgba(74, 222, 128, 0.10)',
-            color: '#4ade80',
-            border: '1px solid rgba(74, 222, 128, 0.25)',
+            background: 'rgba(34, 197, 94, 0.10)',
+            color: 'var(--semantic-green)',
+            border: '1px solid rgba(34, 197, 94, 0.25)',
           }}>
-            100% Grounded
+            100% Verified
           </span>
         </div>
         <div className="card-body">
           <div className="grid-3" style={{ gap: 16 }}>
             {[
               {
-                title: 'Unified Multi-Platform Corpus',
-                tag: '5 Channels',
-                pctDisplay: '100%',
+                title: 'Total Reviews Analyzed',
+                tag: '5 Platforms',
+                pctDisplay: '2,223',
                 value: totalDocs,
                 unit: 'reviews',
-                color: '#818cf8',
-                desc: '2,223 verified discussions harvested across Play Store (975), App Store (608), Reddit (319), Hacker News (242), and YouTube (79).',
+                color: '#3b82f6',
+                desc: '1,583 app store reviews (Play Store 975 + App Store 608) and 640 community discussions (Reddit 319 + HN 242 + YouTube 79).',
               },
               {
-                title: 'High-Signal Grounding',
-                tag: '99.1% Signal Rate',
-                pctDisplay: '99.1%',
-                value: 2202,
+                title: 'Search-Related Reviews',
+                tag: 'Search Focus',
+                pctDisplay: '251',
+                value: 251,
                 unit: 'reviews',
-                color: '#4ade80',
-                desc: '2,202 discussions contain explicit visual memory friction signals validated via Gemini 3.7 Flash with 0.84 average confidence.',
+                color: '#3b82f6',
+                desc: 'Specific visual memory search failures, strictly separated from 1,972 unrelated complaints about backup loops, battery drain, and tab layout.',
               },
               {
-                title: 'Grounded Signal Extraction',
-                tag: 'Friction Taxonomy',
-                pctDisplay: '5,061',
-                unit: 'tag mentions',
-                color: '#fbbf24',
-                desc: '5,061 grounded hesitation tags across 81 distinct unmet need categories with 98.3% quote-evidence grounding.',
+                title: 'Search Breakdowns Identified',
+                tag: '4 Stages',
+                pctDisplay: '278',
+                unit: 'mentions',
+                color: '#f59e0b',
+                desc: 'Categorized into Search Misunderstanding (48.2%), No Help After Failure (26.6%), Can\'t Spot Photo (18.3%), and Can\'t Find Words (6.8%).',
               },
             ].map((item) => {
               return (
@@ -232,14 +232,11 @@ export default function SummaryAnimations({ data }: { data: SummaryData }) {
         </div>
       </AnimatedCard>
 
-      {/* ═══ SECTION 04: GROUNDED RESEARCH MATRIX ═══ */}
+      {/* ═══ RESEARCH QUESTIONS MATRIX ═══ */}
       <div style={{ marginBottom: 20, marginTop: 52 }}>
-        <div className="section-kicker">
-          <span>04</span> // <span>GROUNDED RESEARCH</span>
-        </div>
-        <h2 className="section-title">Visual Memory Pathology (10 Inquiries)</h2>
+        <h2 className="section-title">Deep-Dive Research Questions</h2>
         <p className="section-subtitle">
-          Exhaustive empirical deep-dives mapping every breakdown stage across the photo retrieval journey.
+          10 detailed investigations mapping every failure stage across the photo search journey.
         </p>
       </div>
 
@@ -248,13 +245,13 @@ export default function SummaryAnimations({ data }: { data: SummaryData }) {
         <div className="card">
           <div className="card-header">
             <div>
-              <span className="card-title">Visual Memory Pathology (10 Inquiries)</span>
+              <span className="card-title">10 Research Questions</span>
               <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 3 }}>
-                Deep-dives across the Google Photos retrieval journey
+                Detailed analyses answering specific product and engineering questions
               </div>
             </div>
-            <span style={{ fontSize: 12, color: 'var(--brand-primary)', fontWeight: 600 }}>
-              Select an inquiry →
+            <span style={{ fontSize: 12, color: 'var(--semantic-blue)', fontWeight: 600 }}>
+              Select a question to view →
             </span>
           </div>
           <div className="card-body">

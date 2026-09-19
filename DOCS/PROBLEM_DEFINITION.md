@@ -14,8 +14,8 @@ Enable high-recall query expression, context-aware associative matching, and clu
        │
        ▼
 [3. AI-Powered Discovery Insights]
-Discovery engine surfaces that 42% of failures stem from date/location amnesia, 34% from screenshot/meme clutter,
-and 28% from literal query dead ends leading to scroll fatigue.
+Discovery engine surfaces that 48.2% of breakdowns stem from search misunderstanding queries (134/278 tags),
+40.3% involve date amnesia (112/278 tags), and 68.9% of recovery failures force users into doom-scrolling (51/74 tags).
        │
        ▼
 [4. Observed User Behavior (Research Validation)]

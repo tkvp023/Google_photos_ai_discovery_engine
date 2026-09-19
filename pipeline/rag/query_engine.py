@@ -55,17 +55,54 @@ class RAGQueryEngine:
         top_k: int = TOP_K,
         segment: Optional[str] = None,
         source: Optional[str] = None,
+        scope: str = "brief",
     ) -> List[Dict[str, Any]]:
-        """Retrieve top-k documents from VectorStore matching query and filters."""
-        return self.store.query(
+        """Retrieve top-k documents from VectorStore matching query and filters, optionally scoped to Bucket A."""
+        fetch_k = max(top_k * 8, 50) if scope == "brief" else top_k
+        docs = self.store.query(
             query_text=query,
-            top_k=top_k,
+            top_k=fetch_k,
             segment=segment,
             source=source,
         )
+        if scope == "brief":
+            try:
+                from pipeline.db.connection import DB_PATH, get_session
+                from pipeline.db.models import TriageBucket
+                if DB_PATH.exists():
+                    session = get_session()
+                    bucket_a_ids = {r[0] for r in session.query(TriageBucket.doc_id).filter(TriageBucket.bucket == "A").all()}
+                    session.close()
+                    if bucket_a_ids:
+                        scoped_docs = [d for d in docs if d.get("doc_id") in bucket_a_ids]
+                        if scoped_docs:
+                            return scoped_docs[:top_k]
+            except Exception:
+                pass
+        return docs[:top_k]
 
-    def _get_quantitative_context(self, query: str, segment: Optional[str] = None) -> str:
+    def _get_quantitative_context(self, query: str, segment: Optional[str] = None, scope: str = "brief") -> str:
         """Fetch real-time quantitative metrics to supplement semantic retrieval."""
+        if scope == "brief":
+            # Load brief-grounded aggregates
+            try:
+                findings_path = PROJECT_ROOT / "data" / "exports" / "bucket_a_findings.json"
+                triage_path = PROJECT_ROOT / "data" / "exports" / "triage_overview.json"
+                if findings_path.exists() and triage_path.exists():
+                    with open(findings_path, "r", encoding="utf-8") as f:
+                        findings = json.load(f)
+                    with open(triage_path, "r", encoding="utf-8") as f:
+                        triage_data = json.load(f)
+                    fp = findings.get("failure_breakdown", {}).get("failure_points", {})
+                    fp_str = ", ".join([f"{v['label']} ({v['tag_percentage']}%)" for k, v in fp.items()])
+                    return (
+                        f"STRICT BRIEF-RELEVANT QUANTITATIVE METRICS (Bucket A: {triage_data.get('on_brief_count', 512)} docs):\n"
+                        f"- 4 Failure Stages: {fp_str}\n"
+                        f"- Core Problem: Retrieval fails when human episodic memory (relative time, companions, visual fragments) cannot be mapped into search queries."
+                    )
+            except Exception:
+                pass
+
         try:
             from pipeline.db.connection import DB_PATH, get_session
             from pipeline.quantification.aggregator import Aggregator
@@ -190,6 +227,16 @@ CORE DIRECTIVE — MINIMAL SPECULATIVE INFERENCE, MAXIMUM EVIDENCE GROUNDING:
    - OUT-OF-SCOPE: If the question is not about Google Photos, photo retrieval, visual search, clutter, or library organization, output exactly: [OUT_OF_SCOPE].
    - NO EVIDENCE IN CORPUS: If the retrieved customer reviews do not contain sufficient evidence to answer the question, do NOT invent an answer. State clearly: "Our customer review corpus does not contain sufficient evidence to answer this specific question."
 
+4. PLAIN LANGUAGE & HUMAN-READABLE TERMINOLOGY:
+   - Write in clear, accessible language suitable for non-technical stakeholders (product managers, designers, executives).
+   - Avoid internal pipeline and engineering jargon:
+     * Use "search-related reviews" instead of "Bucket A docs" or "on-brief reviews".
+     * Use "app & backup issues (filtered out)" instead of "Bucket B" or "infra noise".
+     * Use "mentioned X times" or "X mentions" instead of "X failure tags" or "tag share".
+     * Use plain stage descriptions: "search misunderstands query" instead of "interpretation failure", "no help when search fails" instead of "recovery breakdown", "can't find the right words" instead of "expression failure", and "can't spot the photo in clutter" instead of "evaluation failure".
+     * Refer to confidence using plain tiers ("High confidence", "Moderate confidence") rather than raw decimals (e.g. 0.89).
+   - Always lead with the "so what" — the real product implication of the user's struggle.
+
 STRUCTURE YOUR RESPONSE:
 1. **Direct Empirical Findings:** What the user data and reviews directly state about this issue.
 2. **Authentic Voice-of-Customer Verbatims:** 2–3 exact quotes from the retrieved reviews proving the findings.
@@ -210,8 +257,9 @@ RETRIEVED VOICE-OF-CUSTOMER EVIDENCE ({len(retrieved_docs)} reviews):
         answer_text = ""
         if self.api_key:
             candidate_gemini_models = [
-                "gemini-3.7-flash",
-                "gemini-3.6-flash",
+                "gemini-3.1-flash-lite",
+                "gemini-3.5-flash-lite",
+                "gemini-3.8-flash",
                 "gemini-flash-latest",
             ]
             for g_model_name in candidate_gemini_models:
@@ -313,11 +361,9 @@ RETRIEVED VOICE-OF-CUSTOMER EVIDENCE ({len(retrieved_docs)} reviews):
             return ""
 
         candidate_groq_models = [
-            os.getenv("GROQ_MODEL", "openai/gpt-oss-120b"),
-            "openai/gpt-oss-120b",
             "openai/gpt-oss-20b",
-            "qwen/qwen3.8-27b",
-            "llama-3.3-70b-versatile",
+            "openai/gpt-oss-120b",
+            "groq/compound",
         ]
 
         try:
@@ -351,9 +397,10 @@ RETRIEVED VOICE-OF-CUSTOMER EVIDENCE ({len(retrieved_docs)} reviews):
         segment: Optional[str] = None,
         source: Optional[str] = None,
         top_k: int = TOP_K,
+        scope: str = "brief",
     ) -> Dict[str, Any]:
         """Full RAG pipeline: retrieve -> generate -> return structured answer."""
-        retrieved = self.retrieve(query, top_k=top_k, segment=segment, source=source)
+        retrieved = self.retrieve(query, top_k=top_k, segment=segment, source=source, scope=scope)
         return self.generate_answer(query, retrieved, segment=segment, source=source)
 
 

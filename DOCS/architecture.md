@@ -82,17 +82,17 @@ Scrape  ──►  Clean  ──►  Classify (LLM)  ──►  Quantify  ──
 
 ### Stage 1: Multi-Source Scraping
 * **Target Sources:** Google Play Store, Apple App Store, Reddit, YouTube, Trustpilot.
-* **Orchestration:** [orchestrator.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/scrapers/orchestrator.py) manages concurrent scraping, rate limits, pagination, and checkpointing.
+* **Orchestration:** [orchestrator.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/scrapers/orchestrator.py) manages concurrent scraping, rate limits, pagination, and checkpointing.
 * **Storage:** Raw text, timestamps, author metadata, ratings, and URLs are stored in `data/raw/` and SQLite.
 
 ### Stage 2: Cleaning, Relevance & Noise Filtering
 * **Text Normalization:** Strips HTML, emojis, encoding artifacts, and bot-generated boilerplate.
-* **Relevance Filter:** [relevance_filter.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/cleaning/relevance_filter.py) uses domain keywords (e.g., `google photos`, `search`, `cannot find`, `timeline`, `face`, `receipt`, `screenshot`) to drop unrelated noise.
+* **Relevance Filter:** [relevance_filter.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/cleaning/relevance_filter.py) uses domain keywords (e.g., `google photos`, `search`, `cannot find`, `timeline`, `face`, `receipt`, `screenshot`) to drop unrelated noise.
 * **Deduplication:** Hash-based and fuzzy deduplication prevents repeated cross-posts.
 
 ### Stage 3: AI Classification & Information Extraction
-* **LLM Engine:** [classifier.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/classification/classifier.py) routes batches through LLMs (Gemini / Groq) or local fallback (Ollama).
-* **Schema Validation:** [validator.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/classification/validator.py) enforces strict JSON matching [schema.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/classification/schema.py).
+* **LLM Engine:** [classifier.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/classification/classifier.py) routes batches through LLMs (Gemini / Groq) or local fallback (Ollama).
+* **Schema Validation:** [validator.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/classification/validator.py) enforces strict JSON matching [schema.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/classification/schema.py).
 * **Information Extracted:**
   1. **Hesitation / Friction Reasons:** Specific root-cause tags with confidence score (0.0–1.0) and exact quote substring evidence.
   2. **User Intent:** Episodic memory search, utility/document retrieval, specific person search, casual browsing, or library cleanup.
@@ -102,17 +102,17 @@ Scrape  ──►  Clean  ──►  Classify (LLM)  ──►  Quantify  ──
   6. **Unmet Needs:** Direct user quotes of features they wish Google Photos had.
 
 ### Stage 4: Quantification & Metrics Aggregation
-* **SQL Aggregator:** [aggregator.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/quantification/aggregator.py) compiles statistical distributions:
+* **SQL Aggregator:** [aggregator.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/quantification/aggregator.py) compiles statistical distributions:
   * Tag frequency percentages
   * Cross-tabulation by user segment and platform (Android vs. iOS)
   * Temporal trends across release cycles
   * Impact scores ($$\text{Impact} = \text{Frequency} \times \text{Confidence} \times \text{Severity}$$)
-* **Question Mapping:** [question_mapper.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/quantification/question_mapper.py) aggregates metrics directly under the 10 Discovery Questions.
-* **JSON Export:** [export.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/quantification/export.py) packages stats into `dashboard/public/data/` for zero-latency dashboard rendering.
+* **Question Mapping:** [question_mapper.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/quantification/question_mapper.py) aggregates metrics directly under the 10 Discovery Questions.
+* **JSON Export:** [export.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/quantification/export.py) packages stats into `dashboard/public/data/` for zero-latency dashboard rendering.
 
 ### Stage 5: Semantic Search & RAG Service
-* **FastAPI Server:** [server.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/rag/server.py) runs on port 8000.
-* **Vector Store & Embedder:** [vector_store.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/rag/vector_store.py) and [embedder.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/rag/embedder.py) embed review snippets.
+* **FastAPI Server:** [server.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/rag/server.py) runs on port 8000.
+* **Vector Store & Embedder:** [vector_store.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/rag/vector_store.py) and [embedder.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/rag/embedder.py) embed review snippets.
 * **Natural Language Queries:** Allows PMs to ask natural questions (e.g. *"What do users say about searching for old vacation photos?"*) and retrieves grounded quotes with citations.
 
 ### Stage 6: Next.js Discovery Dashboard
@@ -125,15 +125,15 @@ Scrape  ──►  Clean  ──►  Classify (LLM)  ──►  Quantify  ──
 
 | Component | Key File | Responsibility |
 | :--- | :--- | :--- |
-| **Config Blueprint** | [discovery_config.yaml](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/discovery_config.yaml) | Declarative single-source-of-truth for sources, 10 discovery questions, schema tags, and few-shot examples. |
-| **Code Generator** | [setup_engine.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/setup_engine.py) | Compiles `discovery_config.yaml` into scrapers, prompts, schemas, taggers, and dashboard constants. |
-| **Scraper Suite** | [pipeline/scrapers/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/scrapers/) | Modules for Play Store, App Store, Reddit, YouTube, and Trustpilot. |
-| **Cleaning & Relevance** | [pipeline/cleaning/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/cleaning/) | Regex sanitization, relevance keywords filter, and deduplication. |
-| **Classification Engine** | [pipeline/classification/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/classification/) | LLM batch processing, prompt templates, Pydantic validation, and keyword fallback. |
-| **Database & ORM** | [pipeline/db/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/db/) | SQLAlchemy models (`RawDocument`, `CleanedDocument`, `ClassificationRecord`, `HesitationTag`). |
-| **Analytics & Export** | [pipeline/quantification/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/quantification/) | Statistical aggregation, quote curation, and JSON compilation. |
-| **RAG & Vector Search** | [pipeline/rag/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/pipeline/rag/) | FastAPI endpoint, semantic vector search, and grounded quote synthesis. |
-| **Next.js Dashboard** | [dashboard/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/ai-discovery-engine-template/ai-discovery-engine-template/dashboard/) | Interactive UI with theme switching, metric breakdowns, and quote viewer. |
+| **Config Blueprint** | [discovery_config.yaml](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/discovery_config.yaml) | Declarative single-source-of-truth for sources, 10 discovery questions, schema tags, and few-shot examples. |
+| **Code Generator** | [setup_engine.py](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/setup_engine.py) | Compiles `discovery_config.yaml` into scrapers, prompts, schemas, taggers, and dashboard constants. |
+| **Scraper Suite** | [pipeline/scrapers/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/scrapers/) | Modules for Play Store, App Store, Reddit, YouTube, and Trustpilot. |
+| **Cleaning & Relevance** | [pipeline/cleaning/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/cleaning/) | Regex sanitization, relevance keywords filter, and deduplication. |
+| **Classification Engine** | [pipeline/classification/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/classification/) | LLM batch processing, prompt templates, Pydantic validation, and keyword fallback. |
+| **Database & ORM** | [pipeline/db/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/db/) | SQLAlchemy models (`RawDocument`, `CleanedDocument`, `ClassificationRecord`, `HesitationTag`). |
+| **Analytics & Export** | [pipeline/quantification/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/quantification/) | Statistical aggregation, quote curation, and JSON compilation. |
+| **RAG & Vector Search** | [pipeline/rag/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/pipeline/rag/) | FastAPI endpoint, semantic vector search, and grounded quote synthesis. |
+| **Next.js Dashboard** | [dashboard/](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/dashboard/) | Interactive UI with theme switching, metric breakdowns, and quote viewer. |
 
 ---
 
@@ -245,7 +245,6 @@ erDiagram
 
 ### Step 1: Generate Code from Configuration
 ```bash
-cd ai-discovery-engine-template/ai-discovery-engine-template
 python setup_engine.py
 ```
 

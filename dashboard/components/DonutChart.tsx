@@ -183,7 +183,7 @@ export default function DonutChart({
                 }}
                 itemStyle={{ color: 'var(--text-primary)' }}
                 formatter={(val: unknown, name: unknown) => [
-                  `${Number(val).toLocaleString()} (${((Number(val) / safeTotal) * 100).toFixed(1)}%)`,
+                  `${Number(val).toLocaleString()} / ${safeTotal.toLocaleString()} (${((Number(val) / safeTotal) * 100).toFixed(1)}%)`,
                   formatLabel(String(name ?? '')),
                 ]}
               />
@@ -275,10 +275,10 @@ export default function DonutChart({
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
                   <span style={{ fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif", color: 'var(--text-primary)', fontSize: 12 }}>
-                    {pctVal.toFixed(0)}%
+                    {pctVal.toFixed(1)}%
                   </span>
                   <span style={{ fontSize: 10.5, color: 'var(--text-muted)' }}>
-                    ({item.count.toLocaleString()})
+                    ({item.count.toLocaleString()} / {safeTotal.toLocaleString()})
                   </span>
                 </div>
               </div>
