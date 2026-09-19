@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-09-16T06:17:21.078900+00:00",
+  "elapsed_seconds": 121.5,
+  "total_documents": 30,
+  "results": [
+    {
+      "source": "reddit",
+      "status": "completed",
+      "count": 30,
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,469 @@
+{
+  "generated_at": "2026-09-19T14:15:21Z",
+  "total_documents": 2223,
+  "total_community_docs": 2223,
+  "total_secondary_docs": 640,
+  "total_store_reviews": 1583,
+  "issue_breakdown": [
+    {
+      "label": "Screenshot & Clutter Overflow",
+      "tag": "clutter_overflow",
+      "count": 1471,
+      "pct": 29.1,
+      "color": "#ec4899"
+    },
+    {
+      "label": "Zero Recall on Existing Photos",
+      "tag": "zero_recall",
+      "count": 1209,
+      "pct": 23.9,
+      "color": "#ef4444"
+    },
+    {
+      "label": "Irrelevant Semantic Ranking",
+      "tag": "ranking_failure",
+      "count": 393,
+      "pct": 7.8,
+      "color": "#06b6d4"
+    },
+    {
+      "label": "Date Amnesia & Temporal Mismatch",
+      "tag": "temporal_amnesia",
+      "count": 316,
+      "pct": 6.2,
+      "color": "#f59e0b"
+    },
+    {
+      "label": "Remembered Relative Time",
+      "tag": "remembered_relative_time",
+      "count": 288,
+      "pct": 5.7,
+      "color": "#8b5cf6"
+    },
+    {
+      "label": "Album Structure Breakdown",
+      "tag": "album_breakdown",
+      "count": 208,
+      "pct": 4.1,
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Other Retrieval Friction",
+      "tag": "other",
+      "count": 196,
+      "pct": 3.9,
+      "color": "#6b7280"
+    },
+    {
+      "label": "Facial Clustering Errors",
+      "tag": "face_clustering_gap",
+      "count": 188,
+      "pct": 3.7,
+      "color": "#10b981"
+    },
+    {
+      "label": "Face Untagged or Missing",
+      "tag": "face_untagged_missing",
+      "count": 180,
+      "pct": 3.6,
+      "color": "#14b8a6"
+    },
+    {
+      "label": "Query Interpreted Too Literally",
+      "tag": "query_too_literal",
+      "count": 136,
+      "pct": 2.7,
+      "color": "#f97316"
+    },
+    {
+      "label": "Ecosystem Abandonment / Switching",
+      "tag": "competitor_switching",
+      "count": 75,
+      "pct": 1.5,
+      "color": "#94a3b8"
+    },
+    {
+      "label": "Forgot Exact Location",
+      "tag": "forgot_exact_location",
+      "count": 72,
+      "pct": 1.4,
+      "color": "#f472b6"
+    },
+    {
+      "label": "Remembered Companion or Person",
+      "tag": "remembered_companion_person",
+      "count": 57,
+      "pct": 1.1,
+      "color": "#4ade80"
+    },
+    {
+      "label": "Medicine & Product Label Search",
+      "tag": "medicine_or_product_label",
+      "count": 48,
+      "pct": 0.9,
+      "color": "#d946ef"
+    },
+    {
+      "label": "OCR & Document Indexing Gap",
+      "tag": "ocr_indexing_gap",
+      "count": 47,
+      "pct": 0.9,
+      "color": "#6366f1"
+    },
+    {
+      "label": "Timeline Navigation Friction",
+      "tag": "timeline_friction",
+      "count": 41,
+      "pct": 0.8,
+      "color": "#eab308"
+    },
+    {
+      "label": "WhatsApp External Workaround",
+      "tag": "whatsapp_external_workaround",
+      "count": 34,
+      "pct": 0.7,
+      "color": "#22c55e"
+    },
+    {
+      "label": "Endless Scrolling Fatigue",
+      "tag": "endless_scrolling_fatigue",
+      "count": 27,
+      "pct": 0.5,
+      "color": "#f43f5e"
+    },
+    {
+      "label": "Remembered Visual Details",
+      "tag": "remembered_visual_color_object",
+      "count": 25,
+      "pct": 0.5,
+      "color": "#a855f7"
+    },
+    {
+      "label": "Vague Event or Trip Memory",
+      "tag": "vague_event_or_trip",
+      "count": 21,
+      "pct": 0.4,
+      "color": "#38bdf8"
+    },
+    {
+      "label": "Candid Moment or Expression",
+      "tag": "candid_moment_or_expression",
+      "count": 10,
+      "pct": 0.2,
+      "color": "#fb7185"
+    },
+    {
+      "label": "Remembered Emotional Event",
+      "tag": "remembered_emotional_event",
+      "count": 7,
+      "pct": 0.1,
+      "color": "#c084fc"
+    },
+    {
+      "label": "Keyword Guessing Friction",
+      "tag": "query_keyword_guessing",
+      "count": 7,
+      "pct": 0.1,
+      "color": "#fb923c"
+    },
+    {
+      "label": "Utility Receipt or Document",
+      "tag": "utility_receipt_or_doc",
+      "count": 5,
+      "pct": 0.1,
+      "color": "#a3e635"
+    }
+  ],
+  "source_split": [
+    {
+      "issue": "Screenshot & Meme Clutter",
+      "playstore": 696,
+      "appstore": 372,
+      "reddit": 179,
+      "hackernews": 182,
+      "youtube": 42
+    },
+    {
+      "issue": "Zero Results for Existing Photos",
+      "playstore": 554,
+      "appstore": 296,
+      "reddit": 142,
+      "hackernews": 183,
+      "youtube": 34
+    },
+    {
+      "issue": "Irrelevant Search Results",
+      "playstore": 97,
+      "appstore": 41,
+      "reddit": 67,
+      "hackernews": 158,
+      "youtube": 30
+    },
+    {
+      "issue": "Forgot Exact Date",
+      "playstore": 130,
+      "appstore": 110,
+      "reddit": 44,
+      "hackernews": 21,
+      "youtube": 11
+    },
+    {
+      "issue": "Remembered Relative Time",
+      "playstore": 129,
+      "appstore": 70,
+      "reddit": 41,
+      "hackernews": 43,
+      "youtube": 5
+    },
+    {
+      "issue": "Other Retrieval Friction",
+      "playstore": 89,
+      "appstore": 47,
+      "reddit": 27,
+      "hackernews": 29,
+      "youtube": 4
+    },
+    {
+      "issue": "Face Recognition Misidentification",
+      "playstore": 53,
+      "appstore": 14,
+      "reddit": 84,
+      "hackernews": 36,
+      "youtube": 1
+    },
+    {
+      "issue": "Face Untagged or Missing",
+      "playstore": 78,
+      "appstore": 19,
+      "reddit": 65,
+      "hackernews": 16,
+      "youtube": 2
+    },
+    {
+      "issue": "Forgot Filename or Album",
+      "playstore": 70,
+      "appstore": 68,
+      "reddit": 45,
+      "hackernews": 13,
+      "youtube": 12
+    },
+    {
+      "issue": "Query Interpreted Too Literally",
+      "playstore": 45,
+      "appstore": 32,
+      "reddit": 38,
+      "hackernews": 17,
+      "youtube": 4
+    },
+    {
+      "issue": "Competitor Switching (Apple/Immich)",
+      "playstore": 11,
+      "appstore": 27,
+      "reddit": 7,
+      "hackernews": 29,
+      "youtube": 1
+    },
+    {
+      "issue": "Forgot Exact Location",
+      "playstore": 27,
+      "appstore": 8,
+      "reddit": 13,
+      "hackernews": 22,
+      "youtube": 2
+    },
+    {
+      "issue": "Remembered Companion or Person",
+      "playstore": 23,
+      "appstore": 12,
+      "reddit": 9,
+      "hackernews": 11,
+      "youtube": 2
+    },
+    {
+      "issue": "Text & OCR Detection Failure",
+      "playstore": 11,
+      "appstore": 9,
+      "reddit": 6,
+      "hackernews": 20,
+      "youtube": 1
+    },
+    {
+      "issue": "Timeline Navigation Clunky",
+      "playstore": 10,
+      "appstore": 6,
+      "reddit": 18,
+      "hackernews": 6,
+      "youtube": 1
+    },
+    {
+      "issue": "Medicine & Product Label Search",
+      "playstore": 16,
+      "appstore": 7,
+      "reddit": 8,
+      "hackernews": 16,
+      "youtube": 1
+    },
+    {
+      "issue": "WhatsApp External Workaround",
+      "playstore": 14,
+      "appstore": 6,
+      "reddit": 5,
+      "hackernews": 9,
+      "youtube": 0
+    },
+    {
+      "issue": "Endless Scrolling Fatigue",
+      "playstore": 12,
+      "appstore": 9,
+      "reddit": 4,
+      "hackernews": 2,
+      "youtube": 0
+    },
+    {
+      "issue": "Remembered Visual Details",
+      "playstore": 4,
+      "appstore": 4,
+      "reddit": 3,
+      "hackernews": 11,
+      "youtube": 3
+    },
+    {
+      "issue": "Vague Event or Trip Memory",
+      "playstore": 7,
+      "appstore": 6,
+      "reddit": 1,
+      "hackernews": 5,
+      "youtube": 2
+    },
+    {
+      "issue": "Candid Moment or Expression",
+      "playstore": 5,
+      "appstore": 2,
+      "reddit": 1,
+      "hackernews": 2,
+      "youtube": 0
+    },
+    {
+      "issue": "Keyword Guessing Friction",
+      "playstore": 1,
+      "appstore": 3,
+      "reddit": 0,
+      "hackernews": 3,
+      "youtube": 0
+    },
+    {
+      "issue": "Remembered Emotional Event",
+      "playstore": 2,
+      "appstore": 3,
+      "reddit": 1,
+      "hackernews": 1,
+      "youtube": 0
+    },
+    {
+      "issue": "Utility Receipt or Document",
+      "playstore": 2,
+      "appstore": 0,
+      "reddit": 1,
+      "hackernews": 2,
+      "youtube": 0
+    }
+  ],
+  "correlation_with_hesitation": [
+    {
+      "systemic_issue": "Screenshot & Clutter Overflow",
+      "systemic_frequency": 1471,
+      "related_hesitation": "Timeline Navigation Clunky",
+      "hesitation_frequency": 41,
+      "correlation_hint": 0.11
+    },
+    {
+      "systemic_issue": "Zero Recall on Existing Photos",
+      "systemic_frequency": 1209,
+      "related_hesitation": "Query Interpreted Too Literally",
+      "hesitation_frequency": 136,
+      "correlation_hint": 0.19
+    },
+    {
+      "systemic_issue": "Facial Clustering Errors",
+      "systemic_frequency": 188,
+      "related_hesitation": "Face Untagged or Missing",
+      "hesitation_frequency": 180,
+      "correlation_hint": 0.65
+    },
+    {
+      "systemic_issue": "OCR & Document Indexing Gap",
+      "systemic_frequency": 47,
+      "related_hesitation": "Medicine & Product Label Search",
+      "hesitation_frequency": 48,
+      "correlation_hint": 0.08
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "it shows all kinds of garbage/nonsense, instead of the requested images by name",
+      "source": "Play Store",
+      "source_id": "8ab7d0df-e6b1-4b57-8146-685ab7ff706d",
+      "date": "2026-07-29",
+      "confidence": 0.98,
+      "tags": [
+        "clutter_pollutes_results"
+      ],
+      "segment": "unknown"
+    },
+    {
+      "text": "I found that almost all photos and video lost the face tag. I can&#39;t search any photo under face tag.",
+      "source": "Reddit",
+      "source_id": "reddit_t3_1fzuqvh",
+      "date": "2024-10-09",
+      "confidence": 0.98,
+      "tags": [
+        "zero_results_for_existing_photo"
+      ],
+      "segment": "unknown"
+    },
+    {
+      "text": "Google Photos is merging random photos into the same face, like my grandpa with my baby cousin.",
+      "source": "Reddit",
+      "source_id": "reddit_t3_1tzkjzt",
+      "date": "2026-06-07",
+      "confidence": 0.99,
+      "tags": [
+        "wrong_face_match"
+      ],
+      "segment": "unknown"
+    },
+    {
+      "text": "Search results are giving me photos that have nothing to do with the search term.",
+      "source": "Reddit",
+      "source_id": "reddit_t3_1fa4fg1",
+      "date": "2024-09-06",
+      "confidence": 0.96,
+      "tags": [
+        "text_ocr_detection_failure"
+      ],
+      "segment": "unknown"
+    },
+    {
+      "text": "there's no direct way to click to January 2015 from the results, which really sucks. (Instead you have to go back out of results and use their fiddly s",
+      "source": "Hacker News",
+      "source_id": "hn_28349113",
+      "date": "2021-08-29",
+      "confidence": 0.96,
+      "tags": [
+        "endless_scrolling_fatigue"
+      ],
+      "segment": "unknown"
+    },
+    {
+      "text": "I have thousands upon thousands of photos saved and pay for a service where I can’t find a single image in search",
+      "source": "App Store",
+      "source_id": "appstore_11944423327",
+      "date": "2024-11-13",
+      "confidence": 0.92,
+      "tags": [
+        "competitor_switching_apple"
+      ],
+      "segment": "unknown"
+    }
+  ]
+}

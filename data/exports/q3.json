@@ -1,0 +1,266 @@
+{
+  "question_id": 3,
+  "question_text": "What information have they forgotten?",
+  "question_short": "Forgotten Metadata",
+  "total_relevant_docs": 251,
+  "avg_confidence": 0.81,
+  "breakdown": [
+    {
+      "label": "Exact Calendar Date / Month",
+      "tag": "forgot_exact_date",
+      "count": 35,
+      "pct": 43.8,
+      "avg_confidence": 0.73,
+      "color": "#f59e0b"
+    },
+    {
+      "label": "Device Filename or Album Folder",
+      "tag": "forgot_filename_or_album",
+      "count": 18,
+      "pct": 22.5,
+      "avg_confidence": 0.85,
+      "color": "#6b7280"
+    },
+    {
+      "label": "Formal Venue / Exact Geotag",
+      "tag": "forgot_exact_location",
+      "count": 12,
+      "pct": 15.0,
+      "avg_confidence": 0.85,
+      "color": "#06b6d4"
+    },
+    {
+      "label": "Temporal Drift on Query",
+      "tag": "temporal_mismatch",
+      "count": 11,
+      "pct": 13.8,
+      "avg_confidence": 0.92,
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Vague Approximate Timeframe",
+      "tag": "temporal_vagueness",
+      "count": 4,
+      "pct": 5.0,
+      "avg_confidence": 0.905,
+      "color": "#8b5cf6"
+    }
+  ],
+  "source_attribution": [
+    {
+      "label": "Exact Calendar Date / Month",
+      "tag": "forgot_exact_date",
+      "avg_confidence": 0.73,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 16,
+          "pct": 45.7
+        },
+        {
+          "source": "App Store",
+          "count": 7,
+          "pct": 20.0
+        },
+        {
+          "source": "Reddit",
+          "count": 4,
+          "pct": 11.4
+        },
+        {
+          "source": "Hacker News",
+          "count": 6,
+          "pct": 17.1
+        },
+        {
+          "source": "YouTube",
+          "count": 2,
+          "pct": 5.7
+        }
+      ]
+    },
+    {
+      "label": "Device Filename or Album Folder",
+      "tag": "forgot_filename_or_album",
+      "avg_confidence": 0.85,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 6,
+          "pct": 33.3
+        },
+        {
+          "source": "App Store",
+          "count": 4,
+          "pct": 22.2
+        },
+        {
+          "source": "Reddit",
+          "count": 6,
+          "pct": 33.3
+        },
+        {
+          "source": "Hacker News",
+          "count": 2,
+          "pct": 11.1
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Formal Venue / Exact Geotag",
+      "tag": "forgot_exact_location",
+      "avg_confidence": 0.85,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 4,
+          "pct": 33.3
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 8.3
+        },
+        {
+          "source": "Reddit",
+          "count": 2,
+          "pct": 16.7
+        },
+        {
+          "source": "Hacker News",
+          "count": 4,
+          "pct": 33.3
+        },
+        {
+          "source": "YouTube",
+          "count": 1,
+          "pct": 8.3
+        }
+      ]
+    },
+    {
+      "label": "Temporal Drift on Query",
+      "tag": "temporal_mismatch",
+      "avg_confidence": 0.92,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 3,
+          "pct": 27.3
+        },
+        {
+          "source": "App Store",
+          "count": 3,
+          "pct": 27.3
+        },
+        {
+          "source": "Reddit",
+          "count": 3,
+          "pct": 27.3
+        },
+        {
+          "source": "Hacker News",
+          "count": 1,
+          "pct": 9.1
+        },
+        {
+          "source": "YouTube",
+          "count": 1,
+          "pct": 9.1
+        }
+      ]
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "newer videos appear on wrong dates.",
+      "confidence": 0.96,
+      "source": "Reddit",
+      "tags": [
+        "temporal mismatch",
+        "time"
+      ]
+    },
+    {
+      "text": "I was scrolling through things and eventually found them, and I cannot remember the date for the life of me.",
+      "confidence": 0.95,
+      "source": "Reddit",
+      "tags": [
+        "fallback to scroll",
+        "time"
+      ]
+    },
+    {
+      "text": "if you search for December 2017, it won’t show all photos from December 2017",
+      "confidence": 0.95,
+      "source": "App Store",
+      "tags": [
+        "temporal mismatch",
+        "time"
+      ]
+    },
+    {
+      "text": "not a single photo is found even through date or AI",
+      "confidence": 0.95,
+      "source": "Play Store",
+      "tags": [
+        "other interpretation",
+        "time"
+      ]
+    },
+    {
+      "text": "those photos aren't available and I have to scroll to find them if I don't know the date",
+      "confidence": 0.94,
+      "source": "Play Store",
+      "tags": [
+        "fallback to scroll",
+        "person"
+      ]
+    }
+  ],
+  "retrieval_heatmap": {
+    "rows": [
+      "Exact Calendar Date",
+      "Device Filename",
+      "Formal Venue / Geotag",
+      "Folder / Album Location"
+    ],
+    "columns": [
+      "Keyword Search",
+      "Gemini Ask Photos",
+      "Timeline Grid",
+      "Voice Search"
+    ],
+    "values": [
+      [
+        88,
+        74,
+        92,
+        65
+      ],
+      [
+        95,
+        82,
+        89,
+        78
+      ],
+      [
+        76,
+        68,
+        81,
+        59
+      ],
+      [
+        64,
+        52,
+        70,
+        48
+      ]
+    ]
+  }
+}

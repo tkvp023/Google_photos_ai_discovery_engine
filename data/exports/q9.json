@@ -1,0 +1,234 @@
+{
+  "question_id": 9,
+  "question_text": "Why does searching for text inside photos (receipts, prescriptions, documents, signs) fail for users?",
+  "question_short": "Text & Document Search Failures",
+  "total_relevant_docs": 251,
+  "avg_confidence": 0.893,
+  "breakdown": [
+    {
+      "label": "Literal Keyword Match on Text",
+      "tag": "literal_keyword_match",
+      "count": 9,
+      "pct": 50.0,
+      "avg_confidence": 0.924,
+      "color": "#d946ef"
+    },
+    {
+      "label": "Document Clutter Masking Real Photos",
+      "tag": "clutter_pollutes_results",
+      "count": 3,
+      "pct": 16.7,
+      "avg_confidence": 0.857,
+      "color": "#f59e0b"
+    },
+    {
+      "label": "Text Entity Not Recognized",
+      "tag": "entity_not_recognized",
+      "count": 2,
+      "pct": 11.1,
+      "avg_confidence": 0.895,
+      "color": "#06b6d4"
+    },
+    {
+      "label": "OCR Interpretation Dropouts",
+      "tag": "other_interpretation",
+      "count": 2,
+      "pct": 11.1,
+      "avg_confidence": 0.785,
+      "color": "#6b7280"
+    },
+    {
+      "label": "AI Natural Language Drift on Text",
+      "tag": "gemini_misinterprets",
+      "count": 1,
+      "pct": 5.6,
+      "avg_confidence": 0.91,
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Fallback to Scroll on Document Search",
+      "tag": "fallback_to_scroll",
+      "count": 1,
+      "pct": 5.6,
+      "avg_confidence": 0.92,
+      "color": "#ef4444"
+    }
+  ],
+  "source_attribution": [
+    {
+      "label": "Literal Keyword Match on Text",
+      "tag": "literal_keyword_match",
+      "avg_confidence": 0.924,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 4,
+          "pct": 44.4
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 3,
+          "pct": 33.3
+        },
+        {
+          "source": "Hacker News",
+          "count": 1,
+          "pct": 11.1
+        },
+        {
+          "source": "YouTube",
+          "count": 1,
+          "pct": 11.1
+        }
+      ]
+    },
+    {
+      "label": "Document Clutter Masking Real Photos",
+      "tag": "clutter_pollutes_results",
+      "avg_confidence": 0.857,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 2,
+          "pct": 66.7
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 1,
+          "pct": 33.3
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Text Entity Not Recognized",
+      "tag": "entity_not_recognized",
+      "avg_confidence": 0.895,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "source": "Reddit",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "OCR Interpretation Dropouts",
+      "tag": "other_interpretation",
+      "avg_confidence": 0.785,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "source": "Reddit",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "App no longer grabs search terms from the 'commenting' area where I label important photos",
+      "confidence": 0.94,
+      "source": "Play Store",
+      "tags": [
+        "literal keyword match",
+        "text content"
+      ]
+    },
+    {
+      "text": "when I type my phone&#39;s format of screenshot &quot;Screenshot_XXXX&quot; or even plainly &quot;Screenshots&quot;, I g",
+      "confidence": 0.92,
+      "source": "Reddit",
+      "tags": [
+        "literal keyword match",
+        "text content"
+      ]
+    },
+    {
+      "text": "I haven't been able to figure out how to search these. When you open a photo the name shows under the details section.",
+      "confidence": 0.92,
+      "source": "YouTube",
+      "tags": [
+        "literal keyword match",
+        "text content"
+      ]
+    },
+    {
+      "text": "Just spent over 1 hr trying to find a photo I had taken of an order that the seller asked for me to upload a pic.",
+      "confidence": 0.92,
+      "source": "Play Store",
+      "tags": [
+        "fallback to scroll",
+        "text content"
+      ]
+    },
+    {
+      "text": "Want to find a photo or folder with an exact name..doesn't work.",
+      "confidence": 0.92,
+      "source": "Play Store",
+      "tags": [
+        "literal keyword match",
+        "text content"
+      ]
+    }
+  ]
+}

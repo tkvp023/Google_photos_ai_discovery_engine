@@ -1,0 +1,254 @@
+{
+  "question_id": 10,
+  "question_text": "What workarounds do users resort to (e.g., searching WhatsApp chats, Apple Photos, asking friends) when Google Photos search fails?",
+  "question_short": "Workarounds & Switching",
+  "total_relevant_docs": 251,
+  "avg_confidence": 0.847,
+  "breakdown": [
+    {
+      "label": "Manual Chronological Doom-Scrolling",
+      "tag": "fallback_to_scroll",
+      "count": 51,
+      "pct": 63.0,
+      "avg_confidence": 0.845,
+      "color": "#ef4444"
+    },
+    {
+      "label": "Retrying Without Disambiguation Chips",
+      "tag": "no_refinement_support",
+      "count": 11,
+      "pct": 13.6,
+      "avg_confidence": 0.855,
+      "color": "#f59e0b"
+    },
+    {
+      "label": "Conversational Restarts on Retry",
+      "tag": "gemini_conversation_dead_end",
+      "count": 9,
+      "pct": 11.1,
+      "avg_confidence": 0.854,
+      "color": "#a855f7"
+    },
+    {
+      "label": "Switching to Apple Photos / Immich",
+      "tag": "competitor_switch",
+      "count": 7,
+      "pct": 8.6,
+      "avg_confidence": 0.85,
+      "color": "#22c55e"
+    },
+    {
+      "label": "Other External Workarounds",
+      "tag": "other_recovery",
+      "count": 2,
+      "pct": 2.5,
+      "avg_confidence": 0.785,
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Cold Restart Each Try",
+      "tag": "cold_restart_each_try",
+      "count": 1,
+      "pct": 1.2,
+      "avg_confidence": 0.92,
+      "color": "#8b5cf6"
+    }
+  ],
+  "source_attribution": [
+    {
+      "label": "Manual Chronological Doom-Scrolling",
+      "tag": "fallback_to_scroll",
+      "avg_confidence": 0.845,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 31,
+          "pct": 60.8
+        },
+        {
+          "source": "App Store",
+          "count": 8,
+          "pct": 15.7
+        },
+        {
+          "source": "Reddit",
+          "count": 4,
+          "pct": 7.8
+        },
+        {
+          "source": "Hacker News",
+          "count": 6,
+          "pct": 11.8
+        },
+        {
+          "source": "YouTube",
+          "count": 2,
+          "pct": 3.9
+        }
+      ]
+    },
+    {
+      "label": "Retrying Without Disambiguation Chips",
+      "tag": "no_refinement_support",
+      "avg_confidence": 0.855,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 3,
+          "pct": 27.3
+        },
+        {
+          "source": "App Store",
+          "count": 3,
+          "pct": 27.3
+        },
+        {
+          "source": "Reddit",
+          "count": 3,
+          "pct": 27.3
+        },
+        {
+          "source": "Hacker News",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "YouTube",
+          "count": 2,
+          "pct": 18.2
+        }
+      ]
+    },
+    {
+      "label": "Conversational Restarts on Retry",
+      "tag": "gemini_conversation_dead_end",
+      "avg_confidence": 0.854,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 2,
+          "pct": 22.2
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 11.1
+        },
+        {
+          "source": "Reddit",
+          "count": 6,
+          "pct": 66.7
+        },
+        {
+          "source": "Hacker News",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Switching to Apple Photos / Immich",
+      "tag": "competitor_switch",
+      "avg_confidence": 0.85,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 2,
+          "pct": 28.6
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 14.3
+        },
+        {
+          "source": "Reddit",
+          "count": 1,
+          "pct": 14.3
+        },
+        {
+          "source": "Hacker News",
+          "count": 3,
+          "pct": 42.9
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "my photos aren't organized into different days anymore and everything is just bunched up. It's become almost impossible to find photos",
+      "confidence": 0.92,
+      "source": "Play Store",
+      "tags": [
+        "fallback to scroll",
+        "time"
+      ]
+    },
+    {
+      "text": "I have thousands upon thousands of photos saved and pay for a service where I can’t find a single image in search",
+      "confidence": 0.92,
+      "source": "App Store",
+      "tags": [
+        "fallback to scroll",
+        "combined"
+      ]
+    },
+    {
+      "text": "if I search for any photos, then issue a follow up query, it will completely ignore the initial search results",
+      "confidence": 0.92,
+      "source": "App Store",
+      "tags": [
+        "cold restart each try",
+        "combined"
+      ]
+    },
+    {
+      "text": "I am constantly searching manually for a picture their system missed that still fit my search criteria.",
+      "confidence": 0.92,
+      "source": "YouTube",
+      "tags": [
+        "fallback to scroll",
+        "combined"
+      ]
+    },
+    {
+      "text": "It can't locate anything anymore even obvious photos that I know are right there in my library.",
+      "confidence": 0.92,
+      "source": "Play Store",
+      "tags": [
+        "fallback to scroll",
+        "combined"
+      ]
+    }
+  ],
+  "comparison_matrix": [
+    {
+      "dimension": "Keyword Search",
+      "google_photos": "Fails on Compound Cues",
+      "apple_photos": "Basic EXIF Filtering",
+      "whatsapp_search": "Fast Chat Media Grid"
+    },
+    {
+      "dimension": "Natural Language",
+      "google_photos": "Gemini Ask Photos (Hallucinates)",
+      "apple_photos": "On-Device Apple Intelligence",
+      "whatsapp_search": "Keyword Only"
+    },
+    {
+      "dimension": "Recovery / Anti-Scroll",
+      "google_photos": "None (Endless Scroll)",
+      "apple_photos": "Curated Memories Carousel",
+      "whatsapp_search": "Media Grid by Contact"
+    }
+  ]
+}

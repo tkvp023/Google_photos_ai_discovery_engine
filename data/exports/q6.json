@@ -1,0 +1,267 @@
+{
+  "question_id": 6,
+  "question_text": "Why do users complain about having to endlessly scroll through years of timeline photos when search fails them?",
+  "question_short": "Endless Timeline Scrolling",
+  "total_relevant_docs": 251,
+  "avg_confidence": 0.847,
+  "breakdown": [
+    {
+      "label": "Forced Fallback to Timeline Scrolling",
+      "tag": "fallback_to_scroll",
+      "count": 51,
+      "pct": 68.9,
+      "avg_confidence": 0.845,
+      "color": "#ef4444"
+    },
+    {
+      "label": "Zero Refinement / No Disambiguation Chips",
+      "tag": "no_refinement_support",
+      "count": 11,
+      "pct": 14.9,
+      "avg_confidence": 0.855,
+      "color": "#f59e0b"
+    },
+    {
+      "label": "Cold Conversational Restart on Retry",
+      "tag": "gemini_conversation_dead_end",
+      "count": 9,
+      "pct": 12.2,
+      "avg_confidence": 0.854,
+      "color": "#a855f7"
+    },
+    {
+      "label": "External Workaround / Other Recovery",
+      "tag": "other_recovery",
+      "count": 2,
+      "pct": 2.7,
+      "avg_confidence": 0.785,
+      "color": "#22c55e"
+    },
+    {
+      "label": "Cold Restart Each Try",
+      "tag": "cold_restart_each_try",
+      "count": 1,
+      "pct": 1.4,
+      "avg_confidence": 0.92,
+      "color": "#06b6d4"
+    }
+  ],
+  "source_attribution": [
+    {
+      "label": "Forced Fallback to Timeline Scrolling",
+      "tag": "fallback_to_scroll",
+      "avg_confidence": 0.845,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 31,
+          "pct": 60.8
+        },
+        {
+          "source": "App Store",
+          "count": 8,
+          "pct": 15.7
+        },
+        {
+          "source": "Reddit",
+          "count": 4,
+          "pct": 7.8
+        },
+        {
+          "source": "Hacker News",
+          "count": 6,
+          "pct": 11.8
+        },
+        {
+          "source": "YouTube",
+          "count": 2,
+          "pct": 3.9
+        }
+      ]
+    },
+    {
+      "label": "Zero Refinement / No Disambiguation Chips",
+      "tag": "no_refinement_support",
+      "avg_confidence": 0.855,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 3,
+          "pct": 27.3
+        },
+        {
+          "source": "App Store",
+          "count": 3,
+          "pct": 27.3
+        },
+        {
+          "source": "Reddit",
+          "count": 3,
+          "pct": 27.3
+        },
+        {
+          "source": "Hacker News",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "YouTube",
+          "count": 2,
+          "pct": 18.2
+        }
+      ]
+    },
+    {
+      "label": "Cold Conversational Restart on Retry",
+      "tag": "gemini_conversation_dead_end",
+      "avg_confidence": 0.854,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 2,
+          "pct": 22.2
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 11.1
+        },
+        {
+          "source": "Reddit",
+          "count": 6,
+          "pct": 66.7
+        },
+        {
+          "source": "Hacker News",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "External Workaround / Other Recovery",
+      "tag": "other_recovery",
+      "avg_confidence": 0.785,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "source": "Reddit",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "there's no direct way to click to January 2015 from the results, which really sucks. (Instead you have to go back out of results and use their fiddly s",
+      "confidence": 0.96,
+      "source": "Hacker News",
+      "tags": [
+        "fallback to scroll",
+        "time"
+      ]
+    },
+    {
+      "text": "the search function no longer works and the app simply locks up when you try to search",
+      "confidence": 0.95,
+      "source": "App Store",
+      "tags": [
+        "fallback to scroll",
+        "combined"
+      ]
+    },
+    {
+      "text": "Inability to use the timeline feature to get to photos and videos older than 2002.",
+      "confidence": 0.95,
+      "source": "Reddit",
+      "tags": [
+        "fallback to scroll",
+        "time"
+      ]
+    },
+    {
+      "text": "How can you expect anyone using a photo editing app or other app to spend time scrolling through 2026 to 2020 images",
+      "confidence": 0.94,
+      "source": "Play Store",
+      "tags": [
+        "fallback to scroll",
+        "time"
+      ]
+    },
+    {
+      "text": "the search function constantly never working and showing blanks for even the suggested search.",
+      "confidence": 0.94,
+      "source": "Play Store",
+      "tags": [
+        "fallback to scroll",
+        "combined"
+      ]
+    }
+  ],
+  "failure_sankey": {
+    "nodes": [
+      {
+        "id": "Search Retrieval Failure (N=74)"
+      },
+      {
+        "id": "Doom-Scrolling Fallback (68.9%)"
+      },
+      {
+        "id": "Zero Refinement Chips (14.9%)"
+      },
+      {
+        "id": "Conversational Dead-End (12.2%)"
+      },
+      {
+        "id": "External Switch / Abandon (4.1%)"
+      }
+    ],
+    "links": [
+      {
+        "source": "Search Retrieval Failure (N=74)",
+        "target": "Doom-Scrolling Fallback (68.9%)",
+        "value": 51
+      },
+      {
+        "source": "Search Retrieval Failure (N=74)",
+        "target": "Zero Refinement Chips (14.9%)",
+        "value": 11
+      },
+      {
+        "source": "Search Retrieval Failure (N=74)",
+        "target": "Conversational Dead-End (12.2%)",
+        "value": 9
+      },
+      {
+        "source": "Search Retrieval Failure (N=74)",
+        "target": "External Switch / Abandon (4.1%)",
+        "value": 3
+      }
+    ]
+  }
+}

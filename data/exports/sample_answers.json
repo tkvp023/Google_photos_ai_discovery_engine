@@ -1,0 +1,44 @@
+{
+  "questions": [
+    {
+      "question_id": 1,
+      "question": "What kinds of old photos do users struggle to retrieve when their memory is incomplete?",
+      "key_finding": "Users struggle most with candid, non-albumed episodic events (spontaneous meals, roadside cafes, casual outings), utility items with fuzzy visual text (prescriptions, model numbers, handwritten notes), and memories defined by emotional context rather than iconic landmarks.",
+      "evidence_quotes": [
+        "I spent 45 minutes trying to find that picture of the seafood paella we ate at a beach shack during our Valencia trip three years ago. I searched 'paella beach', 'spain seafood', 'beach restaurant', and got either random beach pictures or nothing.",
+        "Trying to find an old prescription medicine bottle photo from last winter. When I search 'medicine' or 'prescription', Google Photos gives me dozens of random WhatsApp screenshots, insurance paperwork, and memes."
+      ],
+      "pm_implication": "Retrieval engines are optimized for nouns and geotagged landmarks, but human episodic memory is anchored in personal activities, shared meals, and informal moments."
+    },
+    {
+      "question_id": 2,
+      "question": "What information do people actually remember about a photo, and what have they forgotten?",
+      "key_finding": "Users vividly remember relative timeframes ('two summers ago', 'right after moving'), emotional sentiment ('hilarious moment', 'exhausting hike'), companion presence, and distinctive visual fragments ('she wore a bright yellow raincoat'). They almost never remember exact calendar dates, camera file names, or formal venue names.",
+      "evidence_quotes": [
+        "I don't remember the exact restaurant name or the date, so I had to endlessly scroll through August 2023 until my eyes hurt.",
+        "I know the photo exists, it was taken right around Thanksgiving at my sister's house, but search brings up zero results for family dinner."
+      ],
+      "pm_implication": "Search UI must allow expressive multi-modal query inputs that match human recall patterns rather than rigid SQL-like filters."
+    },
+    {
+      "question_id": 3,
+      "question": "Where does retrieval break down across expression, interpretation, evaluation, and recovery?",
+      "key_finding": "Interpretation (41%) is the primary breakdown where keyword search fails to parse compound clues and Ask Photos misinterprets conversational nuance. Recovery (26%) is the second critical friction where failed searches offer zero refinement options, forcing abandonment to manual scrolling.",
+      "evidence_quotes": [
+        "Asked Gemini to find 'the picture of my dog wearing a yellow raincoat in the snow' and it just gave me random pictures of my cat and summer grass.",
+        "I searched every variation of paella, beach, and Spain I could think of. Every retry cleared my search and gave zero results."
+      ],
+      "pm_implication": "Investing solely in better initial search is insufficient; adding contextual refinement chips and conversational disambiguation turns failure into discovery."
+    },
+    {
+      "question_id": 4,
+      "question": "How do traditional keyword search and Gemini-based AI search compare in these failure modes?",
+      "key_finding": "Traditional keyword search suffers from extreme literalism (0 results if exact text isn't in metadata/OCR) and lack of relative-time handling. Gemini AI search solves vocabulary matching but introduces hallucination, over-confidence, and conversational dead-ends where follow-up questions fail to narrow results.",
+      "evidence_quotes": [
+        "Ask Photos sounded amazing, but whenever I ask for a specific document or photo, it either hallucinates or gives me a generic error saying it can't find anything.",
+        "Keyword search gives zero results if you misspell one word or don't know the exact year."
+      ],
+      "pm_implication": "A hybrid architecture combining Gemini's semantic understanding with deterministic metadata bounding and interactive visual refinement chips yields the highest retrieval success rate."
+    }
+  ]
+}

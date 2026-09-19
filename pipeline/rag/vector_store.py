@@ -68,8 +68,59 @@ class VectorStore:
 
         print(f"  💾 Vector store saved to {MODEL_FILE} ({self.matrix.shape[0]} documents, {self.matrix.shape[1]} features)")
 
+    def _build_from_json_fallback(self) -> bool:
+        """Emergency fallback: index quotes from public JSON datasets if model files are missing."""
+        json_dir = PROJECT_ROOT / "dashboard" / "public" / "data"
+        if not json_dir.exists():
+            json_dir = PROJECT_ROOT / "data" / "exports"
+        if not json_dir.exists():
+            return False
+
+        doc_ids, documents, metadatas = [], [], []
+        for q_file in sorted(json_dir.glob("q*.json")):
+            try:
+                with open(q_file, "r", encoding="utf-8") as f:
+                    q_data = json.load(f)
+                quotes = q_data.get("quotes", [])
+                for i, q in enumerate(quotes):
+                    text = q.get("text") or q.get("quote", "")
+                    if text and len(text) > 10:
+                        doc_ids.append(f"{q_file.stem}_{i}")
+                        documents.append(text)
+                        metadatas.append({
+                            "source": (q.get("source") or "playstore").lower().replace(" ", ""),
+                            "content_preview": text[:300],
+                            "hesitation_tags": ",".join(q.get("tags", [])),
+                            "segment": "all",
+                        })
+            except Exception:
+                continue
+
+        if documents:
+            try:
+                self.build_and_save(doc_ids, documents, metadatas)
+                return True
+            except Exception as e:
+                print(f"⚠️ Fallback index build failed: {e}")
+        return False
+
     def load(self) -> bool:
-        """Load vectorizer model and metadata from disk."""
+        """Load vectorizer model and metadata from disk, auto-building if missing."""
+        if not MODEL_FILE.exists() or not META_FILE.exists():
+            # 1. Try building from db.sqlite if available
+            db_file = DATA_DIR / "db.sqlite"
+            if db_file.exists():
+                try:
+                    from pipeline.rag.embedder import build_vector_index
+                    print("⚡ Auto-building vector index from SQLite database...")
+                    build_vector_index()
+                except Exception as e:
+                    print(f"⚠️ Could not auto-build vector index from db: {e}")
+
+            # 2. If still missing, build from public JSON data
+            if not MODEL_FILE.exists() or not META_FILE.exists():
+                self._build_from_json_fallback()
+
         if not MODEL_FILE.exists() or not META_FILE.exists():
             return False
 
@@ -121,6 +172,8 @@ class VectorStore:
                     continue
             valid_indices.append(idx)
 
+        if not valid_indices:
+            valid_indices = list(range(len(self.doc_ids)))
         if not valid_indices:
             return []
 

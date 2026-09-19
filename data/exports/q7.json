@@ -1,0 +1,253 @@
+{
+  "question_id": 7,
+  "question_text": "How do screenshots, receipts, memes, and downloaded junk clutter and ruin search for personal memories?",
+  "question_short": "Screenshot & Junk Clutter",
+  "total_relevant_docs": 251,
+  "avg_confidence": 0.888,
+  "breakdown": [
+    {
+      "label": "UI Screenshots & Temporary Notes",
+      "tag": "ui_screenshots",
+      "count": 14,
+      "pct": 35.9,
+      "avg_confidence": 0.912,
+      "color": "#ec4899"
+    },
+    {
+      "label": "Product Barcodes & Medicine Labels",
+      "tag": "barcodes_labels",
+      "count": 12,
+      "pct": 30.8,
+      "avg_confidence": 0.884,
+      "color": "#f59e0b"
+    },
+    {
+      "label": "Clutter Polluting Retrieval Results",
+      "tag": "clutter_pollutes_results",
+      "count": 8,
+      "pct": 20.5,
+      "avg_confidence": 0.836,
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Financial Receipts & Invoices",
+      "tag": "receipts_slips",
+      "count": 4,
+      "pct": 10.3,
+      "avg_confidence": 0.9,
+      "color": "#10b981"
+    },
+    {
+      "label": "WhatsApp Forwarded Media & Memes",
+      "tag": "whatsapp_memes",
+      "count": 1,
+      "pct": 2.6,
+      "avg_confidence": 0.98,
+      "color": "#22c55e"
+    }
+  ],
+  "source_attribution": [
+    {
+      "label": "UI Screenshots & Temporary Notes",
+      "tag": "ui_screenshots",
+      "avg_confidence": 0.912,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 6,
+          "pct": 42.9
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 7.1
+        },
+        {
+          "source": "Reddit",
+          "count": 6,
+          "pct": 42.9
+        },
+        {
+          "source": "Hacker News",
+          "count": 1,
+          "pct": 7.1
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Product Barcodes & Medicine Labels",
+      "tag": "barcodes_labels",
+      "avg_confidence": 0.884,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 7,
+          "pct": 58.3
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 2,
+          "pct": 16.7
+        },
+        {
+          "source": "Hacker News",
+          "count": 3,
+          "pct": 25.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Clutter Polluting Retrieval Results",
+      "tag": "clutter_pollutes_results",
+      "avg_confidence": 0.836,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 5,
+          "pct": 62.5
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 12.5
+        },
+        {
+          "source": "Reddit",
+          "count": 1,
+          "pct": 12.5
+        },
+        {
+          "source": "Hacker News",
+          "count": 1,
+          "pct": 12.5
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Financial Receipts & Invoices",
+      "tag": "receipts_slips",
+      "avg_confidence": 0.9,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 1,
+          "pct": 25.0
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 2,
+          "pct": 50.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 1,
+          "pct": 25.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "it shows all kinds of garbage/nonsense, instead of the requested images by name",
+      "confidence": 0.98,
+      "source": "Play Store",
+      "tags": [
+        "clutter pollutes results",
+        "text content"
+      ]
+    },
+    {
+      "text": "thousands appear, the vast majority of no relevance",
+      "confidence": 0.95,
+      "source": "App Store",
+      "tags": [
+        "clutter pollutes results",
+        "combined"
+      ]
+    },
+    {
+      "text": "the same search will show your photo briefly, then change to 'Nothing found' or a huge list of random garbage.",
+      "confidence": 0.92,
+      "source": "Play Store",
+      "tags": [
+        "gemini misinterprets",
+        "combined"
+      ]
+    },
+    {
+      "text": "intook a photo of an important paper of mine, and the app stuffed it into \"Receipt\" folder.",
+      "confidence": 0.91,
+      "source": "Play Store",
+      "tags": [
+        "clutter pollutes results",
+        "text content"
+      ]
+    },
+    {
+      "text": "Everything is all mixed up because your AI puts photos where it thinks they should go regardless of the source.",
+      "confidence": 0.88,
+      "source": "Play Store",
+      "tags": [
+        "clutter pollutes results",
+        "event context"
+      ]
+    }
+  ],
+  "radar_data": [
+    {
+      "factor": "Temporary Screenshots",
+      "importance": 35.9,
+      "negative_pct": 31.4
+    },
+    {
+      "factor": "Product Barcodes & Labels",
+      "importance": 30.8,
+      "negative_pct": 24.6
+    },
+    {
+      "factor": "Search Result Intrusion",
+      "importance": 20.5,
+      "negative_pct": 42.1
+    },
+    {
+      "factor": "Payment Receipts",
+      "importance": 10.3,
+      "negative_pct": 36.8
+    },
+    {
+      "factor": "Forwarded Memes",
+      "importance": 2.5,
+      "negative_pct": 28.2
+    }
+  ]
+}

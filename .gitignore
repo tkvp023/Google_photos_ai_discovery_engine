@@ -1,5 +1,13 @@
 # Data
-data/*
+data/raw/
+data/clean/
+data/classified/
+data/checkpoints/
+!data/db.sqlite
+!data/vector_model.joblib
+!data/vector_meta.json
+!data/all_scraped_reviews.csv
+!data/exports/
 !data/.gitkeep
 
 # Environment & Secrets
@@ -23,6 +31,7 @@ env/
 *.db
 *.sqlite
 *.sqlite3
+!data/db.sqlite
 
 # Node
 node_modules/

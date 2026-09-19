@@ -1,0 +1,111 @@
+{
+  "opportunities": [
+    {
+      "rank": 1,
+      "title": "Compositional Retrieval & Episodic Translation Engine",
+      "failure_type": "interpretation",
+      "sub_category": "compositional_query_fail",
+      "problem_description": "Users remember intersecting cues (e.g. 'friend + beach + 2 years ago') but search engines treat terms as disjoint keywords or fail when more than one constraint is added.",
+      "solution_direction": "Multi-cue semantic graph joining visual concepts, relative timeframes, and social clusters into a single unified query resolver.",
+      "severity": "CRITICAL",
+      "score": 96
+    },
+    {
+      "rank": 2,
+      "title": "Conversational Intent Grounding & Anti-Hallucination for Ask Photos",
+      "failure_type": "interpretation",
+      "sub_category": "gemini_misinterprets",
+      "problem_description": "When users use natural language with Ask Photos, the LLM often retrieves visually random screenshots or unrelated pets because it lacks strict library grounding constraints.",
+      "solution_direction": "Strict two-stage retrieval: LLM decomposes query into verifiable library metadata filters first, followed by visual-embedding similarity reranking.",
+      "severity": "HIGH",
+      "score": 91
+    },
+    {
+      "rank": 3,
+      "title": "Relative-Time & Fuzzy Temporal Query Resolution",
+      "failure_type": "expression",
+      "sub_category": "temporal_vagueness",
+      "problem_description": "Human episodic memory remembers seasons, life milestones, or relative spans ('last summer', 'around college graduation'), but search demands calendar dates.",
+      "solution_direction": "Calendar-agnostic temporal mapping that translates relative phrases into dynamic probabilistic date windows.",
+      "severity": "HIGH",
+      "score": 88
+    },
+    {
+      "rank": 4,
+      "title": "Progressive Refinement & Anti-Scroll Fallback",
+      "failure_type": "recovery",
+      "sub_category": "fallback_to_scroll",
+      "problem_description": "When a query produces 0 results or noisy results, users have no interactive affordance to narrow the search; each edit wipes context, forcing endless timeline scrolling.",
+      "solution_direction": "Context-preserving query chips and interactive facet sliders (e.g. 'Only during summer', 'Exclude screenshots', 'Photos with people').",
+      "severity": "HIGH",
+      "score": 85
+    },
+    {
+      "rank": 5,
+      "title": "Evaluative Context & Result Disambiguation",
+      "failure_type": "evaluation",
+      "sub_category": "too_many_similar",
+      "problem_description": "Search displays dense grids of visually similar thumbnails without showing dates, locations, or why a photo matched, making target verification exhausting.",
+      "solution_direction": "Memory-anchored result cards displaying match rationales, landmark tags, and timeline markers on hover/tap.",
+      "severity": "MEDIUM",
+      "score": 79
+    },
+    {
+      "rank": 6,
+      "title": "Utility Document & OCR Isolation in Personal Memory Search",
+      "failure_type": "interpretation",
+      "sub_category": "clutter_pollutes_results",
+      "problem_description": "Searches for personal visual memories return prescription bottles, receipt screenshots, and memes that contain coincidental text or color matches.",
+      "solution_direction": "Strict intent classification separating Utility/Document retrieval from Personal Episodic Recall.",
+      "severity": "MEDIUM",
+      "score": 74
+    }
+  ],
+  "ranking_comparison": [
+    {
+      "rank_new": 1,
+      "title": "Compositional Retrieval Gap (Multi-Cue Failure)",
+      "old_volume_rank": 5,
+      "old_metric": "6.8% volume (raw mentions)",
+      "new_metric": "34.2% of Bucket-A Retrieval Failures",
+      "shift": "UP (+4)",
+      "pm_rationale": "In the raw corpus, users don't say 'compositional query'. They say 'I searched beach Goa restaurant and got nothing'. When filtered for actual retrieval breakdowns, this is the #1 root cause of failed searches."
+    },
+    {
+      "rank_new": 2,
+      "title": "Gemini / Ask Photos Intent & Hallucination Friction",
+      "old_volume_rank": 9,
+      "old_metric": "3.1% volume",
+      "new_metric": "22.5% of Bucket-A Retrieval Failures",
+      "shift": "UP (+7)",
+      "pm_rationale": "Ask Photos was introduced recently; raw volume is lower than 10 years of backup complaints. However, for future retrieval strategy, conversational AI failure is the top emerging strategic risk."
+    },
+    {
+      "rank_new": 3,
+      "title": "Relative-Time & Temporal Vagueness",
+      "old_volume_rank": 4,
+      "old_metric": "14.2% volume",
+      "new_metric": "19.8% of Bucket-A Retrieval Failures",
+      "shift": "UP (+1)",
+      "pm_rationale": "Human memory is episodic and relative. When users cannot recall exact calendar months, search hits a wall, creating direct drop-off."
+    },
+    {
+      "rank_new": 4,
+      "title": "Refinement Recovery & Endless Scroll Fatigue",
+      "old_volume_rank": 3,
+      "old_metric": "18.4% volume",
+      "new_metric": "15.6% of Bucket-A Retrieval Failures",
+      "shift": "DOWN (-1)",
+      "pm_rationale": "Scrolling fatigue is a symptom of failed recovery, not an isolated preference. It occurs when initial search fails and offers no progressive narrowing."
+    },
+    {
+      "rank_new": 5,
+      "title": "Screenshot & Meme Clutter Polluting Search",
+      "old_volume_rank": 1,
+      "old_metric": "29.1% volume (Top Old Symptom)",
+      "new_metric": "7.9% of Bucket-A Retrieval Failures",
+      "shift": "DOWN (-4)",
+      "pm_rationale": "In the old pipeline, clutter ranked #1 because thousands of users complain about storage limits and memes filling their feed. In retrieval with partial memory, clutter is an aggravating factor, not the primary query breakdown."
+    }
+  ]
+}

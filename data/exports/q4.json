@@ -1,0 +1,272 @@
+{
+  "question_id": 4,
+  "question_text": "How do users formulate searches when their memory is incomplete?",
+  "question_short": "Incomplete Query Formulation",
+  "total_relevant_docs": 251,
+  "avg_confidence": 0.897,
+  "breakdown": [
+    {
+      "label": "Literal Keyword Overfitting",
+      "tag": "literal_keyword",
+      "count": 35,
+      "pct": 30.4,
+      "avg_confidence": 0.881,
+      "color": "#ef4444"
+    },
+    {
+      "label": "Gemini Natural Language Misinterpretation",
+      "tag": "gemini_misinterprets",
+      "count": 26,
+      "pct": 22.6,
+      "avg_confidence": 0.892,
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Entity / Noun Not Recognized",
+      "tag": "entity_not_recognized",
+      "count": 18,
+      "pct": 15.7,
+      "avg_confidence": 0.939,
+      "color": "#f97316"
+    },
+    {
+      "label": "Compositional Multi-Cue Collapse",
+      "tag": "compositional_query_fail",
+      "count": 12,
+      "pct": 10.4,
+      "avg_confidence": 0.899,
+      "color": "#a855f7"
+    },
+    {
+      "label": "Conversational Restart on Retry",
+      "tag": "gemini_conversation_dead_end",
+      "count": 9,
+      "pct": 7.8,
+      "avg_confidence": 0.854,
+      "color": "#ec4899"
+    },
+    {
+      "label": "Temporal Drift / Fuzzy Date Guess",
+      "tag": "temporal_query_drift",
+      "count": 11,
+      "pct": 9.6,
+      "avg_confidence": 0.92,
+      "color": "#f59e0b"
+    },
+    {
+      "label": "Vague Spatial Keyword",
+      "tag": "vague_spatial",
+      "count": 4,
+      "pct": 3.5,
+      "avg_confidence": 0.905,
+      "color": "#10b981"
+    }
+  ],
+  "source_attribution": [
+    {
+      "label": "Literal Keyword Overfitting",
+      "tag": "literal_keyword",
+      "avg_confidence": 0.881,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 13,
+          "pct": 37.1
+        },
+        {
+          "source": "App Store",
+          "count": 6,
+          "pct": 17.1
+        },
+        {
+          "source": "Reddit",
+          "count": 5,
+          "pct": 14.3
+        },
+        {
+          "source": "Hacker News",
+          "count": 9,
+          "pct": 25.7
+        },
+        {
+          "source": "YouTube",
+          "count": 2,
+          "pct": 5.7
+        }
+      ]
+    },
+    {
+      "label": "Gemini Natural Language Misinterpretation",
+      "tag": "gemini_misinterprets",
+      "avg_confidence": 0.892,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 12,
+          "pct": 46.2
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 3.8
+        },
+        {
+          "source": "Reddit",
+          "count": 10,
+          "pct": 38.5
+        },
+        {
+          "source": "Hacker News",
+          "count": 3,
+          "pct": 11.5
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Entity / Noun Not Recognized",
+      "tag": "entity_not_recognized",
+      "avg_confidence": 0.939,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 6,
+          "pct": 33.3
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 5.6
+        },
+        {
+          "source": "Reddit",
+          "count": 4,
+          "pct": 22.2
+        },
+        {
+          "source": "Hacker News",
+          "count": 6,
+          "pct": 33.3
+        },
+        {
+          "source": "YouTube",
+          "count": 1,
+          "pct": 5.6
+        }
+      ]
+    },
+    {
+      "label": "Compositional Multi-Cue Collapse",
+      "tag": "compositional_query_fail",
+      "avg_confidence": 0.899,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 4,
+          "pct": 33.3
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 3,
+          "pct": 25.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 5,
+          "pct": 41.7
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "I search up human, animal, painting, rollercoaster, all things that ARE IN MY CAMERA ROLL and all things I've looked up before. it used to find these thing",
+      "confidence": 0.96,
+      "source": "Play Store",
+      "tags": [
+        "compositional query fail",
+        "visual detail"
+      ]
+    },
+    {
+      "text": "Search results are giving me photos that have nothing to do with the search term.",
+      "confidence": 0.96,
+      "source": "Reddit",
+      "tags": [
+        "literal keyword match",
+        "text content"
+      ]
+    },
+    {
+      "text": "the ability for me to use the search term \"SubGenius.\" I use this term to label religious images, and now all the images I have labeled thusly are unsearchable.",
+      "confidence": 0.95,
+      "source": "Play Store",
+      "tags": [
+        "literal keyword match",
+        "text content"
+      ]
+    },
+    {
+      "text": "searching for individual files by name does not work properly because it does read file names it ONLY READ THE CONTENT IN THE FILES",
+      "confidence": 0.95,
+      "source": "Play Store",
+      "tags": [
+        "literal keyword match",
+        "text content"
+      ]
+    },
+    {
+      "text": "I wonder whats the usefulness of the search if you cant find your pictures without seeing \"no results",
+      "confidence": 0.95,
+      "source": "Play Store",
+      "tags": [
+        "compositional query fail",
+        "combined"
+      ]
+    }
+  ],
+  "query_terms": [
+    {
+      "text": "Literal Single-Noun Guess",
+      "value": 35
+    },
+    {
+      "text": "Natural Language Prompt Drift",
+      "value": 26
+    },
+    {
+      "text": "Unrecognized Entity Noun",
+      "value": 18
+    },
+    {
+      "text": "Compound Multi-Cue Query",
+      "value": 12
+    },
+    {
+      "text": "Conversational Dead-End",
+      "value": 9
+    },
+    {
+      "text": "Temporal Guess Drift",
+      "value": 6
+    },
+    {
+      "text": "Spatial Fragment Query",
+      "value": 4
+    }
+  ]
+}

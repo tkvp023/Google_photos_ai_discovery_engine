@@ -1,0 +1,275 @@
+{
+  "question_id": 5,
+  "question_text": "Why does search return completely irrelevant photos or say 'No results found' for photos users know are in their library?",
+  "question_short": "Irrelevant Results & False Misses",
+  "total_relevant_docs": 251,
+  "avg_confidence": 0.9,
+  "breakdown": [
+    {
+      "label": "Literal Keyword Overfitting (Exact Miss)",
+      "tag": "literal_keyword_match",
+      "count": 35,
+      "pct": 27.6,
+      "avg_confidence": 0.881,
+      "color": "#ef4444"
+    },
+    {
+      "label": "Facial Misidentification / Wrong Person",
+      "tag": "wrong_face_match",
+      "count": 29,
+      "pct": 22.8,
+      "avg_confidence": 0.936,
+      "color": "#f97316"
+    },
+    {
+      "label": "Gemini Generative Drift & Hallucination",
+      "tag": "gemini_misinterprets",
+      "count": 26,
+      "pct": 20.5,
+      "avg_confidence": 0.892,
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Entity / Concept Not Recognized",
+      "tag": "entity_not_recognized",
+      "count": 18,
+      "pct": 14.2,
+      "avg_confidence": 0.939,
+      "color": "#10b981"
+    },
+    {
+      "label": "Missing Context in Results",
+      "tag": "no_context_in_results",
+      "count": 11,
+      "pct": 8.7,
+      "avg_confidence": 0.867,
+      "color": "#8b5cf6"
+    },
+    {
+      "label": "Clutter Masking Real Memories",
+      "tag": "clutter_pollutes_results",
+      "count": 8,
+      "pct": 6.3,
+      "avg_confidence": 0.836,
+      "color": "#ec4899"
+    }
+  ],
+  "source_attribution": [
+    {
+      "label": "Literal Keyword Overfitting (Exact Miss)",
+      "tag": "literal_keyword_match",
+      "avg_confidence": 0.881,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 13,
+          "pct": 37.1
+        },
+        {
+          "source": "App Store",
+          "count": 6,
+          "pct": 17.1
+        },
+        {
+          "source": "Reddit",
+          "count": 5,
+          "pct": 14.3
+        },
+        {
+          "source": "Hacker News",
+          "count": 9,
+          "pct": 25.7
+        },
+        {
+          "source": "YouTube",
+          "count": 2,
+          "pct": 5.7
+        }
+      ]
+    },
+    {
+      "label": "Facial Misidentification / Wrong Person",
+      "tag": "wrong_face_match",
+      "avg_confidence": 0.936,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 12,
+          "pct": 41.4
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 3.4
+        },
+        {
+          "source": "Reddit",
+          "count": 15,
+          "pct": 51.7
+        },
+        {
+          "source": "Hacker News",
+          "count": 1,
+          "pct": 3.4
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Gemini Generative Drift & Hallucination",
+      "tag": "gemini_misinterprets",
+      "avg_confidence": 0.892,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 12,
+          "pct": 46.2
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 3.8
+        },
+        {
+          "source": "Reddit",
+          "count": 10,
+          "pct": 38.5
+        },
+        {
+          "source": "Hacker News",
+          "count": 3,
+          "pct": 11.5
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Entity / Concept Not Recognized",
+      "tag": "entity_not_recognized",
+      "avg_confidence": 0.939,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 6,
+          "pct": 33.3
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 5.6
+        },
+        {
+          "source": "Reddit",
+          "count": 4,
+          "pct": 22.2
+        },
+        {
+          "source": "Hacker News",
+          "count": 6,
+          "pct": 33.3
+        },
+        {
+          "source": "YouTube",
+          "count": 1,
+          "pct": 5.6
+        }
+      ]
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "You still can't search \"gorilla\" in Google Photos",
+      "confidence": 0.98,
+      "source": "Hacker News",
+      "tags": [
+        "entity not recognized",
+        "visual detail"
+      ]
+    },
+    {
+      "text": "It fails to recognise pets in a lot of photos",
+      "confidence": 0.98,
+      "source": "Play Store",
+      "tags": [
+        "entity not recognized",
+        "person"
+      ]
+    },
+    {
+      "text": "Now, when I search for something like; tyre, home, or cat, it does not properly display anything from my collection.",
+      "confidence": 0.95,
+      "source": "Play Store",
+      "tags": [
+        "entity not recognized",
+        "visual detail"
+      ]
+    },
+    {
+      "text": "Google photos search for cats shows me dogs and a search for dogs shows me cats",
+      "confidence": 0.95,
+      "source": "Hacker News",
+      "tags": [
+        "entity not recognized",
+        "visual detail"
+      ]
+    },
+    {
+      "text": "They show you pictures a decade old vs the most recent one with no way to sort",
+      "confidence": 0.95,
+      "source": "Play Store",
+      "tags": [
+        "no context in results",
+        "time"
+      ]
+    }
+  ],
+  "retrieval_treemap": [
+    {
+      "theme": "Semantic Vision Gaps",
+      "children": [
+        {
+          "name": "Literal Keyword Overfitting",
+          "value": 35
+        },
+        {
+          "name": "Entity Not Recognized",
+          "value": 18
+        },
+        {
+          "name": "Missing Context in Results",
+          "value": 11
+        }
+      ]
+    },
+    {
+      "theme": "AI Generative & Identity Failures",
+      "children": [
+        {
+          "name": "Facial Misidentification",
+          "value": 29
+        },
+        {
+          "name": "Gemini Generative Drift",
+          "value": 26
+        }
+      ]
+    },
+    {
+      "theme": "Library Pollution Masking",
+      "children": [
+        {
+          "name": "Clutter Masking Real Photos",
+          "value": 8
+        }
+      ]
+    }
+  ]
+}
