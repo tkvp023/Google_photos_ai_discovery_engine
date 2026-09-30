@@ -4,9 +4,17 @@ Chains: normalize → language filter → relevance filter → deduplicate.
 """
 
 import json
+import sys
 import time
 from pathlib import Path
 from typing import List, Dict, Optional
+
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 from tqdm import tqdm
 
@@ -156,7 +164,7 @@ class CleaningPipeline:
     def _save_stats(self):
         """Save cleaning statistics to a JSON file."""
         stats_path = self.data_dir / "cleaning_stats.json"
-        with open(stats_path, "w") as f:
+        with open(stats_path, "w", encoding="utf-8") as f:
             json.dump(self.stats, f, indent=2)
 
     def _print_summary(self):

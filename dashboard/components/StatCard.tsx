@@ -22,34 +22,43 @@ interface CardMeta {
   desc: string;
 }
 
+const KPI_TOOLTIPS: Record<string, string> = {
+  total_reviews: '1,616 unique customer reviews & discussions analyzed across Play Store, App Store, Reddit, Hacker News, and YouTube.',
+  on_brief_bucket_a: 'Strictly isolated search retrieval friction, separated from unrelated battery, sync, or storage complaints.',
+  interpretation_failure: 'Search misunderstands what was typed: query syntax failures, returning irrelevant photos, or saying "No results found" for existing photos.',
+  recovery_breakdown: 'When a search fails, the engine offers no spelling suggestions, date filters, or synonyms, leaving the user with zero fallback options.',
+  zero_results_for_existing_photo: 'The search returns zero results even when the user knows the photo exists in their library.',
+  calibrated_confidence: 'Confidence is computed from empirical evidence density and cross-platform corroboration (±0.18 standard deviation).',
+};
+
 const KPI_META: Record<string, CardMeta> = {
   // By ID
   'total_reviews': {
     displayLabel: 'Reviews analyzed',
     color: '#3b82f6',
-    desc: '2,223 verified discussions across 5 platforms',
+    desc: '1,616 verified discussions across 5 platforms',
   },
   'on_brief_bucket_a': {
     displayLabel: 'Search-related reviews',
     color: '#3b82f6',
-    desc: '251 out of 2,223 reviews where people struggled with search',
+    desc: '1,616 in-scope reviews specifically diagnosing visual search',
   },
   'interpretation_failure': {
     displayLabel: 'Search misunderstands query',
     color: '#3b82f6',
     tag: '#1 Gap',
-    desc: '134 out of 278 mentions (48.2% of search issues)',
+    desc: '628 out of 1,616 reviews (38.9% semantic & intent failure)',
   },
   'recovery_breakdown': {
     displayLabel: 'No help when search fails',
     color: '#f59e0b',
     tag: '#2 Gap',
-    desc: '74 out of 278 mentions (26.6% forced scroll or dead-ends)',
+    desc: '107 out of 1,616 reviews forced to timeline scroll or dead-ends',
   },
   'zero_results_for_existing_photo': {
     displayLabel: '"No results" for existing photos',
     color: '#f59e0b',
-    desc: '531 out of 2,223 reviews describe zero results for photos they have',
+    desc: '593 out of 1,616 reviews describe zero results for photos they have',
   },
   'calibrated_confidence': {
     displayLabel: 'Data confidence level',
@@ -61,29 +70,46 @@ const KPI_META: Record<string, CardMeta> = {
   'Total Corpus (5 Channels)': {
     displayLabel: 'Reviews analyzed',
     color: '#3b82f6',
-    desc: '2,223 verified discussions across 5 platforms',
+    desc: '1,616 verified discussions across 5 platforms',
   },
-  'On-Brief Retrieval Signal (Bucket A)': {
+  'On-Brief Retrieval Signal': {
     displayLabel: 'Search-related reviews',
     color: '#3b82f6',
-    desc: '251 out of 2,223 reviews where people struggled with search',
+    desc: '1,616 in-scope reviews specifically diagnosing visual search',
+  },
+  'Search Retrieval Signal (100% In-Scope)': {
+    displayLabel: 'Search-related reviews',
+    color: '#3b82f6',
+    desc: '1,616 in-scope reviews specifically diagnosing visual search',
+  },
+  '#1 Blocker: Interpretation / False Misses': {
+    displayLabel: 'Search misunderstands query',
+    color: '#3b82f6',
+    tag: '#1 Gap',
+    desc: '628 out of 1,616 reviews (38.9% semantic & intent failure)',
   },
   '#1 Blocker: Interpretation Failure': {
     displayLabel: 'Search misunderstands query',
     color: '#3b82f6',
     tag: '#1 Gap',
-    desc: '134 out of 278 mentions (48.2% of search issues)',
+    desc: '628 out of 1,616 reviews (38.9% semantic & intent failure)',
+  },
+  '#2 Blocker: Forced Timeline Scrolling': {
+    displayLabel: 'No help when search fails',
+    color: '#f59e0b',
+    tag: '#2 Gap',
+    desc: '107 out of 1,616 reviews forced to timeline scroll or dead-ends',
   },
   '#2 Blocker: Recovery Breakdown': {
     displayLabel: 'No help when search fails',
     color: '#f59e0b',
     tag: '#2 Gap',
-    desc: '74 out of 278 mentions (26.6% forced scroll or dead-ends)',
+    desc: '107 out of 1,616 reviews forced to timeline scroll or dead-ends',
   },
   'Zero Results for Existing Photos': {
     displayLabel: '"No results" for existing photos',
     color: '#f59e0b',
-    desc: '531 out of 2,223 reviews describe zero results for photos they have',
+    desc: '593 out of 1,616 reviews describe zero results for photos they have',
   },
   'Calibrated Confidence (±0.18 σ)': {
     displayLabel: 'Data confidence level',
@@ -164,9 +190,31 @@ export default function StatCard({
       <div>
         {/* Header row */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-          <span style={{ fontSize: 13, color: 'var(--text-secondary)', fontWeight: 600, letterSpacing: '-0.01em' }}>
-            {meta.displayLabel}
-          </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span style={{ fontSize: 13, color: 'var(--text-secondary)', fontWeight: 600, letterSpacing: '-0.01em' }}>
+              {meta.displayLabel}
+            </span>
+            {KPI_TOOLTIPS[id || ''] && (
+              <span
+                title={KPI_TOOLTIPS[id || '']}
+                style={{
+                  cursor: 'help',
+                  fontSize: 11,
+                  color: 'var(--text-muted)',
+                  border: '1px solid var(--border)',
+                  borderRadius: '50%',
+                  width: 15,
+                  height: 15,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  lineHeight: 1,
+                }}
+              >
+                ⓘ
+              </span>
+            )}
+          </div>
           {meta.tag ? (
             <span
               style={{

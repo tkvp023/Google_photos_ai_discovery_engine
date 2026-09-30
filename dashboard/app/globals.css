@@ -1496,6 +1496,80 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   EVALUATOR & REDESIGN COMPONENTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Context banner above hero */
+.brief-banner {
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.08) 0%, rgba(13, 20, 36, 0.6) 50%, rgba(34, 197, 94, 0.08) 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Core brief question card */
+.core-question-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 26px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.core-question-card:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* How the Engine Works pipeline */
+.pipeline-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  position: relative;
+}
+.pipeline-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.2s ease;
+}
+.pipeline-step:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-card-hover);
+}
+.pipeline-step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+  margin-bottom: 12px;
+}
+
+/* Inline tooltip animations */
+.inline-tooltip-container:hover .inline-tooltip-bubble,
+.inline-tooltip-container:focus .inline-tooltip-bubble {
+  animation: fadeSlideUp 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    REDUCED MOTION
    ═══════════════════════════════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
@@ -1506,3 +1580,4 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     scroll-behavior: auto !important;
   }
 }
+

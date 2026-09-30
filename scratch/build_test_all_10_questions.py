@@ -106,7 +106,7 @@ q1_specs = [
     ("Spontaneous Gatherings & Dinners", "event_context", "SELECT d.source, COUNT(*), AVG(fpt.confidence) FROM failure_point_tags fpt JOIN documents d ON fpt.doc_id = d.doc_id WHERE fpt.memory_cue_type = 'event_context' GROUP BY d.source", (), "#fb7185"),
     ("Specific Vacation Places & Shacks", "place_settings", "SELECT d.source, COUNT(*), AVG(fpt.confidence) FROM failure_point_tags fpt JOIN documents d ON fpt.doc_id = d.doc_id WHERE fpt.memory_cue_type = 'place' GROUP BY d.source", (), "#06b6d4"),
 ]
-b1, a1 = build_question_data(conn, q1_specs, 278)
+b1, a1 = build_question_data(conn, q1_specs, 1616)
 q1_quotes = fetch_distinct_quotes(conn, "fpt.memory_cue_type IN ('combined', 'person', 'time', 'visual_detail')")
 print(f"Q1: sum={sum(b['count'] for b in b1)}, quotes={len(q1_quotes)}")
 
@@ -120,7 +120,7 @@ q2_specs = [
     ("Atmosphere & Emotional Tone", "emotional_tone", "SELECT d.source, COUNT(*), AVG(fpt.confidence) FROM failure_point_tags fpt JOIN documents d ON fpt.doc_id = d.doc_id WHERE fpt.memory_cue_type = 'event_context' GROUP BY d.source", (), "#fb7185"),
     ("Setting / Environment (Beach, Cafe)", "setting_cue", "SELECT d.source, COUNT(*), AVG(fpt.confidence) FROM failure_point_tags fpt JOIN documents d ON fpt.doc_id = d.doc_id WHERE fpt.memory_cue_type = 'place' GROUP BY d.source", (), "#06b6d4"),
 ]
-b2, a2 = build_question_data(conn, q2_specs, 278)
+b2, a2 = build_question_data(conn, q2_specs, 1616)
 q2_quotes = fetch_distinct_quotes(conn, "fpt.memory_cue_type IN ('visual_detail', 'person', 'time', 'event_context', 'place') AND fpt.sub_category NOT IN ('wrong_face_match')")
 print(f"Q2: sum={sum(b['count'] for b in b2)}, quotes={len(q2_quotes)}")
 

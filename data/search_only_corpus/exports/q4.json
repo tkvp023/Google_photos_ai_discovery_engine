@@ -1,0 +1,253 @@
+{
+  "question_id": 4,
+  "question_text": "How do users formulate searches when their memory is incomplete?",
+  "question_short": "Incomplete Query Formulation",
+  "total_relevant_docs": 1368,
+  "avg_confidence": 0.917,
+  "breakdown": [
+    {
+      "label": "Literal Keyword Guessing",
+      "tag": "literal_keyword_guessing",
+      "count": 777,
+      "pct": 56.8,
+      "avg_confidence": 0.93,
+      "color": "#ef4444"
+    },
+    {
+      "label": "Natural Language Prompt Formulation",
+      "tag": "natural_language_prompt_formulation",
+      "count": 576,
+      "pct": 42.1,
+      "avg_confidence": 0.919,
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Entity / Noun Not Recognized",
+      "tag": "entity_/_noun_not_recognized",
+      "count": 93,
+      "pct": 6.8,
+      "avg_confidence": 0.922,
+      "color": "#f97316"
+    },
+    {
+      "label": "Compositional Multi-Cue Collapse",
+      "tag": "compositional_multi-cue_collapse",
+      "count": 1171,
+      "pct": 85.6,
+      "avg_confidence": 0.918,
+      "color": "#a855f7"
+    },
+    {
+      "label": "Conversational Dead-End on Prompt",
+      "tag": "conversational_dead-end_on_prompt",
+      "count": 32,
+      "pct": 2.3,
+      "avg_confidence": 0.966,
+      "color": "#ec4899"
+    }
+  ],
+  "source_attribution": [
+    {
+      "label": "Literal Keyword Guessing",
+      "tag": "literal_keyword_guessing",
+      "avg_confidence": 0.93,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 416,
+          "pct": 53.5
+        },
+        {
+          "source": "Hacker News",
+          "count": 285,
+          "pct": 36.7
+        },
+        {
+          "source": "App Store",
+          "count": 35,
+          "pct": 4.5
+        },
+        {
+          "source": "Reddit",
+          "count": 20,
+          "pct": 2.6
+        },
+        {
+          "source": "YouTube",
+          "count": 21,
+          "pct": 2.7
+        }
+      ]
+    },
+    {
+      "label": "Natural Language Prompt Formulation",
+      "tag": "natural_language_prompt_formulation",
+      "avg_confidence": 0.919,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 303,
+          "pct": 52.6
+        },
+        {
+          "source": "Hacker News",
+          "count": 205,
+          "pct": 35.6
+        },
+        {
+          "source": "App Store",
+          "count": 39,
+          "pct": 6.8
+        },
+        {
+          "source": "Reddit",
+          "count": 24,
+          "pct": 4.2
+        },
+        {
+          "source": "YouTube",
+          "count": 5,
+          "pct": 0.9
+        }
+      ]
+    },
+    {
+      "label": "Entity / Noun Not Recognized",
+      "tag": "entity_/_noun_not_recognized",
+      "avg_confidence": 0.922,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 43,
+          "pct": 46.2
+        },
+        {
+          "source": "Hacker News",
+          "count": 46,
+          "pct": 49.5
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 1.1
+        },
+        {
+          "source": "Reddit",
+          "count": 3,
+          "pct": 3.2
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Compositional Multi-Cue Collapse",
+      "tag": "compositional_multi-cue_collapse",
+      "avg_confidence": 0.918,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 681,
+          "pct": 58.2
+        },
+        {
+          "source": "Hacker News",
+          "count": 366,
+          "pct": 31.3
+        },
+        {
+          "source": "App Store",
+          "count": 68,
+          "pct": 5.8
+        },
+        {
+          "source": "Reddit",
+          "count": 41,
+          "pct": 3.5
+        },
+        {
+          "source": "YouTube",
+          "count": 15,
+          "pct": 1.3
+        }
+      ]
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "Always demonstrating to people how easy it was to find a photo i.e. 'Dog in a hat'. Now the search has changed to AI and it's terrible. Even changing to classic, the same search will show your photo briefly, then change to 'Nothing found' or a huge list of random garbage.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "both",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "wanted to try to find a remembered example of using Ground Penetrating Radar to find hidden roads in Northern Spain and Southern France, yet for everything tried I could not get Google to actually return results that would ever focus on what it was I actually wanted.",
+      "confidence": 0.99,
+      "source": "Hacker News",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "when searching for key words, it gave the option for \"most recent\" or \"best match\", that is still there but under most recent it showed searched key words and organized it by date. I have to now pinch zoom x2 for it to break down into chronological order.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Try searching photos now. It’s a nightmare. I’m getting the most random scattered results whereas before it was all organized with the correct search, if I searched “Trees” I’d get pictures of trees not a picture of my Dog sitting on the couch.",
+      "confidence": 0.99,
+      "source": "App Store",
+      "tags": [
+        "gemini ai",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Disappointed to see that when you search and then select a photo and then go back your search is no longer there and you are on the main screen. Let's say I want to look at all my Disney photos, I don't want to re-search \"Disney\" every time",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    }
+  ],
+  "query_terms": [
+    {
+      "text": "Literal Single-Noun Guess",
+      "value": 38
+    },
+    {
+      "text": "Natural Language Prompt Drift",
+      "value": 28
+    },
+    {
+      "text": "Unrecognized Entity Noun",
+      "value": 16
+    },
+    {
+      "text": "Compound Multi-Cue Query",
+      "value": 11
+    },
+    {
+      "text": "Conversational Dead-End",
+      "value": 8
+    }
+  ]
+}

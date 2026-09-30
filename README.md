@@ -8,7 +8,17 @@ Analyzing visual memory retrieval friction in Google Photos — understanding ho
 Scrape → Clean → Classify (LLM) → Quantify → Dashboard
 ```
 
-**Data Sources (Unified Multi-Platform Corpus — 2,223 Documents)**: Google Play Store (975), Apple App Store (608), Reddit (319), Hacker News (242), YouTube (79)
+**Data Sources (Search-Only Retrieval Corpus — 1,616 Verified Documents)**:
+- **Google Play Store**: 969 documents (60.0%)
+- **Hacker News**: 455 documents (28.2%)
+- **Apple App Store**: 111 documents (6.9%)
+- **Reddit**: 54 documents (3.3%)
+- **YouTube**: 27 documents (1.7%)
+
+**Integrity & Scoping Standard**:
+- **Collection-Level Scoping**: 100% search-based retrieval attempts by construction (classic keyword & Ask Photos/Gemini AI). Generic timeline scrolling, backup bugs, and app crashes strictly excluded.
+- **100.0% Verifiable Substrings**: Every in-scope quote is an exact, character-for-character verifiable substring from raw review text (`INSTR > 0`).
+- **7 Retrieval Flow Stages**: Intent (877) → Articulation (339) → Search (1,348) → Initial Results (593) → Scrolling Results (92) → Iterative Refinement (33) → Outcome (477).
 
 ## Quick Start
 

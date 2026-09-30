@@ -146,7 +146,7 @@ def cmd_stats():
                 count = 0
                 for batch_file in source_dir.glob("batch_*.json"):
                     try:
-                        with open(batch_file) as f:
+                        with open(batch_file, "r", encoding="utf-8") as f:
                             count += len(json.load(f))
                     except Exception:
                         pass
@@ -160,7 +160,7 @@ def cmd_stats():
         clean_count = 0
         for batch_file in clean_dir.glob("clean_batch_*.json"):
             try:
-                with open(batch_file) as f:
+                with open(batch_file, "r", encoding="utf-8") as f:
                     clean_count += len(json.load(f))
             except Exception:
                 pass
@@ -171,7 +171,7 @@ def cmd_stats():
     # Cleaning stats
     stats_file = data_dir / "cleaning_stats.json"
     if stats_file.exists():
-        with open(stats_file) as f:
+        with open(stats_file, "r", encoding="utf-8") as f:
             stats = json.load(f)
         print(f"\n  📈 Cleaning Stats:")
         print(f"     Retention rate: {stats.get('retention_rate', 'N/A')}%")
@@ -197,7 +197,7 @@ def cmd_stats():
         print(f"\n  🔖 Checkpoints:")
         for cp_file in sorted(checkpoint_dir.glob("*_checkpoint.json")):
             try:
-                with open(cp_file) as f:
+                with open(cp_file, "r", encoding="utf-8") as f:
                     cp = json.load(f)
                 name = cp_file.stem.replace("_checkpoint", "")
                 print(f"     {name:20s} → {cp.get('status', 'unknown'):12s} ({cp.get('docs_scraped', 0):,} docs)")

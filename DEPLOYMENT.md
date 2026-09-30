@@ -22,7 +22,7 @@ This repository is architected for dual-cloud production deployment:
   • Python / Uvicorn Server (pipeline.rag.server:app)
   • Scikit-Learn TF-IDF + Cosine Vector Engine
   • Gemini 3.7 / 3.6 Flash LLM Synthesis with Groq Fallback
-  • 2,223 Classified Voice-of-Customer Review Corpus
+  • 1,616 Classified Voice-of-Customer Review Corpus
 ```
 
 ---
@@ -69,7 +69,7 @@ This repository is architected for dual-cloud production deployment:
    ```json
    {
      "status": "ok",
-     "vectors": 2223,
+     "vectors": 1616,
      "model": "gemini-3.7-flash + vector-store"
    }
    ```
@@ -147,7 +147,7 @@ Open: `http://localhost:3000`
 ## 5. Deployment Verification Checklist
 
 - [ ] Railway service reports status `Active` with green deployment indicator.
-- [ ] `https://<railway-domain>/health` returns `{"status": "ok", "vectors": 2223}`.
+- [ ] `https://<railway-domain>/health` returns `{"status": "ok", "vectors": 1616}`.
 - [ ] Vercel deployment completes with **Exit Code 0** across all 17 static routes.
 - [ ] Navigating between `/`, `/questions/1`, `/gaps`, and `/ask` is fast and responsive.
 - [ ] Dark Mode and Light Mode toggle seamlessly using the top-right controls.

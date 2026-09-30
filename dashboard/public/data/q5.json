@@ -2,115 +2,139 @@
   "question_id": 5,
   "question_text": "Why does search return completely irrelevant photos or say 'No results found' for photos users know are in their library?",
   "question_short": "Irrelevant Results & False Misses",
-  "total_relevant_docs": 251,
-  "avg_confidence": 0.9,
+  "total_relevant_docs": 650,
+  "avg_confidence": 0.935,
   "breakdown": [
     {
-      "label": "Literal Keyword Overfitting (Exact Miss)",
-      "tag": "literal_keyword_match",
-      "count": 35,
-      "pct": 27.6,
-      "avg_confidence": 0.881,
+      "label": "False Miss / Zero Results Shock",
+      "tag": "false_miss_/_zero_results_shock",
+      "count": 25,
+      "pct": 3.8,
+      "avg_confidence": 0.957,
       "color": "#ef4444"
     },
     {
-      "label": "Facial Misidentification / Wrong Person",
-      "tag": "wrong_face_match",
-      "count": 29,
-      "pct": 22.8,
-      "avg_confidence": 0.936,
+      "label": "Irrelevant / Wrong Photo Returned",
+      "tag": "irrelevant_/_wrong_photo_returned",
+      "count": 45,
+      "pct": 6.9,
+      "avg_confidence": 0.944,
       "color": "#f97316"
     },
     {
-      "label": "Gemini Generative Drift & Hallucination",
-      "tag": "gemini_misinterprets",
-      "count": 26,
-      "pct": 20.5,
-      "avg_confidence": 0.892,
+      "label": "Facial Misidentification / Wrong Person",
+      "tag": "facial_misidentification_/_wrong_person",
+      "count": 0,
+      "pct": 0.0,
+      "avg_confidence": 0.88,
       "color": "#3b82f6"
     },
     {
-      "label": "Entity / Concept Not Recognized",
-      "tag": "entity_not_recognized",
-      "count": 18,
-      "pct": 14.2,
-      "avg_confidence": 0.939,
-      "color": "#10b981"
+      "label": "Gemini AI Generative Hallucination",
+      "tag": "gemini_ai_generative_hallucination",
+      "count": 287,
+      "pct": 44.2,
+      "avg_confidence": 0.937,
+      "color": "#a855f7"
     },
     {
-      "label": "Missing Context in Results",
-      "tag": "no_context_in_results",
-      "count": 11,
-      "pct": 8.7,
-      "avg_confidence": 0.867,
-      "color": "#8b5cf6"
-    },
-    {
-      "label": "Clutter Masking Real Memories",
-      "tag": "clutter_pollutes_results",
-      "count": 8,
-      "pct": 6.3,
-      "avg_confidence": 0.836,
+      "label": "Clutter Polluting Results",
+      "tag": "clutter_polluting_results",
+      "count": 30,
+      "pct": 4.6,
+      "avg_confidence": 0.936,
       "color": "#ec4899"
     }
   ],
   "source_attribution": [
     {
-      "label": "Literal Keyword Overfitting (Exact Miss)",
-      "tag": "literal_keyword_match",
-      "avg_confidence": 0.881,
+      "label": "False Miss / Zero Results Shock",
+      "tag": "false_miss_/_zero_results_shock",
+      "avg_confidence": 0.957,
       "sources": [
         {
           "source": "Play Store",
-          "count": 13,
-          "pct": 37.1
-        },
-        {
-          "source": "App Store",
-          "count": 6,
-          "pct": 17.1
-        },
-        {
-          "source": "Reddit",
-          "count": 5,
-          "pct": 14.3
+          "count": 12,
+          "pct": 48.0
         },
         {
           "source": "Hacker News",
-          "count": 9,
-          "pct": 25.7
+          "count": 6,
+          "pct": 24.0
+        },
+        {
+          "source": "App Store",
+          "count": 4,
+          "pct": 16.0
+        },
+        {
+          "source": "Reddit",
+          "count": 3,
+          "pct": 12.0
         },
         {
           "source": "YouTube",
-          "count": 2,
-          "pct": 5.7
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Irrelevant / Wrong Photo Returned",
+      "tag": "irrelevant_/_wrong_photo_returned",
+      "avg_confidence": 0.944,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 25,
+          "pct": 55.6
+        },
+        {
+          "source": "Hacker News",
+          "count": 8,
+          "pct": 17.8
+        },
+        {
+          "source": "App Store",
+          "count": 9,
+          "pct": 20.0
+        },
+        {
+          "source": "Reddit",
+          "count": 3,
+          "pct": 6.7
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
         }
       ]
     },
     {
       "label": "Facial Misidentification / Wrong Person",
-      "tag": "wrong_face_match",
-      "avg_confidence": 0.936,
+      "tag": "facial_misidentification_/_wrong_person",
+      "avg_confidence": 0.88,
       "sources": [
         {
           "source": "Play Store",
-          "count": 12,
-          "pct": 41.4
-        },
-        {
-          "source": "App Store",
-          "count": 1,
-          "pct": 3.4
-        },
-        {
-          "source": "Reddit",
-          "count": 15,
-          "pct": 51.7
+          "count": 0,
+          "pct": 0.0
         },
         {
           "source": "Hacker News",
-          "count": 1,
-          "pct": 3.4
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 0,
+          "pct": 0.0
         },
         {
           "source": "YouTube",
@@ -120,114 +144,87 @@
       ]
     },
     {
-      "label": "Gemini Generative Drift & Hallucination",
-      "tag": "gemini_misinterprets",
-      "avg_confidence": 0.892,
+      "label": "Gemini AI Generative Hallucination",
+      "tag": "gemini_ai_generative_hallucination",
+      "avg_confidence": 0.937,
       "sources": [
         {
           "source": "Play Store",
-          "count": 12,
-          "pct": 46.2
-        },
-        {
-          "source": "App Store",
-          "count": 1,
-          "pct": 3.8
-        },
-        {
-          "source": "Reddit",
-          "count": 10,
-          "pct": 38.5
+          "count": 135,
+          "pct": 47.0
         },
         {
           "source": "Hacker News",
-          "count": 3,
-          "pct": 11.5
-        },
-        {
-          "source": "YouTube",
-          "count": 0,
-          "pct": 0.0
-        }
-      ]
-    },
-    {
-      "label": "Entity / Concept Not Recognized",
-      "tag": "entity_not_recognized",
-      "avg_confidence": 0.939,
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 6,
-          "pct": 33.3
+          "count": 115,
+          "pct": 40.1
         },
         {
           "source": "App Store",
-          "count": 1,
-          "pct": 5.6
+          "count": 17,
+          "pct": 5.9
         },
         {
           "source": "Reddit",
-          "count": 4,
-          "pct": 22.2
-        },
-        {
-          "source": "Hacker News",
-          "count": 6,
-          "pct": 33.3
+          "count": 18,
+          "pct": 6.3
         },
         {
           "source": "YouTube",
-          "count": 1,
-          "pct": 5.6
+          "count": 2,
+          "pct": 0.7
         }
       ]
     }
   ],
   "key_quotes": [
     {
-      "text": "You still can't search \"gorilla\" in Google Photos",
-      "confidence": 0.98,
+      "text": "Always demonstrating to people how easy it was to find a photo i.e. 'Dog in a hat'. Now the search has changed to AI and it's terrible. Even changing to classic, the same search will show your photo briefly, then change to 'Nothing found' or a huge list of random garbage.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "both",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "wanted to try to find a remembered example of using Ground Penetrating Radar to find hidden roads in Northern Spain and Southern France, yet for everything tried I could not get Google to actually return results that would ever focus on what it was I actually wanted.",
+      "confidence": 0.99,
       "source": "Hacker News",
       "tags": [
-        "entity not recognized",
-        "visual detail"
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
       ]
     },
     {
-      "text": "It fails to recognise pets in a lot of photos",
-      "confidence": 0.98,
+      "text": "when searching for key words, it gave the option for \"most recent\" or \"best match\", that is still there but under most recent it showed searched key words and organized it by date. I have to now pinch zoom x2 for it to break down into chronological order.",
+      "confidence": 0.99,
       "source": "Play Store",
       "tags": [
-        "entity not recognized",
-        "person"
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
       ]
     },
     {
-      "text": "Now, when I search for something like; tyre, home, or cat, it does not properly display anything from my collection.",
-      "confidence": 0.95,
+      "text": "Try searching photos now. It’s a nightmare. I’m getting the most random scattered results whereas before it was all organized with the correct search, if I searched “Trees” I’d get pictures of trees not a picture of my Dog sitting on the couch.",
+      "confidence": 0.99,
+      "source": "App Store",
+      "tags": [
+        "gemini ai",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Disappointed to see that when you search and then select a photo and then go back your search is no longer there and you are on the main screen. Let's say I want to look at all my Disney photos, I don't want to re-search \"Disney\" every time",
+      "confidence": 0.99,
       "source": "Play Store",
       "tags": [
-        "entity not recognized",
-        "visual detail"
-      ]
-    },
-    {
-      "text": "Google photos search for cats shows me dogs and a search for dogs shows me cats",
-      "confidence": 0.95,
-      "source": "Hacker News",
-      "tags": [
-        "entity not recognized",
-        "visual detail"
-      ]
-    },
-    {
-      "text": "They show you pictures a decade old vs the most recent one with no way to sort",
-      "confidence": 0.95,
-      "source": "Play Store",
-      "tags": [
-        "no context in results",
-        "time"
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
       ]
     }
   ],
@@ -236,16 +233,16 @@
       "theme": "Semantic Vision Gaps",
       "children": [
         {
-          "name": "Literal Keyword Overfitting",
-          "value": 35
+          "name": "Zero Results Shock",
+          "value": 42
+        },
+        {
+          "name": "Irrelevant Wrong Photos",
+          "value": 31
         },
         {
           "name": "Entity Not Recognized",
-          "value": 18
-        },
-        {
-          "name": "Missing Context in Results",
-          "value": 11
+          "value": 15
         }
       ]
     },
@@ -254,11 +251,11 @@
       "children": [
         {
           "name": "Facial Misidentification",
-          "value": 29
+          "value": 24
         },
         {
           "name": "Gemini Generative Drift",
-          "value": 26
+          "value": 19
         }
       ]
     },
@@ -267,7 +264,7 @@
       "children": [
         {
           "name": "Clutter Masking Real Photos",
-          "value": 8
+          "value": 14
         }
       ]
     }

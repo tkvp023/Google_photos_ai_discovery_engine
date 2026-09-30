@@ -1,0 +1,223 @@
+{
+  "question_id": 9,
+  "question_text": "Why does searching for text inside photos (receipts, prescriptions, documents, signs) fail for users?",
+  "question_short": "Text & Document Search Failures",
+  "total_relevant_docs": 347,
+  "avg_confidence": 0.917,
+  "breakdown": [
+    {
+      "label": "Literal Keyword Match on Text",
+      "tag": "literal_keyword_match_on_text",
+      "count": 119,
+      "pct": 34.3,
+      "avg_confidence": 0.94,
+      "color": "#d946ef"
+    },
+    {
+      "label": "OCR Reading & Dropout Failures",
+      "tag": "ocr_reading_&_dropout_failures",
+      "count": 131,
+      "pct": 37.8,
+      "avg_confidence": 0.9,
+      "color": "#f59e0b"
+    },
+    {
+      "label": "Receipt / Financial Document Search",
+      "tag": "receipt_/_financial_document_search",
+      "count": 18,
+      "pct": 5.2,
+      "avg_confidence": 0.908,
+      "color": "#06b6d4"
+    },
+    {
+      "label": "AI Semantic Drift on Document Queries",
+      "tag": "ai_semantic_drift_on_document_queries",
+      "count": 149,
+      "pct": 42.9,
+      "avg_confidence": 0.914,
+      "color": "#3b82f6"
+    }
+  ],
+  "source_attribution": [
+    {
+      "label": "Literal Keyword Match on Text",
+      "tag": "literal_keyword_match_on_text",
+      "avg_confidence": 0.94,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 64,
+          "pct": 53.8
+        },
+        {
+          "source": "Hacker News",
+          "count": 45,
+          "pct": 37.8
+        },
+        {
+          "source": "App Store",
+          "count": 7,
+          "pct": 5.9
+        },
+        {
+          "source": "Reddit",
+          "count": 3,
+          "pct": 2.5
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "OCR Reading & Dropout Failures",
+      "tag": "ocr_reading_&_dropout_failures",
+      "avg_confidence": 0.9,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 56,
+          "pct": 42.7
+        },
+        {
+          "source": "Hacker News",
+          "count": 65,
+          "pct": 49.6
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 8,
+          "pct": 6.1
+        },
+        {
+          "source": "YouTube",
+          "count": 2,
+          "pct": 1.5
+        }
+      ]
+    },
+    {
+      "label": "Receipt / Financial Document Search",
+      "tag": "receipt_/_financial_document_search",
+      "avg_confidence": 0.908,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 1,
+          "pct": 5.6
+        },
+        {
+          "source": "Hacker News",
+          "count": 15,
+          "pct": 83.3
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 2,
+          "pct": 11.1
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "AI Semantic Drift on Document Queries",
+      "tag": "ai_semantic_drift_on_document_queries",
+      "avg_confidence": 0.914,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 59,
+          "pct": 39.6
+        },
+        {
+          "source": "Hacker News",
+          "count": 81,
+          "pct": 54.4
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 8,
+          "pct": 5.4
+        },
+        {
+          "source": "YouTube",
+          "count": 1,
+          "pct": 0.7
+        }
+      ]
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "when searching for key words, it gave the option for \"most recent\" or \"best match\", that is still there but under most recent it showed searched key words and organized it by date. I have to now pinch zoom x2 for it to break down into chronological order.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Plus figuring out how to word intuitive thought into what AI needs to find photos & still receive less accurate results. You can switch Classic and Gemini but, even Classic is affected to the point that it's less accurate.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "both",
+        "Initial Results",
+        "Intent"
+      ]
+    },
+    {
+      "text": "Half of my date searches now return zero results unless I use very specific (unintuitive) date formats. Photos repeat when scrolling search results, and the results aren’t as relevant as they were in the past.",
+      "confidence": 0.99,
+      "source": "App Store",
+      "tags": [
+        "classic keyword",
+        "Initial Results",
+        "Intent"
+      ]
+    },
+    {
+      "text": "\"Waterloo patios with friendname\" - me looking for when I last saw that person remembering it was on a patio. \"Driveway or sidewalk\" \"cottage docks\" \"receipts\" \"Memes with Ted Cruz fleeing to Mexico\"",
+      "confidence": 0.99,
+      "source": "Hacker News",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Previously, You could add a label to a photo, and then search for that photo based on the label you added. Now the new AI search feature doesn't read those labels.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "both",
+        "Articulation",
+        "Initial Results"
+      ]
+    }
+  ]
+}

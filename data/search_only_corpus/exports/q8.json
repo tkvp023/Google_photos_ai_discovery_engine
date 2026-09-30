@@ -1,0 +1,223 @@
+{
+  "question_id": 8,
+  "question_text": "What specific failures do users report with People & Pets / facial recognition search?",
+  "question_short": "Face Recognition Failures",
+  "total_relevant_docs": 890,
+  "avg_confidence": 0.91,
+  "breakdown": [
+    {
+      "label": "Wrong Face Match / Merged Identities",
+      "tag": "wrong_face_match_/_merged_identities",
+      "count": 3,
+      "pct": 0.3,
+      "avg_confidence": 0.917,
+      "color": "#ef4444"
+    },
+    {
+      "label": "Untagged Person in Candid / Group Photos",
+      "tag": "untagged_person_in_candid_/_group_photos",
+      "count": 88,
+      "pct": 9.9,
+      "avg_confidence": 0.901,
+      "color": "#f59e0b"
+    },
+    {
+      "label": "Duplicate / Split Person Albums",
+      "tag": "duplicate_/_split_person_albums",
+      "count": 51,
+      "pct": 5.7,
+      "avg_confidence": 0.903,
+      "color": "#a855f7"
+    },
+    {
+      "label": "Pet Recognition & Tagging Failures",
+      "tag": "pet_recognition_&_tagging_failures",
+      "count": 486,
+      "pct": 54.6,
+      "avg_confidence": 0.911,
+      "color": "#06b6d4"
+    }
+  ],
+  "source_attribution": [
+    {
+      "label": "Wrong Face Match / Merged Identities",
+      "tag": "wrong_face_match_/_merged_identities",
+      "avg_confidence": 0.917,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 3,
+          "pct": 100.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Untagged Person in Candid / Group Photos",
+      "tag": "untagged_person_in_candid_/_group_photos",
+      "avg_confidence": 0.901,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 56,
+          "pct": 63.6
+        },
+        {
+          "source": "Hacker News",
+          "count": 24,
+          "pct": 27.3
+        },
+        {
+          "source": "App Store",
+          "count": 2,
+          "pct": 2.3
+        },
+        {
+          "source": "Reddit",
+          "count": 5,
+          "pct": 5.7
+        },
+        {
+          "source": "YouTube",
+          "count": 1,
+          "pct": 1.1
+        }
+      ]
+    },
+    {
+      "label": "Duplicate / Split Person Albums",
+      "tag": "duplicate_/_split_person_albums",
+      "avg_confidence": 0.903,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 44,
+          "pct": 86.3
+        },
+        {
+          "source": "Hacker News",
+          "count": 4,
+          "pct": 7.8
+        },
+        {
+          "source": "App Store",
+          "count": 2,
+          "pct": 3.9
+        },
+        {
+          "source": "Reddit",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "YouTube",
+          "count": 1,
+          "pct": 2.0
+        }
+      ]
+    },
+    {
+      "label": "Pet Recognition & Tagging Failures",
+      "tag": "pet_recognition_&_tagging_failures",
+      "avg_confidence": 0.911,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 275,
+          "pct": 56.6
+        },
+        {
+          "source": "Hacker News",
+          "count": 176,
+          "pct": 36.2
+        },
+        {
+          "source": "App Store",
+          "count": 21,
+          "pct": 4.3
+        },
+        {
+          "source": "Reddit",
+          "count": 10,
+          "pct": 2.1
+        },
+        {
+          "source": "YouTube",
+          "count": 4,
+          "pct": 0.8
+        }
+      ]
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "Always demonstrating to people how easy it was to find a photo i.e. 'Dog in a hat'. Now the search has changed to AI and it's terrible. Even changing to classic, the same search will show your photo briefly, then change to 'Nothing found' or a huge list of random garbage.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "both",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Try searching photos now. It’s a nightmare. I’m getting the most random scattered results whereas before it was all organized with the correct search, if I searched “Trees” I’d get pictures of trees not a picture of my Dog sitting on the couch.",
+      "confidence": 0.99,
+      "source": "App Store",
+      "tags": [
+        "gemini ai",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "For example, if you search for December 2017, it won’t show all photos from December 2017 (that would be too easy, right?), instead it’s showing you a subset of those + some photos that were not even taken in December 2017.",
+      "confidence": 0.99,
+      "source": "App Store",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Plus figuring out how to word intuitive thought into what AI needs to find photos & still receive less accurate results. You can switch Classic and Gemini but, even Classic is affected to the point that it's less accurate.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "both",
+        "Initial Results",
+        "Intent"
+      ]
+    },
+    {
+      "text": "\"Waterloo patios with friendname\" - me looking for when I last saw that person remembering it was on a patio. \"Driveway or sidewalk\" \"cottage docks\" \"receipts\" \"Memes with Ted Cruz fleeing to Mexico\"",
+      "confidence": 0.99,
+      "source": "Hacker News",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    }
+  ]
+}

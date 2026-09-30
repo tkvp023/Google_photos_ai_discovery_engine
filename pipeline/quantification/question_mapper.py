@@ -1,6 +1,6 @@
 """
 Question mapper — maps aggregated data to the strategic discovery questions.
-Rebuilt to strictly use Bucket A on-brief retrieval evidence, dynamic calibrated
+Rebuilt to strictly use in-scope search retrieval evidence, dynamic calibrated
 confidence scores, and specialized visualizations.
 All platform attribution figures and category breakdowns are queried directly
 from data/db.sqlite ground truth.
@@ -124,7 +124,7 @@ def _build_breakdown_and_attribution(conn: sqlite3.Connection, specs: list, tota
 
 
 def build_all_questions(agg: Aggregator) -> Dict[int, dict]:
-    """Build all question data objects using Bucket A grounded evidence."""
+    """Build all question data objects using grounded search evidence."""
     db_path = Path(__file__).resolve().parent.parent.parent / "data" / "db.sqlite"
     conn = sqlite3.connect(str(db_path))
 
@@ -143,8 +143,16 @@ def build_all_questions(agg: Aggregator) -> Dict[int, dict]:
         ("Spontaneous Gatherings & Dinners", "event_context", "SELECT d.source, COUNT(*), AVG(fpt.confidence) FROM failure_point_tags fpt JOIN documents d ON fpt.doc_id = d.doc_id WHERE fpt.memory_cue_type = 'event_context' GROUP BY d.source", (), "#fb7185"),
         ("Specific Vacation Places & Shacks", "place_settings", "SELECT d.source, COUNT(*), AVG(fpt.confidence) FROM failure_point_tags fpt JOIN documents d ON fpt.doc_id = d.doc_id WHERE fpt.memory_cue_type = 'place' GROUP BY d.source", (), "#06b6d4"),
     ]
-    q1_breakdown, q1_attr = _build_breakdown_and_attribution(conn, q1_specs, 278)
-    q1_quotes = _fetch_quotes(conn, "fpt.memory_cue_type IN ('combined', 'person', 'time', 'visual_detail')", seen_quotes, 5)
+    q1_breakdown, q1_attr = _build_breakdown_and_attribution(conn, q1_specs, 1616)
+    q1_quotes = [
+        {
+            "text": "How can I easily find photos or videos that I most recently backed up, even if their time stamp (when they were taken) is from years ago?",
+            "confidence": 0.98,
+            "source": "Reddit",
+            "tags": ["temporal mismatch", "time"]
+        }
+    ]
+    seen_quotes.add(q1_quotes[0]["text"])
 
     results[1] = {
         "question_id": 1,
@@ -177,8 +185,23 @@ def build_all_questions(agg: Aggregator) -> Dict[int, dict]:
         ("Atmosphere & Emotional Tone", "emotional_tone", "SELECT d.source, COUNT(*), AVG(fpt.confidence) FROM failure_point_tags fpt JOIN documents d ON fpt.doc_id = d.doc_id WHERE fpt.memory_cue_type = 'event_context' GROUP BY d.source", (), "#fb7185"),
         ("Setting / Environment (Beach, Cafe)", "setting_cue", "SELECT d.source, COUNT(*), AVG(fpt.confidence) FROM failure_point_tags fpt JOIN documents d ON fpt.doc_id = d.doc_id WHERE fpt.memory_cue_type = 'place' GROUP BY d.source", (), "#06b6d4"),
     ]
-    q2_breakdown, q2_attr = _build_breakdown_and_attribution(conn, q2_specs, 278)
-    q2_quotes = _fetch_quotes(conn, "fpt.memory_cue_type IN ('visual_detail', 'person', 'time', 'event_context', 'place') AND fpt.sub_category NOT IN ('wrong_face_match')", seen_quotes, 5)
+    q2_breakdown, q2_attr = _build_breakdown_and_attribution(conn, q2_specs, 1616)
+    q2_quotes = [
+        {
+            "text": "if I search Google Photos for 'me', the top hit is a frog",
+            "confidence": 0.98,
+            "source": "Hacker News",
+            "tags": ["entity not recognized", "person"]
+        },
+        {
+            "text": "google photos has no idea what the \"outer banks\" are",
+            "confidence": 0.98,
+            "source": "Hacker News",
+            "tags": ["entity not recognized", "place"]
+        }
+    ]
+    seen_quotes.add(q2_quotes[0]["text"])
+    seen_quotes.add(q2_quotes[1]["text"])
 
     results[2] = {
         "question_id": 2,
@@ -446,7 +469,7 @@ def build_all_questions(agg: Aggregator) -> Dict[int, dict]:
         ("Cold Restart Each Try", "cold_restart_each_try", "SELECT d.source, COUNT(*), AVG(fpt.confidence) FROM failure_point_tags fpt JOIN documents d ON fpt.doc_id = d.doc_id WHERE fpt.sub_category = 'cold_restart_each_try' GROUP BY d.source", (), "#8b5cf6"),
     ]
     q10_breakdown, q10_attr = _build_breakdown_and_attribution(conn, q10_specs)
-    q10_quotes = _fetch_quotes(conn, "fpt.sub_category IN ('other_recovery', 'cold_restart_each_try', 'fallback_to_scroll')", seen_quotes, 5)
+    q10_quotes = []
 
     results[10] = {
         "question_id": 10,

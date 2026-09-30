@@ -1,0 +1,337 @@
+{
+  "generated_at": "2026-09-21T07:49:35.096942+00:00",
+  "total_documents": 1616,
+  "total_search_in_scope": 1616,
+  "quote_grounding_rate_pct": 100.0,
+  "platform_counts": {
+    "Play Store": 969,
+    "Hacker News": 455,
+    "App Store": 111,
+    "Reddit": 54,
+    "YouTube": 27
+  },
+  "issue_breakdown": [
+    {
+      "label": "Zero Recall / False Misses on Existing Photos",
+      "tag": "zero_recall",
+      "count": 29,
+      "pct": 1.8,
+      "avg_confidence": 0.942,
+      "color": "#ef4444"
+    },
+    {
+      "label": "Literal Keyword Mismatch & Query Brittleness",
+      "tag": "literal_keyword",
+      "count": 174,
+      "pct": 10.8,
+      "avg_confidence": 0.936,
+      "color": "#f97316"
+    },
+    {
+      "label": "Date Amnesia & Temporal Mismatch",
+      "tag": "temporal_amnesia",
+      "count": 797,
+      "pct": 49.3,
+      "avg_confidence": 0.91,
+      "color": "#f59e0b"
+    },
+    {
+      "label": "Forced Fallback to Endless Scrolling",
+      "tag": "fallback_to_scroll",
+      "count": 107,
+      "pct": 6.6,
+      "avg_confidence": 0.915,
+      "color": "#a855f7"
+    },
+    {
+      "label": "Gemini AI Generative Drift & Dead-Ends",
+      "tag": "gemini_drift",
+      "count": 627,
+      "pct": 38.8,
+      "avg_confidence": 0.911,
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Facial Misidentification & Identity Clustering",
+      "tag": "face_clustering_gap",
+      "count": 446,
+      "pct": 27.6,
+      "avg_confidence": 0.909,
+      "color": "#06b6d4"
+    },
+    {
+      "label": "Screenshot & Utility Clutter Intrusion",
+      "tag": "clutter_overflow",
+      "count": 95,
+      "pct": 5.9,
+      "avg_confidence": 0.914,
+      "color": "#ec4899"
+    },
+    {
+      "label": "Search Abandonment & External Workarounds",
+      "tag": "search_abandonment",
+      "count": 101,
+      "pct": 6.2,
+      "avg_confidence": 0.901,
+      "color": "#22c55e"
+    }
+  ],
+  "gap_quotes": {
+    "zero_recall": [
+      {
+        "quote": "Always demonstrating to people how easy it was to find a photo i.e. 'Dog in a hat'. Now the search has changed to AI and it's terrible. Even changing to classic, the same search will show your photo briefly, then change to 'Nothing found' or a huge list of random garbage.",
+        "confidence": 0.99,
+        "source": "Playstore",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      },
+      {
+        "quote": "If in a few years you want to find \"that photo of me you took on the beach in north carolina\", with a quick search you can. There are annoying limitations though... google photos has no idea what the \"outer banks\" are... and returns no results.",
+        "confidence": 0.99,
+        "source": "Hackernews",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      },
+      {
+        "quote": "9 out of 10 of my searches results in \"No Results\" found. Only the most basic and broad searches work. If you search for \"Dog\", you will get some results, but if you search for \"Big Dog\", you will get No Results.",
+        "confidence": 0.99,
+        "source": "Reddit",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      }
+    ],
+    "literal_keyword": [
+      {
+        "quote": "wanted to try to find a remembered example of using Ground Penetrating Radar to find hidden roads in Northern Spain and Southern France, yet for everything tried I could not get Google to actually return results that would ever focus on what it was I actually wanted.",
+        "confidence": 0.99,
+        "source": "Hackernews",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      },
+      {
+        "quote": "when searching for key words, it gave the option for \"most recent\" or \"best match\", that is still there but under most recent it showed searched key words and organized it by date. I have to now pinch zoom x2 for it to break down into chronological order.",
+        "confidence": 0.99,
+        "source": "Playstore",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      },
+      {
+        "quote": "Plus figuring out how to word intuitive thought into what AI needs to find photos & still receive less accurate results. You can switch Classic and Gemini but, even Classic is affected to the point that it's less accurate.",
+        "confidence": 0.99,
+        "source": "Playstore",
+        "stages": [
+          "Initial Results",
+          "Intent"
+        ],
+        "sub_category": "Initial Results"
+      }
+    ],
+    "temporal_amnesia": [
+      {
+        "quote": "when searching for key words, it gave the option for \"most recent\" or \"best match\", that is still there but under most recent it showed searched key words and organized it by date. I have to now pinch zoom x2 for it to break down into chronological order.",
+        "confidence": 0.99,
+        "source": "Playstore",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      },
+      {
+        "quote": "Try searching photos now. It’s a nightmare. I’m getting the most random scattered results whereas before it was all organized with the correct search, if I searched “Trees” I’d get pictures of trees not a picture of my Dog sitting on the couch.",
+        "confidence": 0.99,
+        "source": "Appstore",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      },
+      {
+        "quote": "If in a few years you want to find \"that photo of me you took on the beach in north carolina\", with a quick search you can. There are annoying limitations though... google photos has no idea what the \"outer banks\" are... and returns no results.",
+        "confidence": 0.99,
+        "source": "Hackernews",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      }
+    ],
+    "fallback_to_scroll": [
+      {
+        "quote": "If in a few years you want to find \"that photo of me you took on the beach in north carolina\", with a quick search you can. There are annoying limitations though... google photos has no idea what the \"outer banks\" are... and returns no results.",
+        "confidence": 0.99,
+        "source": "Hackernews",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      },
+      {
+        "quote": "When searching for photos for other apps using search at a certain point scrolling breaks and list jumps up... Also search is VERY censored. Can't find tons of things because of it. I must reformulate quarries to get results.",
+        "confidence": 0.99,
+        "source": "Playstore",
+        "stages": [
+          "Initial Results",
+          "Iterative Refinement"
+        ],
+        "sub_category": "Initial Results"
+      },
+      {
+        "quote": "Half of my date searches now return zero results unless I use very specific (unintuitive) date formats. Photos repeat when scrolling search results, and the results aren’t as relevant as they were in the past.",
+        "confidence": 0.99,
+        "source": "Appstore",
+        "stages": [
+          "Initial Results",
+          "Intent"
+        ],
+        "sub_category": "Initial Results"
+      }
+    ],
+    "gemini_drift": [
+      {
+        "quote": "Always demonstrating to people how easy it was to find a photo i.e. 'Dog in a hat'. Now the search has changed to AI and it's terrible. Even changing to classic, the same search will show your photo briefly, then change to 'Nothing found' or a huge list of random garbage.",
+        "confidence": 0.99,
+        "source": "Playstore",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      },
+      {
+        "quote": "wanted to try to find a remembered example of using Ground Penetrating Radar to find hidden roads in Northern Spain and Southern France, yet for everything tried I could not get Google to actually return results that would ever focus on what it was I actually wanted.",
+        "confidence": 0.99,
+        "source": "Hackernews",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      },
+      {
+        "quote": "Try searching photos now. It’s a nightmare. I’m getting the most random scattered results whereas before it was all organized with the correct search, if I searched “Trees” I’d get pictures of trees not a picture of my Dog sitting on the couch.",
+        "confidence": 0.99,
+        "source": "Appstore",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      }
+    ],
+    "face_clustering_gap": [
+      {
+        "quote": "Always demonstrating to people how easy it was to find a photo i.e. 'Dog in a hat'. Now the search has changed to AI and it's terrible. Even changing to classic, the same search will show your photo briefly, then change to 'Nothing found' or a huge list of random garbage.",
+        "confidence": 0.99,
+        "source": "Playstore",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      },
+      {
+        "quote": "When searching for photos for other apps using search at a certain point scrolling breaks and list jumps up... Also search is VERY censored. Can't find tons of things because of it. I must reformulate quarries to get results.",
+        "confidence": 0.99,
+        "source": "Playstore",
+        "stages": [
+          "Initial Results",
+          "Iterative Refinement"
+        ],
+        "sub_category": "Initial Results"
+      },
+      {
+        "quote": "For example, if you search for December 2017, it won’t show all photos from December 2017 (that would be too easy, right?), instead it’s showing you a subset of those + some photos that were not even taken in December 2017.",
+        "confidence": 0.99,
+        "source": "Appstore",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      }
+    ],
+    "clutter_overflow": [
+      {
+        "quote": "For example, if I used to look up the word restaurant, it would show me all the photos of restaurants... Now it's no longer works. I search for a very specific word and no longer do my items come up with that word.",
+        "confidence": 0.99,
+        "source": "Playstore",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      },
+      {
+        "quote": "\"Waterloo patios with friendname\" - me looking for when I last saw that person remembering it was on a patio. \"Driveway or sidewalk\" \"cottage docks\" \"receipts\" \"Memes with Ted Cruz fleeing to Mexico\"",
+        "confidence": 0.99,
+        "source": "Hackernews",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      },
+      {
+        "quote": "Why is it that when I type my phone's format of screenshot \"Screenshot_XXXX\" or even plainly \"Screenshots\", I get not only some screenshots, but also a lot of normal photos?",
+        "confidence": 0.99,
+        "source": "Reddit",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      }
+    ],
+    "search_abandonment": [
+      {
+        "quote": "I can search for text in the images, object categories, etc. and Google does a half-decent job of finding what I’m looking for (e.g. when checking into a Hotel, I’ve searched for “license plate” to get my car’s license plate number...",
+        "confidence": 0.99,
+        "source": "Hackernews",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      },
+      {
+        "quote": "Plus figuring out how to word intuitive thought into what AI needs to find photos & still receive less accurate results. You can switch Classic and Gemini but, even Classic is affected to the point that it's less accurate.",
+        "confidence": 0.99,
+        "source": "Playstore",
+        "stages": [
+          "Initial Results",
+          "Intent"
+        ],
+        "sub_category": "Initial Results"
+      },
+      {
+        "quote": "I went to the search bar and typed \"videos\" and I was suggested a \"Videos\" result with a play button. I clicked that and then scrolled back and found the video I was looking for.",
+        "confidence": 0.99,
+        "source": "Reddit",
+        "stages": [
+          "Articulation",
+          "Initial Results"
+        ],
+        "sub_category": "Articulation"
+      }
+    ]
+  }
+}

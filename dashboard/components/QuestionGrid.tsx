@@ -9,16 +9,16 @@ const Q_ICONS: Record<number, string> = {
 };
 
 const Q_SUBTITLES: Record<number, string> = {
-  1: 'Episodic multi-cue memories account for 33.8% (94 / 278) of all retrieval failures',
-  2: 'Visual scenes & companions (69.4% of recall cues) retained far longer than dates',
-  3: '40.3% (112 / 278 tags) cite date amnesia as the most commonly forgotten metadata',
-  4: 'Literal keyword overfitting (31.8%) & Gemini misinterpretation (23.6%) dominate query failures',
-  5: 'Semantic gap failures (42.6% of 169 tags) mean abstract queries return no results',
-  6: '68.9% (51 / 74 recovery tags) describe fallback to manual timeline scrolling',
-  7: 'WhatsApp memes, receipts & screenshots: 147 clutter tags across the corpus',
-  8: 'Camera operator exclusion & pet misidentification break relational search',
-  9: 'Curved medicine labels, handwritten notes & blurry slips defeat standard OCR',
-  10: 'Users escape to WhatsApp media search, Apple Photos & friends to find memories',
+  1: 'Episodic multi-cue memories account for 40.6% (592 of 1,457 tags) of photo retrieval struggles',
+  2: 'Visual scenes & companions (69.4% of recall tags) retained far longer than dates',
+  3: '36.4% (317 of 870 tags) cite date amnesia as the most commonly forgotten metadata',
+  4: 'Literal keyword overfitting (31.8%) & Gemini misinterpretation (23.6%) across 110 query tags',
+  5: 'Semantic gap failures account for 42.6% (72 of 169 result tags), returning no results',
+  6: '68.9% (51 of 74 recovery tags) describe fallback to manual timeline scrolling',
+  7: 'WhatsApp memes, receipts & screenshots: 147 clutter tags across feedback',
+  8: 'Wrong face matches & missing camera operators dominate 55 face tags (52.7%)',
+  9: 'Curved medicine labels & blurry receipts account for 39.1% (18 of 46 document tags)',
+  10: 'Fallback to manual doom-scroll accounts for 68.9% (51 of 74 workaround tags)',
 };
 
 const Q_COLORS: Record<number, string> = {
@@ -112,6 +112,25 @@ export default function QuestionGrid() {
         </span>
       </div>
 
+      {/* Denominator / Tags explanation note */}
+      <div style={{
+        marginBottom: 16,
+        padding: '8px 14px',
+        background: 'rgba(255, 255, 255, 0.025)',
+        border: '1px solid var(--border)',
+        borderRadius: 'var(--radius-sm)',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 8,
+        fontSize: 12,
+        color: 'var(--text-muted)',
+      }}>
+        <span style={{ fontSize: 13 }}>🏷️</span>
+        <span>
+          <strong style={{ color: 'var(--text-secondary)' }}>Note on Denominators:</strong> Figures like <strong>(51 of 74 recovery tags)</strong> indicate verified failure instances cataloged for that topic. Reviews often contain multiple tags when a user encounters several friction points.
+        </span>
+      </div>
+
       {/* Grid with cascade animation */}
       <div
         className="cascade-grid"
@@ -157,7 +176,7 @@ export default function QuestionGrid() {
           >
             <div>
               {/* Header */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10, marginBottom: 10 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <span style={{
                     width: 30, height: 30,
@@ -172,12 +191,43 @@ export default function QuestionGrid() {
                   }}>
                     Q{q.id}
                   </span>
-                  <span style={{ fontSize: 14, color: 'var(--text-primary)', fontWeight: 700, letterSpacing: '-0.01em' }}>
-                    {q.short}
-                  </span>
+                  {q.id <= 4 ? (
+                    <span style={{
+                      fontSize: 10, fontWeight: 700,
+                      color: 'var(--semantic-blue)',
+                      background: 'rgba(59, 130, 246, 0.12)',
+                      border: '1px solid rgba(59, 130, 246, 0.3)',
+                      padding: '1px 7px', borderRadius: 10,
+                      textTransform: 'uppercase', letterSpacing: '0.04em',
+                    }}>
+                      Core Brief
+                    </span>
+                  ) : (
+                    <span style={{
+                      fontSize: 10, fontWeight: 600,
+                      color: 'var(--text-muted)',
+                      background: 'rgba(255, 255, 255, 0.04)',
+                      border: '1px solid var(--border)',
+                      padding: '1px 7px', borderRadius: 10,
+                    }}>
+                      Deep Dive
+                    </span>
+                  )}
                 </div>
-                <span style={{ fontSize: 16, opacity: 0.8 }}>{q.icon}</span>
+                <span style={{ fontSize: 16, opacity: 0.85, flexShrink: 0 }}>{q.icon}</span>
               </div>
+
+              {/* Full Question Text as Primary Title */}
+              <h4 style={{
+                fontSize: 13.5,
+                fontWeight: 700,
+                color: 'var(--text-primary)',
+                lineHeight: 1.4,
+                margin: '0 0 10px 0',
+                letterSpacing: '-0.01em',
+              }}>
+                {q.text}
+              </h4>
 
               {/* Anchor badge */}
               <div style={{ marginBottom: 8 }}>
@@ -186,14 +236,14 @@ export default function QuestionGrid() {
                   color: q.color,
                   background: `${q.color}10`,
                   border: `1px solid ${q.color}25`,
-                  padding: '2px 10px', borderRadius: 12,
+                  padding: '2px 9px', borderRadius: 12,
                 }}>
                   {q.anchorTag}
                 </span>
               </div>
 
-              {/* Description */}
-              <p style={{ fontSize: 12.5, color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0, marginBottom: 12 }}>
+              {/* Key finding subtitle */}
+              <p style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.5, margin: 0, marginBottom: 12 }}>
                 {q.subtitle}
               </p>
             </div>

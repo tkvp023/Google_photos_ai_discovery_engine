@@ -1,0 +1,220 @@
+{
+  "$schema": "canonical_metrics_v1",
+  "generated_at": "2026-09-23T09:00:00.000000+00:00",
+  "corpus_metadata": {
+    "corpus_name": "Google Photos Search-Only Retrieval Corpus",
+    "scope": "Strict Search-Based Retrieval (Collection-Level Scoping)",
+    "total_in_scope_docs": 1616,
+    "raw_harvest_pool": 25551,
+    "excluded_out_of_scope_docs": 23815,
+    "ambiguous_isolation_cohort_docs": 120,
+    "quote_grounding_verified_pct": 100.0
+  },
+  "failure_stages": {
+    "expression": {
+      "rank": 1,
+      "stage_id": "expression",
+      "label": "Expression (Query Articulation Gap)",
+      "plain_title": "Can't find the right words",
+      "doc_count": 953,
+      "doc_percentage": 58.97,
+      "rounded_percentage": 59.0,
+      "denominator": 1616,
+      "avg_confidence": 0.91,
+      "color": "#f59e0b"
+    },
+    "interpretation": {
+      "rank": 2,
+      "stage_id": "interpretation",
+      "label": "Interpretation (Semantic & Intent Failure)",
+      "plain_title": "Search misunderstands query",
+      "doc_count": 628,
+      "doc_percentage": 38.86,
+      "rounded_percentage": 38.9,
+      "denominator": 1616,
+      "avg_confidence": 0.90,
+      "color": "#3b82f6"
+    },
+    "recovery": {
+      "rank": 3,
+      "stage_id": "recovery",
+      "label": "Recovery (Refinement Dead-Ends & Timeline Fallback)",
+      "plain_title": "No help when search fails",
+      "doc_count": 26,
+      "doc_percentage": 1.61,
+      "rounded_percentage": 1.6,
+      "denominator": 1616,
+      "avg_confidence": 0.92,
+      "color": "#fb923c"
+    },
+    "evaluation": {
+      "rank": 4,
+      "stage_id": "evaluation",
+      "label": "Evaluation (Disambiguation & Context Overload)",
+      "plain_title": "Can't spot the right photo",
+      "doc_count": 9,
+      "doc_percentage": 0.56,
+      "rounded_percentage": 0.6,
+      "denominator": 1616,
+      "avg_confidence": 0.88,
+      "color": "#8b5cf6"
+    }
+  },
+  "failure_subcategories": {
+    "vague_memory_cue": {
+      "sub_category_id": "vague_memory_cue",
+      "parent_stage": "expression",
+      "label": "Vague Memory Cue",
+      "doc_count": 867,
+      "corpus_percentage": 53.65,
+      "rounded_corpus_percentage": 53.7,
+      "stage_percentage": 90.98,
+      "rounded_stage_percentage": 91.0,
+      "denominator": 1616,
+      "stage_denominator": 953
+    },
+    "literal_keyword_match": {
+      "sub_category_id": "literal_keyword_match",
+      "parent_stage": "interpretation",
+      "label": "Literal Keyword Match",
+      "doc_count": 609,
+      "corpus_percentage": 37.69,
+      "rounded_corpus_percentage": 37.7,
+      "stage_percentage": 96.97,
+      "rounded_stage_percentage": 97.0,
+      "denominator": 1616,
+      "stage_denominator": 628
+    },
+    "query_formulation_gap": {
+      "sub_category_id": "query_formulation_gap",
+      "parent_stage": "expression",
+      "label": "Query Formulation Gap",
+      "doc_count": 86,
+      "corpus_percentage": 5.32,
+      "rounded_corpus_percentage": 5.3,
+      "stage_percentage": 9.02,
+      "rounded_stage_percentage": 9.0,
+      "denominator": 1616,
+      "stage_denominator": 953
+    },
+    "forced_scroll_or_abandon": {
+      "sub_category_id": "forced_scroll_or_abandon",
+      "parent_stage": "recovery",
+      "label": "Forced Scroll Or Abandon",
+      "doc_count": 26,
+      "corpus_percentage": 1.61,
+      "rounded_corpus_percentage": 1.6,
+      "stage_percentage": 100.0,
+      "rounded_stage_percentage": 100.0,
+      "denominator": 1616,
+      "stage_denominator": 26
+    },
+    "zero_recall_miss": {
+      "sub_category_id": "zero_recall_miss",
+      "parent_stage": "interpretation",
+      "label": "Zero Recall Miss",
+      "doc_count": 19,
+      "corpus_percentage": 1.18,
+      "rounded_corpus_percentage": 1.2,
+      "stage_percentage": 3.03,
+      "rounded_stage_percentage": 3.0,
+      "denominator": 1616,
+      "stage_denominator": 628
+    },
+    "scrolling_friction": {
+      "sub_category_id": "scrolling_friction",
+      "parent_stage": "evaluation",
+      "label": "Scrolling Friction",
+      "doc_count": 9,
+      "corpus_percentage": 0.56,
+      "rounded_corpus_percentage": 0.6,
+      "stage_percentage": 100.0,
+      "rounded_stage_percentage": 100.0,
+      "denominator": 1616,
+      "stage_denominator": 9
+    }
+  },
+  "opportunity_ranking": [
+    {
+      "rank": 1,
+      "label": "Opportunity #1: Combining Multiple Details (Person + Place + Time)",
+      "short_label": "Opportunity #1: Combining Multiple Details",
+      "question_id": 1,
+      "doc_count": 779,
+      "percentage": 48.21,
+      "rounded_percentage": 48.2,
+      "denominator": 1616,
+      "severity": "CRITICAL",
+      "avg_confidence": 0.89,
+      "impact_score": 9.8
+    },
+    {
+      "rank": 2,
+      "label": "Opportunity #2: Natural-Language Questions Misread by Ask Photos",
+      "short_label": "Opportunity #2: Natural-Language Questions Misread",
+      "question_id": 5,
+      "doc_count": 671,
+      "percentage": 41.52,
+      "rounded_percentage": 41.5,
+      "denominator": 1616,
+      "severity": "HIGH",
+      "avg_confidence": 0.88,
+      "impact_score": 9.2
+    },
+    {
+      "rank": 3,
+      "label": "Opportunity #3: Searching by Seasons & Milestones vs. Exact Dates",
+      "short_label": "Opportunity #3: Seasons & Milestones vs. Dates",
+      "question_id": 3,
+      "doc_count": 593,
+      "percentage": 36.69,
+      "rounded_percentage": 36.7,
+      "denominator": 1616,
+      "severity": "HIGH",
+      "avg_confidence": 0.91,
+      "impact_score": 8.9
+    },
+    {
+      "rank": 4,
+      "label": "Opportunity #4: Dead-End Screens When a Search Finds No Photos",
+      "short_label": "Opportunity #4: Dead-End Screens Resolution",
+      "question_id": 6,
+      "doc_count": 459,
+      "percentage": 28.40,
+      "rounded_percentage": 28.4,
+      "denominator": 1616,
+      "severity": "HIGH",
+      "avg_confidence": 0.86,
+      "impact_score": 8.1
+    },
+    {
+      "rank": 5,
+      "label": "Opportunity #5: Telling Similar-Looking Photos Apart in Search Results",
+      "short_label": "Opportunity #5: Similar-Looking Photo Disambiguation",
+      "question_id": 5,
+      "doc_count": 107,
+      "percentage": 6.62,
+      "rounded_percentage": 6.6,
+      "denominator": 1616,
+      "severity": "MEDIUM",
+      "avg_confidence": 0.915,
+      "impact_score": 7.8
+    }
+  ],
+  "flow_stages": {
+    "Intent": 877,
+    "Articulation": 339,
+    "Search": 1348,
+    "Initial Results": 593,
+    "Scrolling Results": 92,
+    "Iterative Refinement": 33,
+    "Outcome": 477
+  },
+  "platform_distribution": {
+    "Play Store": 969,
+    "Hacker News": 455,
+    "App Store": 111,
+    "Reddit": 54,
+    "YouTube": 27
+  }
+}

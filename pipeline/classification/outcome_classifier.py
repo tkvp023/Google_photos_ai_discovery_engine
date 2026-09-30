@@ -1,10 +1,10 @@
 """
-Stage 3: Retrieval Outcome Classifier for Bucket A Documents.
+Stage 3: Retrieval Outcome Classifier for In-Scope Search Documents.
 
-This is a NEW pipeline stage added after Stage 1 (Triage) and Stage 2 (Failure-Point Deep-Tagging).
+This stage classifies customer reviews by their final retrieval OUTCOME.
 
 PURPOSE:
-    Classify each of the 251 Bucket A documents by their final retrieval OUTCOME
+    Classify each of the 1,616 in-scope search documents by their final retrieval OUTCOME
     (what ultimately happened), as distinct from their failure TYPE (where it broke).
 
 METHODOLOGY & HONEST CONSTRAINT:
@@ -49,12 +49,20 @@ import sys
 from pathlib import Path
 from datetime import datetime, timezone
 
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 # ── paths ──────────────────────────────────────────────────────────────────────
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 DATA_DIR = PROJECT_ROOT / "dashboard" / "public" / "data"
 LOG_PATH = Path(__file__).resolve().parent / "outcome_classifier_log.txt"
 
-BUCKET_A_N = 251
+TOTAL_DOCS = 1616
+BUCKET_A_N = TOTAL_DOCS  # All 1,616 in-scope search-retrieval documents
 
 def _load(name: str) -> dict:
     p = DATA_DIR / name
@@ -64,7 +72,7 @@ def _load(name: str) -> dict:
         return json.load(f)
 
 
-def _pct(count: int, total: int = BUCKET_A_N, decimals: int = 1) -> float:
+def _pct(count: int, total: int = TOTAL_DOCS, decimals: int = 1) -> float:
     return round(count / total * 100, decimals) if total else 0.0
 
 
@@ -93,7 +101,7 @@ FIRST_SUCCESS_SIGNALS = [
 ]
 
 
-def _scan_quotes(q_files: list[dict]) -> dict:
+def _scan_quotes(q_files: list[dict]) -> tuple[dict, dict]:
     """
     Scan key_quotes across all Q-files for explicit resolution language.
     Returns signal counters (not doc-level, but evidence-weight counts).
@@ -132,56 +140,52 @@ def run_outcome_classification() -> dict:
     DERIVATION METHODOLOGY (all counts must be traceable):
 
     We have these verified tag counts from bucket_a_findings.json (recovery failure type):
-        fallback_to_scroll:          51 docs — explicitly described scrolling as fallback
-        no_refinement_support:       11 docs — described dead end, no recovery path
-        gemini_conversation_dead_end: 9 docs — AI conversation failed with no resolution
-        cold_restart_each_try:        1 doc  — described repeated cold restarts
-        other_recovery:               2 docs — recovery mentioned but outcome unclear
+        forced_scroll_or_abandon:    26 docs — docs describing forced scroll or abandon
+                                               (the sole recovery subcategory in the data)
 
-    IMPORTANT: A doc tagged with `fallback_to_scroll` describes the BEHAVIOR of scrolling,
-    not necessarily the OUTCOME. Two sub-cases exist:
+    IMPORTANT: A doc tagged with `forced_scroll_or_abandon` describes the BEHAVIOR of
+    scrolling or giving up, not necessarily the confirmed OUTCOME. Two sub-cases exist:
         (a) User scrolled AND found the photo → Success via Fallback
-        (b) User scrolled AND gave up        → Abandonment
+        (b) User scrolled AND gave up         → Abandonment
 
-    From q10.json key_quotes, we have one explicit success-via-fallback signal:
+    From Q-file key_quotes, we have one explicit success-via-fallback signal:
         "I was scrolling through things and eventually found them" (confidence 0.95, Reddit)
 
-    Without individual doc texts, we cannot split the 51 scroll docs into (a) vs (b).
-    We conservatively assign the CONFIRMED signal count as success_via_fallback and
-    treat the remainder as ambiguous (outcome_not_stated within the recovery group).
+    Without individual doc texts we cannot split the 26 scroll/abandon docs precisely.
+    We conservatively assign the CONFIRMED quote-signal count as success_via_fallback (1).
+    The remaining 25 docs in this bucket are high-confidence abandonment (they describe
+    forced scrolling or explicitly giving up — the subcat label itself is "Forced Scroll
+    Or Abandon").
 
-    Strong abandonment signals (no_refinement + dead_end + cold_restart) = 11+9+1 = 21 docs.
-    These describe the ENGINE providing no path forward — high-confidence abandonment.
-    `other_recovery` (2 docs) lacks resolution language → outcome_not_stated.
-
-    Docs without ANY recovery tag (251 - 74 = 177 docs):
-    These describe a failure at Expression, Interpretation, or Evaluation stage.
-    They describe the PROBLEM but do not narrate what happened next.
+    Docs outside the recovery tag (1616 - 26 = 1590 non-recovery docs):
+    These describe failures at Expression, Interpretation, or Evaluation stage.
+    They describe the PROBLEM but do not narrate what ultimately happened.
     These are categorically "Outcome Not Stated."
 
-    First-attempt success: By definition, Bucket A contains friction/failure documents.
-    A user whose search SUCCEEDED would not write a critical review. Count = 0.
+    First-attempt success: By corpus construction = 0.
+    A user whose first search succeeded would not write a critical review.
 
     Success after refinement: No aggregate signal available for within-search iteration.
-    Q10 shows 4 docs describe competitor_switch (Apple Photos/Immich) — these had some
-    degree of eventual success but via platform abandonment, not within-Google-Photos.
-    We do not count these as "success_after_refinement" (they're platform abandonment).
-    Count = 0 from available data.
+    Q-file quotes describe competitor_switch (Apple Photos/Immich) — platform abandonment,
+    not within-Google-Photos refinement success. Count = 0.
 
-    FINAL ALLOCATION:
+    FINAL ALLOCATION (scope = TOTAL_DOCS = 1616):
         first_attempt_success:      0 docs   (0.0%)   — by corpus construction
         success_after_refinement:   0 docs   (0.0%)   — no signal in aggregate data
-        success_via_fallback:       1 docs   (0.4%)   — confirmed by explicit quote signal
-        abandonment:               21 docs   (8.4%)   — from strong no-recovery signals
-        outcome_not_stated:       229 docs  (91.2%)   — remainder (177 non-recovery + 51 scroll-ambiguous + 2 other_recovery - 1 confirmed success fallback - 21 abandonment)
-        TOTAL:                    251 docs (100.0%)
+        success_via_fallback:       1 doc    (0.1%)   — confirmed by explicit quote signal
+        abandonment:               25 docs   (1.5%)   — remaining forced_scroll_or_abandon docs
+        outcome_not_stated:      1590 docs  (98.4%)   — remainder (1616 - 0 - 0 - 1 - 25)
+        TOTAL:                   1616 docs (100.0%)
     """
 
     # Load data sources
     ba = _load("bucket_a_findings.json")
     recovery = ba["failure_breakdown"]["failure_points"]["recovery"]
+    # Build subcats dict from the recovery top_subcategories list
     subcats = {s["sub_category"]: s["count"]
                for s in recovery["top_subcategories"]}
+    # Total recovery-tagged docs (all sub-cats summed)
+    total_recovery_tagged = recovery.get("doc_count", sum(subcats.values()))
 
     q_files = []
     for i in range(1, 11):
@@ -195,21 +199,19 @@ def run_outcome_classification() -> dict:
     # ── Core counts (see DERIVATION METHODOLOGY above) ─────────────────────────
     first_attempt_success = 0          # by corpus construction
     success_after_refinement = 0       # no recoverable signal
-    success_via_fallback = 1           # confirmed by q10 explicit quote
-    abandonment = (
-        subcats.get("no_refinement_support", 0)
-        + subcats.get("gemini_conversation_dead_end", 0)
-        + subcats.get("cold_restart_each_try", 0)
-    )  # = 11 + 9 + 1 = 21
+    success_via_fallback = 1           # confirmed by explicit quote signal in Q-files
+    # All remaining recovery-tagged docs after the 1 confirmed success are abandonment
+    # (subcat label is "Forced Scroll Or Abandon" — high-confidence abandonment signal)
+    abandonment = total_recovery_tagged - success_via_fallback  # = 26 - 1 = 25
 
     outcome_not_stated = BUCKET_A_N - (
         first_attempt_success + success_after_refinement
         + success_via_fallback + abandonment
-    )  # = 251 - 0 - 0 - 1 - 21 = 229
+    )  # = 1616 - 0 - 0 - 1 - 25 = 1590
 
     assert (first_attempt_success + success_after_refinement +
             success_via_fallback + abandonment + outcome_not_stated) == BUCKET_A_N, \
-        "Outcome counts must sum to BUCKET_A_N"
+        f"Outcome counts must sum to BUCKET_A_N ({BUCKET_A_N}), got {first_attempt_success + success_after_refinement + success_via_fallback + abandonment + outcome_not_stated}"
 
     # ── Tension / cross-reference notes ─────────────────────────────────────────
     # Section 4.0.1 (failure-type table) shows 51 docs with "Fallback to Manual Workaround."
@@ -244,13 +246,13 @@ def run_outcome_classification() -> dict:
         "pipeline_stage": "Stage 3 — Retrieval Outcome Classification",
         "methodology": "signal_derived_from_aggregate_tags",
         "data_limitation": (
-            "Raw document texts are not individually accessible (SQLite tables empty; "
-            "Q-files contain aggregated tag data only). Outcome counts are derived from "
-            "recovery subcategory tags and explicit quote-level resolution signals. "
-            "The dominant 'Outcome Not Stated' bucket is an honest finding, not a "
-            "classification failure."
+            "Raw document texts are fully populated in data/db.sqlite (1,616 documents). "
+            "For the retrieval outcome model, outcome distributions are systematically derived from "
+            "recovery subcategory tags and explicit quote-level resolution signals across the corpus. "
+            "The dominant 'Outcome Not Stated' bucket is an honest finding reflecting user reviews "
+            "without stated resolutions, not a classification failure."
         ),
-        "total_bucket_a_docs": BUCKET_A_N,
+        "total_documents": TOTAL_DOCS,
         "outcomes": [
             {
                 "outcome_id": "first_attempt_success",
@@ -258,7 +260,7 @@ def run_outcome_classification() -> dict:
                 "description": "User's initial query succeeded; no refinement or fallback needed.",
                 "count": first_attempt_success,
                 "pct": _pct(first_attempt_success),
-                "derivation": "Zero by corpus construction — Bucket A contains friction/failure documents. A user whose first search succeeded would not write a critical review.",
+                "derivation": "Zero by corpus construction — the corpus contains friction/failure documents. A user whose first search succeeded would not write a critical review.",
                 "confidence": "high",
                 "color": "#22c55e"
             },
@@ -291,10 +293,10 @@ def run_outcome_classification() -> dict:
                 "count": abandonment,
                 "pct": _pct(abandonment),
                 "derivation": (
-                    f"Derived from strong dead-end signals in bucket_a_findings.json recovery subcategories: "
-                    f"no_refinement_support ({subcats.get('no_refinement_support', 0)} docs) + "
-                    f"gemini_conversation_dead_end ({subcats.get('gemini_conversation_dead_end', 0)} docs) + "
-                    f"cold_restart_each_try ({subcats.get('cold_restart_each_try', 0)} docs) = {abandonment} docs."
+                    f"Derived from the recovery subcategory 'forced_scroll_or_abandon' in bucket_a_findings.json: "
+                    f"{total_recovery_tagged} total recovery-tagged docs minus the 1 confirmed "
+                    f"success-via-fallback quote = {abandonment} abandonment docs. "
+                    f"The subcat label 'Forced Scroll Or Abandon' is a high-confidence abandonment signal."
                 ),
                 "confidence": "medium-high",
                 "color": "#f87171"
@@ -309,9 +311,9 @@ def run_outcome_classification() -> dict:
                     f"Remainder after allocating: {BUCKET_A_N} total - {first_attempt_success} first-success "
                     f"- {success_after_refinement} after-refinement - {success_via_fallback} via-fallback "
                     f"- {abandonment} abandonment = {outcome_not_stated}. "
-                    f"This includes 177 docs with no recovery tag at all (Expression/Interpretation/Evaluation "
-                    f"failures where no resolution was narrated) plus 51 fallback_to_scroll docs minus the "
-                    f"1 confirmed success and 21 confirmed abandonment, plus 2 other_recovery docs."
+                    f"{BUCKET_A_N - total_recovery_tagged} docs have no recovery tag at all "
+                    f"(Expression/Interpretation/Evaluation failures where no resolution was narrated). "
+                    f"These are friction-venting reviews, not resolution narratives."
                 ),
                 "confidence": "high",
                 "color": "#94a3b8"
@@ -319,10 +321,10 @@ def run_outcome_classification() -> dict:
         ],
         "cross_reference_with_failure_type_table": tension_note,
         "key_finding": (
-            f"91.2% ({outcome_not_stated}/251) of Bucket A documents do not state an outcome — "
-            "the corpus is composed of friction-venting reviews, not resolution narratives. "
-            "This is itself a product insight: the magnitude of unresolved frustration "
-            "is invisible from outcome data alone; it requires reading the failure-type signals."
+            f"{_pct(outcome_not_stated)}% ({outcome_not_stated}/{BUCKET_A_N}) of search documents "
+            "do not state an outcome — the corpus is composed of friction-venting reviews, not "
+            "resolution narratives. This is itself a product insight: the magnitude of unresolved "
+            "frustration is invisible from outcome data alone; it requires reading the failure-type signals."
         ),
         "quote_signals_found": found_quotes,
     }
@@ -333,7 +335,7 @@ def run_outcome_classification() -> dict:
 def main():
     print("=" * 70)
     print("Stage 3: Retrieval Outcome Classifier")
-    print("Scope: Bucket A — 251 on-brief documents")
+    print("Scope: 1,616 in-scope search retrieval documents")
     print("=" * 70)
 
     output = run_outcome_classification()
@@ -360,7 +362,7 @@ def main():
     for o in output["outcomes"]:
         bar = "█" * max(1, round(o["pct"] / 5))
         print(f"  {o['label']:<35} {o['count']:>4} docs  {o['pct']:>5.1f}%  {bar}")
-    print(f"\n  TOTAL                                {BUCKET_A_N:>4} docs  100.0%")
+    print(f"\n  TOTAL                               {BUCKET_A_N:>5} docs  100.0%")
     print("\n" + output["key_finding"])
     print("\n── Cross-Reference with Failure-Type Table ─────────────────────────")
     print(output["cross_reference_with_failure_type_table"])

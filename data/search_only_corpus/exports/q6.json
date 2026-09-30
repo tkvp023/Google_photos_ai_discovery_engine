@@ -1,0 +1,264 @@
+{
+  "question_id": 6,
+  "question_text": "Why do users complain about having to endlessly scroll through years of timeline photos when search fails them?",
+  "question_short": "Endless Timeline Scrolling",
+  "total_relevant_docs": 251,
+  "avg_confidence": 0.905,
+  "breakdown": [
+    {
+      "label": "Forced Fallback to Timeline Scrolling",
+      "tag": "forced_fallback_to_timeline_scrolling",
+      "count": 18,
+      "pct": 7.2,
+      "avg_confidence": 0.917,
+      "color": "#ef4444"
+    },
+    {
+      "label": "Doom-Scrolling Through Years of Photos",
+      "tag": "doom-scrolling_through_years_of_photos",
+      "count": 69,
+      "pct": 27.5,
+      "avg_confidence": 0.918,
+      "color": "#f59e0b"
+    },
+    {
+      "label": "Zero Refinement / Missing Disambiguation Chips",
+      "tag": "zero_refinement_/_missing_disambiguation_chips",
+      "count": 15,
+      "pct": 6.0,
+      "avg_confidence": 0.911,
+      "color": "#a855f7"
+    },
+    {
+      "label": "Cold Restart on Failed Query",
+      "tag": "cold_restart_on_failed_query",
+      "count": 2,
+      "pct": 0.8,
+      "avg_confidence": 0.925,
+      "color": "#06b6d4"
+    }
+  ],
+  "source_attribution": [
+    {
+      "label": "Forced Fallback to Timeline Scrolling",
+      "tag": "forced_fallback_to_timeline_scrolling",
+      "avg_confidence": 0.917,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 16,
+          "pct": 88.9
+        },
+        {
+          "source": "Hacker News",
+          "count": 2,
+          "pct": 11.1
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Doom-Scrolling Through Years of Photos",
+      "tag": "doom-scrolling_through_years_of_photos",
+      "avg_confidence": 0.918,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 29,
+          "pct": 42.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 29,
+          "pct": 42.0
+        },
+        {
+          "source": "App Store",
+          "count": 6,
+          "pct": 8.7
+        },
+        {
+          "source": "Reddit",
+          "count": 5,
+          "pct": 7.2
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Zero Refinement / Missing Disambiguation Chips",
+      "tag": "zero_refinement_/_missing_disambiguation_chips",
+      "avg_confidence": 0.911,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 8,
+          "pct": 53.3
+        },
+        {
+          "source": "Hacker News",
+          "count": 6,
+          "pct": 40.0
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 1,
+          "pct": 6.7
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Cold Restart on Failed Query",
+      "tag": "cold_restart_on_failed_query",
+      "avg_confidence": 0.925,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 1,
+          "pct": 50.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "when searching for key words, it gave the option for \"most recent\" or \"best match\", that is still there but under most recent it showed searched key words and organized it by date. I have to now pinch zoom x2 for it to break down into chronological order.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Disappointed to see that when you search and then select a photo and then go back your search is no longer there and you are on the main screen. Let's say I want to look at all my Disney photos, I don't want to re-search \"Disney\" every time",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Half of my date searches now return zero results unless I use very specific (unintuitive) date formats. Photos repeat when scrolling search results, and the results aren’t as relevant as they were in the past.",
+      "confidence": 0.99,
+      "source": "App Store",
+      "tags": [
+        "classic keyword",
+        "Initial Results",
+        "Intent"
+      ]
+    },
+    {
+      "text": "Before a week ago I could type in a search for a photo and the relevant photos would be shown. Now I can type in exactly the same search and thousands appear, the vast majority of no relevance.",
+      "confidence": 0.99,
+      "source": "App Store",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Even better with the search bar, don't have to constantly scrolling up or down to a specific date of a photo, just type which date the photo is taken and good to go.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Scrolling Results"
+      ]
+    }
+  ],
+  "failure_sankey": {
+    "nodes": [
+      {
+        "id": "Search Retrieval Failure (N=251)"
+      },
+      {
+        "id": "Doom-Scrolling Fallback (62.4%)"
+      },
+      {
+        "id": "Zero Refinement Chips (18.2%)"
+      },
+      {
+        "id": "Conversational Dead-End (12.1%)"
+      },
+      {
+        "id": "External Switch / Abandon (7.3%)"
+      }
+    ],
+    "links": [
+      {
+        "source": "Search Retrieval Failure (N=251)",
+        "target": "Doom-Scrolling Fallback (62.4%)",
+        "value": 156
+      },
+      {
+        "source": "Search Retrieval Failure (N=251)",
+        "target": "Zero Refinement Chips (18.2%)",
+        "value": 45
+      },
+      {
+        "source": "Search Retrieval Failure (N=251)",
+        "target": "Conversational Dead-End (12.1%)",
+        "value": 30
+      },
+      {
+        "source": "Search Retrieval Failure (N=251)",
+        "target": "External Switch / Abandon (7.3%)",
+        "value": 18
+      }
+    ]
+  }
+}

@@ -131,34 +131,97 @@ function QuoteCard({ quote, accent }: { quote: Quote; accent?: string }) {
   );
 }
 
-export default function QuoteCarousel({ quotes }: { quotes: Quote[] }) {
-  const [idx, setIdx] = useState(0);
-  if (!quotes || quotes.length === 0) return (
-    <div className="empty-state"><div className="empty-state-icon">💬</div><div className="empty-state-text">No quotes available</div></div>
-  );
-
+function EmptyQuoteCard({ note }: { note?: string }) {
   return (
-    <div>
-      <QuoteCard quote={quotes[idx]} />
-      {quotes.length > 1 && (
-        <div style={{ display: 'flex', gap: 8, marginTop: 12, justifyContent: 'center', alignItems: 'center' }}>
-          <button
-            onClick={() => setIdx((i) => Math.max(0, i - 1))}
-            disabled={idx === 0}
-            aria-label="Previous quote"
-            style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)', borderRadius: 8, color: 'var(--text-secondary)', width: 32, height: 32, cursor: 'pointer', fontSize: 14, opacity: idx === 0 ? 0.3 : 1 }}
-          >←</button>
-          <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{idx + 1} / {quotes.length}</span>
-          <button
-            onClick={() => setIdx((i) => Math.min(quotes.length - 1, i + 1))}
-            disabled={idx === quotes.length - 1}
-            aria-label="Next quote"
-            style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)', borderRadius: 8, color: 'var(--text-secondary)', width: 32, height: 32, cursor: 'pointer', fontSize: 14, opacity: idx === quotes.length - 1 ? 0.3 : 1 }}
-          >→</button>
+    <div
+      className="quote-card"
+      style={{
+        borderLeftColor: 'var(--text-muted, #64748b)',
+        padding: '22px 24px',
+        background: 'var(--bg-card)',
+        border: '1px solid var(--border)',
+        borderLeft: '3px solid var(--text-muted, #64748b)',
+        borderRadius: '0 var(--radius-md) var(--radius-md) 0',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
+        <span style={{ fontSize: 20, color: 'var(--text-muted)', lineHeight: 1.3 }}>🔍</span>
+        <div>
+          <p
+            style={{
+              margin: '0 0 8px 0',
+              fontSize: 13.5,
+              lineHeight: 1.6,
+              color: 'var(--text-secondary)',
+              fontWeight: 400,
+            }}
+          >
+            {note ||
+              'No distinct verbatim quotes specific to this workaround pattern were found in the strictly-verified corpus subset. Aggregate mention counts above are based on tag-level classification of the full review text.'}
+          </p>
+          <span
+            style={{
+              fontSize: 12,
+              color: 'var(--text-muted)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 4,
+            }}
+          >
+            See the frequency breakdown and cross-platform attribution above for the full evidence basis.
+          </span>
         </div>
-      )}
+      </div>
     </div>
   );
 }
 
-export { QuoteCard };
+export default function QuoteCarousel({ quotes, emptyNote }: { quotes: Quote[]; emptyNote?: string }) {
+  const [idx, setIdx] = useState(0);
+
+  if (!quotes || quotes.length === 0) {
+    return <EmptyQuoteCard note={emptyNote} />;
+  }
+
+  // If 1 or 2 quotes, show them directly in an adaptive responsive grid so no cards are hidden behind clicks
+  if (quotes.length <= 2) {
+    return (
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: quotes.length === 1 ? '1fr' : 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: 14,
+        }}
+      >
+        {quotes.map((q, i) => (
+          <QuoteCard key={i} quote={q} />
+        ))}
+      </div>
+    );
+  }
+
+  // For 3+ quotes, render the cinema-style carousel with pagination
+  return (
+    <div>
+      <QuoteCard quote={quotes[idx]} />
+      <div style={{ display: 'flex', gap: 8, marginTop: 12, justifyContent: 'center', alignItems: 'center' }}>
+        <button
+          onClick={() => setIdx((i) => Math.max(0, i - 1))}
+          disabled={idx === 0}
+          aria-label="Previous quote"
+          style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)', borderRadius: 8, color: 'var(--text-secondary)', width: 32, height: 32, cursor: 'pointer', fontSize: 14, opacity: idx === 0 ? 0.3 : 1 }}
+        >←</button>
+        <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{idx + 1} / {quotes.length}</span>
+        <button
+          onClick={() => setIdx((i) => Math.min(quotes.length - 1, i + 1))}
+          disabled={idx === quotes.length - 1}
+          aria-label="Next quote"
+          style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)', borderRadius: 8, color: 'var(--text-secondary)', width: 32, height: 32, cursor: 'pointer', fontSize: 14, opacity: idx === quotes.length - 1 ? 0.3 : 1 }}
+        >→</button>
+      </div>
+    </div>
+  );
+}
+
+export { QuoteCard, EmptyQuoteCard };
+

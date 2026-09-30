@@ -44,10 +44,12 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
         }}
       >
         <Link href="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 500 }}>
-          Executive Summary
+          Overview
         </Link>
         <span>/</span>
-        <span style={{ color: 'var(--text-secondary)' }}>10 Strategic Inquiries</span>
+        <span style={{ color: 'var(--text-secondary)' }}>
+          {qid <= 4 ? '4 Core Brief Questions' : 'Extended Deep-Dives'}
+        </span>
         <span>/</span>
         <span style={{ color: meta?.color || 'var(--brand-primary)', fontWeight: 700 }}>
           Q{qid}: {meta?.short || `Question ${qid}`}
@@ -72,7 +74,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
               letterSpacing: '0.02em',
             }}
           >
-            Inquiry {qid} of 10
+            Question {qid} of 10
           </span>
 
           <span
@@ -90,7 +92,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
           </span>
 
           {/* Tier Badge */}
-          {[1, 2, 3, 4, 6, 10].includes(qid) ? (
+          {qid <= 4 ? (
             <span
               style={{
                 fontSize: 12,
@@ -100,18 +102,18 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: 6,
-                background: 'rgba(37, 99, 235, 0.15)',
-                border: '1px solid rgba(37, 99, 235, 0.4)',
+                background: 'rgba(59, 130, 246, 0.15)',
+                border: '1px solid rgba(59, 130, 246, 0.4)',
                 color: '#60a5fa',
               }}
             >
-              <span>🎯</span> Tier 1: Core PM Brief Anchor
+              <span>🎯</span> Core Deliverable — Mandatory Question from Project Brief
             </span>
           ) : (
             <span
               style={{
                 fontSize: 12,
-                fontWeight: 700,
+                fontWeight: 600,
                 padding: '3px 12px',
                 borderRadius: 16,
                 display: 'inline-flex',
@@ -122,7 +124,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
                 color: 'var(--text-secondary)',
               }}
             >
-              <span>🔬</span> Tier 2: Deep-Dive Friction Vector
+              <span>🔬</span> Extended Analysis — Strategic Deep Dive
             </span>
           )}
 
@@ -142,7 +144,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
             }}
           >
             <span>🌐</span>
-            Corpus: 2,223 Multi-Platform Reviews (5 Channels)
+            Corpus: 1,616 Search-Only Retrieval Reviews (5 Channels)
           </span>
 
           {/* Subtle Ask AI Link */}
@@ -195,16 +197,10 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
         >
           <div>
             <strong style={{ color: 'var(--text-primary)' }}>Evidence Grounding: </strong>
-            Synthesized across 2,223 verified customer discussions (Play Store, App Store, Reddit, Hacker News, YouTube). 
-            {[1, 2, 3, 4, 6, 10].includes(qid) ? (
-              <span style={{ color: '#60a5fa', marginLeft: 4 }}>
-                Directly answers the PM Brief by isolating <strong>Bucket A (251 on-brief retrieval reviews)</strong> and <strong>278 failure tags</strong>.
-              </span>
-            ) : (
-              <span style={{ color: 'var(--text-muted)', marginLeft: 4 }}>
-                Deep-dives into specific library clutter and technical failure vectors across the broader corpus.
-              </span>
-            )}
+            Synthesized across 1,616 verified customer discussions (Play Store, App Store, Reddit, Hacker News, YouTube). 
+            <span style={{ color: '#60a5fa', marginLeft: 4 }}>
+              Directly grounded in <strong>1,616 in-scope search retrieval reviews</strong> with 100% character-for-character quote verification (INSTR &gt; 0).
+            </span>
           </div>
           <Link
             href="/findings"
@@ -216,7 +212,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
               whiteSpace: 'nowrap',
             }}
           >
-            Explore Bucket A Findings (N=251) →
+            Explore In-Scope Findings (N=1,616) →
           </Link>
         </div>
       </div>

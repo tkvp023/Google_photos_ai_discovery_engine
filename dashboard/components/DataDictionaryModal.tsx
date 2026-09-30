@@ -122,7 +122,7 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
               transition: 'all 0.15s',
             }}
           >
-            1. Data Cohorts (2,223 vs 640 vs 251)
+            1. In-Scope Search Corpus (1,616 Reviews)
           </button>
           <button
             onClick={() => setActiveTab('funnel')}
@@ -139,7 +139,7 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
               transition: 'all 0.15s',
             }}
           >
-            2. Triage & Noise Segregation
+            2. Multi-Platform Channels
           </button>
           <button
             onClick={() => setActiveTab('stages')}
@@ -190,16 +190,35 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                 <span style={{ fontSize: 14, fontWeight: 800, color: '#60a5fa' }}>
-                  🎯 Bucket A Focus Cohort (N = 251 documents · 11.3%)
+                  🎯 In-Scope Retrieval Corpus (N = 1,616 documents · 100% In-Scope)
                 </span>
                 <span style={{ fontSize: 11, background: '#2563eb', color: '#fff', padding: '2px 8px', borderRadius: 10, fontWeight: 700 }}>
                   Case Study Core Brief
                 </span>
               </div>
               <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0 }}>
-                <strong>What it is:</strong> Every review where a user attempted to retrieve a specific visual memory (meal, pet, trip, document, receipt) with partial memory cues. Contains <strong>278 deep-dive failure point tags</strong> (Interpretation 48.2%, Recovery 26.6%, Evaluation 18.3%, Expression 6.8%).
+                <strong>What it is:</strong> Every review where a user attempted to retrieve a specific visual memory (meal, pet, trip, document, receipt) with partial memory cues. Contains <strong>1,616 verified customer reviews</strong> across 5 feedback platforms (Google Play, Hacker News, Apple App Store, Reddit, YouTube).
                 <br />
                 <strong>Where used:</strong> <a href="/findings" style={{ color: '#60a5fa' }}>Findings Page</a>, <a href="/ask?scope=brief" style={{ color: '#60a5fa' }}>Strict RAG Mode</a>, and the Strategic Opportunity Rankings.
+              </p>
+            </div>
+
+            <div
+              style={{
+                padding: 16,
+                background: 'rgba(99, 102, 241, 0.08)',
+                border: '1px solid rgba(99, 102, 241, 0.25)',
+                borderRadius: 14,
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                <span style={{ fontSize: 16 }}>🏷️</span>
+                <span style={{ fontSize: 14, fontWeight: 800, color: '#818cf8' }}>
+                  What is a &ldquo;Tag&rdquo;? (Denominator Guide)
+                </span>
+              </div>
+              <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0 }}>
+                In this engine, a <strong>tag</strong> is a granular, machine-classified and human-audited signal of user struggle (e.g. <em>date amnesia</em>, <em>wrong face match</em>, <em>literal keyword overfit</em>, or <em>timeline scroll fatigue</em>). When you see a metric like <strong>(51 of 74 recovery tags)</strong> or <strong>(592 of 1,457 tags)</strong>, the denominator represents the total number of verified failure instances cataloged for that category. A single complex review often contains multiple tags if the user hit several obstacles during search.
               </p>
             </div>
 
@@ -213,16 +232,16 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                 <span style={{ fontSize: 14, fontWeight: 800, color: '#c084fc' }}>
-                  🔬 In-Depth Technical Community Discussions (N = 640 documents · 28.8%)
+                  🔬 In-Depth Technical Community Discussions (N = 536 documents · 33.2%)
                 </span>
                 <span style={{ fontSize: 11, background: '#7e22ce', color: '#fff', padding: '2px 8px', borderRadius: 10, fontWeight: 700 }}>
                   Architecture & Gaps
                 </span>
               </div>
               <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0 }}>
-                <strong>What it is:</strong> The subset of technical discussions from <strong>Reddit (319)</strong>, <strong>Hacker News (242)</strong>, and <strong>YouTube teardowns (79)</strong>. These contain deep technical breakdowns of OCR pipeline indexing lag, face clustering inaccuracies, local vector embeddings, and Immich self-hosting migrations.
+                <strong>What it is:</strong> The subset of technical discussions from <strong>Hacker News (455)</strong>, <strong>Reddit (54)</strong>, and <strong>YouTube teardowns (27)</strong>. These contain deep technical breakdowns of OCR pipeline indexing lag, face clustering inaccuracies, local vector embeddings, and Immich migrations.
                 <br />
-                <strong>Where used:</strong> <a href="/gaps" style={{ color: '#c084fc' }}>Systemic Gaps Page</a> alongside the 1,583 app store reviews.
+                <strong>Where used:</strong> <a href="/gaps" style={{ color: '#c084fc' }}>Systemic Gaps Page</a> alongside the 1,080 consumer store reviews.
               </p>
             </div>
 
@@ -236,16 +255,16 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                 <span style={{ fontSize: 14, fontWeight: 800, color: '#4ade80' }}>
-                  🌐 Total Unified Multi-Platform Corpus (N = 2,223 documents · 100%)
+                  🌐 In-Scope Search Retrieval Corpus (N = 1,616 documents)
                 </span>
                 <span style={{ fontSize: 11, background: '#15803d', color: '#fff', padding: '2px 8px', borderRadius: 10, fontWeight: 700 }}>
-                  Total Raw Corpus
+                  Active Corpus
                 </span>
               </div>
               <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0 }}>
-                <strong>What it is:</strong> The complete raw customer dataset across all 5 platforms: Google Play Store (975), Apple App Store (608), Reddit (319), Hacker News (242), and YouTube (79).
+                <strong>What it is:</strong> 1,616 verified customer reviews and technical discussions across Google Play Store (969), Hacker News (455), Apple App Store (111), Reddit (54), and YouTube (27) where people specifically described struggling to find a remembered photo.
                 <br />
-                <strong>Where used:</strong> Homepage platform distribution, overall corpus scale telemetry.
+                <strong>Where used:</strong> Full engine telemetry, systemic gap analysis, deep-dive research inquiries, and grounded RAG synthesis.
               </p>
             </div>
 
@@ -254,57 +273,67 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
                 💡 Critical Note on Tag Frequencies vs Document Counts
               </div>
               <div style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                When you see &ldquo;Screenshot Clutter: 1,471 (29.1%)&rdquo;, <strong>1,471</strong> is the number of discussions mentioning clutter (66.2% of all 2,223 reviews). <strong>29.1%</strong> is its share of the <em>5,057 total extracted tag mentions</em> across the library. In contrast, <strong>48.2% Interpretation Failure</strong> on Findings represents 134 out of 278 failure tags specifically within the on-brief Bucket A cohort.
+                Across the <strong>1,616 in-scope search reviews</strong>, 3,759 hesitation friction tags and 1,616 failure point tags were extracted with <strong>100% character-for-character quote grounding (INSTR &gt; 0)</strong>. <strong>59.0% Expression Failure</strong> represents 953 reviews where users struggled to articulate vague memory cues, and <strong>38.9% Interpretation Failure</strong> represents 628 reviews where keyword matching failed.
               </div>
             </div>
           </div>
         )}
 
-        {/* TAB 2: THE 4 TRIAGE BUCKETS */}
+        {/* TAB 2: MULTI-PLATFORM CHANNELS */}
         {activeTab === 'funnel' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0 }}>
-              59.9% of user reviews in app stores complain about backup sync errors, battery drain, or tab redesign backlash. Including them would drown out retrieval friction. The 2-stage rebuild segregated this noise:
+              The <strong>1,616 in-scope search retrieval reviews</strong> are harvested across 5 distinct platforms, providing triangulation across consumer, power user, and technical engineering perspectives:
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: 12 }}>
-              <div style={{ padding: 14, background: 'rgba(37, 99, 235, 0.08)', border: '1px solid rgba(37, 99, 235, 0.3)', borderRadius: 12 }}>
+              <div style={{ padding: 14, background: 'rgba(59, 130, 246, 0.08)', border: '1px solid rgba(59, 130, 246, 0.3)', borderRadius: 12 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                  <strong style={{ color: '#60a5fa' }}>Bucket A: Retrieval Friction</strong>
-                  <span style={{ fontWeight: 700, color: '#60a5fa' }}>251 docs (11.3%)</span>
+                  <strong style={{ color: '#3b82f6' }}>Google Play Store</strong>
+                  <span style={{ fontWeight: 700, color: '#3b82f6' }}>969 reviews (60.0%)</span>
                 </div>
                 <div style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.45 }}>
-                  <strong>ON-BRIEF.</strong> Users attempting visual memory search (meal, trip, receipt) who face zero results, conversational dead-ends, or timeline scrolling.
+                  Mass-market Android consumer search feedback, Ask Photos updates, natural language query brittleness, and album retrieval issues.
                 </div>
               </div>
 
-              <div style={{ padding: 14, background: 'rgba(245, 158, 11, 0.08)', border: '1px solid rgba(245, 158, 11, 0.3)', borderRadius: 12 }}>
+              <div style={{ padding: 14, background: 'rgba(249, 115, 22, 0.08)', border: '1px solid rgba(249, 115, 22, 0.3)', borderRadius: 12 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                  <strong style={{ color: '#fbbf24' }}>Bucket B: Sync & Backup Bugs</strong>
-                  <span style={{ fontWeight: 700, color: '#fbbf24' }}>674 docs (30.3%)</span>
+                  <strong style={{ color: '#f97316' }}>Hacker News</strong>
+                  <span style={{ fontWeight: 700, color: '#f97316' }}>455 discussions (28.2%)</span>
                 </div>
                 <div style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.45 }}>
-                  <strong>SEGREGATED.</strong> Infrastructure complaints: stuck backups, battery drain, storage quota confusion, cloud upload loops.
+                  Deep technical critiques of vector embeddings, semantic search distance, CLIP limitations, and local photo library indexing.
                 </div>
               </div>
 
-              <div style={{ padding: 14, background: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: 12 }}>
+              <div style={{ padding: 14, background: 'rgba(20, 184, 166, 0.08)', border: '1px solid rgba(20, 184, 166, 0.3)', borderRadius: 12 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                  <strong style={{ color: '#f87171' }}>Bucket C: UI Redesign Backlash</strong>
-                  <span style={{ fontWeight: 700, color: '#f87171' }}>659 docs (29.6%)</span>
+                  <strong style={{ color: '#14b8a6' }}>Apple App Store</strong>
+                  <span style={{ fontWeight: 700, color: '#14b8a6' }}>111 reviews (6.9%)</span>
                 </div>
                 <div style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.45 }}>
-                  <strong>SEGREGATED.</strong> Anger over moving the search bar, bottom tab reorganization, and Memories carousel changes.
+                  iOS search user experience, Apple Photos comparison, OCR receipt search breakdown, and navigation tab friction.
                 </div>
               </div>
 
-              <div style={{ padding: 14, background: 'rgba(156, 163, 175, 0.08)', border: '1px solid rgba(156, 163, 175, 0.3)', borderRadius: 12 }}>
+              <div style={{ padding: 14, background: 'rgba(255, 120, 73, 0.08)', border: '1px solid rgba(255, 120, 73, 0.3)', borderRadius: 12 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                  <strong style={{ color: 'var(--text-muted)' }}>Bucket D: Praise & Chatter</strong>
-                  <span style={{ fontWeight: 700, color: 'var(--text-muted)' }}>639 docs (28.7%)</span>
+                  <strong style={{ color: '#ff7849' }}>Reddit</strong>
+                  <span style={{ fontWeight: 700, color: '#ff7849' }}>54 discussions (3.3%)</span>
                 </div>
                 <div style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.45 }}>
-                  <strong>SEGREGATED.</strong> 5-star generic reviews (&ldquo;great app&rdquo;), ungrounded questions, or non-actionable chatter.
+                  Power user troubleshooting in r/googlephotos and r/GooglePixel, multi-cue recall failures, and complex query formulations.
+                </div>
+              </div>
+
+              <div style={{ padding: 14, background: 'rgba(168, 85, 247, 0.08)', border: '1px solid rgba(168, 85, 247, 0.3)', borderRadius: 12 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                  <strong style={{ color: '#a855f7' }}>YouTube</strong>
+                  <span style={{ fontWeight: 700, color: '#a855f7' }}>27 critiques (1.7%)</span>
+                </div>
+                <div style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.45 }}>
+                  Video walkthrough transcripts, Ask Photos AI demonstrations, and hands-on teardowns of false misses.
                 </div>
               </div>
             </div>
@@ -331,7 +360,7 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                   <strong style={{ color: '#818cf8' }}>Stage 1: Expression Failure</strong>
                   <span style={{ fontWeight: 700, color: '#818cf8', fontSize: 11.5 }}>
-                    19 tags (6.8% of 278) · 19 docs (7.6% of 251)
+                    953 tags (59.0% of 1,616) · 953 docs (59.0% of 1,616)
                   </span>
                 </div>
                 <p style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.5, margin: 0 }}>
@@ -344,7 +373,7 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                   <strong style={{ color: '#f87171' }}>Stage 2: Interpretation Failure (#1 Blocker)</strong>
                   <span style={{ fontWeight: 700, color: '#f87171', fontSize: 11.5 }}>
-                    134 tags (48.2% of 278) · 127 docs (50.6% of 251)
+                    628 tags (38.9% of 1,616) · 628 docs (38.9% of 1,616)
                   </span>
                 </div>
                 <p style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.5, margin: 0 }}>
@@ -357,7 +386,7 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                   <strong style={{ color: '#fbbf24' }}>Stage 3: Evaluation Failure</strong>
                   <span style={{ fontWeight: 700, color: '#fbbf24', fontSize: 11.5 }}>
-                    51 tags (18.3% of 278) · 48 docs (19.1% of 251)
+                    9 tags (0.6% of 1,616) · 9 docs (0.6% of 1,616)
                   </span>
                 </div>
                 <p style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.5, margin: 0 }}>
@@ -370,7 +399,7 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                   <strong style={{ color: '#fb923c' }}>Stage 4: Recovery Breakdown (#2 Blocker)</strong>
                   <span style={{ fontWeight: 700, color: '#fb923c', fontSize: 11.5 }}>
-                    74 tags (26.6% of 278) · 70 docs (27.9% of 251)
+                    26 tags (1.6% of 1,616) · 26 docs (1.6% of 1,616)
                   </span>
                 </div>
                 <p style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.5, margin: 0 }}>
@@ -406,7 +435,7 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
                       <Link href="/questions/1" style={{ color: '#60a5fa', fontWeight: 600 }}>Q1: Struggled Photo Types</Link><br />
                       <Link href="/questions/7" style={{ color: 'var(--text-secondary)', fontSize: 11.5 }}>Q7: Screenshot & Clutter Intrusion</Link>
                     </td>
-                    <td style={{ padding: '10px', color: '#4ade80' }}>Bucket A (N=251)</td>
+                    <td style={{ padding: '10px', color: '#4ade80' }}>In-Scope (N=1,616)</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                     <td style={{ padding: '10px', fontWeight: 600, color: 'var(--text-primary)' }}>
@@ -416,7 +445,7 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
                       <Link href="/questions/2" style={{ color: '#60a5fa', fontWeight: 600 }}>Q2: Retained Memory Clues</Link><br />
                       <Link href="/questions/3" style={{ color: '#60a5fa', fontWeight: 600 }}>Q3: Forgotten Metadata</Link>
                     </td>
-                    <td style={{ padding: '10px', color: '#4ade80' }}>Bucket A (N=251)</td>
+                    <td style={{ padding: '10px', color: '#4ade80' }}>In-Scope (N=1,616)</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                     <td style={{ padding: '10px', fontWeight: 600, color: 'var(--text-primary)' }}>
@@ -426,7 +455,7 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
                       <Link href="/questions/4" style={{ color: '#60a5fa', fontWeight: 600 }}>Q4: Incomplete Query Formulation</Link><br />
                       <Link href="/questions/5" style={{ color: 'var(--text-secondary)', fontSize: 11.5 }}>Q5: Irrelevant Results & False Misses</Link>
                     </td>
-                    <td style={{ padding: '10px', color: '#4ade80' }}>Bucket A (N=251)</td>
+                    <td style={{ padding: '10px', color: '#4ade80' }}>In-Scope (N=1,616)</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                     <td style={{ padding: '10px', fontWeight: 600, color: 'var(--text-primary)' }}>
@@ -436,7 +465,7 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
                       <Link href="/questions/6" style={{ color: '#60a5fa', fontWeight: 600 }}>Q6: Endless Timeline Scrolling</Link><br />
                       <Link href="/questions/10" style={{ color: '#60a5fa', fontWeight: 600 }}>Q10: Workarounds & WhatsApp Switching</Link>
                     </td>
-                    <td style={{ padding: '10px', color: '#4ade80' }}>Bucket A (N=251)</td>
+                    <td style={{ padding: '10px', color: '#4ade80' }}>In-Scope (N=1,616)</td>
                   </tr>
                   <tr>
                     <td style={{ padding: '10px', fontWeight: 600, color: 'var(--text-muted)' }}>
@@ -446,7 +475,7 @@ export default function DataDictionaryModal({ isOpen, onClose }: DataDictionaryM
                       <Link href="/questions/8" style={{ color: 'var(--text-secondary)', fontSize: 11.5 }}>Q8: Face Recognition Failures</Link><br />
                       <Link href="/questions/9" style={{ color: 'var(--text-secondary)', fontSize: 11.5 }}>Q9: Document & Text OCR Failures</Link>
                     </td>
-                    <td style={{ padding: '10px', color: 'var(--text-muted)' }}>Total Corpus (N=2,223)</td>
+                    <td style={{ padding: '10px', color: 'var(--text-muted)' }}>In-Scope Corpus (N=1,616)</td>
                   </tr>
                 </tbody>
               </table>

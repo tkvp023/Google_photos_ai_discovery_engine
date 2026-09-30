@@ -1,67 +1,114 @@
 {
   "counts": {
-    "both": 5,
-    "gemini_ai": 42,
-    "keyword": 113,
-    "unspecified": 118
+    "keyword": 806,
+    "gemini_ai": 123,
+    "unspecified": 651,
+    "both": 36,
+    "total": 1616
   },
   "comparison": {
-    "keyword_failures": {
-      "evaluation": 7,
-      "expression": 8,
-      "interpretation": 81,
-      "recovery": 17
+    "keyword_stage_distribution": {
+      "Intent": 468,
+      "Articulation": 303,
+      "Search": 793,
+      "Initial Results": 413,
+      "Scrolling Results": 31,
+      "Iterative Refinement": 27,
+      "Outcome": 206
     },
-    "gemini_ai_failures": {
-      "evaluation": 1,
-      "expression": 1,
-      "interpretation": 28,
-      "recovery": 12
+    "gemini_ai_stage_distribution": {
+      "Intent": 81,
+      "Articulation": 35,
+      "Search": 148,
+      "Initial Results": 81,
+      "Scrolling Results": 2,
+      "Iterative Refinement": 15,
+      "Outcome": 46
     }
   },
   "gemini_quotes": [
     {
-      "quote": "all of these results in videos that are under 60 seconds in the list to scroll",
-      "confidence": 0.98,
-      "sub_category": "Gemini Misinterprets"
+      "quote": "Always demonstrating to people how easy it was to find a photo i.e. 'Dog in a hat'. Now the search has changed to AI and it's terrible. Even changing to classic, the same search will show your photo briefly, then change to 'Nothing found' or a huge list of random garbage.",
+      "confidence": 0.99,
+      "source": "Playstore",
+      "stages": [
+        "Articulation",
+        "Initial Results"
+      ],
+      "sub_category": "Articulation"
     },
     {
-      "quote": "I used to be able to search 'kookaburra' and a kookaburra would show up.. Now nothing comes up at all. So instea",
-      "confidence": 0.98,
-      "sub_category": "Gemini Misinterprets"
+      "quote": "Try searching photos now. It’s a nightmare. I’m getting the most random scattered results whereas before it was all organized with the correct search, if I searched “Trees” I’d get pictures of trees not a picture of my Dog sitting on the couch.",
+      "confidence": 0.99,
+      "source": "Appstore",
+      "stages": [
+        "Articulation",
+        "Initial Results"
+      ],
+      "sub_category": "Articulation"
     },
     {
-      "quote": "The cycle will keep on repeating. After the 3rd or 4th time you have the ability to ask whether or not there is a fatal flaw",
-      "confidence": 0.95,
-      "sub_category": "Gemini Conversation Dead End"
+      "quote": "Google's and Apple's Photos both can search for pictures given a description of what you're looking for. In my experience both work very well (e.g. search for \"cars\" in your pics, and it'll find all your cars over the years",
+      "confidence": 0.99,
+      "source": "Hackernews",
+      "stages": [
+        "Articulation",
+        "Initial Results"
+      ],
+      "sub_category": "Articulation"
     },
     {
-      "quote": "AI CAN NEVER, EVER FIND MY PHOTOS",
-      "confidence": 0.95,
-      "sub_category": "Gemini Misinterprets"
+      "quote": "Plus figuring out how to word intuitive thought into what AI needs to find photos & still receive less accurate results. You can switch Classic and Gemini but, even Classic is affected to the point that it's less accurate.",
+      "confidence": 0.99,
+      "source": "Playstore",
+      "stages": [
+        "Initial Results",
+        "Intent"
+      ],
+      "sub_category": "Initial Results"
     }
   ],
   "keyword_quotes": [
     {
-      "quote": "if I search Google Photos for 'me', the top hit is a frog",
-      "confidence": 0.98,
-      "sub_category": "Entity Not Recognized"
+      "quote": "Always demonstrating to people how easy it was to find a photo i.e. 'Dog in a hat'. Now the search has changed to AI and it's terrible. Even changing to classic, the same search will show your photo briefly, then change to 'Nothing found' or a huge list of random garbage.",
+      "confidence": 0.99,
+      "source": "Playstore",
+      "stages": [
+        "Articulation",
+        "Initial Results"
+      ],
+      "sub_category": "Articulation"
     },
     {
-      "quote": "it shows all kinds of garbage/nonsense, instead of the requested images by name",
-      "confidence": 0.98,
-      "sub_category": "Clutter Pollutes Results"
+      "quote": "wanted to try to find a remembered example of using Ground Penetrating Radar to find hidden roads in Northern Spain and Southern France, yet for everything tried I could not get Google to actually return results that would ever focus on what it was I actually wanted.",
+      "confidence": 0.99,
+      "source": "Hackernews",
+      "stages": [
+        "Articulation",
+        "Initial Results"
+      ],
+      "sub_category": "Articulation"
     },
     {
-      "quote": "The false positives make the whole experience useless and breaks the search.",
-      "confidence": 0.98,
-      "sub_category": "Wrong Face Match"
+      "quote": "when searching for key words, it gave the option for \"most recent\" or \"best match\", that is still there but under most recent it showed searched key words and organized it by date. I have to now pinch zoom x2 for it to break down into chronological order.",
+      "confidence": 0.99,
+      "source": "Playstore",
+      "stages": [
+        "Articulation",
+        "Initial Results"
+      ],
+      "sub_category": "Articulation"
     },
     {
-      "quote": "Random people in backgrounds are being assigned key family members.",
-      "confidence": 0.98,
-      "sub_category": "Wrong Face Match"
+      "quote": "If in a few years you want to find \"that photo of me you took on the beach in north carolina\", with a quick search you can. There are annoying limitations though... google photos has no idea what the \"outer banks\" are... and returns no results.",
+      "confidence": 0.99,
+      "source": "Hackernews",
+      "stages": [
+        "Articulation",
+        "Initial Results"
+      ],
+      "sub_category": "Articulation"
     }
   ],
-  "takeaway": "While traditional keyword search fails predominantly on literal exact-string matching and lack of relative-time filters, Gemini/Ask Photos introduces a distinct failure mode: conversational over-promising, hallucinated entity matches, and inability to converge during follow-up query turns."
+  "takeaway": "Across the 1,616 search-only corpus, traditional keyword search breaks down predominantly due to rigid exact-match requirements and lack of temporal flexibility (593 initial result misses), while Gemini / Ask Photos AI introduces a new failure taxonomy: conversational over-promising, semantic drift, privacy resistance, and abrupt dead-ends when users attempt iterative multi-turn refinement."
 }

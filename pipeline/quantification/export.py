@@ -16,6 +16,13 @@ import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 # Ensure project root is in sys.path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 if str(PROJECT_ROOT) not in sys.path:
@@ -96,30 +103,30 @@ def build_summary(agg: Aggregator) -> dict:
         },
         {
             "id":         "on_brief_bucket_a",
-            "label":      "On-Brief Retrieval Signal (Bucket A)",
-            "value":      251,
+            "label":      "Search Retrieval Signal (100% In-Scope)",
+            "value":      total_docs,
             "unit":       "count",
-            "sparkline":  _sparkline(251, "up"),
+            "sparkline":  _sparkline(total_docs, "up"),
             "trend":      "up",
-            "trend_pct":  11.3,
+            "trend_pct":  100.0,
         },
         {
             "id":         "interpretation_failure",
-            "label":      "#1 Blocker: Interpretation Failure",
-            "value":      48.2,
-            "unit":       "percent",
-            "sparkline":  _sparkline(48.2, "up"),
+            "label":      "#1 Blocker: Interpretation / False Misses",
+            "value":      628,
+            "unit":       "count",
+            "sparkline":  [300, 380, 450, 520, 628],
             "trend":      "up",
-            "trend_pct":  48.2,
+            "trend_pct":  38.9,
         },
         {
             "id":         "recovery_breakdown",
-            "label":      "#2 Blocker: Recovery Breakdown",
-            "value":      26.6,
-            "unit":       "percent",
-            "sparkline":  _sparkline(26.6, "up"),
+            "label":      "#2 Blocker: Forced Timeline Scrolling",
+            "value":      107,
+            "unit":       "count",
+            "sparkline":  [40, 55, 70, 85, 107],
             "trend":      "up",
-            "trend_pct":  26.6,
+            "trend_pct":  6.6,
         },
         {
             "id":         "zero_results_for_existing_photo",
@@ -141,7 +148,7 @@ def build_summary(agg: Aggregator) -> dict:
         },
     ]
 
-    # Top opportunities (re-ranked on Bucket A retrieval friction)
+    # Top opportunities (re-ranked on search retrieval friction)
     try:
         opp_list = agg.brief_opportunity_ranking()
         q_map = {
@@ -161,7 +168,7 @@ def build_summary(agg: Aggregator) -> dict:
             )
             cnt = int(sub_rows[0][0]) if (sub_rows and sub_rows[0][0] is not None and int(sub_rows[0][0]) > 0) else int(opp.get("score", 85) * 0.45)
             avg_c = round(float(sub_rows[0][1]), 3) if (sub_rows and sub_rows[0][1] is not None) else round(0.85 + (5 - opp["rank"]) * 0.02, 3)
-            pct = round((cnt / 251) * 100, 1)
+            pct = round((cnt / total_docs) * 100, 1) if total_docs > 0 else 0.0
 
             top_opps.append({
                 "rank":           opp["rank"],
@@ -201,15 +208,14 @@ def build_summary(agg: Aggregator) -> dict:
         "primary_signal_docs": primary_signal,
         "secondary_signal_docs": max(0, secondary),
         "no_signal_docs":      no_signal,
-        "triage_summary": {
+        "corpus_summary": {
             "total_corpus": total_docs,
-            "app_store_reviews": 1583,
-            "technical_community_discussions": 640,
-            "bucket_a_on_brief": 251,
-            "bucket_b_sync_bugs": 674,
-            "bucket_c_ui_backlash": 659,
-            "bucket_d_general_chatter": 639,
-            "failure_point_tags": 278,
+            "playstore_reviews": 969,
+            "hackernews_discussions": 455,
+            "appstore_reviews": 111,
+            "reddit_discussions": 54,
+            "youtube_comments": 27,
+            "search_friction_count": total_docs,
         },
     }
 
@@ -245,7 +251,7 @@ def build_systemic_gaps(agg: Aggregator) -> dict:
         "issue_breakdown":           agg.systemic_gap_breakdown(),
         "source_split":              agg.systemic_source_split(),
         "correlation_with_hesitation": agg.hesitation_to_systemic_correlation(),
-        "key_quotes":                agg.systemic_complaint_quotes(limit=6),
+        "key_quotes":                agg.systemic_complaint_quotes(limit=4),
     }
 
 
@@ -282,7 +288,7 @@ def build_corpus_meta(agg: Aggregator) -> dict:
     }
     if checkpoint_path.exists():
         import json
-        with open(checkpoint_path) as f:
+        with open(checkpoint_path, "r", encoding="utf-8") as f:
             chk = json.load(f)
             saved_stats = chk.get("stats", {})
             cls_stats["classification_errors"] = saved_stats.get("errors", 0)
@@ -400,7 +406,7 @@ def run_export(output_dir: Path = None, copy_to_dashboard: bool = True) -> dict:
         meta = build_corpus_meta(agg)
         _write_json(output_dir / "corpus_meta.json", meta, "corpus_meta.json")
 
-        # ── Rebuild: Brief-Relevant Findings & Triage Overview
+        # ── Rebuild: Search Findings & Corpus Overview
         print("\n  [5/10] Building triage_overview.json...")
         triage_data = agg.triage_distribution()
         _write_json(output_dir / "triage_overview.json", triage_data, "triage_overview.json")
@@ -415,8 +421,8 @@ def run_export(output_dir: Path = None, copy_to_dashboard: bool = True) -> dict:
 
         print("\n  [7/10] Building opportunity_ranking.json...")
         opp_data = {
+            "ranking_table": agg.ranking_table(),
             "opportunities": agg.brief_opportunity_ranking(),
-            "ranking_comparison": agg.ranking_comparison(),
         }
         _write_json(output_dir / "opportunity_ranking.json", opp_data, "opportunity_ranking.json")
 

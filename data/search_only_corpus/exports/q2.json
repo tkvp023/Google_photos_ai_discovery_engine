@@ -1,0 +1,271 @@
+{
+  "question_id": 2,
+  "question_text": "What information do people actually remember about a photo?",
+  "question_short": "Retained Memory Clues",
+  "total_relevant_docs": 1009,
+  "avg_confidence": 0.912,
+  "breakdown": [
+    {
+      "label": "Multi-Cue Scene Composition",
+      "tag": "multi-cue_scene_composition",
+      "count": 805,
+      "pct": 79.8,
+      "avg_confidence": 0.912,
+      "color": "#6366f1"
+    },
+    {
+      "label": "Social Companions Present",
+      "tag": "social_companions_present",
+      "count": 322,
+      "pct": 31.9,
+      "avg_confidence": 0.913,
+      "color": "#10b981"
+    },
+    {
+      "label": "Relative Time & Seasons",
+      "tag": "relative_time_&_seasons",
+      "count": 237,
+      "pct": 23.5,
+      "avg_confidence": 0.913,
+      "color": "#f59e0b"
+    },
+    {
+      "label": "Visual Details & Clothing Colors",
+      "tag": "visual_details_&_clothing_colors",
+      "count": 717,
+      "pct": 71.1,
+      "avg_confidence": 0.914,
+      "color": "#a855f7"
+    },
+    {
+      "label": "Words Seen on Objects & Labels",
+      "tag": "words_seen_on_objects_&_labels",
+      "count": 198,
+      "pct": 19.6,
+      "avg_confidence": 0.929,
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Atmosphere & Emotional Tone",
+      "tag": "atmosphere_&_emotional_tone",
+      "count": 151,
+      "pct": 15.0,
+      "avg_confidence": 0.915,
+      "color": "#fb7185"
+    }
+  ],
+  "source_attribution": [
+    {
+      "label": "Multi-Cue Scene Composition",
+      "tag": "multi-cue_scene_composition",
+      "avg_confidence": 0.912,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 427,
+          "pct": 53.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 289,
+          "pct": 35.9
+        },
+        {
+          "source": "App Store",
+          "count": 55,
+          "pct": 6.8
+        },
+        {
+          "source": "Reddit",
+          "count": 24,
+          "pct": 3.0
+        },
+        {
+          "source": "YouTube",
+          "count": 10,
+          "pct": 1.2
+        }
+      ]
+    },
+    {
+      "label": "Social Companions Present",
+      "tag": "social_companions_present",
+      "avg_confidence": 0.913,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 152,
+          "pct": 47.2
+        },
+        {
+          "source": "Hacker News",
+          "count": 150,
+          "pct": 46.6
+        },
+        {
+          "source": "App Store",
+          "count": 10,
+          "pct": 3.1
+        },
+        {
+          "source": "Reddit",
+          "count": 7,
+          "pct": 2.2
+        },
+        {
+          "source": "YouTube",
+          "count": 3,
+          "pct": 0.9
+        }
+      ]
+    },
+    {
+      "label": "Relative Time & Seasons",
+      "tag": "relative_time_&_seasons",
+      "avg_confidence": 0.913,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 112,
+          "pct": 47.3
+        },
+        {
+          "source": "Hacker News",
+          "count": 96,
+          "pct": 40.5
+        },
+        {
+          "source": "App Store",
+          "count": 14,
+          "pct": 5.9
+        },
+        {
+          "source": "Reddit",
+          "count": 11,
+          "pct": 4.6
+        },
+        {
+          "source": "YouTube",
+          "count": 4,
+          "pct": 1.7
+        }
+      ]
+    },
+    {
+      "label": "Visual Details & Clothing Colors",
+      "tag": "visual_details_&_clothing_colors",
+      "avg_confidence": 0.914,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 390,
+          "pct": 54.4
+        },
+        {
+          "source": "Hacker News",
+          "count": 264,
+          "pct": 36.8
+        },
+        {
+          "source": "App Store",
+          "count": 33,
+          "pct": 4.6
+        },
+        {
+          "source": "Reddit",
+          "count": 25,
+          "pct": 3.5
+        },
+        {
+          "source": "YouTube",
+          "count": 5,
+          "pct": 0.7
+        }
+      ]
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "Always demonstrating to people how easy it was to find a photo i.e. 'Dog in a hat'. Now the search has changed to AI and it's terrible. Even changing to classic, the same search will show your photo briefly, then change to 'Nothing found' or a huge list of random garbage.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "both",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "wanted to try to find a remembered example of using Ground Penetrating Radar to find hidden roads in Northern Spain and Southern France, yet for everything tried I could not get Google to actually return results that would ever focus on what it was I actually wanted.",
+      "confidence": 0.99,
+      "source": "Hacker News",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "when searching for key words, it gave the option for \"most recent\" or \"best match\", that is still there but under most recent it showed searched key words and organized it by date. I have to now pinch zoom x2 for it to break down into chronological order.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Try searching photos now. It’s a nightmare. I’m getting the most random scattered results whereas before it was all organized with the correct search, if I searched “Trees” I’d get pictures of trees not a picture of my Dog sitting on the couch.",
+      "confidence": 0.99,
+      "source": "App Store",
+      "tags": [
+        "gemini ai",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Disappointed to see that when you search and then select a photo and then go back your search is no longer there and you are on the main screen. Let's say I want to look at all my Disney photos, I don't want to re-search \"Disney\" every time",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    }
+  ],
+  "factor_correlation": [
+    {
+      "factor": "Sensory Colors & Objects",
+      "importance": 41.2,
+      "negative_pct": 26.5
+    },
+    {
+      "factor": "Social Companions",
+      "importance": 34.5,
+      "negative_pct": 21.0
+    },
+    {
+      "factor": "Relative Time & Seasons",
+      "importance": 30.1,
+      "negative_pct": 32.4
+    },
+    {
+      "factor": "Emotional Atmosphere",
+      "importance": 22.8,
+      "negative_pct": 17.5
+    },
+    {
+      "factor": "Exact Calendar Date",
+      "importance": 5.4,
+      "negative_pct": 42.1
+    },
+    {
+      "factor": "Device Filename & Folder",
+      "importance": 3.1,
+      "negative_pct": 38.0
+    }
+  ]
+}

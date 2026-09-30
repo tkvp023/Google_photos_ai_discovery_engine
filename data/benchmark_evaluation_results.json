@@ -1,0 +1,88 @@
+{
+  "timestamp": "2026-09-21 15:51:19",
+  "benchmarks": {
+    "corpus_cleanliness": {
+      "total_documents": 1616,
+      "bucket_a_search_only": 1616,
+      "empty_docs": 0,
+      "contamination_count": 0,
+      "passed": true
+    },
+    "quote_verifiability": {
+      "total_quotes_checked": 50,
+      "grounded_quotes": 50,
+      "grounding_rate_pct": 100.0,
+      "breakdown": {
+        "Q1": {
+          "total": 5,
+          "grounded": 5,
+          "rate": 100.0
+        },
+        "Q2": {
+          "total": 5,
+          "grounded": 5,
+          "rate": 100.0
+        },
+        "Q3": {
+          "total": 5,
+          "grounded": 5,
+          "rate": 100.0
+        },
+        "Q4": {
+          "total": 5,
+          "grounded": 5,
+          "rate": 100.0
+        },
+        "Q5": {
+          "total": 5,
+          "grounded": 5,
+          "rate": 100.0
+        },
+        "Q6": {
+          "total": 5,
+          "grounded": 5,
+          "rate": 100.0
+        },
+        "Q7": {
+          "total": 5,
+          "grounded": 5,
+          "rate": 100.0
+        },
+        "Q8": {
+          "total": 5,
+          "grounded": 5,
+          "rate": 100.0
+        },
+        "Q9": {
+          "total": 5,
+          "grounded": 5,
+          "rate": 100.0
+        },
+        "Q10": {
+          "total": 5,
+          "grounded": 5,
+          "rate": 100.0
+        }
+      },
+      "passed": true
+    },
+    "vector_store": {
+      "indexed_documents": 1616,
+      "avg_query_latency_ms": 2.15,
+      "passed": true
+    },
+    "rag_grounding": {
+      "query": "Why do users struggle to find photos when they only remember friends or a vacation?",
+      "docs_retrieved": 12,
+      "citations_count": 2,
+      "latency_sec": 6.49,
+      "passed": true
+    },
+    "dashboard_assets": {
+      "total_expected": 13,
+      "all_present": true,
+      "missing": [],
+      "passed": true
+    }
+  }
+}

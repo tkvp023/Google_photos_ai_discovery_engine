@@ -178,7 +178,7 @@ REPRESENTATIVE MULTI-SOURCE FEEDBACK SAMPLES:
 AUDIT REQUIREMENTS:
 1. Data Authenticity & Cleanliness: Confirm that the sample documents represent authentic, non-synthetic consumer feedback reflecting real user experiences with Google Photos.
 2. Relevance & Domain Alignment: Verify that the dataset strictly concerns Google Photos discovery, search, backup, face recognition, and timeline management (zero off-domain noise).
-3. Retrieval Gap Validity: Evaluate whether the identified empirical friction drivers (e.g., clutter, zero-results, face failure, date uncertainty) represent valid, high-impact product opportunities for an AI-native search engine ("MemorySense").
+3. Retrieval Gap Validity: Evaluate whether the identified empirical friction drivers (e.g., clutter, zero-results, face failure, date uncertainty) represent valid, high-impact product opportunities for the Google Photos AI Discovery Engine.
 4. Executive Certification:
    - Provide an overall Data Quality & Integrity Score (0-100%).
    - Certify the corpus as ready for RAG and Executive Presentation.

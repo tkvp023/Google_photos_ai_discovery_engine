@@ -83,7 +83,7 @@ q1_specs = [
 
 q1_items = []
 q1_attr = []
-total_q1_tags = 278
+total_q1_tags = 1616
 for label, tag, cond, color in q1_specs:
     sql = f"SELECT d.source, COUNT(*), AVG(fpt.confidence) FROM failure_point_tags fpt JOIN documents d ON fpt.doc_id = d.doc_id WHERE {cond} GROUP BY d.source"
     data = query_category_platform_data(conn, sql)

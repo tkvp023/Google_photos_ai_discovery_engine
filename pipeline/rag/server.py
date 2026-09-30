@@ -46,13 +46,22 @@ app = FastAPI(
     version="1.0.0",
 )
 
-allowed_origins_env = os.environ.get("ALLOWED_ORIGINS", "*")
-origins = [o.strip() for o in allowed_origins_env.split(",") if o.strip()] or ["*"]
+allowed_origins_env = os.environ.get("ALLOWED_ORIGINS", "")
+if allowed_origins_env:
+    origins = [o.strip() for o in allowed_origins_env.split(",") if o.strip()]
+else:
+    origins = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:3001",
+        "*",
+    ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_credentials=True if origins != ["*"] else False,
+    allow_credentials=True if origins != ["*"] and "*" not in origins else False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -65,10 +74,10 @@ app.add_middleware(
 class AskFilters(BaseModel):
     segment: Optional[str] = Field(None, description="User segment filter: gen_z, millennial, gen_x, or all")
     source: Optional[str] = Field(None, description="Source filter: Play Store, Reddit, YouTube, App Store, Hacker News, PissedConsumer, or all")
-    scope: Optional[str] = Field("brief", description="Retrieval scope: 'brief' (Bucket A memory failures) or 'all' (entire corpus)")
+    scope: Optional[str] = Field("brief", description="Retrieval scope: 'brief' (in-scope search failures) or 'all' (entire corpus)")
 
 class AskRequest(BaseModel):
-    query: str = Field(..., min_length=2, max_length=500, description="Natural-language question")
+    query: str = Field(..., min_length=2, max_length=2000, description="Natural-language question")
     filters: Optional[AskFilters] = None
     scope: Optional[str] = Field("brief", description="Retrieval scope: 'brief' or 'all'")
 

@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Systemic Retrieval Gaps | Google Photos AI Discovery Engine',
-  description: 'Deep-dive intelligence across 2,223 verified consumer reviews and technical discussions (Google Play, Apple App Store, Reddit, Hacker News, YouTube), capturing systemic architectural failure modes in visual memory retrieval.',
+  description: 'Deep-dive intelligence across 1,616 verified consumer reviews and technical discussions (Google Play, Apple App Store, Reddit, Hacker News, YouTube), capturing systemic architectural failure modes in visual memory retrieval.',
 };
 
 export default async function GapsPage() {
@@ -18,12 +18,12 @@ export default async function GapsPage() {
           <div style={{ flex: 1, minWidth: 320 }}>
             <h1>
               <span style={{ background: 'var(--gradient-brand)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                Systemic
+                Deeper Gaps
               </span>{' '}
-              Retrieval Gaps & Architecture Bottlenecks
+              in Photo Search
             </h1>
             <p>
-              Unified cross-platform intelligence synthesizing <strong>2,223 verified customer reviews and engineering discussions</strong> across all 5 channels (Google Play Store, Apple App Store, Reddit, Hacker News, and YouTube teardowns) — identifying systemic architectural failure modes (OCR indexing lag, face grouping blindspots, meme clutter pollution, and timeline scroll breakdown) with unified statistical integrity.
+              Beyond the 4 main failure stages, 1,616 customer reviews revealed these specific recurring product gaps — issues like face recognition errors, screenshot clutter, and timeline fatigue that cut across multiple search scenarios.
             </p>
           </div>
           <Link

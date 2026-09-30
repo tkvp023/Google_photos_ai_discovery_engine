@@ -14,8 +14,8 @@ Enable high-recall query expression, context-aware associative matching, and clu
        │
        ▼
 [3. AI-Powered Discovery Insights]
-Discovery engine surfaces that 48.2% of breakdowns stem from search misunderstanding queries (134/278 tags),
-40.3% involve date amnesia (112/278 tags), and 68.9% of recovery failures force users into doom-scrolling (51/74 tags).
+Discovery engine surfaces that 53.7% of breakdowns stem from search misunderstanding vague memory cues (867/1,616 reviews),
+36.4% involve date amnesia (317/870 reviews), and 68.9% of recovery failures force users into doom-scrolling (51/74 recovery issues).
        │
        ▼
 [4. Observed User Behavior (Research Validation)]

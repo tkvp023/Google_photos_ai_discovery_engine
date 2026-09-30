@@ -83,7 +83,7 @@ export default function HeroRagInput() {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          placeholder="Search or ask grounded questions across 2,223 customer reviews..."
+          placeholder="Search or ask grounded questions across 1,616 verified customer reviews..."
           style={{
             flex: 1,
             background: 'transparent',
@@ -95,7 +95,7 @@ export default function HeroRagInput() {
             padding: '7px 2px',
             fontFamily: 'inherit',
           }}
-          aria-label="Search or ask grounded questions across 2,223 customer reviews"
+          aria-label="Search or ask grounded questions across 1,616 verified customer reviews"
         />
 
         <button

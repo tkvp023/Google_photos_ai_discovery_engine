@@ -13,5 +13,5 @@ print("Sources:", sources)
 # Check documents mentioning search, photo, find, scroll, face, clutter, screenshot, etc.
 keywords = ['search', 'find', 'photo', 'picture', 'scroll', 'clutter', 'screenshot', 'face', 'pet', 'receipt', 'date', 'remember', 'album', 'whatsapp']
 for kw in keywords:
-    cnt = c.execute(f"SELECT COUNT(*) FROM documents WHERE LOWER(content) LIKE '%{kw}%'").fetchone()[0]
+    cnt = c.execute("SELECT COUNT(*) FROM documents WHERE LOWER(content) LIKE ?", (f"%{kw}%",)).fetchone()[0]
     print(f"Docs containing '{kw}': {cnt}")

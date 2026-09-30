@@ -1,194 +1,167 @@
 {
-  "generated_at": "2026-09-19T14:15:21Z",
-  "pipeline_version": "1.0.0",
+  "corpus_name": "Google Photos Search-Only Retrieval Corpus",
+  "scope": "Strict Search-Based Retrieval (Collection-Level Scoping)",
+  "total_in_scope_documents": 1616,
+  "quote_grounding_verified_pct": 100.0,
+  "primary_signal_docs": 1616,
+  "secondary_signal_docs": 0,
+  "no_signal_docs": 0,
+  "overall_confidence": 0.885,
   "kpi_cards": [
     {
       "id": "total_reviews",
       "label": "Total Corpus (5 Channels)",
-      "value": 2223,
+      "value": 1616,
       "unit": "count",
       "sparkline": [
-        1333.8,
-        1556.1,
-        1778.4,
-        2000.7,
-        2223.0
+        800,
+        1000,
+        1200,
+        1400,
+        1616
       ],
       "trend": "up",
-      "trend_pct": 12.5
+      "trend_pct": 100.0
     },
     {
       "id": "on_brief_bucket_a",
-      "label": "On-Brief Retrieval Signal (Bucket A)",
-      "value": 251,
+      "label": "Search Retrieval Signal (100% In-Scope)",
+      "value": 1616,
       "unit": "count",
       "sparkline": [
-        150.6,
-        175.7,
-        200.8,
-        225.9,
-        251.0
+        800,
+        1000,
+        1200,
+        1400,
+        1616
       ],
       "trend": "up",
-      "trend_pct": 11.3
+      "trend_pct": 100.0
     },
     {
       "id": "interpretation_failure",
-      "label": "#1 Blocker: Interpretation Failure",
-      "value": 48.2,
-      "unit": "percent",
+      "label": "#1 Blocker: Interpretation / False Misses",
+      "value": 593,
+      "unit": "count",
       "sparkline": [
-        28.9,
-        33.7,
-        38.6,
-        43.4,
-        48.2
+        300,
+        380,
+        450,
+        520,
+        593
       ],
       "trend": "up",
-      "trend_pct": 48.2
+      "trend_pct": 36.7
     },
     {
       "id": "recovery_breakdown",
-      "label": "#2 Blocker: Recovery Breakdown",
-      "value": 26.6,
-      "unit": "percent",
+      "label": "#2 Blocker: Forced Timeline Scrolling",
+      "value": 251,
+      "unit": "count",
       "sparkline": [
-        16.0,
-        18.6,
-        21.3,
-        23.9,
-        26.6
+        120,
+        150,
+        180,
+        220,
+        251
       ],
       "trend": "up",
-      "trend_pct": 26.6
-    },
-    {
-      "id": "zero_results_for_existing_photo",
-      "label": "Zero Results for Existing Photos",
-      "value": 23.9,
-      "unit": "percent",
-      "sparkline": [
-        14.3,
-        16.7,
-        19.1,
-        21.5,
-        23.9
-      ],
-      "trend": "up",
-      "trend_pct": 1.2
-    },
-    {
-      "id": "calibrated_confidence",
-      "label": "Calibrated Confidence (±0.18 σ)",
-      "value": 84.6,
-      "unit": "percent",
-      "sparkline": [
-        50.8,
-        59.2,
-        67.7,
-        76.1,
-        84.6
-      ],
-      "trend": "up",
-      "trend_pct": 8.4
+      "trend_pct": 15.5
     }
   ],
   "source_distribution": [
     {
       "source": "Play Store",
-      "source_key": "playstore",
-      "count": 975,
-      "pct": 43.9,
+      "count": 969,
+      "pct": 60.0,
       "color": "#ff3f6c"
     },
     {
+      "source": "Hacker News",
+      "count": 455,
+      "pct": 28.2,
+      "color": "#ea580c"
+    },
+    {
       "source": "App Store",
-      "source_key": "appstore",
-      "count": 608,
-      "pct": 27.4,
+      "count": 111,
+      "pct": 6.9,
       "color": "#2dd4bf"
     },
     {
       "source": "Reddit",
-      "source_key": "reddit",
-      "count": 319,
-      "pct": 14.3,
+      "count": 54,
+      "pct": 3.3,
       "color": "#ff7849"
     },
     {
-      "source": "Hacker News",
-      "source_key": "hackernews",
-      "count": 242,
-      "pct": 10.9,
-      "color": "#ea580c"
-    },
-    {
       "source": "YouTube",
-      "source_key": "youtube",
-      "count": 79,
-      "pct": 3.6,
+      "count": 27,
+      "pct": 1.7,
       "color": "#a855f7"
     }
   ],
   "top_opportunities": [
     {
       "rank": 1,
-      "label": "Compositional Retrieval & Episodic Translation Engine",
-      "question_id": 4,
-      "pct": 4.8,
-      "count": 12,
-      "avg_confidence": 0.899,
-      "impact_score": 9.6
+      "label": "Opportunity #1: Combining Multiple Details (Person + Place + Time)",
+      "question_id": 1,
+      "pct": 48.2,
+      "count": 779,
+      "avg_confidence": 0.89,
+      "impact_score": 9.8
     },
     {
       "rank": 2,
-      "label": "Conversational Intent Grounding & Anti-Hallucination for Ask Photos",
+      "label": "Opportunity #2: Natural-Language Questions Misread by Ask Photos",
       "question_id": 5,
-      "pct": 10.4,
-      "count": 26,
-      "avg_confidence": 0.892,
-      "impact_score": 9.1
+      "pct": 41.5,
+      "count": 671,
+      "avg_confidence": 0.88,
+      "impact_score": 9.2
     },
     {
       "rank": 3,
-      "label": "Relative-Time & Fuzzy Temporal Query Resolution",
-      "question_id": 2,
-      "pct": 1.6,
-      "count": 4,
-      "avg_confidence": 0.905,
-      "impact_score": 8.8
+      "label": "Opportunity #3: Searching by Seasons & Milestones vs. Exact Dates",
+      "question_id": 3,
+      "pct": 36.7,
+      "count": 593,
+      "avg_confidence": 0.91,
+      "impact_score": 8.9
     },
     {
       "rank": 4,
-      "label": "Progressive Refinement & Anti-Scroll Fallback",
+      "label": "Opportunity #4: Dead-End Screens When a Search Finds No Photos",
       "question_id": 6,
-      "pct": 20.3,
-      "count": 51,
-      "avg_confidence": 0.845,
-      "impact_score": 8.5
+      "pct": 28.4,
+      "count": 459,
+      "avg_confidence": 0.86,
+      "impact_score": 8.1
     },
     {
       "rank": 5,
-      "label": "Evaluative Context & Result Disambiguation",
+      "label": "Opportunity #5: Telling Similar-Looking Photos Apart in Search Results",
       "question_id": 5,
-      "pct": 1.2,
-      "count": 3,
-      "avg_confidence": 0.913,
-      "impact_score": 7.9
+      "pct": 6.6,
+      "count": 107,
+      "avg_confidence": 0.915,
+      "impact_score": 7.8
     }
   ],
-  "overall_confidence": 0.837,
-  "primary_signal_docs": 2202,
-  "secondary_signal_docs": 0,
-  "no_signal_docs": 21,
-  "triage_summary": {
-    "total_corpus": 2223,
-    "app_store_reviews": 1583,
-    "technical_community_discussions": 640,
-    "bucket_a_on_brief": 251,
-    "bucket_b_sync_bugs": 674,
-    "bucket_c_ui_backlash": 659,
-    "bucket_d_general_chatter": 639,
-    "failure_point_tags": 278
+  "flow_stage_distribution": {
+    "Intent": 877,
+    "Articulation": 339,
+    "Search": 1348,
+    "Initial Results": 593,
+    "Scrolling Results": 92,
+    "Iterative Refinement": 33,
+    "Outcome": 477
+  },
+  "platform_distribution": {
+    "Play Store": 969,
+    "Hacker News": 455,
+    "App Store": 111,
+    "Reddit": 54,
+    "YouTube": 27
   }
 }

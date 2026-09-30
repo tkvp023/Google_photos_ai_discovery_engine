@@ -21,6 +21,8 @@ interface HorizontalBarProps {
   showCount?: boolean;
   showConfidence?: boolean;
   denominator?: number;
+  unit?: string;
+  showTagExplanation?: boolean;
   onItemClick?: (item: BreakdownItem) => void;
 }
 
@@ -43,10 +45,25 @@ function ConfidenceDot({ conf }: { conf?: number }) {
   );
 }
 
-export default function HorizontalBar({ data, title, maxBars = 8, showCount = true, denominator, onItemClick }: HorizontalBarProps) {
+export default function HorizontalBar({
+  data,
+  title,
+  maxBars = 8,
+  showCount = true,
+  denominator,
+  unit,
+  showTagExplanation = true,
+  onItemClick,
+}: HorizontalBarProps) {
   const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
   const visible = data.slice(0, maxBars);
   const totalCount = denominator || data.reduce((acc, it) => acc + (it.count || 0), 0) || 1;
+
+  // 1,616 is the total number of customer reviews in the corpus.
+  // Subsets (e.g. 74, 110, 169) represent failure point tags.
+  const resolvedUnit = unit !== undefined
+    ? unit
+    : (totalCount === 1616 ? 'reviews' : 'tags');
 
   return (
     <div ref={ref}>
@@ -94,7 +111,7 @@ export default function HorizontalBar({ data, title, maxBars = 8, showCount = tr
                   <strong style={{ fontWeight: 700 }}>{item.pct.toFixed(1)}%</strong>
                   {showCount && (
                     <span style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 500 }}>
-                      ({item.count.toLocaleString()} / {totalCount.toLocaleString()})
+                      ({item.count.toLocaleString()} / {totalCount.toLocaleString()} {resolvedUnit})
                     </span>
                   )}
                 </span>
@@ -123,6 +140,27 @@ export default function HorizontalBar({ data, title, maxBars = 8, showCount = tr
           return <div key={`${item.tag || item.label || 'bar'}-${i}`}>{content}</div>;
         })}
       </div>
+
+      {showTagExplanation && resolvedUnit.toLowerCase().includes('tag') && (
+        <div style={{
+          marginTop: 14,
+          padding: '8px 12px',
+          background: 'rgba(255, 255, 255, 0.02)',
+          borderRadius: 'var(--radius-sm)',
+          border: '1px solid var(--border)',
+          display: 'flex',
+          alignItems: 'flex-start',
+          gap: 7,
+          fontSize: 11.5,
+          color: 'var(--text-muted)',
+          lineHeight: 1.45,
+        }}>
+          <span style={{ fontSize: 13, flexShrink: 0, marginTop: 1 }}>🏷️</span>
+          <span>
+            <strong style={{ color: 'var(--text-primary)' }}>What are &ldquo;tags&rdquo;?</strong> In this discovery engine, a <em>tag</em> is a specific, machine-verified failure pattern or memory signal identified in user feedback (e.g. <em>date amnesia</em>, <em>wrong face match</em>, or <em>forced scroll fallback</em>). The denominator represents total verified tags cataloged for this topic. A single user review can contain multiple tags if the user hit several obstacles.
+          </span>
+        </div>
+      )}
     </div>
   );
 }

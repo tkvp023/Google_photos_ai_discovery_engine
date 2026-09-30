@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default async function FindingsPage() {
   const [
-    triage,
+    corpusOverview,
     bucketA,
     opportunities,
     sampleAnswers,
@@ -34,7 +34,7 @@ export default async function FindingsPage() {
   return (
     <div className="container" style={{ paddingTop: 24, paddingBottom: 100 }}>
       <FindingsContent
-        triage={triage}
+        corpus={corpusOverview}
         bucketA={bucketA}
         opportunities={opportunities}
         sampleAnswers={sampleAnswers}

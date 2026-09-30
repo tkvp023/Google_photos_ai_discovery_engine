@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-09-21T06:45:30.224630+00:00",
+  "classifier_models": [
+    "gemini-3.1-flash-lite",
+    "gemini-3.1-flash-lite-preview"
+  ],
+  "funnel": {
+    "total_raw_reviewed": 25551,
+    "retained_search_in_scope": 1616,
+    "excluded_out_of_scope": 23815,
+    "logged_ambiguous": 120,
+    "search_yield_pct": 6.32,
+    "quote_grounding_verified_pct": 100.0
+  },
+  "stage_distribution": {
+    "Intent": 877,
+    "Articulation": 339,
+    "Search": 1348,
+    "Initial Results": 593,
+    "Scrolling Results": 92,
+    "Iterative Refinement": 33,
+    "Outcome": 477
+  },
+  "platform_breakdown": {
+    "appstore": 111,
+    "hackernews": 455,
+    "playstore": 969,
+    "reddit": 54,
+    "youtube": 27
+  }
+}

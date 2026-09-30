@@ -7,7 +7,10 @@ import { join } from 'path';
 
 function loadJSON<T>(filename: string, fallback: T): T {
   try {
-    const filePath = join(process.cwd(), 'public', 'data', filename);
+    let filePath = join(process.cwd(), 'public', 'data', filename);
+    if (!existsSync(filePath)) {
+      filePath = join(process.cwd(), 'dashboard', 'public', 'data', filename);
+    }
     if (!existsSync(filePath)) return fallback;
     const raw = readFileSync(filePath, 'utf-8');
     const data = JSON.parse(raw);
@@ -40,9 +43,9 @@ export async function getCorpusMeta() {
 
 export async function getTriageOverview() {
   return loadJSON('triage_overview.json', {
-    total_documents: 2223,
-    on_brief_count: 251,
-    on_brief_percentage: 11.3,
+    total_documents: 1616,
+    on_brief_count: 1616,
+    on_brief_percentage: 100.0,
     buckets: {},
     methodology_note: '',
   });
@@ -50,7 +53,7 @@ export async function getTriageOverview() {
 
 export async function getBucketAFindings() {
   return loadJSON('bucket_a_findings.json', {
-    failure_breakdown: { total_tags: 0, total_bucket_a_docs: 251, failure_points: {} },
+    failure_breakdown: { total_tags: 1616, total_bucket_a_docs: 1616, failure_points: {} },
     subcategories: [],
     memory_cues: { total_cues: 0, cues: [] },
   });
@@ -58,8 +61,8 @@ export async function getBucketAFindings() {
 
 export async function getOpportunityRanking() {
   return loadJSON('opportunity_ranking.json', {
+    ranking_table: [],
     opportunities: [],
-    ranking_comparison: [],
   });
 }
 
@@ -110,15 +113,15 @@ function generateMockQuestion(id: number) {
     question_id: id,
     question_text: text,
     question_short: short,
-    total_relevant_docs: 2223,
-    avg_confidence: 0.88,
+    total_relevant_docs: 1616,
+    avg_confidence: 0.91,
     breakdown: [
-      { label: "Screenshot & Meme Clutter", tag: "screenshot_clutter", count: 1471, pct: 29.1, avg_confidence: 0.89, color: "#f43f5e" },
-      { label: "Zero Results for Existing Photos", tag: "zero_results_for_existing", count: 1209, pct: 23.9, avg_confidence: 0.87, color: "#f43f5e" },
-      { label: "Irrelevant Search Results", tag: "irrelevant_search_results", count: 393, pct: 7.8, avg_confidence: 0.85, color: "#f59e0b" },
-      { label: "Forgot Exact Date (Date Amnesia)", tag: "forgot_exact_date", count: 316, pct: 6.2, avg_confidence: 0.88, color: "#f59e0b" },
-      { label: "Remembered Relative Time", tag: "remembered_relative_time", count: 288, pct: 5.7, avg_confidence: 0.86, color: "#3b82f6" },
-      { label: "Forgot Filename or Album", tag: "forgot_filename_or_album", count: 208, pct: 4.1, avg_confidence: 0.84, color: "#3b82f6" },
+      { label: "Date Amnesia & Temporal Mismatch", tag: "temporal_amnesia", count: 797, pct: 49.3, avg_confidence: 0.91, color: "#f59e0b" },
+      { label: "Gemini AI Generative Drift", tag: "gemini_drift", count: 627, pct: 38.8, avg_confidence: 0.91, color: "#3b82f6" },
+      { label: "Facial Misidentification", tag: "face_clustering_gap", count: 446, pct: 27.6, avg_confidence: 0.91, color: "#06b6d4" },
+      { label: "Literal Keyword Mismatch", tag: "literal_keyword", count: 174, pct: 10.8, avg_confidence: 0.94, color: "#f97316" },
+      { label: "Forced Fallback to Timeline Scrolling", tag: "fallback_to_scroll", count: 107, pct: 6.6, avg_confidence: 0.92, color: "#a855f7" },
+      { label: "Screenshot & Junk Clutter Intrusion", tag: "clutter_overflow", count: 95, pct: 5.9, avg_confidence: 0.91, color: "#ec4899" },
     ],
     source_attribution: [],
     key_quotes: [

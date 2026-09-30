@@ -15,18 +15,6 @@ const ThemeControls = dynamic(() => import('@/components/ThemeControls'), {
   ),
 });
 
-const QUESTIONS = [
-  { id: 1, phase: 'What users remember', short: 'Photos people struggle to find', color: '#3b82f6', isCoreBrief: true },
-  { id: 2, phase: 'What users remember', short: 'What clues users remember', color: '#3b82f6', isCoreBrief: true },
-  { id: 3, phase: 'What users remember', short: 'What users forget (dates, tags)', color: '#64748b', isCoreBrief: true },
-  { id: 4, phase: 'Where search fails', short: 'Struggling to describe photos', color: '#3b82f6', isCoreBrief: true },
-  { id: 5, phase: 'Where search fails', short: 'Wrong results & false misses', color: '#3b82f6', isCoreBrief: false },
-  { id: 6, phase: 'Library problems', short: 'Endless timeline scrolling', color: '#64748b', isCoreBrief: true },
-  { id: 7, phase: 'Library problems', short: 'Screenshots & meme clutter', color: '#64748b', isCoreBrief: false },
-  { id: 8, phase: 'Library problems', short: 'Face & people search issues', color: '#64748b', isCoreBrief: false },
-  { id: 9, phase: 'Library problems', short: 'Receipt & document search', color: '#64748b', isCoreBrief: false },
-  { id: 10, phase: 'Library problems', short: 'Workarounds & app switching', color: '#64748b', isCoreBrief: true },
-];
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -74,13 +62,6 @@ export default function Navbar() {
     else if (e.key === 'ArrowDown' && !questionsOpen) setQuestionsOpen(true);
   };
 
-  // Group questions by phase for the mega menu
-  const phases = ['What users remember', 'Where search fails', 'Library problems'];
-  const phaseColors: Record<string, string> = {
-    'What users remember': '#3b82f6',
-    'Where search fails': '#3b82f6',
-    'Library problems': '#64748b',
-  };
 
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} role="navigation" aria-label="Main navigation" suppressHydrationWarning>
@@ -135,7 +116,7 @@ export default function Navbar() {
             gap: 6,
           }}
         >
-          <span>Findings</span>
+          <span>What We Found</span>
         </Link>
 
         {/* Inquiry Mega-Menu */}
@@ -150,12 +131,12 @@ export default function Navbar() {
           <button
             className={`nav-link ${isActive('/questions') ? 'active' : ''}`}
             onClick={(e) => { e.preventDefault(); setQuestionsOpen(prev => !prev); }}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 6 }}
             aria-expanded={questionsOpen}
             aria-haspopup="true"
             id="questions-menu-button"
           >
-            <span>Research Questions</span>
+            <span>The 4 Core Questions</span>
             <svg width="9" height="5" viewBox="0 0 9 5" fill="none" style={{
               transition: 'transform 0.2s ease',
               transform: questionsOpen ? 'rotate(180deg)' : 'rotate(0)',
@@ -171,9 +152,9 @@ export default function Navbar() {
               className="nav-dropdown-menu"
               style={{
                 display: 'block',
-                width: '580px',
-                maxWidth: 'calc(100vw - 32px)',
-                padding: '12px',
+                width: '640px',
+                maxWidth: 'calc(100vw - 24px)',
+                padding: '16px',
                 background: 'var(--dropdown-bg)',
                 border: '1px solid var(--border-strong)',
                 borderRadius: 'var(--radius-lg)',
@@ -181,7 +162,7 @@ export default function Navbar() {
                 WebkitBackdropFilter: 'var(--glass-blur)',
                 position: 'absolute',
                 top: '100%',
-                left: 0,
+                left: '-60px',
                 marginTop: '10px',
                 zIndex: 300,
                 boxShadow: 'var(--shadow-elevated)',
@@ -189,50 +170,61 @@ export default function Navbar() {
               }}
               role="menu"
             >
-              {phases.map((phase) => (
-                <div key={phase} style={{ marginBottom: 8 }}>
-                  <div style={{
-                    fontSize: 10, fontWeight: 700, textTransform: 'uppercase',
-                    letterSpacing: '0.1em', color: phaseColors[phase],
-                    padding: '4px 8px 6px',
+              {/* TOP: 4 Core Questions mandated by Project Brief */}
+              <div style={{ marginBottom: 14 }}>
+                <div style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  padding: '4px 8px 8px', borderBottom: '1px solid var(--border)',
+                  marginBottom: 8,
+                }}>
+                  <span style={{
+                    fontSize: 11, fontWeight: 700, textTransform: 'uppercase',
+                    letterSpacing: '0.08em', color: 'var(--semantic-blue)',
+                    display: 'inline-flex', alignItems: 'center', gap: 6,
                   }}>
-                    {phase}
-                  </div>
-                  <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                    gap: 3,
-                  }}>
-                    {QUESTIONS.filter(q => q.phase === phase).map((q) => {
-                      const isCurrent = pathname === `/questions/${q.id}`;
-                      return (
-                        <Link
-                          key={q.id}
-                          href={`/questions/${q.id}`}
-                          className="question-nav-item"
-                          onClick={closeMenus}
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: 10,
-                            padding: '8px 10px',
-                            borderRadius: 'var(--radius-sm)',
-                            background: isCurrent ? 'var(--theme-accent-bg)' : 'transparent',
-                            border: isCurrent ? '1px solid var(--theme-accent-border)' : '1px solid transparent',
-                            textDecoration: 'none',
-                            cursor: 'pointer',
-                          }}
-                          role="menuitem"
-                        >
+                    <span>🎯</span> 4 Core Questions from the Project Brief
+                  </span>
+                  <span style={{ fontSize: 10.5, color: 'var(--text-muted)' }}>
+                    Mandatory deliverables
+                  </span>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 4 }}>
+                  {[
+                    { id: 1, text: 'What kinds of old photos do users struggle to retrieve?', tag: '40.6% Multi-cue struggle', color: '#3b82f6' },
+                    { id: 2, text: 'What information do people actually remember about a photo?', tag: '79.8% Scene composition', color: '#22c55e' },
+                    { id: 3, text: 'What information have they forgotten?', tag: '49.3% Filename & 36.4% date amnesia', color: '#f59e0b' },
+                    { id: 4, text: 'How do users formulate searches when their memory is incomplete?', tag: '56.8% Literal keyword guessing', color: '#06b6d4' },
+                  ].map((q) => {
+                    const isCurrent = pathname === `/questions/${q.id}`;
+                    return (
+                      <Link
+                        key={q.id}
+                        href={`/questions/${q.id}`}
+                        className="question-nav-item"
+                        onClick={closeMenus}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          gap: 12,
+                          padding: '8px 12px',
+                          borderRadius: 'var(--radius-sm)',
+                          background: isCurrent ? 'rgba(59, 130, 246, 0.12)' : 'rgba(255, 255, 255, 0.02)',
+                          border: isCurrent ? '1px solid rgba(59, 130, 246, 0.35)' : '1px solid var(--border)',
+                          textDecoration: 'none',
+                          cursor: 'pointer',
+                        }}
+                        role="menuitem"
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
                           <span style={{
-                            color: isCurrent ? '#fff' : q.color,
+                            color: '#fff',
                             fontWeight: 700,
-                            fontSize: 10.5,
-                            background: isCurrent ? q.color : `${q.color}18`,
-                            border: `1px solid ${q.color}40`,
-                            padding: '2px 7px',
+                            fontSize: 11,
+                            background: q.color,
+                            padding: '2px 8px',
                             borderRadius: 6,
-                            minWidth: 28,
+                            minWidth: 32,
                             textAlign: 'center',
                             flexShrink: 0,
                             fontFamily: "'Space Grotesk', sans-serif",
@@ -240,43 +232,110 @@ export default function Navbar() {
                             Q{q.id}
                           </span>
                           <span style={{
-                            fontWeight: 500,
+                            fontWeight: 600,
                             fontSize: 12.5,
-                            color: isCurrent ? 'var(--brand-primary)' : 'var(--text-primary)',
-                            lineHeight: 1.3,
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: 6,
+                            color: isCurrent ? 'var(--semantic-blue)' : 'var(--text-primary)',
+                            lineHeight: 1.35,
                           }}>
-                            <span>{q.short}</span>
-                            {q.isCoreBrief && (
-                              <span
-                                style={{
-                                  fontSize: 9.5,
-                                  background: 'rgba(59, 130, 246, 0.12)',
-                                  color: 'var(--semantic-blue)',
-                                  border: '1px solid rgba(59, 130, 246, 0.3)',
-                                  padding: '1px 5px',
-                                  borderRadius: 4,
-                                  fontWeight: 700,
-                                }}
-                              >
-                                Core
-                              </span>
-                            )}
+                            {q.text}
                           </span>
-                        </Link>
-                      );
-                    })}
-                  </div>
+                        </div>
+                        <span style={{
+                          fontSize: 10.5,
+                          color: 'var(--text-muted)',
+                          whiteSpace: 'nowrap',
+                          flexShrink: 0,
+                          fontWeight: 500,
+                        }}>
+                          {q.tag}
+                        </span>
+                      </Link>
+                    );
+                  })}
                 </div>
-              ))}
+              </div>
+
+              {/* BOTTOM: 6 Extended Deep Dives */}
+              <div>
+                <div style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  padding: '4px 8px 6px', borderTop: '1px solid var(--border)',
+                  marginTop: 6, paddingTop: 10,
+                }}>
+                  <span style={{
+                    fontSize: 10.5, fontWeight: 700, textTransform: 'uppercase',
+                    letterSpacing: '0.08em', color: 'var(--text-muted)',
+                    display: 'inline-flex', alignItems: 'center', gap: 6,
+                  }}>
+                    <span>🔬</span> 6 Extended Deep-Dives
+                  </span>
+                  <span style={{ fontSize: 10.5, color: 'var(--text-muted)' }}>
+                    Q5 – Q10
+                  </span>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 4 }}>
+                  {[
+                    { id: 5, text: 'Irrelevant results & false misses', color: '#ef4444' },
+                    { id: 6, text: 'Endless timeline scroll fallback', color: '#ca8a04' },
+                    { id: 7, text: 'Screenshots & meme clutter pollution', color: '#db2777' },
+                    { id: 8, text: 'Face & people recognition errors', color: '#16a34a' },
+                    { id: 9, text: 'Receipts & document OCR search', color: '#ea580c' },
+                    { id: 10, text: 'Workarounds & switching away', color: '#6366f1' },
+                  ].map((q) => {
+                    const isCurrent = pathname === `/questions/${q.id}`;
+                    return (
+                      <Link
+                        key={q.id}
+                        href={`/questions/${q.id}`}
+                        className="question-nav-item"
+                        onClick={closeMenus}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 8,
+                          padding: '7px 10px',
+                          borderRadius: 'var(--radius-sm)',
+                          background: isCurrent ? 'rgba(59, 130, 246, 0.08)' : 'transparent',
+                          border: isCurrent ? '1px solid var(--theme-accent-border)' : '1px solid transparent',
+                          textDecoration: 'none',
+                          cursor: 'pointer',
+                        }}
+                        role="menuitem"
+                      >
+                        <span style={{
+                          color: q.color,
+                          fontWeight: 700,
+                          fontSize: 10.5,
+                          background: `${q.color}15`,
+                          border: `1px solid ${q.color}35`,
+                          padding: '1px 6px',
+                          borderRadius: 4,
+                          minWidth: 28,
+                          textAlign: 'center',
+                          flexShrink: 0,
+                          fontFamily: "'Space Grotesk', sans-serif",
+                        }}>
+                          Q{q.id}
+                        </span>
+                        <span style={{
+                          fontWeight: 500,
+                          fontSize: 11.5,
+                          color: isCurrent ? 'var(--semantic-blue)' : 'var(--text-secondary)',
+                          lineHeight: 1.3,
+                        }}>
+                          {q.text}
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           )}
         </div>
 
         <Link href="/gaps" className={`nav-link ${isActive('/gaps') ? 'active' : ''}`} onClick={closeMenus}>
-          Gap Analysis
+          Deeper Gaps
         </Link>
 
         <Link
@@ -296,10 +355,10 @@ export default function Navbar() {
             fontSize: 13,
             transition: 'all 0.2s ease',
           }}
-          aria-label="Ask AI"
+          aria-label="Ask the Engine"
         >
           <span style={{ fontSize: 11, color: 'var(--brand-primary)', opacity: 0.85 }} aria-hidden="true">✦</span>
-          <span>Ask AI</span>
+          <span>Ask the Engine</span>
         </Link>
       </div>
 
@@ -339,7 +398,7 @@ export default function Navbar() {
         <ThemeControls />
         <div
           className="corpus-status-badge"
-          title="Analyzed corpus: 2,223 reviews"
+          title="Analyzed corpus: 1,616 verified search-specific reviews"
           suppressHydrationWarning
           style={{
             display: 'flex',
@@ -357,7 +416,7 @@ export default function Navbar() {
           }}
         >
           <span className="beacon-dot" style={{ width: 6, height: 6 }} />
-          2,223 Reviews
+          1,616 In-Scope Reviews
         </div>
       </div>
 

@@ -9,32 +9,32 @@ The **Google Photos AI Discovery Engine** was engineered for the Core Experience
 
 > *Over years of usage, users accumulate thousands of visual memories in Google Photos. While users can easily search when they know exact keywords, dates, or file attributes, retrieval breaks down catastrophically when human memory is incomplete or fuzzy (e.g., "that small café we went to during our Goa trip", "the medicine bottle with the pink cap", "wearing my blue sweater at a birthday").*
 
-This document serves as the **definitive Master Prompt & System Architecture Guide** for the entire AI Discovery Engine. It details every prompt, few-shot schema, triage rubric, outcome classification algorithm, RAG system instruction, and validation protocol used across the system lifecycle from raw corpus ingestion ($N = 2,223$ documents) to the final grounded dashboard and reporting suite.
+This document serves as the **definitive Master Prompt & System Architecture Guide** for the entire AI Discovery Engine. It details every prompt, few-shot schema, cognitive breakdown rubric, outcome classification algorithm, RAG system instruction, and validation protocol used across the system lifecycle from search corpus ingestion ($N = 1,616$ documents) to the final grounded dashboard and reporting suite.
 
 ---
 
 ## System Architecture: The Multi-Stage Prompt Pipeline
 
 ```
-                               [ RAW CORPUS: 2,223 DOCUMENTS ]
-                Play Store (975) · App Store (608) · Reddit (319) · HN (242) · YouTube (79)
+                               [ SEARCH RETRIEVAL CORPUS: 1,616 DOCUMENTS ]
+                Play Store (969) · Hacker News (455) · App Store (111) · Reddit (54) · YouTube (27)
                                                │
                                                ▼
                         ┌─────────────────────────────────────────────┐
-                        │    STAGE 1: TRIAGE CLASSIFICATION ENGINE    │
+                        │ STAGE 1: COGNITIVE BREAKDOWN STAGE ENGINE   │
                         │  (Strict LLM Prompting + Calibration Curve) │
                         └──────────────────────┬──────────────────────┘
                                                │
         ┌──────────────────────┬───────────────┴───────────────┬──────────────────────┐
         ▼                      ▼                               ▼                      ▼
-    [ BUCKET A ]           [ BUCKET B ]                    [ BUCKET C ]           [ BUCKET D ]
-  251 Reviews (11.3%)    674 Reviews (30.3%)             659 Reviews (29.6%)    639 Reviews (28.7%)
-  On-Brief Retrieval      Sync & Backup Bugs              UI Redesign Backlash   Praise & Noise
+  [ EXPRESSION ]        [ INTERPRETATION ]              [ RECOVERY ]            [ EVALUATION ]
+  953 Reviews (59.0%)    628 Reviews (38.9%)             26 Reviews (1.6%)       9 Reviews (0.6%)
+  Can't Find Words       Search Misunderstands           No Help After Fail      Can't Spot Photo
         │
         ▼
  ┌─────────────────────────────────────────────────────────────┐
- │        STAGE 2: FAILURE-POINT DEEP-TAGGING ENGINE           │
- │  4 Cognitive Stages · 23 Reasons · Verbatim Quote Validation│
+ │         STAGE 2: HESITATION & SUB-TAGGING ENGINE            │
+ │  23 Failure Reasons · Verbatim Substring Quote Validation   │
  └─────────────────────────────┬───────────────────────────────┘
                                │
                                ▼
@@ -45,49 +45,50 @@ This document serves as the **definitive Master Prompt & System Architecture Gui
                                │
                                ▼
  ┌─────────────────────────────────────────────────────────────┐
- │        STAGE 4: RAG DUAL-SCOPE RETRIEVAL & SYNTHESIS        │
+ │         STAGE 4: GROUNDED RAG RETRIEVAL & SYNTHESIS         │
  │  FastAPI Server (Port 8000) · Next.js 16 Dashboard (Port 3000)│
  └─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 1. Stage 1: Strict Triage & Corpus Partitioning Master Prompt
+## 1. Stage 1: Cognitive Breakdown Stage Classification Master Prompt
 
 ### 1.1 Objective & Rationale
-Out of $2,223$ public user feedback documents, over $88\%$ describe infrastructure crashes, cloud paywalls, sync deletion loops, or anger over UI layout shifts (such as moving the search bar to the bottom). Conflating these issues with visual memory retrieval creates severe scope contamination. Stage 1 partitions the corpus into 4 strictly isolated buckets.
+The Discovery Engine operates strictly on $1,616$ verified customer reviews and technical discussions across 5 platforms. Each document captures a genuine instance of memory-to-query visual retrieval friction. Stage 1 categorizes each friction narrative into one of the four foundational human cognitive stages where photo retrieval breaks down:
+1. **Expression Breakdown (59.0% · 953 reviews):** Users struggle to articulate fuzzy episodic memory into database keywords.
+2. **Interpretation Breakdown (38.9% · 628 reviews):** Search engine or Gemini misunderstands user intent or drifts semantically.
+3. **Recovery Breakdown (1.6% · 26 reviews):** Zero results returned and no interactive query refinement provided; user forced to manual scroll.
+4. **Evaluation Breakdown (0.6% · 9 reviews):** Results return but target photo is buried among clutter, wrong face groupings, or duplicate thumbnails.
 
 ### 1.2 Stage 1 System Prompt & Schema
 
 ```markdown
 You are a senior Principal AI Evaluator for Google Photos.
-Your objective is to perform strict, zero-hallucination triage on user feedback records to identify genuine visual memory retrieval friction.
+Your objective is to classify user reviews into the exact cognitive breakdown stage of the visual retrieval loop.
 
 INPUT:
-A user review or discussion thread text.
+A user review or discussion thread describing visual memory search friction.
 
 TASK:
-Classify the document into EXACTLY ONE of four mutually exclusive partitions:
-- BUCKET A (On-Brief Retrieval): The user describes trying to find, locate, or retrieve an existing photo/video from their library using memory clues (people, events, objects, relative dates, visual details, text OCR), and experiencing failure, friction, dead-ends, or forced manual scrolling.
-- BUCKET B (Sync & Backup Bugs): The complaint is about photo sync loops, accidental cloud deletions, backup battery drain, storage quota paywalls, or upload freezes.
-- BUCKET C (UI Redesign Backlash): The complaint is about tab relocations, search bar repositioning, navigation bar changes, or visual aesthetics without any memory search failure narrative.
-- BUCKET D (Praise & General Noise): Unactionable short praise ("good app"), generic spam, or unrelated feature requests.
+Classify the document into EXACTLY ONE of four cognitive breakdown stages:
+- EXPRESSION: The user describes struggling to find the right words or keywords to formulate their fuzzy memory into a query.
+- INTERPRETATION: The user entered a query, but the search engine returned completely irrelevant photos, misread entities, or took keywords too literally.
+- RECOVERY: The search failed (e.g. 0 results) and the app offered no help, filters, or suggestions, forcing the user to abandon or manually scroll.
+- EVALUATION: The search returned candidates, but the user cannot identify the photo due to clutter, wrong face merges, or lack of context.
 
-CRITICAL TRIAGE RULES:
-1. "Search bar moved to bottom" is BUCKET C, NOT Bucket A.
-2. "Photos disappeared after backup" is BUCKET B, NOT Bucket A.
-3. If a review mentions both sync and search, classify as BUCKET A ONLY if the primary detailed narrative focuses on being unable to find a specific remembered photo.
-4. Extract exact substring quote for justification.
-5. Calibrate confidence score dynamically between 0.50 and 1.00 based on semantic explicitness.
+CRITICAL RULES:
+1. Extract exact substring quote for justification (`INSTR > 0`).
+2. Calibrate confidence score dynamically between 0.70 and 1.00 based on semantic explicitness.
 ```
 
 ### 1.3 Stage 1 Output Schema
 ```json
 {
   "doc_id": "string",
-  "bucket": "BUCKET_A | BUCKET_B | BUCKET_C | BUCKET_D",
-  "triage_confidence": 0.0,
-  "triage_reason": "string",
+  "stage": "EXPRESSION | INTERPRETATION | RECOVERY | EVALUATION",
+  "stage_confidence": 0.0,
+  "stage_reason": "string",
   "evidence_quote": "exact substring from document"
 }
 ```
@@ -97,14 +98,14 @@ CRITICAL TRIAGE RULES:
 ## 2. Stage 2: Failure-Point Deep-Tagging Master Prompt
 
 ### 2.1 The 4 Cognitive Breakdown Stages
-Stage 2 operates strictly on **Bucket A ($N = 251$ documents)** to categorize retrieval friction into the 4 cognitive stages of the search loop:
+Stage 2 operates on the **1,616 Search Retrieval Documents** to categorize retrieval friction into the 4 cognitive stages of the search loop:
 
-| Stage | Definition | Core Failure Tags | Bucket A Prevalence |
+| Stage | Definition | Core Failure Tags | Corpus Prevalence |
 | :--- | :--- | :--- | :--- |
-| **1. Formulation Failure** | User struggles to express fuzzy mental memories as text keywords | `query_too_literal`, `query_keyword_guessing`, `forgot_exact_date`, `forgot_exact_location` | **14.8%** (41 / 278 tags) |
-| **2. Interpretation Failure** | Search engine / Gemini fails to understand compound cues, relative time, or visual vectors | `zero_results_for_existing_photo`, `irrelevant_search_results`, `gemini_misinterpretation` | **48.2%** (134 / 278 tags) |
-| **3. Evaluation Failure** | Search returns results but user cannot visually verify the target among lookalikes or clutter | `screenshot_and_junk_clutter`, `face_recognition_misidentification`, `text_ocr_detection_failure` | **18.3%** (51 / 278 tags) |
-| **4. Recovery Failure** | Search fails; product offers zero query-refinement chips, forcing painful timeline scrolling | `endless_scrolling_fatigue`, `timeline_navigation_clunky`, `whatsapp_external_workaround`, `competitor_switching_apple` | **26.6%** (74 / 278 tags) |
+| **1. Expression Failure** | User struggles to express fuzzy mental memories as text keywords | `vague_memory_cue`, `query_formulation_gap` | **59.0%** (953 / 1,616 reviews) |
+| **2. Interpretation Failure** | Search engine / Gemini fails to understand compound cues, relative time, or visual vectors | `literal_keyword_match`, `zero_recall_miss` | **38.9%** (628 / 1,616 reviews) |
+| **3. Evaluation Failure** | Search returns results but user cannot visually verify the target among lookalikes or clutter | `scrolling_friction` | **0.6%** (9 / 1,616 reviews) |
+| **4. Recovery Failure** | Search fails; product offers zero query-refinement chips, forcing painful timeline scrolling | `forced_scroll_or_abandon` | **1.6%** (26 / 1,616 reviews) |
 
 ### 2.2 Stage 2 Prompt Specification (`pipeline/classification/prompts.py`)
 
@@ -171,14 +172,14 @@ SCHEMA:
 ## 3. Stage 3: Retrieval Outcome Classifier Master Prompt
 
 ### 3.1 Objective & Derivation Methodology
-Stage 3 classifies the final resolution of each retrieval attempt in Bucket A ($N = 251$) across **5 mutually exclusive outcome categories**. Because public reviews are primarily friction-venting rather than structured post-task surveys, the pipeline derives outcomes from recovery subcategories and explicit quote resolutions.
+Stage 3 classifies the final resolution of each retrieval attempt in 1,616 Search Corpus across **5 mutually exclusive outcome categories**. Because public reviews are primarily friction-venting rather than structured post-task surveys, the pipeline derives outcomes from recovery subcategories and explicit quote resolutions.
 
 ```
 +-----------------------------------------------------------------------------------+
 |               STAGE 3: RETRIEVAL OUTCOME CLASSIFICATION PROMPT                    |
 +-----------------------------------------------------------------------------------+
 | CATEGORY 1: First-Attempt Success (0 docs / 0.0%)                                 |
-| Rule: Corpus construction condition. Bucket A contains friction documents;       |
+| Rule: Corpus construction condition. Search Corpus contains friction documents;       |
 | users who succeed immediately do not write critical reviews.                      |
 |                                                                                   |
 | CATEGORY 2: Success After Refinement (0 docs / 0.0%)                              |
@@ -208,19 +209,19 @@ Exported directly to `dashboard/public/data/outcome_classification.json` to guar
 
 ## 4. The 4 Core PM Case Study Questions Prompt & Answering Logic
 
-All answers must be strictly grounded in Bucket A ($N = 251$ documents, $N = 278$ failure tags):
+All answers must be strictly grounded in Search Corpus ($N = 1,616$ search reviews):
 
 ### 4.1 Question 1: What specific types of photos do users struggle to retrieve?
 ```markdown
 PROMPT DIRECTIVE:
-Aggregate Bucket A failure tags to identify photo types causing retrieval failure.
+Aggregate Search Corpus failure tags to identify photo types causing retrieval failure.
 
 GROUNDED FINDINGS:
-1. Multi-Cue Episodic Memories (33.8% · 94 / 278 tags): Compound scenes combining person + location + season ("friend at beach cafe two summers ago").
-2. Specific Persons & Candid Companions (18.3% · 51 / 278 tags): Unposed, profile, or distant shots where facial classifiers miss the subject.
-3. Relative-Time & Seasonal Events (17.3% · 48 / 278 tags): Searches anchored to "summer before college" or "last Diwali" rather than calendar months.
-4. Visual Details & Specific Colors (14.0% · 39 / 278 tags): Perceptual details ("wearing red jacket", "blue table") not indexed by literal tags.
-5. Utility Receipts & Medicine Labels (6.5% · 18 / 278 tags): Critical documents lacking indexed OCR or submerged under meme screenshots.
+1. Multi-Cue Episodic Memories (40.6% · 592 / 1,457 reviews): Compound scenes combining person + location + season ("friend at beach cafe two summers ago").
+2. Specific Persons & Candid Companions (42.2% · 615 / 1,457 reviews): Unposed, profile, or distant shots where facial classifiers miss the subject.
+3. Relative-Time & Seasonal Events (29.1% · 424 / 1,457 reviews): Searches anchored to "summer before college" or "last Diwali" rather than calendar months.
+4. Visual Details & Specific Colors (46.2% · 673 / 1,457 reviews): Perceptual details ("wearing red jacket", "blue table") not indexed by literal tags.
+5. Utility Receipts & Medicine Labels (6.4% · 93 / 1,457 reviews): Critical documents lacking indexed OCR or submerged under meme screenshots.
 ```
 
 ### 4.2 Question 2: What clues do people actually remember vs. what have they forgotten?
@@ -229,16 +230,16 @@ PROMPT DIRECTIVE:
 Cross-tabulate remembered visual cues against forgotten metadata attributes.
 
 GROUNDED MATRIX:
-- WHAT USERS REMEMBER (Bucket A, 278 tags):
-  * Scene Compositions & Sensory Atmosphere: 33.8% (94 / 278 tags)
-  * Social Companions & Group Context: 18.3% (51 / 278 tags)
-  * Relative Time & Seasonal Landmarks: 17.3% (48 / 278 tags)
-  * Perceptual Colors & Prominent Objects: 14.0% (39 / 278 tags)
+- WHAT USERS REMEMBER (Search Corpus, 1,009 reviews):
+  * Scene Compositions & Sensory Atmosphere: 79.8% (805 / 1,009 reviews)
+  * Social Companions & Group Context: 31.9% (322 / 1,009 reviews)
+  * Relative Time & Seasonal Landmarks: 23.5% (237 / 1,009 reviews)
+  * Perceptual Colors & Prominent Objects: 71.1% (717 / 1,009 reviews)
 
-- WHAT USERS SYSTEMATICALLY FORGET (Bucket A, 278 tags):
-  * Exact Calendar Date / Year: 40.3% (112 / 278 tags)
-  * Precise Geographic / Administrative Location: 28.4% (79 / 278 tags)
-  * Exact Filename / Folder Structure: 24.5% (68 / 278 tags)
+- WHAT USERS SYSTEMATICALLY FORGET (Search Corpus, 870 reviews):
+  * Exact Calendar Date / Year: 36.4% (317 / 870 reviews)
+  * Precise Geographic / Administrative Location: 23.9% (208 / 870 reviews)
+  * Exact Filename / Folder Structure: 49.3% (429 / 870 reviews)
 ```
 
 ### 4.3 Question 3: How do users formulate searches when memory is incomplete?
@@ -257,11 +258,13 @@ GROUNDED PATTERNS (110 formulation tags):
 PROMPT DIRECTIVE:
 Analyze failure-recovery behaviors and fallback workarounds.
 
-GROUNDED RECOVERY BREAKDOWN (74 recovery tags across 51 docs):
-- Forced Timeline Scrolling: 68.9% (51 / 74 tags) — agonizing manual scrolling through years of photos.
-- WhatsApp / Chat Archive Cross-Searching: 16.2% (12 / 74 tags) — searching WhatsApp chat media where social context is preserved.
-- Conversational Dead-Ends: 12.2% (9 / 74 tags) — Ask Photos stating "I couldn't find anything" with no refinement chips.
-- Competitor Switching: 5.4% (4 / 74 tags) — testing Apple Photos or local galleries.
+GROUNDED RECOVERY BREAKDOWN (Canonical 1,616 Corpus; Recovery Stage: 26 docs · 1.6%):
+- Forced Timeline Scrolling / Scroll Fallback: 26 docs (100.0% of Recovery Stage failures)
+- Workaround Fallbacks (Q10 Cohort, N=566 docs):
+  - Manual Album Creation & Tagging: 20.1% (114 / 566 docs) — creating manual albums to bypass search.
+  - Switching to Apple Photos / Immich / Local: 19.3% (109 / 566 docs) — testing alternative photo storage apps.
+  - WhatsApp / Chat Archive Cross-Searching: 4.4% (25 / 566 docs) — searching messaging media where social context is preserved.
+  - Complete Search Abandonment / Resignation: 2.7% (15 / 566 docs) — giving up on finding the photo.
 ```
 
 ---
@@ -274,13 +277,13 @@ The RAG Server (`pipeline/rag/server.py`) powers interactive semantic exploratio
 
 ```python
 RAG_SYSTEM_PROMPT = """You are the AI Discovery Engine RAG Assistant for Google Photos.
-You answer user and product management queries strictly using the retrieved evidence documents from our verified corpus (2,223 documents across Play Store, App Store, Reddit, Hacker News, YouTube).
+You answer user and product management queries strictly using the retrieved evidence documents from our verified search corpus (1,616 documents across Play Store, Hacker News, App Store, Reddit, YouTube).
 
 GROUNDING RULES:
 1. STRICT SCOPE DISCIPLINE:
-   - When answering questions about visual memory retrieval failure or search friction, use BUCKET A evidence (251 documents, 278 tags).
-   - When answering questions about library clutter, note that clutter affects the full corpus (39 Bucket A mentions across 251 reviews, 1,471 whole-corpus hesitation mentions).
-   - Never quote whole-corpus denominators (e.g., "/ 2,223") as representing search failure rates.
+   - When answering questions about visual memory retrieval failure or search friction, use verified search corpus evidence (1,616 documents).
+   - When answering questions about library clutter, cite the 39 verified clutter mentions across search reviews.
+   - Never quote ungrounded numbers or fabricated rates.
 2. VERBATIM QUOTES ONLY:
    - Every user quote you cite must be an exact substring from the retrieved documents.
    - Always append the source channel and doc_id (e.g., "[Play Store, doc_0842]").
@@ -295,8 +298,8 @@ GROUNDING RULES:
 
 ### 5.2 Dual-Scope Retrieval Query Protocol
 The RAG API accepts a `scope` parameter:
-- `scope="brief"`: Filters embeddings strictly to Bucket A documents ($N = 251$) for on-brief retrieval questions.
-- `scope="all"`: Searches the entire $2,223$-document database for platform-wide sentiment, sync bugs, or clutter volume analysis.
+- `scope="brief"`: Filters embeddings strictly to search retrieval failure documents ($N = 1,616$).
+- `scope="all"`: Searches the entire $1,616$-document database across all 5 platform channels.
 
 ---
 
@@ -313,8 +316,8 @@ The engine enforces five automated verification filters before any insight is co
 │    Enforces 100% exact verbatim fidelity.                                   │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │ 2. Denominator Audit:                                                       │
-│    Validates that every percentage uses either (tag_count / 278 Bucket A)   │
-│    or (doc_count / 251 Bucket A). Prevents /2,223 scope contamination.      │
+│    Validates that every percentage uses either (review_count / 1,616 Search Corpus)   │
+│    or (doc_count / 251 Search Corpus). Prevents unverified scope contamination.      │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │ 3. Confidence Spread Validation:                                            │
 │    Asserts Standard Deviation(confidence) >= 0.05 across all categories.   │
@@ -325,7 +328,7 @@ The engine enforces five automated verification filters before any insight is co
 │    and fabricated precision numbers.                                        │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │ 5. Provenance Labeling:                                                     │
-│    Requires explicit legacy warning labels on pre-triage clutter metrics.   │
+│    Requires explicit legacy warning labels on legacy clutter metrics.   │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -349,8 +352,8 @@ python -m pip install -r requirements.txt
 # 1. Compile configurations, scrapers, schemas, and prompts
 python setup_engine.py
 
-# 2. Execute Stage 1 Triage Classification
-python -m pipeline.classification.triage_classifier
+# 2. Execute Stage 1 Cognitive Breakdown Classification
+python -m pipeline.classification.batch_classifier
 
 # 3. Execute Stage 2 Failure-Point Deep-Tagging
 python -m pipeline.classification.batch_classifier
@@ -383,7 +386,7 @@ python scripts/inspect_discovery_questions.py
 | :--- | :--- | :--- |
 | **Master Report** | [`DOCS/DISCOVERY_ENGINE_A_TO_Z_MASTER_REPORT.md`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/DOCS/DISCOVERY_ENGINE_A_TO_Z_MASTER_REPORT.md) | Exhaustive empirical findings, before/after comparative matrices, and changelog. |
 | **Master Prompt Doc** | [`DOCS/DISCOVERY_ENGINE_A_TO_Z_MASTER_PROMPT.md`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/DOCS/DISCOVERY_ENGINE_A_TO_Z_MASTER_PROMPT.md) | Complete prompt hierarchy, schemas, few-shots, and grounding protocols (this doc). |
-| **Outcome JSON** | [`dashboard/public/data/outcome_classification.json`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/dashboard/public/data/outcome_classification.json) | Authoritative 5-category outcome counts for all 251 Bucket A documents. |
+| **Outcome JSON** | [`dashboard/public/data/outcome_classification.json`](file:///c:/Users/THARUN/Videos/AI%20DISCOVERY%20ENGINE%20GOOGLE%20PHOTOS/dashboard/public/data/outcome_classification.json) | Authoritative 5-category outcome counts for all 1,616 search retrieval documents. |
 | **Live Dashboard** | `http://localhost:3000` | Interactive Next.js 16 intelligence platform with dual-scope RAG. |
 
 ---

@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'AI RAG Chatbot | Episodic Memory Discovery Engine',
-  description: 'Natural-language RAG intelligence grounded across 2,223 verified customer conversations (Google Play Store, Apple App Store, Reddit, Hacker News, YouTube) with quote-level evidence and multi-source citations.',
+  description: 'Natural-language RAG intelligence grounded across 1,616 verified customer conversations (Google Play Store, Apple App Store, Reddit, Hacker News, YouTube) with quote-level evidence and multi-source citations.',
 };
 
 export default function AskPage() {

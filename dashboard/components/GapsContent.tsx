@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HorizontalBar from './HorizontalBar';
 import { QuoteCard } from './QuoteCarousel';
-import { formatLabel } from '@/lib/formatters';
 
 function AnimatedCard({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -45,8 +44,11 @@ interface KeyQuoteItem {
   content?: string;
   author?: string;
   source?: string;
+  source_id?: string;
   date?: string;
   issue?: string;
+  tags?: string[];
+  confidence?: number;
   [key: string]: unknown;
 }
 
@@ -64,18 +66,18 @@ interface GapsContentProps {
 
 const ISSUE_COLORS = ['#3b82f6', '#22c55e', '#f59e0b', '#06b6d4', '#64748b', '#8b5cf6', '#ec4899'];
 
-const BUCKET_A_STAGES = [
-  { label: 'Search misunderstands query (#1 Gap)', tag: 'interpretation', count: 134, pct: 48.2, avg_confidence: 0.887, color: '#3b82f6' },
-  { label: 'No help when search fails (#2 Gap)', tag: 'recovery', count: 74, pct: 26.6, avg_confidence: 0.849, color: '#f59e0b' },
-  { label: 'Can\'t spot the right photo in clutter', tag: 'evaluation', count: 51, pct: 18.3, avg_confidence: 0.885, color: '#64748b' },
-  { label: 'Can\'t find the right words to describe photo', tag: 'expression', count: 19, pct: 6.8, avg_confidence: 0.844, color: '#64748b' },
+const COGNITIVE_BREAKDOWN_STAGES = [
+  { label: 'Query Articulation Gap (#1 Stage)', tag: 'expression', count: 953, pct: 59.0, avg_confidence: 0.911, color: '#f59e0b' },
+  { label: 'Search Misunderstanding (#2 Stage)', tag: 'interpretation', count: 628, pct: 38.9, avg_confidence: 0.905, color: '#3b82f6' },
+  { label: 'No Help When Search Fails (#3 Stage)', tag: 'recovery', count: 26, pct: 1.6, avg_confidence: 0.829, color: '#ec4899' },
+  { label: 'Results Disambiguation Overload (#4 Stage)', tag: 'evaluation', count: 9, pct: 0.6, avg_confidence: 0.877, color: '#8b5cf6' },
 ];
 
 export default function GapsContent({ data }: GapsContentProps) {
-  const [cohortView, setCohortView] = useState<'all' | 'bucket_a'>('bucket_a');
+  const [cohortView, setCohortView] = useState<'all' | 'stages'>('stages');
 
-  const formattedBreakdown = cohortView === 'bucket_a'
-    ? BUCKET_A_STAGES
+  const formattedBreakdown = cohortView === 'stages'
+    ? COGNITIVE_BREAKDOWN_STAGES
     : (data.issue_breakdown || []).map((item, idx) => ({
         label: item.label,
         tag: item.tag || `issue_${idx}`,
@@ -103,7 +105,7 @@ export default function GapsContent({ data }: GapsContentProps) {
               Feedback Sources Breakdown
             </h3>
             <div style={{ fontSize: 13, color: 'var(--text-secondary)', marginTop: 3 }}>
-              2,223 total reviews = 1,583 app store reviews + 640 tech forum discussions
+              1,616 total search-specific reviews = 1,080 app store reviews + 536 tech forum discussions
             </div>
           </div>
           <span
@@ -126,13 +128,13 @@ export default function GapsContent({ data }: GapsContentProps) {
           <div style={{ padding: 16, background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
               <span style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--text-primary)' }}>Consumer App Stores</span>
-              <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--semantic-blue)' }}>1,583 reviews (71.2%)</span>
+              <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--semantic-blue)' }}>1,080 reviews (66.8%)</span>
             </div>
             <div style={{ fontSize: 11.5, color: 'var(--text-muted)', marginBottom: 6 }}>
-              1,583 out of 2,223 total reviews
+              1,080 out of 1,616 search-specific reviews
             </div>
             <p style={{ fontSize: 12.5, color: 'var(--text-secondary)', margin: 0, lineHeight: 1.45 }}>
-              Google Play Store (975) &amp; Apple App Store (608). Captures high-volume customer sentiment, ratings, and immediate everyday retrieval breakdowns.
+              Google Play Store (969) &amp; Apple App Store (111). Captures everyday memory recall friction, natural language failures, and immediate retrieval breakdowns.
             </p>
           </div>
 
@@ -140,47 +142,47 @@ export default function GapsContent({ data }: GapsContentProps) {
           <div style={{ padding: 16, background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
               <span style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--text-primary)' }}>Technical Discussions</span>
-              <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--semantic-blue)' }}>640 discussions (28.8%)</span>
+              <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--semantic-blue)' }}>536 discussions (33.2%)</span>
             </div>
             <div style={{ fontSize: 11.5, color: 'var(--text-muted)', marginBottom: 6 }}>
-              640 out of 2,223 total reviews
+              536 out of 1,616 search-specific reviews
             </div>
             <p style={{ fontSize: 12.5, color: 'var(--text-secondary)', margin: 0, lineHeight: 1.45 }}>
-              Reddit (319), Hacker News (242), and YouTube teardowns (79). Captures detailed technical complaints: OCR indexing lag, face clustering inaccuracies, and self-hosted migrations.
+              Hacker News (455), Reddit (54), and YouTube teardowns (27). Captures in-depth technical analysis: OCR indexing lag, face clustering inaccuracies, and self-hosted migrations.
             </p>
           </div>
         </div>
 
         <div style={{ padding: '10px 14px', background: 'var(--bg-elevated)', borderRadius: 8, border: '1px solid var(--border)', fontSize: 12.5, color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          <strong style={{ color: 'var(--text-primary)' }}>Note on cohorts: </strong>
-          Use the toggle buttons below to switch between the <strong>Search-related only (251 reviews)</strong> focus cohort and <strong>All feedback (2,223 reviews)</strong>.
+          <strong style={{ color: 'var(--text-primary)' }}>Corpus Scoping: </strong>
+          All 1,616 analyzed discussions strictly represent verified personal visual memory search failures across 5 unified platforms with 100% exact substring quote grounding.
         </div>
       </div>
 
-      <div className="grid-2" style={{ marginBottom: 24 }}>
+      <div style={{ marginBottom: 24 }}>
         {/* Issue breakdown */}
         <AnimatedCard delay={0}>
           <div className="card-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6, paddingBottom: 14 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
               <span className="card-title">
-                {cohortView === 'all' ? 'All Feedback: Issue Breakdown' : 'Search Breakdown: Four Failure Stages'}
+                {cohortView === 'all' ? 'Systemic Issue Breakdown' : 'Four Breakdown Stages'}
               </span>
               <div style={{ display: 'flex', gap: 6 }}>
                 <button
-                  onClick={() => setCohortView('bucket_a')}
+                  onClick={() => setCohortView('stages')}
                   style={{
                     padding: '4px 12px',
                     borderRadius: 14,
                     fontSize: 11.5,
-                    fontWeight: cohortView === 'bucket_a' ? 700 : 500,
-                    background: cohortView === 'bucket_a' ? 'var(--semantic-blue)' : 'var(--bg-elevated)',
-                    color: cohortView === 'bucket_a' ? '#fff' : 'var(--text-secondary)',
+                    fontWeight: cohortView === 'stages' ? 700 : 500,
+                    background: cohortView === 'stages' ? 'var(--semantic-blue)' : 'var(--bg-elevated)',
+                    color: cohortView === 'stages' ? '#fff' : 'var(--text-secondary)',
                     border: '1px solid var(--border)',
                     cursor: 'pointer',
                     transition: 'all 0.15s ease',
                   }}
                 >
-                  Search-related only (251)
+                  Breakdown Stages (1,616)
                 </button>
                 <button
                   onClick={() => setCohortView('all')}
@@ -196,67 +198,24 @@ export default function GapsContent({ data }: GapsContentProps) {
                     transition: 'all 0.15s ease',
                   }}
                 >
-                  All feedback (2,223)
+                  Systemic Vectors (1,616)
                 </button>
               </div>
             </div>
             <div style={{ fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.45, fontWeight: 400, marginTop: 2 }}>
               {cohortView === 'all'
-                ? 'Shows overall problem distribution across all 2,223 reviews before filtering out non-search feedback.'
-                : 'Shows the 4 breakdown stages across the 251 search-related reviews (278 specific mentions).'}
+                ? 'Shows overall systemic failure vector distribution across the 1,616 in-scope search reviews.'
+                : 'Shows the 4 breakdown stages across the 1,616 search-specific reviews (1,616 verified tags).'}
             </div>
           </div>
           <div className="card-body">
             <HorizontalBar
               data={formattedBreakdown}
-              showConfidence={cohortView === 'bucket_a'}
-              denominator={cohortView === 'bucket_a' ? 278 : 5061}
+              showConfidence={cohortView === 'stages'}
+              denominator={1616}
+              unit="reviews"
+              showTagExplanation={false}
             />
-          </div>
-        </AnimatedCard>
-
-        {/* Impact on hesitation */}
-        <AnimatedCard delay={100}>
-          <div className="card-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4, paddingBottom: 14 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
-              <span className="card-title">Correlation with Search Abandonment</span>
-            </div>
-            <div style={{ fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.45, fontWeight: 400, marginTop: 2 }}>
-              Correlation coefficient (r) linking search friction points to users giving up on search.
-            </div>
-          </div>
-          <div className="card-body">
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              {(data.correlation_with_hesitation || []).map((item) => (
-                <div key={item.systemic_issue} style={{
-                  padding: '13px 15px',
-                  background: 'var(--bg-elevated)',
-                  borderRadius: 'var(--radius-md)',
-                  borderLeft: '3px solid var(--semantic-blue)',
-                  border: '1px solid var(--border)',
-                }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                    <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)' }}>{formatLabel(item.systemic_issue)}</span>
-                    <span style={{
-                      fontSize: 13, fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif",
-                      color: item.correlation_hint > 0.6 ? 'var(--semantic-amber)' : 'var(--semantic-blue)',
-                    }}>
-                      r = {item.correlation_hint.toFixed(2)}
-                    </span>
-                  </div>
-                  <div style={{ display: 'flex', gap: 14, fontSize: 12, color: 'var(--text-muted)' }}>
-                    <span>Frequency: {item.systemic_frequency.toLocaleString()}</span>
-                    <span>Hesitation: {item.hesitation_frequency.toLocaleString()}</span>
-                    <span style={{ color: 'var(--text-secondary)' }}>→ {formatLabel(item.related_hesitation)}</span>
-                  </div>
-                </div>
-              ))}
-              {(!data.correlation_with_hesitation || data.correlation_with_hesitation.length === 0) && (
-                <div className="empty-state">
-                  <div className="empty-state-text">No correlation data available</div>
-                </div>
-              )}
-            </div>
           </div>
         </AnimatedCard>
       </div>
@@ -280,9 +239,9 @@ export default function GapsContent({ data }: GapsContentProps) {
                 quote={{
                   text: q.text || q.quote || q.content || '',
                   source: q.source || 'Community Forum',
-                  tags: [q.issue || ''],
-                  source_id: '',
-                  confidence: 0.85,
+                  tags: q.tags && q.tags.length > 0 ? q.tags : [q.issue || ''],
+                  source_id: q.source_id || '',
+                  confidence: q.confidence || 0.85,
                   date: q.date || '',
                 }}
                 accent="var(--semantic-blue)"

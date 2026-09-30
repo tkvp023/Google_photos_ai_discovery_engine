@@ -43,6 +43,31 @@ interface Message {
   isOutOfScope?: boolean;
 }
 
+interface AskApiResponse {
+  answer?: string;
+  citations?: Citation[];
+  latency_ms?: number;
+  docs_retrieved?: number;
+  retrieved_docs?: RetrievedDoc[];
+  suggestions?: string[];
+  is_out_of_scope?: boolean;
+}
+
+function isSolutionRequested(query: string): boolean {
+  const q = query.toLowerCase();
+  const solutionKeywords = [
+    'solution', 'solve', 'how can we solve', 'how to solve',
+    'fix', 'how to fix', 'how can we fix',
+    'recommend', 'recommendation',
+    'improve', 'how to improve', 'how can we improve',
+    'how should we', 'what should we do', 'what can product team do',
+    'action', 'actionable', 'strategic direction', 'strategy',
+    'intervention', 'roadmap', 'mitigat', 'remedy', 'countermeasure',
+    'proposal', 'address this', 'how to overcome',
+  ];
+  return solutionKeywords.some((kw) => q.includes(kw));
+}
+
 function SourceInspectorModal({
   doc,
   onClose,
@@ -230,21 +255,56 @@ function MarkdownText({
 }) {
   const safeText = escapeHtml(text || '');
   const processed = safeText
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/^> (.+)$/gm, '<blockquote style="border-left:3px solid var(--brand-primary);padding-left:12px;margin:10px 0;color:var(--text-secondary);font-style:italic;background:var(--theme-accent-bg);padding:8px 12px;border-radius:0 8px 8px 0;">$1</blockquote>')
-    .replace(/^(\d+)\. (.+)$/gm, '<div style="padding:3px 0"><span style="color:var(--brand-primary);font-weight:700;margin-right:6px;">$1.</span> $2</div>')
-    .replace(/^- (.+)$/gm, '<div style="padding:2px 0;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--brand-secondary)">•</span> $1</div>')
-    .replace(/\n\n/g, '<br/><br/>');
+    // Interactive Review citations: [Review X]
+    .replace(
+      /\[Review\s*(\d+)\](?:\s*\((.*?)\))?/gi,
+      '<button type="button" data-review="$1" style="display:inline-flex;align-items:center;gap:4px;background:rgba(99,102,241,0.18);border:1px solid rgba(99,102,241,0.45);color:#a5b4fc;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;margin:0 3px;vertical-align:baseline;transition:all 0.15s ease;" onmouseenter="this.style.background=\'rgba(99,102,241,0.32)\';this.style.borderColor=\'#818cf8\';" onmouseleave="this.style.background=\'rgba(99,102,241,0.18)\';this.style.borderColor=\'rgba(99,102,241,0.45)\';"><span>🔍</span>Review $1$2</button>'
+    )
+    // Headers: H3
+    .replace(
+      /^###\s+(.+)$/gm,
+      '<div style="font-size:15px;font-weight:700;color:var(--text-primary);margin:20px 0 10px 0;display:flex;align-items:center;gap:8px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.06);letter-spacing:-0.01em;"><span style="width:3px;height:14px;background:var(--brand-primary);border-radius:2px;display:inline-block;"></span>$1</div>'
+    )
+    // Headers: H2
+    .replace(
+      /^##\s+(.+)$/gm,
+      '<div style="font-size:17px;font-weight:800;color:var(--text-primary);margin:24px 0 12px 0;letter-spacing:-0.02em;">$1</div>'
+    )
+    // Bold & Italics
+    .replace(/\*\*(.*?)\*\*/g, '<strong style="color:var(--text-primary);font-weight:700;">$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em style="color:var(--text-secondary);">$1</em>')
+    // Blockquotes: verbatim customer quotes
+    .replace(
+      /^>\s*(.+)$/gm,
+      '<blockquote style="border-left:3px solid var(--brand-primary);margin:12px 0;color:var(--text-primary);font-style:italic;background:rgba(255,255,255,0.03);padding:12px 16px;border-radius:0 10px 10px 0;line-height:1.6;border:1px solid rgba(255,255,255,0.05);border-left-width:3px;border-left-color:var(--brand-primary);box-shadow:0 2px 8px rgba(0,0,0,0.15);">&ldquo;$1&rdquo;</blockquote>'
+    )
+    // Numbered lists
+    .replace(
+      /^(\d+)\.\s+(.+)$/gm,
+      '<div style="display:flex;align-items:flex-start;gap:8px;padding:4px 0;margin-bottom:4px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:rgba(26,115,232,0.15);border:1px solid rgba(26,115,232,0.3);color:var(--brand-primary);font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;">$1</span><div style="flex:1;line-height:1.6;">$2</div></div>'
+    )
+    // Bullet lists
+    .replace(
+      /^-\s+(.+)$/gm,
+      '<div style="display:flex;align-items:flex-start;gap:8px;padding:3px 0;padding-left:6px;"><span style="color:var(--brand-secondary);font-weight:900;font-size:14px;line-height:1.4;">•</span><div style="flex:1;line-height:1.6;">$1</div></div>'
+    )
+    .replace(/\n\n/g, '<div style="height:10px;"></div>')
+    .replace(/\n/g, '<br/>');
 
   return (
-    <span
+    <div
+      style={{ width: '100%' }}
       dangerouslySetInnerHTML={{ __html: processed }}
       onClick={(e) => {
         const target = e.target as HTMLElement;
-        const match = target.innerText?.match(/\[Review (\d+)\]/i);
-        if (match && onInspectReview) {
-          onInspectReview(parseInt(match[1], 10));
+        const btn = target.closest('button[data-review]') as HTMLElement | null;
+        if (btn) {
+          const revId = btn.getAttribute('data-review');
+          if (revId && onInspectReview) {
+            e.preventDefault();
+            e.stopPropagation();
+            onInspectReview(parseInt(revId, 10));
+          }
         }
       }}
     />
@@ -363,18 +423,11 @@ export default function AskContent() {
 
     try {
       const directUrl = process.env.NEXT_PUBLIC_RAG_API_URL || 'http://localhost:8000';
-      let res = await fetch(`${directUrl}/api/ask`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: q,
-          filters: { source },
-          scope,
-        }),
-      }).catch(() => null);
+      let data: AskApiResponse | null = null;
 
-      if (!res || !res.ok) {
-        res = await fetch('/api/ask', {
+      // 1. Attempt direct connection to Python FastAPI backend
+      try {
+        const directRes = await fetch(`${directUrl}/api/ask`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -382,22 +435,74 @@ export default function AskContent() {
             filters: { source },
             scope,
           }),
-        }).catch(() => null);
+          signal: AbortSignal.timeout(10000),
+        });
+
+        if (directRes && directRes.ok) {
+          const json = await directRes.json().catch(() => null);
+          if (json?.answer && typeof json.answer === 'string' && json.answer.trim().length > 0) {
+            data = json;
+          }
+        }
+      } catch {
+        // Direct call timed out or failed
       }
 
-      if (res && res.ok) {
-        const data = await res.json();
+      // 2. If direct backend failed or returned empty answer, fallback seamlessly to Next.js route
+      if (!data) {
+        try {
+          const apiRes = await fetch('/api/ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              query: q,
+              filters: { source },
+              scope,
+            }),
+          });
+          if (apiRes && apiRes.ok) {
+            const json = await apiRes.json().catch(() => null);
+            if (json?.answer && typeof json.answer === 'string' && json.answer.trim().length > 0) {
+              data = json;
+            }
+          }
+        } catch {
+          // Next.js route failed
+        }
+      }
+
+      if (data && data.answer) {
+        let cleanAnswer = data.answer;
+        if (!isSolutionRequested(q)) {
+          for (const heading of [
+            '### 🚀 Actionable Strategic Directions',
+            '### Actionable Strategic Directions',
+            '### 🚀 Solutions',
+            '### Solutions',
+            '### 🚀 Strategic Directions',
+            '### Strategic Directions',
+            '### 🚀 Actionable Solutions',
+            '### Actionable Solutions',
+            '### Recommendations',
+            '### 🚀 Recommendations',
+          ]) {
+            if (cleanAnswer.includes(heading)) {
+              cleanAnswer = cleanAnswer.split(heading)[0].trim();
+            }
+          }
+        }
+
         setIsLive(true);
         setMessages((m) => [
           ...m,
           {
             role: 'ai',
-            content: data.answer,
-            citations: data.citations,
+            content: cleanAnswer,
+            citations: data.citations || [],
             latencyMs: data.latency_ms,
-            docsRetrieved: data.docs_retrieved,
-            retrievedDocs: data.retrieved_docs,
-            suggestions: data.suggestions,
+            docsRetrieved: data.docs_retrieved || (data.retrieved_docs ? data.retrieved_docs.length : 0),
+            retrievedDocs: data.retrieved_docs || [],
+            suggestions: data.suggestions || [],
             isOutOfScope: data.is_out_of_scope,
           },
         ]);
@@ -461,7 +566,7 @@ export default function AskContent() {
             }}
           >
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: isLive ? '#10b981' : 'var(--text-muted)' }} />
-            {isLive ? `${scope === 'brief' ? '251 Core Brief Documents' : '2,223 Documents Indexed'}` : 'Standby'}
+            {isLive ? `${scope === 'brief' ? '1,616 Core Brief Documents' : '1,616 Documents Indexed'}` : 'Standby'}
           </span>
         </p>
       </div>
@@ -506,7 +611,7 @@ export default function AskContent() {
                 gap: 6,
               }}
             >
-              <span>🎯</span> Core Retrieval Brief (251 reviews)
+              <span>🎯</span> In-Scope Retrieval Corpus (1,616 reviews)
             </button>
             <button
               type="button"
@@ -526,7 +631,7 @@ export default function AskContent() {
                 gap: 6,
               }}
             >
-              <span>🌐</span> Full Corpus (2,223 reviews)
+              <span>🌐</span> Full Multi-Platform Corpus (1,616 reviews)
             </button>
           </div>
         </div>
@@ -535,7 +640,7 @@ export default function AskContent() {
           {scope === 'brief' ? (
             <span style={{ color: '#34d399', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#34d399' }} />
-              <strong>Strict Grounding:</strong> Filtered to Bucket A (episodic search & retrieval friction).
+              <strong>Strict Grounding:</strong> Verified 1,616 Search-Only Retrieval Corpus (episodic search &amp; retrieval friction).
             </span>
           ) : (
             <span style={{ color: 'var(--text-muted)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
@@ -639,30 +744,11 @@ export default function AskContent() {
                     padding: '18px 22px',
                     fontSize: 13.5,
                     lineHeight: 1.6,
-                    background: msg.isOutOfScope ? 'rgba(239, 68, 68, 0.05)' : 'rgba(255,255,255,0.03)',
-                    border: msg.isOutOfScope ? '1px solid rgba(239, 68, 68, 0.3)' : '1px solid var(--border)',
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid var(--border)',
                     borderRadius: 'var(--radius-md)',
                   }}
                 >
-                  {msg.isOutOfScope && (
-                    <div
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: 6,
-                        background: 'rgba(239, 68, 68, 0.15)',
-                        border: '1px solid rgba(239, 68, 68, 0.4)',
-                        color: '#f87171',
-                        padding: '3px 10px',
-                        borderRadius: 12,
-                        fontSize: 11,
-                        fontWeight: 700,
-                        marginBottom: 12,
-                      }}
-                    >
-                      🛡️ OUT OF SCOPE QUERY
-                    </div>
-                  )}
 
                   <MarkdownText
                     text={msg.content}
@@ -765,8 +851,8 @@ export default function AskContent() {
                 </div>
                 <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>
                   {scope === 'brief'
-                    ? 'Searching 251 verified Bucket A on-brief retrieval friction reviews & synthesizing insights...'
-                    : 'Searching 2,223 vector embeddings across 5 discovery sources & synthesizing insights...'}
+                    ? 'Searching 1,616 verified search retrieval friction reviews & synthesizing insights...'
+                    : 'Searching 1,616 vector embeddings across 5 discovery sources & synthesizing insights...'}
                 </span>
               </div>
             </div>
@@ -851,12 +937,12 @@ export default function AskContent() {
                 fontSize: 12,
               }}
             >
-              <option value="all">All Platforms (2,223 Discussions)</option>
-              <option value="Play Store">Google Play Store (975)</option>
-              <option value="App Store">Apple App Store (608)</option>
-              <option value="Reddit">Reddit (319)</option>
-              <option value="Hacker News">Hacker News (242)</option>
-              <option value="YouTube">YouTube (79)</option>
+              <option value="all">All Platforms (1,616 Discussions)</option>
+              <option value="Play Store">Google Play Store (969)</option>
+              <option value="Hacker News">Hacker News (455)</option>
+              <option value="App Store">Apple App Store (111)</option>
+              <option value="Reddit">Reddit (54)</option>
+              <option value="YouTube">YouTube (27)</option>
             </select>
             <span
               style={{
@@ -868,7 +954,7 @@ export default function AskContent() {
                 gap: 4,
               }}
             >
-              Grounding: {scope === 'brief' ? '251 On-Brief Retrieval Discussions' : '2,223 Multi-Platform Discussions'}
+              Grounding: 1,616 Verified In-Scope Retrieval Discussions
             </span>
           </div>
         </div>

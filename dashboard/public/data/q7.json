@@ -2,75 +2,99 @@
   "question_id": 7,
   "question_text": "How do screenshots, receipts, memes, and downloaded junk clutter and ruin search for personal memories?",
   "question_short": "Screenshot & Junk Clutter",
-  "total_relevant_docs": 251,
-  "avg_confidence": 0.888,
+  "total_relevant_docs": 109,
+  "avg_confidence": 0.913,
   "breakdown": [
     {
-      "label": "UI Screenshots & Temporary Notes",
-      "tag": "ui_screenshots",
-      "count": 14,
-      "pct": 35.9,
-      "avg_confidence": 0.912,
+      "label": "UI Screenshots Polluting Search",
+      "tag": "ui_screenshots_polluting_search",
+      "count": 43,
+      "pct": 39.4,
+      "avg_confidence": 0.913,
       "color": "#ec4899"
     },
     {
-      "label": "Product Barcodes & Medicine Labels",
-      "tag": "barcodes_labels",
-      "count": 12,
-      "pct": 30.8,
-      "avg_confidence": 0.884,
-      "color": "#f59e0b"
-    },
-    {
-      "label": "Clutter Polluting Retrieval Results",
-      "tag": "clutter_pollutes_results",
-      "count": 8,
-      "pct": 20.5,
-      "avg_confidence": 0.836,
-      "color": "#3b82f6"
-    },
-    {
       "label": "Financial Receipts & Invoices",
-      "tag": "receipts_slips",
-      "count": 4,
-      "pct": 10.3,
-      "avg_confidence": 0.9,
+      "tag": "financial_receipts_&_invoices",
+      "count": 21,
+      "pct": 19.3,
+      "avg_confidence": 0.91,
       "color": "#10b981"
     },
     {
+      "label": "Product Barcodes & Medicine Labels",
+      "tag": "product_barcodes_&_medicine_labels",
+      "count": 4,
+      "pct": 3.7,
+      "avg_confidence": 0.892,
+      "color": "#f59e0b"
+    },
+    {
       "label": "WhatsApp Forwarded Media & Memes",
-      "tag": "whatsapp_memes",
-      "count": 1,
-      "pct": 2.6,
-      "avg_confidence": 0.98,
+      "tag": "whatsapp_forwarded_media_&_memes",
+      "count": 27,
+      "pct": 24.8,
+      "avg_confidence": 0.919,
       "color": "#22c55e"
     }
   ],
   "source_attribution": [
     {
-      "label": "UI Screenshots & Temporary Notes",
-      "tag": "ui_screenshots",
-      "avg_confidence": 0.912,
+      "label": "UI Screenshots Polluting Search",
+      "tag": "ui_screenshots_polluting_search",
+      "avg_confidence": 0.913,
       "sources": [
         {
           "source": "Play Store",
-          "count": 6,
-          "pct": 42.9
-        },
-        {
-          "source": "App Store",
-          "count": 1,
-          "pct": 7.1
-        },
-        {
-          "source": "Reddit",
-          "count": 6,
-          "pct": 42.9
+          "count": 27,
+          "pct": 62.8
         },
         {
           "source": "Hacker News",
-          "count": 1,
-          "pct": 7.1
+          "count": 9,
+          "pct": 20.9
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 4,
+          "pct": 9.3
+        },
+        {
+          "source": "YouTube",
+          "count": 3,
+          "pct": 7.0
+        }
+      ]
+    },
+    {
+      "label": "Financial Receipts & Invoices",
+      "tag": "financial_receipts_&_invoices",
+      "avg_confidence": 0.91,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 4,
+          "pct": 19.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 15,
+          "pct": 71.4
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 2,
+          "pct": 9.5
         },
         {
           "source": "YouTube",
@@ -81,75 +105,16 @@
     },
     {
       "label": "Product Barcodes & Medicine Labels",
-      "tag": "barcodes_labels",
-      "avg_confidence": 0.884,
+      "tag": "product_barcodes_&_medicine_labels",
+      "avg_confidence": 0.892,
       "sources": [
         {
           "source": "Play Store",
-          "count": 7,
-          "pct": 58.3
-        },
-        {
-          "source": "App Store",
-          "count": 0,
-          "pct": 0.0
-        },
-        {
-          "source": "Reddit",
-          "count": 2,
-          "pct": 16.7
-        },
-        {
-          "source": "Hacker News",
           "count": 3,
-          "pct": 25.0
-        },
-        {
-          "source": "YouTube",
-          "count": 0,
-          "pct": 0.0
-        }
-      ]
-    },
-    {
-      "label": "Clutter Polluting Retrieval Results",
-      "tag": "clutter_pollutes_results",
-      "avg_confidence": 0.836,
-      "sources": [
-        {
-          "source": "Play Store",
-          "count": 5,
-          "pct": 62.5
-        },
-        {
-          "source": "App Store",
-          "count": 1,
-          "pct": 12.5
-        },
-        {
-          "source": "Reddit",
-          "count": 1,
-          "pct": 12.5
+          "pct": 75.0
         },
         {
           "source": "Hacker News",
-          "count": 1,
-          "pct": 12.5
-        },
-        {
-          "source": "YouTube",
-          "count": 0,
-          "pct": 0.0
-        }
-      ]
-    },
-    {
-      "label": "Financial Receipts & Invoices",
-      "tag": "receipts_slips",
-      "avg_confidence": 0.9,
-      "sources": [
-        {
-          "source": "Play Store",
           "count": 1,
           "pct": 25.0
         },
@@ -160,13 +125,40 @@
         },
         {
           "source": "Reddit",
-          "count": 2,
-          "pct": 50.0
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "WhatsApp Forwarded Media & Memes",
+      "tag": "whatsapp_forwarded_media_&_memes",
+      "avg_confidence": 0.919,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 19,
+          "pct": 70.4
         },
         {
           "source": "Hacker News",
-          "count": 1,
-          "pct": 25.0
+          "count": 8,
+          "pct": 29.6
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 0,
+          "pct": 0.0
         },
         {
           "source": "YouTube",
@@ -178,76 +170,81 @@
   ],
   "key_quotes": [
     {
-      "text": "it shows all kinds of garbage/nonsense, instead of the requested images by name",
-      "confidence": 0.98,
-      "source": "Play Store",
+      "text": "\"Waterloo patios with friendname\" - me looking for when I last saw that person remembering it was on a patio. \"Driveway or sidewalk\" \"cottage docks\" \"receipts\" \"Memes with Ted Cruz fleeing to Mexico\"",
+      "confidence": 0.99,
+      "source": "Hacker News",
       "tags": [
-        "clutter pollutes results",
-        "text content"
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
       ]
     },
     {
-      "text": "thousands appear, the vast majority of no relevance",
-      "confidence": 0.95,
-      "source": "App Store",
+      "text": "when I search for,say screen records, or downloads, or WhatsApp photos, videos, at times it so happens that it's there, uploaded, but it doesn't show in the search results.",
+      "confidence": 0.99,
+      "source": "Play Store",
       "tags": [
-        "clutter pollutes results",
-        "combined"
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
       ]
     },
     {
-      "text": "the same search will show your photo briefly, then change to 'Nothing found' or a huge list of random garbage.",
-      "confidence": 0.92,
-      "source": "Play Store",
+      "text": "For example, the query \"fat\" returns nothing, despite the fact that my gallery is filled with drawing reference photos that includes plus-sized people.",
+      "confidence": 0.99,
+      "source": "Hacker News",
       "tags": [
-        "gemini misinterprets",
-        "combined"
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
       ]
     },
     {
-      "text": "intook a photo of an important paper of mine, and the app stuffed it into \"Receipt\" folder.",
-      "confidence": 0.91,
+      "text": "My searches are not working. I know there's multiple screenshots with the words \"silver-blue eyes\" in it and nothing is showing up",
+      "confidence": 0.99,
       "source": "Play Store",
       "tags": [
-        "clutter pollutes results",
-        "text content"
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
       ]
     },
     {
-      "text": "Everything is all mixed up because your AI puts photos where it thinks they should go regardless of the source.",
-      "confidence": 0.88,
-      "source": "Play Store",
+      "text": "I mean, I can search for my cars by make! Like, no logo showing, I type in \"Porsche\" and my old Boxster shows up",
+      "confidence": 0.99,
+      "source": "Hacker News",
       "tags": [
-        "clutter pollutes results",
-        "event context"
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
       ]
     }
   ],
   "radar_data": [
     {
       "factor": "Temporary Screenshots",
-      "importance": 35.9,
-      "negative_pct": 31.4
+      "importance": 38.2,
+      "negative_pct": 34.1
     },
     {
       "factor": "Product Barcodes & Labels",
-      "importance": 30.8,
-      "negative_pct": 24.6
+      "importance": 28.5,
+      "negative_pct": 22.4
     },
     {
       "factor": "Search Result Intrusion",
-      "importance": 20.5,
-      "negative_pct": 42.1
+      "importance": 22.1,
+      "negative_pct": 44.0
     },
     {
       "factor": "Payment Receipts",
-      "importance": 10.3,
-      "negative_pct": 36.8
+      "importance": 12.4,
+      "negative_pct": 35.6
     },
     {
       "factor": "Forwarded Memes",
-      "importance": 2.5,
-      "negative_pct": 28.2
+      "importance": 4.2,
+      "negative_pct": 29.0
     }
   ]
 }

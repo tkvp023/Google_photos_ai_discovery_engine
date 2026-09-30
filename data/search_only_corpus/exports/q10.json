@@ -1,0 +1,223 @@
+{
+  "question_id": 10,
+  "question_text": "What workarounds do users resort to (e.g., searching WhatsApp chats, Apple Photos, asking friends) when Google Photos search fails?",
+  "question_short": "Workarounds & Switching",
+  "total_relevant_docs": 566,
+  "avg_confidence": 0.906,
+  "breakdown": [
+    {
+      "label": "Switching to Apple Photos / Immich / Local",
+      "tag": "switching_to_apple_photos_/_immich_/_local",
+      "count": 109,
+      "pct": 19.3,
+      "avg_confidence": 0.901,
+      "color": "#22c55e"
+    },
+    {
+      "label": "Searching WhatsApp / Messaging Chat Media",
+      "tag": "searching_whatsapp_/_messaging_chat_media",
+      "count": 25,
+      "pct": 4.4,
+      "avg_confidence": 0.889,
+      "color": "#25d366"
+    },
+    {
+      "label": "Manual Album Creation & Tagging",
+      "tag": "manual_album_creation_&_tagging",
+      "count": 114,
+      "pct": 20.1,
+      "avg_confidence": 0.899,
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Complete Search Abandonment / Resignation",
+      "tag": "complete_search_abandonment_/_resignation",
+      "count": 15,
+      "pct": 2.7,
+      "avg_confidence": 0.885,
+      "color": "#ef4444"
+    }
+  ],
+  "source_attribution": [
+    {
+      "label": "Switching to Apple Photos / Immich / Local",
+      "tag": "switching_to_apple_photos_/_immich_/_local",
+      "avg_confidence": 0.901,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 29,
+          "pct": 26.6
+        },
+        {
+          "source": "Hacker News",
+          "count": 64,
+          "pct": 58.7
+        },
+        {
+          "source": "App Store",
+          "count": 10,
+          "pct": 9.2
+        },
+        {
+          "source": "Reddit",
+          "count": 5,
+          "pct": 4.6
+        },
+        {
+          "source": "YouTube",
+          "count": 1,
+          "pct": 0.9
+        }
+      ]
+    },
+    {
+      "label": "Searching WhatsApp / Messaging Chat Media",
+      "tag": "searching_whatsapp_/_messaging_chat_media",
+      "avg_confidence": 0.889,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 19,
+          "pct": 76.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 6,
+          "pct": 24.0
+        },
+        {
+          "source": "App Store",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "Reddit",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Manual Album Creation & Tagging",
+      "tag": "manual_album_creation_&_tagging",
+      "avg_confidence": 0.899,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 89,
+          "pct": 78.1
+        },
+        {
+          "source": "Hacker News",
+          "count": 17,
+          "pct": 14.9
+        },
+        {
+          "source": "App Store",
+          "count": 4,
+          "pct": 3.5
+        },
+        {
+          "source": "Reddit",
+          "count": 1,
+          "pct": 0.9
+        },
+        {
+          "source": "YouTube",
+          "count": 3,
+          "pct": 2.6
+        }
+      ]
+    },
+    {
+      "label": "Complete Search Abandonment / Resignation",
+      "tag": "complete_search_abandonment_/_resignation",
+      "avg_confidence": 0.885,
+      "sources": [
+        {
+          "source": "Play Store",
+          "count": 9,
+          "pct": 60.0
+        },
+        {
+          "source": "Hacker News",
+          "count": 3,
+          "pct": 20.0
+        },
+        {
+          "source": "App Store",
+          "count": 1,
+          "pct": 6.7
+        },
+        {
+          "source": "Reddit",
+          "count": 2,
+          "pct": 13.3
+        },
+        {
+          "source": "YouTube",
+          "count": 0,
+          "pct": 0.0
+        }
+      ]
+    }
+  ],
+  "key_quotes": [
+    {
+      "text": "wanted to try to find a remembered example of using Ground Penetrating Radar to find hidden roads in Northern Spain and Southern France, yet for everything tried I could not get Google to actually return results that would ever focus on what it was I actually wanted.",
+      "confidence": 0.99,
+      "source": "Hacker News",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Google's and Apple's Photos both can search for pictures given a description of what you're looking for. In my experience both work very well (e.g. search for \"cars\" in your pics, and it'll find all your cars over the years",
+      "confidence": 0.99,
+      "source": "Hacker News",
+      "tags": [
+        "gemini ai",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Plus figuring out how to word intuitive thought into what AI needs to find photos & still receive less accurate results. You can switch Classic and Gemini but, even Classic is affected to the point that it's less accurate.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "both",
+        "Initial Results",
+        "Intent"
+      ]
+    },
+    {
+      "text": "Before a week ago I could type in a search for a photo and the relevant photos would be shown. Now I can type in exactly the same search and thousands appear, the vast majority of no relevance.",
+      "confidence": 0.99,
+      "source": "App Store",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "when I search for,say screen records, or downloads, or WhatsApp photos, videos, at times it so happens that it's there, uploaded, but it doesn't show in the search results.",
+      "confidence": 0.99,
+      "source": "Play Store",
+      "tags": [
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    }
+  ]
+}

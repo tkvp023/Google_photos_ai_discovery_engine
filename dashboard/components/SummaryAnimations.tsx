@@ -50,7 +50,7 @@ interface SummaryData {
 }
 
 export default function SummaryAnimations({ data }: { data: SummaryData }) {
-  const totalDocs = data.kpi_cards?.find((k) => k.id === 'total_reviews')?.value || ((data.primary_signal_docs || 0) + (data.secondary_signal_docs || 0)) || 2223;
+  const totalDocs = data.kpi_cards?.find((k) => k.id === 'total_reviews')?.value || ((data.primary_signal_docs || 0) + (data.secondary_signal_docs || 0)) || 1616;
 
   return (
     <>
@@ -138,7 +138,9 @@ export default function SummaryAnimations({ data }: { data: SummaryData }) {
                 color: ['#3b82f6', '#22c55e', '#f59e0b', '#06b6d4', '#64748b'][op.rank - 1] || '#3b82f6',
                 href: `/questions/${op.question_id || 2}`,
               }))}
-              denominator={251}
+              denominator={1616}
+              unit="reviews"
+              showTagExplanation={false}
             />
           </div>
         </AnimatedCard>
@@ -168,28 +170,28 @@ export default function SummaryAnimations({ data }: { data: SummaryData }) {
               {
                 title: 'Total Reviews Analyzed',
                 tag: '5 Platforms',
-                pctDisplay: '2,223',
+                pctDisplay: '1,616',
                 value: totalDocs,
                 unit: 'reviews',
                 color: '#3b82f6',
-                desc: '1,583 app store reviews (Play Store 975 + App Store 608) and 640 community discussions (Reddit 319 + HN 242 + YouTube 79).',
+                desc: '1,080 app store reviews (Play Store 969 + App Store 111) and 536 community discussions (HN 455 + Reddit 54 + YouTube 27).',
               },
               {
                 title: 'Search-Related Reviews',
                 tag: 'Search Focus',
-                pctDisplay: '251',
-                value: 251,
+                pctDisplay: '1,616',
+                value: 1616,
                 unit: 'reviews',
                 color: '#3b82f6',
-                desc: 'Specific visual memory search failures, strictly separated from 1,972 unrelated complaints about backup loops, battery drain, and tab layout.',
+                desc: 'Specific visual memory search failures, strictly separated from 23,815 unrelated harvest complaints about backup loops, battery drain, and tab layout.',
               },
               {
                 title: 'Search Breakdowns Identified',
                 tag: '4 Stages',
-                pctDisplay: '278',
-                unit: 'mentions',
+                pctDisplay: '1,616',
+                unit: 'tags',
                 color: '#f59e0b',
-                desc: 'Categorized into Search Misunderstanding (48.2%), No Help After Failure (26.6%), Can\'t Spot Photo (18.3%), and Can\'t Find Words (6.8%).',
+                desc: 'Categorized into Expression (59.0%), Interpretation (38.9%), Recovery (1.6%), and Evaluation (0.6%) with 100% quote grounding.',
               },
             ].map((item) => {
               return (
@@ -218,7 +220,7 @@ export default function SummaryAnimations({ data }: { data: SummaryData }) {
                         {item.pctDisplay}
                       </span>
                       <span style={{ fontSize: 13, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, color: 'var(--text-secondary)' }}>
-                        ({(item.value ?? 2223).toLocaleString()} {item.unit})
+                        ({(item.value ?? 1616).toLocaleString()} {item.unit})
                       </span>
                     </div>
                   </div>

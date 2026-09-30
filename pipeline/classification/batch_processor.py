@@ -111,7 +111,7 @@ class BatchProcessor:
         """Load set of already-classified doc IDs."""
         path = self._checkpoint_path()
         if path.exists():
-            with open(path, "r") as f:
+            with open(path, "r", encoding="utf-8") as f:
                 data = json.load(f)
                 return set(data.get("classified_ids", []))
         return set()
@@ -119,7 +119,7 @@ class BatchProcessor:
     def save_checkpoint(self, classified_ids: set):
         """Save checkpoint of classified doc IDs."""
         path = self._checkpoint_path()
-        with open(path, "w") as f:
+        with open(path, "w", encoding="utf-8") as f:
             json.dump({
                 "classified_ids": list(classified_ids),
                 "count": len(classified_ids),

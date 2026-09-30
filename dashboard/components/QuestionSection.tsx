@@ -337,11 +337,9 @@ export default function QuestionSection({ data, questionId }: QuestionSectionPro
       )}
 
       {/* Grounded Verbatim Quotes */}
-      {formattedQuotes && formattedQuotes.length > 0 && (
-        <div style={{ marginTop: 24 }}>
-          <QuoteCarousel quotes={formattedQuotes} />
-        </div>
-      )}
+      <div style={{ marginTop: 24 }}>
+        <QuoteCarousel quotes={formattedQuotes} />
+      </div>
     </div>
   );
 }

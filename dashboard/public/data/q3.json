@@ -2,224 +2,229 @@
   "question_id": 3,
   "question_text": "What information have they forgotten?",
   "question_short": "Forgotten Metadata",
-  "total_relevant_docs": 251,
-  "avg_confidence": 0.81,
+  "total_relevant_docs": 870,
+  "avg_confidence": 0.908,
   "breakdown": [
     {
       "label": "Exact Calendar Date / Month",
-      "tag": "forgot_exact_date",
-      "count": 35,
-      "pct": 43.8,
-      "avg_confidence": 0.73,
+      "tag": "exact_calendar_date_/_month",
+      "count": 317,
+      "pct": 36.4,
+      "avg_confidence": 0.906,
       "color": "#f59e0b"
     },
     {
       "label": "Device Filename or Album Folder",
-      "tag": "forgot_filename_or_album",
-      "count": 18,
-      "pct": 22.5,
-      "avg_confidence": 0.85,
+      "tag": "device_filename_or_album_folder",
+      "count": 429,
+      "pct": 49.3,
+      "avg_confidence": 0.899,
       "color": "#6b7280"
     },
     {
       "label": "Formal Venue / Exact Geotag",
-      "tag": "forgot_exact_location",
-      "count": 12,
-      "pct": 15.0,
-      "avg_confidence": 0.85,
+      "tag": "formal_venue_/_exact_geotag",
+      "count": 208,
+      "pct": 23.9,
+      "avg_confidence": 0.904,
       "color": "#06b6d4"
     },
     {
       "label": "Temporal Drift on Query",
-      "tag": "temporal_mismatch",
-      "count": 11,
-      "pct": 13.8,
-      "avg_confidence": 0.92,
+      "tag": "temporal_drift_on_query",
+      "count": 447,
+      "pct": 51.4,
+      "avg_confidence": 0.906,
       "color": "#3b82f6"
     },
     {
       "label": "Vague Approximate Timeframe",
-      "tag": "temporal_vagueness",
-      "count": 4,
-      "pct": 5.0,
-      "avg_confidence": 0.905,
+      "tag": "vague_approximate_timeframe",
+      "count": 110,
+      "pct": 12.6,
+      "avg_confidence": 0.901,
       "color": "#8b5cf6"
     }
   ],
   "source_attribution": [
     {
       "label": "Exact Calendar Date / Month",
-      "tag": "forgot_exact_date",
-      "avg_confidence": 0.73,
+      "tag": "exact_calendar_date_/_month",
+      "avg_confidence": 0.906,
       "sources": [
         {
           "source": "Play Store",
-          "count": 16,
-          "pct": 45.7
-        },
-        {
-          "source": "App Store",
-          "count": 7,
-          "pct": 20.0
-        },
-        {
-          "source": "Reddit",
-          "count": 4,
-          "pct": 11.4
+          "count": 163,
+          "pct": 51.4
         },
         {
           "source": "Hacker News",
-          "count": 6,
-          "pct": 17.1
+          "count": 115,
+          "pct": 36.3
+        },
+        {
+          "source": "App Store",
+          "count": 18,
+          "pct": 5.7
+        },
+        {
+          "source": "Reddit",
+          "count": 16,
+          "pct": 5.0
         },
         {
           "source": "YouTube",
-          "count": 2,
-          "pct": 5.7
+          "count": 5,
+          "pct": 1.6
         }
       ]
     },
     {
       "label": "Device Filename or Album Folder",
-      "tag": "forgot_filename_or_album",
-      "avg_confidence": 0.85,
+      "tag": "device_filename_or_album_folder",
+      "avg_confidence": 0.899,
       "sources": [
         {
           "source": "Play Store",
-          "count": 6,
-          "pct": 33.3
-        },
-        {
-          "source": "App Store",
-          "count": 4,
-          "pct": 22.2
-        },
-        {
-          "source": "Reddit",
-          "count": 6,
-          "pct": 33.3
+          "count": 347,
+          "pct": 80.9
         },
         {
           "source": "Hacker News",
-          "count": 2,
-          "pct": 11.1
+          "count": 60,
+          "pct": 14.0
+        },
+        {
+          "source": "App Store",
+          "count": 13,
+          "pct": 3.0
+        },
+        {
+          "source": "Reddit",
+          "count": 7,
+          "pct": 1.6
         },
         {
           "source": "YouTube",
-          "count": 0,
-          "pct": 0.0
+          "count": 2,
+          "pct": 0.5
         }
       ]
     },
     {
       "label": "Formal Venue / Exact Geotag",
-      "tag": "forgot_exact_location",
-      "avg_confidence": 0.85,
+      "tag": "formal_venue_/_exact_geotag",
+      "avg_confidence": 0.904,
       "sources": [
         {
           "source": "Play Store",
-          "count": 4,
-          "pct": 33.3
-        },
-        {
-          "source": "App Store",
-          "count": 1,
-          "pct": 8.3
-        },
-        {
-          "source": "Reddit",
-          "count": 2,
-          "pct": 16.7
+          "count": 122,
+          "pct": 58.7
         },
         {
           "source": "Hacker News",
+          "count": 76,
+          "pct": 36.5
+        },
+        {
+          "source": "App Store",
           "count": 4,
-          "pct": 33.3
+          "pct": 1.9
+        },
+        {
+          "source": "Reddit",
+          "count": 4,
+          "pct": 1.9
         },
         {
           "source": "YouTube",
-          "count": 1,
-          "pct": 8.3
+          "count": 2,
+          "pct": 1.0
         }
       ]
     },
     {
       "label": "Temporal Drift on Query",
-      "tag": "temporal_mismatch",
-      "avg_confidence": 0.92,
+      "tag": "temporal_drift_on_query",
+      "avg_confidence": 0.906,
       "sources": [
         {
           "source": "Play Store",
-          "count": 3,
-          "pct": 27.3
-        },
-        {
-          "source": "App Store",
-          "count": 3,
-          "pct": 27.3
-        },
-        {
-          "source": "Reddit",
-          "count": 3,
-          "pct": 27.3
+          "count": 305,
+          "pct": 68.2
         },
         {
           "source": "Hacker News",
-          "count": 1,
-          "pct": 9.1
+          "count": 112,
+          "pct": 25.1
+        },
+        {
+          "source": "App Store",
+          "count": 16,
+          "pct": 3.6
+        },
+        {
+          "source": "Reddit",
+          "count": 12,
+          "pct": 2.7
         },
         {
           "source": "YouTube",
-          "count": 1,
-          "pct": 9.1
+          "count": 2,
+          "pct": 0.4
         }
       ]
     }
   ],
   "key_quotes": [
     {
-      "text": "newer videos appear on wrong dates.",
-      "confidence": 0.96,
-      "source": "Reddit",
+      "text": "when searching for key words, it gave the option for \"most recent\" or \"best match\", that is still there but under most recent it showed searched key words and organized it by date. I have to now pinch zoom x2 for it to break down into chronological order.",
+      "confidence": 0.99,
+      "source": "Play Store",
       "tags": [
-        "temporal mismatch",
-        "time"
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
       ]
     },
     {
-      "text": "I was scrolling through things and eventually found them, and I cannot remember the date for the life of me.",
-      "confidence": 0.95,
-      "source": "Reddit",
-      "tags": [
-        "fallback to scroll",
-        "time"
-      ]
-    },
-    {
-      "text": "if you search for December 2017, it won’t show all photos from December 2017",
-      "confidence": 0.95,
+      "text": "Try searching photos now. It’s a nightmare. I’m getting the most random scattered results whereas before it was all organized with the correct search, if I searched “Trees” I’d get pictures of trees not a picture of my Dog sitting on the couch.",
+      "confidence": 0.99,
       "source": "App Store",
       "tags": [
-        "temporal mismatch",
-        "time"
+        "gemini ai",
+        "Articulation",
+        "Initial Results"
       ]
     },
     {
-      "text": "not a single photo is found even through date or AI",
-      "confidence": 0.95,
+      "text": "Disappointed to see that when you search and then select a photo and then go back your search is no longer there and you are on the main screen. Let's say I want to look at all my Disney photos, I don't want to re-search \"Disney\" every time",
+      "confidence": 0.99,
       "source": "Play Store",
       "tags": [
-        "other interpretation",
-        "time"
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
       ]
     },
     {
-      "text": "those photos aren't available and I have to scroll to find them if I don't know the date",
-      "confidence": 0.94,
-      "source": "Play Store",
+      "text": "For example, if you search for December 2017, it won’t show all photos from December 2017 (that would be too easy, right?), instead it’s showing you a subset of those + some photos that were not even taken in December 2017.",
+      "confidence": 0.99,
+      "source": "App Store",
       "tags": [
-        "fallback to scroll",
-        "person"
+        "classic keyword",
+        "Articulation",
+        "Initial Results"
+      ]
+    },
+    {
+      "text": "Google's and Apple's Photos both can search for pictures given a description of what you're looking for. In my experience both work very well (e.g. search for \"cars\" in your pics, and it'll find all your cars over the years",
+      "confidence": 0.99,
+      "source": "Hacker News",
+      "tags": [
+        "gemini ai",
+        "Articulation",
+        "Initial Results"
       ]
     }
   ],
@@ -238,28 +243,28 @@
     ],
     "values": [
       [
-        88,
-        74,
-        92,
-        65
-      ],
-      [
-        95,
-        82,
         89,
-        78
+        72,
+        94,
+        64
       ],
       [
-        76,
-        68,
+        96,
         81,
-        59
+        91,
+        79
       ],
       [
-        64,
-        52,
-        70,
-        48
+        78,
+        66,
+        83,
+        58
+      ],
+      [
+        66,
+        50,
+        72,
+        46
       ]
     ]
   }

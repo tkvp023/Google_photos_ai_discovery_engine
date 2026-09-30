@@ -1,0 +1,17 @@
+{
+  "total_documents": 1616,
+  "in_scope": 1616,
+  "platforms": [
+    "Play Store",
+    "Hacker News",
+    "App Store",
+    "Reddit",
+    "YouTube"
+  ],
+  "models_used": [
+    "gemini-3.1-flash-lite",
+    "gemini-3.1-flash-lite-preview"
+  ],
+  "grounding_standard": "100% character-for-character verifiable substrings (INSTR > 0)",
+  "last_updated": "2026-09-24T09:56:49.386810+00:00"
+}

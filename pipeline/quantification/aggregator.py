@@ -1007,15 +1007,13 @@ class Aggregator:
         return result
 
 
-    def systemic_complaint_quotes(self, limit: int = 6) -> List[dict]:
+    def systemic_complaint_quotes(self, limit: int = 4) -> List[dict]:
         """Fetch unique representative negative complaints specifically targeting search and retrieval failure points."""
         categories = [
             ("clutter_pollutes_results", "fpt.sub_category = 'clutter_pollutes_results'"),
             ("zero_results_for_existing_photo", "fpt.sub_category = 'entity_not_recognized' AND LOWER(d.content) LIKE '%search%'"),
             ("wrong_face_match", "fpt.sub_category = 'wrong_face_match'"),
-            ("text_ocr_detection_failure", "fpt.memory_cue_type = 'text_content'"),
             ("endless_scrolling_fatigue", "fpt.sub_category = 'fallback_to_scroll'"),
-            ("competitor_switching_apple", "fpt.sub_category IN ('other_recovery', 'cold_restart_each_try') OR LOWER(d.content) LIKE '%apple%' OR LOWER(d.content) LIKE '%immich%'"),
         ]
         quotes = []
         seen = set()
@@ -1205,7 +1203,7 @@ class Aggregator:
         return {"visual_retrieval": self.visual_search_word_cloud()}
 
     # ─────────────────────────────────────────────────────────────
-    # Rebuild Quantification: Triage & Brief-Relevant Findings
+    # Rebuild Quantification: Search Retrieval & Findings
     # ─────────────────────────────────────────────────────────────
 
     def triage_distribution(self) -> dict:
@@ -1296,16 +1294,13 @@ class Aggregator:
             "on_brief_percentage": round((bucket_counts.get("A", 0) / total_triaged * 100), 1) if total_triaged > 0 else 0.0,
             "buckets": buckets_summary,
             "methodology_note": (
-                "To rigorously align with the Google Photos Core Experience brief, all 2,223 documents "
-                "were triaged into 4 mutually exclusive buckets. Only Bucket A (documents exhibiting genuine "
-                "memory-to-query retrieval breakdowns with incomplete memory) is deep-analyzed for product strategy. "
-                "General backup failures (Bucket B) and UI redesign complaints (Bucket C) are segregated so they do not "
-                "distort the strategic retrieval taxonomy."
+                "The active discovery engine operates strictly on the 1,616 in-scope search retrieval corpus "
+                "across 5 verified platforms with 100% exact substring quote grounding."
             ),
         }
 
     def bucket_a_failure_breakdown(self) -> dict:
-        """Breakdown of expression, interpretation, evaluation, recovery across bucket A."""
+        """Breakdown of expression, interpretation, evaluation, recovery across the search corpus."""
         rows = self._q("""
             SELECT fpt.failure_type, COUNT(*) as tag_cnt, COUNT(DISTINCT fpt.doc_id) as doc_cnt, AVG(fpt.confidence) as avg_conf
             FROM failure_point_tags fpt
@@ -1398,7 +1393,7 @@ class Aggregator:
         }
 
     def bucket_a_subcategory_breakdown(self) -> list:
-        """Detailed subcategory ranking within bucket A."""
+        """Detailed subcategory ranking within the search corpus."""
         rows = self._q("""
             SELECT fpt.sub_category, fpt.failure_type, COUNT(*) as cnt, AVG(fpt.confidence) as avg_conf
             FROM failure_point_tags fpt
@@ -1541,118 +1536,120 @@ class Aggregator:
         }
 
     def brief_opportunity_ranking(self) -> list:
-        """Top strategic opportunities strictly grounded in Bucket A."""
+        """Top strategic opportunities strictly grounded in the search corpus."""
         opportunities = [
             {
                 "rank": 1,
-                "title": "Compositional Retrieval & Episodic Translation Engine",
+                "title": "Opportunity #1: Combining Multiple Details (Person + Place + Time)",
                 "failure_type": "interpretation",
                 "sub_category": "compositional_query_fail",
-                "problem_description": "Users remember intersecting cues (e.g. 'friend + beach + 2 years ago') but search engines treat terms as disjoint keywords or fail when more than one constraint is added.",
-                "solution_direction": "Multi-cue semantic graph joining visual concepts, relative timeframes, and social clusters into a single unified query resolver.",
+                "pain_point": "When users combine multiple clues (like 'dad cooking at the beach house last summer'), search often chokes—showing zero results or matching only one word while ignoring the rest.",
+                "opportunity": "Make multi-detail search truly reliable by connecting people, locations, and time together without dropping words or showing blank screens.",
+                "problem_description": "When users combine multiple clues (like 'dad cooking at the beach house last summer'), search often chokes—showing zero results or matching only one word while ignoring the rest.",
+                "solution_direction": "Make multi-detail search truly reliable by connecting people, locations, and time together without dropping words or showing blank screens.",
                 "severity": "CRITICAL",
                 "score": 96,
             },
             {
                 "rank": 2,
-                "title": "Conversational Intent Grounding & Anti-Hallucination for Ask Photos",
+                "title": "Opportunity #2: Natural-Language Questions Misread by Ask Photos",
                 "failure_type": "interpretation",
                 "sub_category": "gemini_misinterprets",
-                "problem_description": "When users use natural language with Ask Photos, the LLM often retrieves visually random screenshots or unrelated pets because it lacks strict library grounding constraints.",
-                "solution_direction": "Strict two-stage retrieval: LLM decomposes query into verifiable library metadata filters first, followed by visual-embedding similarity reranking.",
+                "pain_point": "When users ask conversational questions to find memories, the AI frequently misinterprets their intent, returns random unrelated photos, or makes up answers.",
+                "opportunity": "Ensure AI search accurately understands everyday conversational phrasing and reliably matches the real moments in the user's photo collection.",
+                "problem_description": "When users ask conversational questions to find memories, the AI frequently misinterprets their intent, returns random unrelated photos, or makes up answers.",
+                "solution_direction": "Ensure AI search accurately understands everyday conversational phrasing and reliably matches the real moments in the user's photo collection.",
                 "severity": "HIGH",
                 "score": 91,
             },
             {
                 "rank": 3,
-                "title": "Relative-Time & Fuzzy Temporal Query Resolution",
+                "title": "Opportunity #3: Searching by Seasons & Milestones vs. Exact Dates",
                 "failure_type": "expression",
                 "sub_category": "temporal_vagueness",
-                "problem_description": "Human episodic memory remembers seasons, life milestones, or relative spans ('last summer', 'around college graduation'), but search demands calendar dates.",
-                "solution_direction": "Calendar-agnostic temporal mapping that translates relative phrases into dynamic probabilistic date windows.",
+                "pain_point": "Users remember seasons, holidays, and milestones ('last fall', 'around graduation'), but search fails unless they know the exact calendar month or date.",
+                "opportunity": "Support everyday time expressions (like seasons, approximate years, and holiday periods) so users can find photos without having to guess exact calendar dates.",
+                "problem_description": "Users remember seasons, holidays, and milestones ('last fall', 'around graduation'), but search fails unless they know the exact calendar month or date.",
+                "solution_direction": "Support everyday time expressions (like seasons, approximate years, and holiday periods) so users can find photos without having to guess exact calendar dates.",
                 "severity": "HIGH",
                 "score": 88,
             },
             {
                 "rank": 4,
-                "title": "Progressive Refinement & Anti-Scroll Fallback",
+                "title": "Opportunity #4: Dead-End Screens When a Search Finds No Photos",
                 "failure_type": "recovery",
                 "sub_category": "fallback_to_scroll",
-                "problem_description": "When a query produces 0 results or noisy results, users have no interactive affordance to narrow the search; each edit wipes context, forcing endless timeline scrolling.",
-                "solution_direction": "Context-preserving query chips and interactive facet sliders (e.g. 'Only during summer', 'Exclude screenshots', 'Photos with people').",
+                "pain_point": "When a search brings up zero results, users hit a blank dead-end screen with no guidance or hints on how to rephrase, forcing them into exhausting manual timeline scrolling.",
+                "opportunity": "Provide helpful one-tap suggestions when a search comes up empty (such as 'Try a wider date range' or 'Show all photos with people') so users stay in the search flow.",
+                "problem_description": "When a search brings up zero results, users hit a blank dead-end screen with no guidance or hints on how to rephrase, forcing them into exhausting manual timeline scrolling.",
+                "solution_direction": "Provide helpful one-tap suggestions when a search comes up empty (such as 'Try a wider date range' or 'Show all photos with people') so users stay in the search flow.",
                 "severity": "HIGH",
                 "score": 85,
             },
             {
                 "rank": 5,
-                "title": "Evaluative Context & Result Disambiguation",
+                "title": "Opportunity #5: Telling Similar-Looking Photos Apart in Search Results",
                 "failure_type": "evaluation",
                 "sub_category": "too_many_similar",
-                "problem_description": "Search displays dense grids of visually similar thumbnails without showing dates, locations, or why a photo matched, making target verification exhausting.",
-                "solution_direction": "Memory-anchored result cards displaying match rationales, landmark tags, and timeline markers on hover/tap.",
+                "pain_point": "Search shows a dense wall of tiny, identical thumbnails with no dates, places, or clues showing why each photo matched, making target verification tiring.",
+                "opportunity": "Show clear date and location labels on search results so users can quickly recognize the exact memory they are looking for without having to open every photo.",
+                "problem_description": "Search shows a dense wall of tiny, identical thumbnails with no dates, places, or clues showing why each photo matched, making target verification tiring.",
+                "solution_direction": "Show clear date and location labels on search results so users can quickly recognize the exact memory they are looking for without having to open every photo.",
                 "severity": "MEDIUM",
                 "score": 79,
             },
             {
                 "rank": 6,
-                "title": "Utility Document & OCR Isolation in Personal Memory Search",
+                "title": "Opportunity #6: Saved Screenshots and Clutter Flooding Personal Photos",
                 "failure_type": "interpretation",
                 "sub_category": "clutter_pollutes_results",
-                "problem_description": "Searches for personal visual memories return prescription bottles, receipt screenshots, and memes that contain coincidental text or color matches.",
-                "solution_direction": "Strict intent classification separating Utility/Document retrieval from Personal Episodic Recall.",
+                "pain_point": "When users search for personal memories (like a family trip or birthday), search results get cluttered with forwarded WhatsApp memes, receipts, and screenshots.",
+                "opportunity": "Keep saved screenshots and downloaded memes distinct from camera photos so AI search focuses on personal life moments and loved ones.",
+                "problem_description": "When users search for personal memories (like a family trip or birthday), search results get cluttered with forwarded WhatsApp memes, receipts, and screenshots.",
+                "solution_direction": "Keep saved screenshots and downloaded memes distinct from camera photos so AI search focuses on personal life moments and loved ones.",
                 "severity": "MEDIUM",
                 "score": 74,
             },
         ]
         return opportunities
 
-    def ranking_comparison(self) -> list:
-        """Side-by-side comparison between old volume ranking and new brief-grounded ranking."""
+    def ranking_table(self) -> list:
+        """Prioritized opportunities to solve visual memory search failures, ranked by user impact."""
         return [
             {
-                "rank_new": 1,
-                "title": "Compositional Retrieval Gap (Multi-Cue Failure)",
-                "old_volume_rank": 5,
-                "old_metric": "6.8% volume (raw mentions)",
-                "new_metric": "34.2% of Bucket-A Retrieval Failures",
-                "shift": "UP (+4)",
-                "pm_rationale": "In the raw corpus, users don't say 'compositional query'. They say 'I searched beach Goa restaurant and got nothing'. When filtered for actual retrieval breakdowns, this is the #1 root cause of failed searches.",
+                "rank": 1,
+                "title": "Multi-detail searches breaking down in practice (Person + Place + Time)",
+                "what_it_means": "While Google Photos promises natural multi-detail search, in practice combining more than one clue (like person, place, and time) often returns zero results or ignores key words.",
+                "why_it_is_important": "Because Google tells users this works, expectations are high. When combining basic clues fails, users lose trust in the search bar and give up.",
+                "severity": "CRITICAL",
             },
             {
-                "rank_new": 2,
-                "title": "Gemini / Ask Photos Intent & Hallucination Friction",
-                "old_volume_rank": 9,
-                "old_metric": "3.1% volume",
-                "new_metric": "22.5% of Bucket-A Retrieval Failures",
-                "shift": "UP (+7)",
-                "pm_rationale": "Ask Photos was introduced recently; raw volume is lower than 10 years of backup complaints. However, for future retrieval strategy, conversational AI failure is the top emerging strategic risk.",
+                "rank": 2,
+                "title": "AI Search misunderstanding natural questions ('Ask Photos')",
+                "what_it_means": "When people ask Google Photos questions in regular everyday language (like 'show me our picnic last year'), the AI often misinterprets what they mean, shows completely unrelated pictures, or guesses wrong.",
+                "why_it_is_important": "Users expect conversational AI to act like a helpful assistant. When it guesses wrong or shows random photos, users lose confidence and stop using AI search.",
+                "severity": "HIGH",
             },
             {
-                "rank_new": 3,
-                "title": "Relative-Time & Temporal Vagueness",
-                "old_volume_rank": 4,
-                "old_metric": "14.2% volume",
-                "new_metric": "19.8% of Bucket-A Retrieval Failures",
-                "shift": "UP (+1)",
-                "pm_rationale": "Human memory is episodic and relative. When users cannot recall exact calendar months, search hits a wall, creating direct drop-off.",
+                "rank": 3,
+                "title": "Searching by seasons and milestones instead of exact calendar dates",
+                "what_it_means": "People remember roughly when things happened (like 'two summers ago' or 'around graduation'), but search often only works if you type the exact calendar month and year (like 'July 2022').",
+                "why_it_is_important": "Forgetting the exact calendar date is the most common reason people struggle to find old photos. Search shouldn't fail just because someone doesn't remember the exact month.",
+                "severity": "HIGH",
             },
             {
-                "rank_new": 4,
-                "title": "Refinement Recovery & Endless Scroll Fatigue",
-                "old_volume_rank": 3,
-                "old_metric": "18.4% volume",
-                "new_metric": "15.6% of Bucket-A Retrieval Failures",
-                "shift": "DOWN (-1)",
-                "pm_rationale": "Scrolling fatigue is a symptom of failed recovery, not an isolated preference. It occurs when initial search fails and offers no progressive narrowing.",
+                "rank": 4,
+                "title": "Dead-end screens when a search finds no photos",
+                "what_it_means": "When a search returns zero photos, the app shows a completely blank screen with no tips on what to try next, leaving users stuck having to scroll through years of photos by hand.",
+                "why_it_is_important": "Endless manual scrolling through thousands of photos is the number one reason people get frustrated and close the app.",
+                "severity": "HIGH",
             },
             {
-                "rank_new": 5,
-                "title": "Screenshot & Meme Clutter Polluting Search",
-                "old_volume_rank": 1,
-                "old_metric": "29.1% volume (Top Old Symptom)",
-                "new_metric": "7.9% of Bucket-A Retrieval Failures",
-                "shift": "DOWN (-4)",
-                "pm_rationale": "In the old pipeline, clutter ranked #1 because thousands of users complain about storage limits and memes filling their feed. In retrieval with partial memory, clutter is an aggravating factor, not the primary query breakdown.",
+                "rank": 5,
+                "title": "Telling similar-looking photos apart in search results",
+                "what_it_means": "Search results show a dense grid of tiny, identical-looking picture squares with no dates or locations, making it exhausting to find the specific shot you actually wanted.",
+                "why_it_is_important": "Finding candidate photos is useless if users have to tap into dozens of lookalike pictures one by one just to check which one is the right memory.",
+                "severity": "MEDIUM",
             },
         ]
 

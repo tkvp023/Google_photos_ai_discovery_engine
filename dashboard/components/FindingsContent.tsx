@@ -2,24 +2,12 @@
 import { useState } from 'react';
 import { formatLabel } from '@/lib/formatters';
 
-interface TriageBucketInfo {
-  bucket: string;
-  label: string;
-  description: string;
-  color: string;
-  count: number;
-  percentage: number;
-  avg_confidence: number;
-  platform_counts: Record<string, number>;
-  sample_quotes: Array<{ quote: string; reason: string; source: string; confidence: number }>;
-}
-
-interface TriageOverviewData {
+interface CorpusOverviewData {
   total_documents: number;
   on_brief_count: number;
   on_brief_percentage: number;
-  buckets: Record<string, TriageBucketInfo>;
-  methodology_note: string;
+  buckets?: Record<string, unknown>;
+  methodology_note?: string;
 }
 
 interface FailurePointInfo {
@@ -55,12 +43,14 @@ interface BucketAFindingsData {
   memory_cues: {
     total_cues: number;
     cues: Array<{
-      cue_type: string;
+      cue_type?: string;
+      cue?: string;
       label: string;
       count: number;
-      percentage: number;
-      avg_confidence: number;
-      sample_quote: string;
+      percentage?: number;
+      pct?: number;
+      avg_confidence?: number;
+      sample_quote?: string;
     }>;
   };
 }
@@ -70,25 +60,25 @@ interface OpportunityItem {
   title: string;
   failure_type: string;
   sub_category: string;
+  pain_point?: string;
+  opportunity?: string;
   problem_description: string;
   solution_direction: string;
   severity: string;
   score: number;
 }
 
-interface RankingShiftItem {
-  rank_new: number;
+interface RankingTableItem {
+  rank: number;
   title: string;
-  old_volume_rank: number;
-  old_metric: string;
-  new_metric: string;
-  shift: string;
-  pm_rationale: string;
+  what_it_means: string;
+  why_it_is_important: string;
+  severity: string;
 }
 
 interface OpportunityRankingData {
   opportunities: OpportunityItem[];
-  ranking_comparison: RankingShiftItem[];
+  ranking_table: RankingTableItem[];
 }
 
 interface SampleQuestionItem {
@@ -121,7 +111,7 @@ interface ConfidenceDistributionData {
 }
 
 interface FindingsContentProps {
-  triage: TriageOverviewData;
+  corpus: CorpusOverviewData;
   bucketA: BucketAFindingsData;
   opportunities: OpportunityRankingData;
   sampleAnswers: { questions: SampleQuestionItem[] };
@@ -136,13 +126,6 @@ const STAGE_LABELS: Record<string, { title: string; tab: string }> = {
   recovery: { title: "No help when search fails", tab: "Getting help" },
 };
 
-const BUCKET_LABELS: Record<string, { title: string; filterLabel: string }> = {
-  A: { title: "Search Friction", filterLabel: "Primary focus" },
-  B: { title: "App & Backup Issues", filterLabel: "Filtered out" },
-  C: { title: "Layout & Menu Complaints", filterLabel: "Filtered out" },
-  D: { title: "General Feedback", filterLabel: "Filtered out" },
-};
-
 function getConfidenceTierText(score: number): string {
   if (score >= 0.85) return 'High confidence';
   if (score >= 0.70) return 'Moderate confidence';
@@ -150,7 +133,7 @@ function getConfidenceTierText(score: number): string {
 }
 
 export default function FindingsContent({
-  triage,
+  corpus,
   bucketA,
   opportunities,
   sampleAnswers,
@@ -161,8 +144,7 @@ export default function FindingsContent({
   const [expandedQuestion, setExpandedQuestion] = useState<number | null>(1);
 
   const failurePoints = bucketA.failure_breakdown.failure_points || {};
-  const totalBucketADocs = triage.on_brief_count || bucketA.failure_breakdown.total_bucket_a_docs || 251;
-  const totalCorpusDocs = triage.total_documents || 2223;
+  const totalBucketADocs = corpus.on_brief_count || bucketA.failure_breakdown.total_bucket_a_docs || 1616;
 
   // Filter subcategories for the active tab
   const filteredSubcategories = activeStageTab === 'all'
@@ -225,7 +207,7 @@ export default function FindingsContent({
           fontSize: 15.5, lineHeight: 1.65, color: 'var(--text-secondary)',
           maxWidth: 860, marginBottom: 26,
         }}>
-          Rather than analyzing general app store complaints, we isolated the 251 reviews where users specifically struggled to find a photo they remembered. We mapped these failures across four distinct stages: finding the right words, search misunderstanding, spotting the photo in clutter, and lack of recovery help.
+          Rather than analyzing general app store complaints, we isolated the 1,616 reviews where users specifically struggled to find a photo they remembered. We mapped these failures across four distinct stages: finding the right words, search misunderstanding, spotting the photo in clutter, and lack of recovery help.
         </p>
 
         {/* 4 Anchor Stat Cards */}
@@ -236,162 +218,77 @@ export default function FindingsContent({
         }}>
           {/* Total Corpus */}
           <div style={{
-            background: 'var(--bg-elevated)', border: '1px solid var(--border)',
-            padding: '16px 18px', borderRadius: 'var(--radius-md)',
-          }}>
-            <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: 4 }}>
-              Total Reviews Analyzed
-            </div>
-            <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--text-primary)', fontFamily: "'Space Grotesk', sans-serif" }}>
-              {totalCorpusDocs.toLocaleString()}
-            </div>
-            <div style={{ fontSize: 11.5, color: 'var(--text-muted)', marginTop: 4 }}>
-              1,583 store reviews + 640 forum discussions
-            </div>
-          </div>
-
-          {/* Search-Related */}
-          <div style={{
             background: 'rgba(59, 130, 246, 0.08)', border: '1.5px solid rgba(59, 130, 246, 0.35)',
             padding: '16px 18px', borderRadius: 'var(--radius-md)',
           }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--semantic-blue)', textTransform: 'uppercase', marginBottom: 4 }}>
-              Search-Related Reviews
+              Total Search Corpus
             </div>
             <div style={{ fontSize: 26, fontWeight: 800, color: 'var(--semantic-blue)', fontFamily: "'Space Grotesk', sans-serif" }}>
-              {totalBucketADocs.toLocaleString()}
-              <span style={{ fontSize: 13.5, fontWeight: 600, marginLeft: 8, opacity: 0.9 }}>
-                ({((totalBucketADocs / totalCorpusDocs) * 100).toFixed(1)}%)
-              </span>
+              1,616
             </div>
             <div style={{ fontSize: 11.5, color: 'var(--semantic-blue)', opacity: 0.9, marginTop: 4 }}>
-              Core focus of this report
+              100% In-Scope Search Discussions
             </div>
           </div>
 
-          {/* Filtered Out: Reliability */}
+          {/* Store Reviews */}
           <div style={{
             background: 'var(--bg-elevated)', border: '1px solid var(--border)',
             padding: '16px 18px', borderRadius: 'var(--radius-md)',
           }}>
             <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: 4 }}>
-              App &amp; Backup Issues (Filtered Out)
+              Mobile App Store Reviews
             </div>
-            <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--text-secondary)', fontFamily: "'Space Grotesk', sans-serif" }}>
-              {triage.buckets?.B?.count || 674}
+            <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--text-primary)', fontFamily: "'Space Grotesk', sans-serif" }}>
+              1,080
               <span style={{ fontSize: 13.5, fontWeight: 600, marginLeft: 8, color: 'var(--text-muted)' }}>
-                ({(triage.buckets?.B?.percentage || 30.3).toFixed(1)}%)
+                (66.8%)
               </span>
             </div>
             <div style={{ fontSize: 11.5, color: 'var(--text-muted)', marginTop: 4 }}>
-              Backup stalls, crashes, sync bugs
+              Play Store 969 · App Store 111
             </div>
           </div>
 
-          {/* Filtered Out: UI */}
+          {/* Tech Community */}
           <div style={{
             background: 'var(--bg-elevated)', border: '1px solid var(--border)',
             padding: '16px 18px', borderRadius: 'var(--radius-md)',
           }}>
             <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: 4 }}>
-              Layout Complaints (Filtered Out)
+              Technical Communities
             </div>
-            <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--text-secondary)', fontFamily: "'Space Grotesk', sans-serif" }}>
-              {triage.buckets?.C?.count || 659}
+            <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--text-primary)', fontFamily: "'Space Grotesk', sans-serif" }}>
+              536
               <span style={{ fontSize: 13.5, fontWeight: 600, marginLeft: 8, color: 'var(--text-muted)' }}>
-                ({(triage.buckets?.C?.percentage || 29.6).toFixed(1)}%)
+                (33.2%)
               </span>
             </div>
             <div style={{ fontSize: 11.5, color: 'var(--text-muted)', marginTop: 4 }}>
-              Tab moves, navigation redesign gripes
+              HN 455 · Reddit 54 · YouTube 27
+            </div>
+          </div>
+
+          {/* Quote Grounding */}
+          <div style={{
+            background: 'var(--bg-elevated)', border: '1px solid var(--border)',
+            padding: '16px 18px', borderRadius: 'var(--radius-md)',
+          }}>
+            <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--semantic-green)', textTransform: 'uppercase', marginBottom: 4 }}>
+              Quote Grounding Rate
+            </div>
+            <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--semantic-green)', fontFamily: "'Space Grotesk', sans-serif" }}>
+              100.0%
+            </div>
+            <div style={{ fontSize: 11.5, color: 'var(--text-muted)', marginTop: 4 }}>
+              Character-Exact Verbatim Quotes
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ 2. TRIAGE FILTER: HOW WE SEPARATED SEARCH PROBLEMS ═══ */}
-      <section style={{
-        background: 'var(--bg-surface)',
-        border: '1px solid var(--border)',
-        borderRadius: 'var(--radius-lg)',
-        padding: '28px',
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16, flexWrap: 'wrap', gap: 12 }}>
-          <div>
-            <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--text-primary)', margin: 0, letterSpacing: '-0.02em' }}>
-              How we separated search problems from everything else
-            </h2>
-            <p style={{ fontSize: 14, color: 'var(--text-secondary)', margin: '6px 0 0', maxWidth: 840, lineHeight: 1.55 }}>
-              All 2,223 raw user reviews were triaged into 4 mutually exclusive categories. Only search-related reviews (people struggling to find a photo with partial memory) are included in the search analysis. App crashes, sync loops, and UI redesign feedback are separated out so they don&apos;t pollute search findings.
-            </p>
-          </div>
-        </div>
-
-        {/* 4 Bucket Distribution Cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14 }}>
-          {(['A', 'B', 'C', 'D'] as const).map((bKey) => {
-            const b = triage.buckets?.[bKey] || {
-              bucket: bKey,
-              label: `Bucket ${bKey}`,
-              description: '',
-              color: '#3b82f6',
-              count: 0,
-              percentage: 0,
-              avg_confidence: 0.85,
-              sample_quotes: [],
-            };
-            const isPrimary = bKey === 'A';
-            const meta = BUCKET_LABELS[bKey] || { title: `Bucket ${bKey}`, filterLabel: '' };
-
-            return (
-              <div
-                key={bKey}
-                style={{
-                  padding: 18,
-                  borderRadius: 'var(--radius-md)',
-                  background: isPrimary ? 'rgba(59, 130, 246, 0.05)' : 'var(--bg-elevated)',
-                  border: isPrimary ? '1.5px solid rgba(59, 130, 246, 0.35)' : '1px solid var(--border)',
-                  position: 'relative',
-                }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                  <span style={{
-                    fontSize: 12.5, fontWeight: 700, color: isPrimary ? 'var(--semantic-blue)' : 'var(--text-secondary)',
-                    display: 'flex', alignItems: 'center', gap: 6,
-                  }}>
-                    <span style={{ width: 7, height: 7, borderRadius: '50%', background: isPrimary ? 'var(--semantic-blue)' : 'var(--semantic-gray)' }} />
-                    {meta.title}
-                  </span>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: isPrimary ? 'var(--semantic-blue)' : 'var(--text-muted)' }}>
-                    {b.percentage}%
-                  </span>
-                </div>
-
-                <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 4, fontFamily: "'Space Grotesk', sans-serif" }}>
-                  {b.count.toLocaleString()}
-                  <span style={{ fontSize: 12, fontWeight: 400, color: 'var(--text-muted)', marginLeft: 6 }}>reviews</span>
-                </div>
-
-                <div style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.45, marginBottom: 12, minHeight: 34 }}>
-                  {b.description}
-                </div>
-
-                {/* Sample Grounded Quote */}
-                {b.sample_quotes?.[0] && (
-                  <div style={{
-                    fontSize: 11.5, fontStyle: 'italic', color: 'var(--text-muted)',
-                    borderLeft: `2px solid ${isPrimary ? 'var(--semantic-blue)' : 'var(--border-strong)'}`, paddingLeft: 8, marginTop: 8,
-                  }}>
-                    &ldquo;{b.sample_quotes[0].quote.slice(0, 105)}...&rdquo;
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ═══ 3. THE 4-STAGE FAILURE TAXONOMY ═══ */}
+      {/* ═══ 2. THE 4-STAGE FAILURE TAXONOMY ═══ */}
       <section style={{
         background: 'var(--bg-surface)',
         border: '1px solid var(--border)',
@@ -401,11 +298,17 @@ export default function FindingsContent({
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20, flexWrap: 'wrap', gap: 12 }}>
           <div>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--text-primary)', margin: 0, letterSpacing: '-0.02em' }}>
-              Where search goes wrong: four stages
+              Where search goes wrong: The 4 Failure Stages
             </h2>
-            <p style={{ fontSize: 13.5, color: 'var(--text-secondary)', margin: '6px 0 0' }}>
-              Every search breakdown happens at one of four distinct cognitive moments in the user journey.
+            <p style={{ fontSize: 13.5, color: 'var(--text-secondary)', margin: '6px 0 0', maxWidth: 840, lineHeight: 1.5 }}>
+              We classified all 1,616 search-related reviews into 4 cognitive moments based on <strong>where in the search journey</strong> the user&apos;s experience broke down:
             </p>
+            <div style={{ display: 'flex', gap: 16, marginTop: 8, flexWrap: 'wrap', fontSize: 12, color: 'var(--text-secondary)' }}>
+              <span>• <strong style={{ color: 'var(--text-primary)' }}>Expression (59.0%)</strong>: User couldn&apos;t put visual memory into words</span>
+              <span>• <strong style={{ color: 'var(--text-primary)' }}>Interpretation (38.9%)</strong>: Search misunderstood the query</span>
+              <span>• <strong style={{ color: 'var(--text-primary)' }}>Evaluation (0.6%)</strong>: Couldn&apos;t spot photo in cluttered results</span>
+              <span>• <strong style={{ color: 'var(--text-primary)' }}>Recovery (1.6%)</strong>: No suggestions or fallback help</span>
+            </div>
           </div>
 
           {/* Stage Filter Tabs */}
@@ -432,6 +335,26 @@ export default function FindingsContent({
                 </button>
               );
             })}
+          </div>
+        </div>
+
+        {/* Tag & Denominator Explanation Callout */}
+        <div style={{
+          padding: '12px 16px',
+          background: 'rgba(59, 130, 246, 0.08)',
+          border: '1px solid rgba(59, 130, 246, 0.22)',
+          borderRadius: 'var(--radius-md)',
+          marginBottom: 20,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 12,
+          fontSize: 12.5,
+          color: 'var(--text-secondary)',
+          lineHeight: 1.45,
+        }}>
+          <span style={{ fontSize: 18, flexShrink: 0 }}>🏷️</span>
+          <div>
+            <strong style={{ color: 'var(--text-primary)' }}>What is a &ldquo;Tag&rdquo;? (Understanding Denominators):</strong> In this discovery engine, a <strong>tag</strong> is an individual, verified search failure pattern or memory signal identified in customer reviews (e.g., <em>date amnesia</em>, <em>wrong face match</em>, or <em>forced scroll fallback</em>). Because a user often encounters multiple issues in one search session, a review can contain multiple tags across different failure stages.
           </div>
         </div>
 
@@ -511,15 +434,6 @@ export default function FindingsContent({
                   ))}
                 </div>
 
-                {/* Grounded Quote Snippet */}
-                {info.sample_quotes?.[0] && (
-                  <div style={{
-                    fontSize: 11.5, fontStyle: 'italic', color: 'var(--text-muted)',
-                    borderLeft: '2px solid var(--semantic-blue)', paddingLeft: 8, marginTop: 8,
-                  }}>
-                    &ldquo;{info.sample_quotes[0].quote.slice(0, 95)}...&rdquo;
-                  </div>
-                )}
               </div>
             );
           })}
@@ -540,7 +454,7 @@ export default function FindingsContent({
               Detailed breakdown ({filteredSubcategories.length} failure types)
             </span>
             <span style={{ fontSize: 11.5, color: 'var(--text-muted)' }}>
-              Real user quotes verified word-for-word
+              Distribution across 1,616 search reviews
             </span>
           </div>
 
@@ -549,29 +463,28 @@ export default function FindingsContent({
               <div
                 key={sub.sub_category}
                 style={{
-                  display: 'grid',
-                  gridTemplateColumns: '2fr 1fr 3fr',
-                  gap: 16,
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                   padding: '12px 18px',
                   borderBottom: idx === filteredSubcategories.length - 1 ? 'none' : '1px solid var(--border)',
-                  alignItems: 'center',
                   fontSize: 13,
                 }}
               >
                 <div>
                   <div style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{sub.label}</div>
-                  <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+                  <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>
                     {STAGE_LABELS[sub.failure_type]?.title || sub.failure_type}
                   </div>
                 </div>
 
-                <div>
-                  <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{sub.count} mentions</div>
-                  <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{sub.percentage}% of search issues</div>
-                </div>
-
-                <div style={{ fontSize: 12, color: 'var(--text-secondary)', fontStyle: 'italic' }}>
-                  {sub.sample_quote ? `“${sub.sample_quote}”` : 'No quote available'}
+                <div style={{ textAlign: 'right' }}>
+                  <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: "'Space Grotesk', sans-serif" }}>
+                    {sub.count} mentions
+                  </div>
+                  <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>
+                    {sub.percentage}% of search issues
+                  </div>
                 </div>
               </div>
             ))}
@@ -596,47 +509,51 @@ export default function FindingsContent({
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: 14 }}>
-          {bucketA.memory_cues.cues?.map((cue) => (
-            <div
-              key={cue.cue_type}
-              style={{
-                padding: '15px 16px',
-                borderRadius: 'var(--radius-md)',
-                background: 'var(--bg-elevated)',
-                border: '1px solid var(--border)',
-              }}
-            >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)' }}>
-                  {cue.label}
-                </span>
-                <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--semantic-blue)' }}>
-                  {cue.percentage}%
-                </span>
-              </div>
-
-              <div style={{
-                height: 5, background: 'var(--border)', borderRadius: 3, overflow: 'hidden', marginBottom: 8,
-              }}>
-                <div style={{
-                  height: '100%', width: `${cue.percentage}%`, background: 'var(--semantic-blue)', borderRadius: 3,
-                }} />
-              </div>
-
-              <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
-                Mentioned by {cue.count} users · {getConfidenceTierText(cue.avg_confidence)}
-              </div>
-
-              {cue.sample_quote && (
-                <div style={{
-                  fontSize: 11.5, fontStyle: 'italic', color: 'var(--text-secondary)',
-                  marginTop: 8, borderTop: '1px dashed var(--border)', paddingTop: 6,
-                }}>
-                  &ldquo;{cue.sample_quote.slice(0, 80)}...&rdquo;
+          {bucketA.memory_cues.cues?.map((cue, idx) => {
+            const cueKey = cue.cue || cue.cue_type || cue.label || `cue-${idx}`;
+            const pct = cue.pct ?? cue.percentage ?? 0;
+            return (
+              <div
+                key={cueKey}
+                style={{
+                  padding: '15px 16px',
+                  borderRadius: 'var(--radius-md)',
+                  background: 'var(--bg-elevated)',
+                  border: '1px solid var(--border)',
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)' }}>
+                    {cue.label}
+                  </span>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--semantic-blue)' }}>
+                    {pct}%
+                  </span>
                 </div>
-              )}
-            </div>
-          ))}
+
+                <div style={{
+                  height: 5, background: 'var(--border)', borderRadius: 3, overflow: 'hidden', marginBottom: 8,
+                }}>
+                  <div style={{
+                    height: '100%', width: `${pct}%`, background: 'var(--semantic-blue)', borderRadius: 3,
+                  }} />
+                </div>
+
+                <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+                  Mentioned by {cue.count} users{cue.avg_confidence ? ` · ${getConfidenceTierText(cue.avg_confidence)}` : ''}
+                </div>
+
+                {cue.sample_quote && (
+                  <div style={{
+                    fontSize: 11.5, fontStyle: 'italic', color: 'var(--text-secondary)',
+                    marginTop: 8, borderTop: '1px dashed var(--border)', paddingTop: 6,
+                  }}>
+                    &ldquo;{cue.sample_quote.slice(0, 80)}...&rdquo;
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -727,11 +644,11 @@ export default function FindingsContent({
             What to fix first: Strategic Opportunities
           </h2>
           <p style={{ fontSize: 13.5, color: 'var(--text-secondary)', margin: '6px 0 0' }}>
-            When we filter out generic complaints and look specifically at search failures, the priority ranking changes.
+            Top opportunities to solve photo search frustrations, ranked by user impact across 1,616 customer reviews.
           </p>
         </div>
 
-        {/* Comparison Table */}
+        {/* Strategic Opportunity Ranking Table */}
         <div style={{
           border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', overflow: 'hidden',
           marginBottom: 24, background: 'var(--bg-elevated)',
@@ -739,43 +656,47 @@ export default function FindingsContent({
           <div style={{
             padding: '11px 16px', background: 'var(--bg-card)', borderBottom: '1px solid var(--border)',
             fontWeight: 600, fontSize: 12.5, color: 'var(--text-primary)',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           }}>
-            Raw complaint count vs. Search-focused priority
+            <span>Core Opportunities to Improve Photo Search</span>
+            <span style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 400 }}>
+              Ranked #1 to #5 by frequency and impact on users
+            </span>
           </div>
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12.5 }}>
               <thead>
                 <tr style={{ borderBottom: '1px solid var(--border)', color: 'var(--text-muted)', fontSize: 11, textTransform: 'uppercase' }}>
-                  <th style={{ padding: '10px 14px', textAlign: 'left' }}>New Rank</th>
-                  <th style={{ padding: '10px 14px', textAlign: 'left' }}>Opportunity</th>
-                  <th style={{ padding: '10px 14px', textAlign: 'left' }}>Shift</th>
-                  <th style={{ padding: '10px 14px', textAlign: 'left' }}>Old Raw Rank</th>
-                  <th style={{ padding: '10px 14px', textAlign: 'left' }}>Why the priority changed</th>
+                  <th style={{ padding: '10px 14px', textAlign: 'left', width: '70px' }}>Rank</th>
+                  <th style={{ padding: '10px 14px', textAlign: 'left', width: '220px' }}>Opportunity</th>
+                  <th style={{ padding: '10px 14px', textAlign: 'left', minWidth: '260px' }}>What it means</th>
+                  <th style={{ padding: '10px 14px', textAlign: 'left', minWidth: '260px' }}>Why it is important</th>
+                  <th style={{ padding: '10px 14px', textAlign: 'left', width: '95px' }}>Severity</th>
                 </tr>
               </thead>
               <tbody>
-                {opportunities.ranking_comparison?.map((item) => (
-                  <tr key={item.rank_new} style={{ borderBottom: '1px solid var(--border)' }}>
-                    <td style={{ padding: '10px 14px', fontWeight: 700, color: 'var(--semantic-blue)' }}>
-                      #{item.rank_new}
+                {opportunities.ranking_table?.map((item) => (
+                  <tr key={item.rank} style={{ borderBottom: '1px solid var(--border)' }}>
+                    <td style={{ padding: '12px 14px', fontWeight: 700, color: 'var(--semantic-blue)', verticalAlign: 'top' }}>
+                      #{item.rank}
                     </td>
-                    <td style={{ padding: '10px 14px', fontWeight: 600, color: 'var(--text-primary)' }}>
+                    <td style={{ padding: '12px 14px', fontWeight: 600, color: 'var(--text-primary)', verticalAlign: 'top' }}>
                       {item.title}
                     </td>
-                    <td style={{ padding: '10px 14px' }}>
+                    <td style={{ padding: '12px 14px', color: 'var(--text-secondary)', fontSize: 12, lineHeight: 1.5, verticalAlign: 'top' }}>
+                      {item.what_it_means}
+                    </td>
+                    <td style={{ padding: '12px 14px', color: 'var(--text-secondary)', fontSize: 12, lineHeight: 1.5, verticalAlign: 'top' }}>
+                      {item.why_it_is_important}
+                    </td>
+                    <td style={{ padding: '12px 14px', verticalAlign: 'top' }}>
                       <span style={{
-                        fontSize: 11, fontWeight: 700, padding: '2px 7px', borderRadius: 4,
-                        background: item.shift.includes('UP') ? 'rgba(34, 197, 94, 0.12)' : 'rgba(245, 158, 11, 0.12)',
-                        color: item.shift.includes('UP') ? 'var(--semantic-green)' : 'var(--semantic-amber)',
+                        fontSize: 10.5, fontWeight: 700, padding: '2px 7px', borderRadius: 4,
+                        background: item.severity === 'CRITICAL' ? 'rgba(239, 68, 68, 0.12)' : item.severity === 'HIGH' ? 'rgba(245, 158, 11, 0.12)' : 'rgba(59, 130, 246, 0.12)',
+                        color: item.severity === 'CRITICAL' ? '#ef4444' : item.severity === 'HIGH' ? 'var(--semantic-amber)' : 'var(--semantic-blue)',
                       }}>
-                        {item.shift}
+                        {item.severity}
                       </span>
-                    </td>
-                    <td style={{ padding: '10px 14px', color: 'var(--text-muted)' }}>
-                      #{item.old_volume_rank} ({item.old_metric})
-                    </td>
-                    <td style={{ padding: '10px 14px', color: 'var(--text-secondary)', fontSize: 12, lineHeight: 1.45 }}>
-                      {item.pm_rationale}
                     </td>
                   </tr>
                 ))}
@@ -820,8 +741,8 @@ export default function FindingsContent({
               </div>
 
               <div style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.45 }}>
-                <strong style={{ color: 'var(--text-primary)' }}>Problem: </strong>
-                {opp.problem_description}
+                <strong style={{ color: 'var(--text-primary)' }}>User Pain Point: </strong>
+                {opp.pain_point || opp.problem_description}
               </div>
 
               <div style={{
@@ -829,8 +750,8 @@ export default function FindingsContent({
                 background: 'var(--bg-card)', padding: '8px 10px', borderRadius: 6,
                 border: '1px solid var(--border)', marginTop: 'auto',
               }}>
-                <strong style={{ color: 'var(--semantic-blue)' }}>Recommended fix: </strong>
-                {opp.solution_direction}
+                <strong style={{ color: 'var(--semantic-blue)' }}>The Opportunity: </strong>
+                {opp.opportunity || opp.solution_direction}
               </div>
             </div>
           ))}

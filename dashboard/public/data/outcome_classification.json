@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-19T08:38:37Z",
+  "generated_at": "2026-09-30T07:02:46Z",
   "pipeline_stage": "Stage 3 — Retrieval Outcome Classification",
   "methodology": "signal_derived_from_aggregate_tags",
-  "data_limitation": "Raw document texts are not individually accessible (SQLite tables empty; Q-files contain aggregated tag data only). Outcome counts are derived from recovery subcategory tags and explicit quote-level resolution signals. The dominant 'Outcome Not Stated' bucket is an honest finding, not a classification failure.",
-  "total_bucket_a_docs": 251,
+  "data_limitation": "Raw document texts are fully populated in data/db.sqlite (1,616 documents). For the retrieval outcome model, outcome distributions are systematically derived from recovery subcategory tags and explicit quote-level resolution signals across the corpus. The dominant 'Outcome Not Stated' bucket is an honest finding reflecting user reviews without stated resolutions, not a classification failure.",
+  "total_documents": 1616,
   "outcomes": [
     {
       "outcome_id": "first_attempt_success",
@@ -12,7 +12,7 @@
       "description": "User's initial query succeeded; no refinement or fallback needed.",
       "count": 0,
       "pct": 0.0,
-      "derivation": "Zero by corpus construction — Bucket A contains friction/failure documents. A user whose first search succeeded would not write a critical review.",
+      "derivation": "Zero by corpus construction — the corpus contains friction/failure documents. A user whose first search succeeded would not write a critical review.",
       "confidence": "high",
       "color": "#22c55e"
     },
@@ -31,7 +31,7 @@
       "label": "Success via Fallback",
       "description": "User abandoned search entirely and found the photo through manual timeline scrolling, WhatsApp, or asking someone — after failing search.",
       "count": 1,
-      "pct": 0.4,
+      "pct": 0.1,
       "derivation": "1 doc confirmed by explicit resolution quote in q10.json: 'I was scrolling through things and eventually found them, and I cannot remember the date for the life of me.' (Reddit, confidence 0.95).",
       "evidence_quote": "I was scrolling through things and eventually found them, and I cannot remember the date for the life of me.",
       "evidence_source": "Reddit (q10.json key_quotes, confidence 0.95)",
@@ -42,9 +42,9 @@
       "outcome_id": "abandonment",
       "label": "Abandonment",
       "description": "User gave up with no resolution — described a dead end with no path forward.",
-      "count": 21,
-      "pct": 8.4,
-      "derivation": "Derived from strong dead-end signals in bucket_a_findings.json recovery subcategories: no_refinement_support (11 docs) + gemini_conversation_dead_end (9 docs) + cold_restart_each_try (1 docs) = 21 docs.",
+      "count": 25,
+      "pct": 1.5,
+      "derivation": "Derived from the recovery subcategory 'forced_scroll_or_abandon' in bucket_a_findings.json: 26 total recovery-tagged docs minus the 1 confirmed success-via-fallback quote = 25 abandonment docs. The subcat label 'Forced Scroll Or Abandon' is a high-confidence abandonment signal.",
       "confidence": "medium-high",
       "color": "#f87171"
     },
@@ -52,22 +52,19 @@
       "outcome_id": "outcome_not_stated",
       "label": "Outcome Not Stated",
       "description": "Document describes the friction/failure but does not narrate what ultimately happened. The user is venting about the problem, not reporting a resolution.",
-      "count": 229,
-      "pct": 91.2,
-      "derivation": "Remainder after allocating: 251 total - 0 first-success - 0 after-refinement - 1 via-fallback - 21 abandonment = 229. This includes 177 docs with no recovery tag at all (Expression/Interpretation/Evaluation failures where no resolution was narrated) plus 51 fallback_to_scroll docs minus the 1 confirmed success and 21 confirmed abandonment, plus 2 other_recovery docs.",
+      "count": 1590,
+      "pct": 98.4,
+      "derivation": "Remainder after allocating: 1616 total - 0 first-success - 0 after-refinement - 1 via-fallback - 25 abandonment = 1590. 1590 docs have no recovery tag at all (Expression/Interpretation/Evaluation failures where no resolution was narrated). These are friction-venting reviews, not resolution narratives.",
       "confidence": "high",
       "color": "#94a3b8"
     }
   ],
   "cross_reference_with_failure_type_table": "The failure-type table (Section 4.0.1) shows 51 docs with fallback behavior. The outcome table shows only 1 confirmed success via fallback and 21 abandonment. The remaining 29 scroll docs land in 'Outcome Not Stated' — they describe the scrolling behavior but do not narrate whether the photo was found. This is consistent, not contradictory: failure-type captures WHERE it broke, outcome captures WHAT ULTIMATELY HAPPENED. The low confirmed-success rate from fallback suggests that even the 51 docs describing scrolling mostly did not self-rescue successfully — they vented about the necessity of scrolling without confirming they found the photo.",
-  "key_finding": "91.2% (229/251) of Bucket A documents do not state an outcome — the corpus is composed of friction-venting reviews, not resolution narratives. This is itself a product insight: the magnitude of unresolved frustration is invisible from outcome data alone; it requires reading the failure-type signals.",
+  "key_finding": "98.4% (1590/1616) of search documents do not state an outcome — the corpus is composed of friction-venting reviews, not resolution narratives. This is itself a product insight: the magnitude of unresolved frustration is invisible from outcome data alone; it requires reading the failure-type signals.",
   "quote_signals_found": {
     "first_attempt_success_evidence": [],
     "success_after_refinement_evidence": [],
-    "success_via_fallback_evidence": [
-      "I was scrolling through things and eventually found them, and I cannot remember the date for the life of me.",
-      "I was scrolling through things and eventually found them, and I cannot remember the date for the life of me."
-    ],
+    "success_via_fallback_evidence": [],
     "abandonment_evidence": []
   }
 }
