@@ -2,6 +2,21 @@
 
 Analyzing visual memory retrieval friction in Google Photos — understanding how users recall past visual memories, where retrieval breaks down when memory is incomplete, and identifying opportunities for AI-native episodic retrieval.
 
+## 🎬 Product Walkthrough & Demo
+
+https://github.com/tkvp023/Google_photos_ai_discovery_engine/raw/B/demo.mp4
+
+<div align="center">
+  <video src="https://github.com/tkvp023/Google_photos_ai_discovery_engine/raw/B/demo.mp4" controls="controls" width="100%" style="border-radius: 8px;">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+[![Watch Walkthrough Demo](DOCS/thumbnail.png)](https://github.com/tkvp023/Google_photos_ai_discovery_engine/raw/B/demo.mp4)
+
+> 🚀 **Live Production Dashboard**: [google-photos-ai-discovery-engine.vercel.app](https://google-photos-ai-discovery-engine.vercel.app)  
+> 📹 **Video Walkthrough**: 5-minute deep dive covering multi-platform search intelligence, the 4 retrieval failure stages, 10 discovery questions, and the AI RAG discovery engine.
+
 ## Architecture
 
 ```

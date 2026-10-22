@@ -49,3 +49,7 @@ build/
 # OS
 .DS_Store
 Thumbs.db
+
+# Raw video captures
+2026-*.mp4
+
