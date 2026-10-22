@@ -14,7 +14,6 @@ https://github.com/tkvp023/Google_photos_ai_discovery_engine/raw/B/demo.mp4
 
 [![Watch Walkthrough Demo](DOCS/thumbnail.png)](https://github.com/tkvp023/Google_photos_ai_discovery_engine/raw/B/demo.mp4)
 
-> 🚀 **Live Production Dashboard**: [google-photos-ai-discovery-engine.vercel.app](https://google-photos-ai-discovery-engine.vercel.app)  
 > 📹 **Video Walkthrough**: 5-minute deep dive covering multi-platform search intelligence, the 4 retrieval failure stages, 10 discovery questions, and the AI RAG discovery engine.
 
 ## Architecture
